@@ -91,4 +91,6 @@ export default function PricingPage() {
               <div className="p-4 text-center text-sm font-semibold text-violet-400">Aventurier</div>
               <div className="p-4 text-center text-sm font-semibold text-amber-400">Pro</div>
             </div>
-            {[["Mondes","1","7","7"],["Aventures","3","Illimité","Illimité"],["Quiz IA","Non","Oui","Oui"],["Feedback","Non","3/mois","Illimité"],["Badge
+            {DATA_ROWS.map((row,i) => (
+              <div key={i} className={`grid grid-cols-4 gap-0 ${i%2===0?"bg-white/[0.02]":""}`}>
+                <div
