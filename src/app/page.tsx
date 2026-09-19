@@ -1,6 +1,10 @@
+'use client';
 import Link from "next/link";
 import { ArrowRight, Star, Shield, Users, Rocket } from "lucide-react";
 import { WORLDS } from "@/data/content";
+import { useEffect, useState } from "react";
+import Nav from "@/components/Nav";
+
 const CHARACTERS = [
   { emoji: "👩🏾", name: "Awa", trait: "Créative", color: "#ec4899", bg: "from-pink-500/20 to-rose-500/10" },
   { emoji: "👦🏾", name: "Koffi", trait: "Logique", color: "#10b981", bg: "from-emerald-500/20 to-teal-500/10" },
@@ -20,23 +24,38 @@ const STATS = [
   { value: "50+", label: "Badges", icon: "🏆" },
   { value: "∞", label: "Possibilités", icon: "✨" },
 ];
+
+function AuthGate({ children }: { children: React.ReactNode }) {
+  const [auth, setAuth] = useState(false);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const token = localStorage.getItem('de_auth');
+    setAuth(!!token);
+    setLoading(false);
+  }, []);
+  if (loading) return <div className="min-h-screen bg-[#060810] flex items-center justify-center"><div className="w-12 h-12 border-4 border-violet-500 border-t-transparent rounded-full animate-spin" /></div>;
+  if (!auth) {
+    return (
+      <div className="min-h-screen bg-[#060810] text-white flex items-center justify-center px-6">
+        <div className="text-center max-w-md">
+          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-500/20 to-purple-500/20 border border-violet-500/30 flex items-center justify-center mx-auto mb-6"><Shield className="w-10 h-10 text-violet-400" /></div>
+          <h1 className="font-display text-3xl md:text-4xl font-bold mb-4">Accès réservé</h1>
+          <p className="text-gray-400 mb-8 text-lg">Connecte-toi pour accéder à cette partie de la plateforme.</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/auth/signup"><button className="px-8 py-3 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-full font-semibold hover:opacity-90 transition-opacity">Créer mon compte</button></Link>
+            <Link href="/auth/login"><button className="px-8 py-3 border border-white/10 rounded-full text-gray-300 hover:bg-white/5 transition-all">J'ai déjà un compte</button></Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  return <>{children}</>;
+}
+
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#060810] text-white overflow-x-hidden">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#060810]/70 backdrop-blur-2xl border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#ff6b6b] to-[#8b5cf6] flex items-center justify-center text-sm font-bold">DE</div>
-            <span className="font-bold text-lg tracking-tight">Digital Explorers</span>
-          </Link>
-          <div className="flex items-center gap-2">
-            <Link href="/worlds"><button className="px-4 py-2 text-sm text-gray-300 hover:text-white transition-colors">Mondes</button></Link>
-            <Link href="/portfolio"><button className="px-4 py-2 text-sm text-gray-300 hover:text-white transition-colors">Portfolio</button></Link>
-            <Link href="/auth/login"><button className="px-4 py-2 text-sm border border-white/10 rounded-full text-gray-300 hover:bg-white/5 transition-all">Connexion</button></Link>
-            <Link href="/auth/signup"><button className="px-5 py-2 text-sm bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-full font-semibold hover:opacity-90 transition-opacity ml-1">Commencer</button></Link>
-          </div>
-        </div>
-      </nav>
+      <Nav />
 
       <section className="relative pt-36 pb-20 px-6 min-h-screen flex items-center">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-violet-600/10 rounded-full blur-[120px] animate-pulse-glow" />
@@ -60,7 +79,7 @@ export default function HomePage() {
               <p className="text-gray-500 text-lg mb-10">Explore 7 mondes, termine des aventures, gagne des badges et construis ton portfolio.</p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/auth/signup"><button className="px-8 py-4 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-full font-semibold hover:opacity-90 transition-all hover:-translate-y-0.5 flex items-center gap-2 text-base shadow-lg shadow-violet-500/25">Commencer l aventure <ArrowRight className="w-5 h-5" /></button></Link>
-                <Link href="/worlds"><button className="px-8 py-4 border border-white/15 rounded-full font-medium text-gray-300 hover:bg-white/5 hover:text-white transition-all text-base">Explorer les mondes</button></Link>
+                <a href="#mondes"><button className="px-8 py-4 border border-white/15 rounded-full font-medium text-gray-300 hover:bg-white/5 hover:text-white transition-all text-base">Explorer les mondes</button></a>
               </div>
               <div className="flex items-center gap-8 mt-12 text-sm text-gray-500">
                 <div className="flex items-center gap-2"><Users className="w-4 h-4 text-violet-400" /><span>+2 000 explorateurs</span></div>
@@ -128,16 +147,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-24 px-6 bg-white/[0.02]">
+      <section id="mondes" className="py-24 px-6 bg-white/[0.02]">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-end justify-between mb-12">
             <div><p className="text-sm text-violet-400 font-medium uppercase tracking-wider mb-3">Les 7 Mondes</p><h2 className="font-display text-4xl md:text-5xl font-bold">Explore, <span className="bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] bg-clip-text text-transparent">crée</span>, inspires-toi</h2></div>
             <Link href="/worlds"><button className="px-4 py-2 text-sm border border-white/10 rounded-full text-gray-300 hover:bg-white/5 hover:text-white transition-all hidden sm:flex items-center gap-1">Voir tout <ArrowRight className="w-3.5 h-3.5" /></button></Link>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            {WORLDS.map(world => (
-              <Link key={world.id} href="/worlds/web-digital" className="group cursor-pointer">
-                <div className="bg-[#111827] border border-white/5 rounded-2xl p-5 hover:border-violet-500/30 transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
+            {WORLDS.slice(0,4).map(world => (
+              <Link key={world.id} href={`/worlds/${world.slug}`}>
+                <div className="group cursor-pointer bg-[#111827] border border-white/5 rounded-2xl p-5 hover:border-violet-500/30 transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
                   <div className={`w-full h-32 rounded-xl bg-gradient-to-br ${world.gradient} flex items-center justify-center text-5xl mb-5 group-hover:scale-105 transition-transform duration-300`}>{world.icon}</div>
                   <h3 className="font-display font-bold text-lg mb-2 group-hover:text-violet-300 transition-colors">{world.name}</h3>
                   <p className="text-sm text-gray-400 line-clamp-2 mb-4 flex-1">{world.description}</p>
@@ -189,13 +208,13 @@ export default function HomePage() {
               <div className="flex items-center gap-3 mb-4"><div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#ff6b6b] to-[#8b5cf6] flex items-center justify-center text-sm font-bold">DE</div><span className="font-display font-bold text-lg">Digital Explorers</span></div>
               <p className="text-sm text-gray-400 leading-relaxed">Découvre le monde numérique. Trouve ta voie. Imagine ton futur.</p>
             </div>
-            <div><h4 className="font-semibold text-sm mb-4 text-gray-300">Mondes</h4><ul className="space-y-2 text-sm text-gray-500">{WORLDS.slice(0,4).map(w => <li key={w.id}><Link href="/worlds/web-digital" className="hover:text-white transition-colors">{w.name}</Link></li>)}</ul></div>
+            <div><h4 className="font-semibold text-sm mb-4 text-gray-300">Mondes</h4><ul className="space-y-2 text-sm text-gray-500">{WORLDS.slice(0,4).map(w => <li key={w.id}><Link href={`/worlds/${w.slug}`} className="hover:text-white transition-colors">{w.name}</Link></li>)}</ul></div>
             <div><h4 className="font-semibold text-sm mb-4 text-gray-300">Espaces</h4><ul className="space-y-2 text-sm text-gray-500"><li><Link href="/dashboard" className="hover:text-white transition-colors">Dashboard</Link></li><li><Link href="/portfolio" className="hover:text-white transition-colors">Portfolio</Link></li><li><Link href="/parent" className="hover:text-white transition-colors">Espace Parent</Link></li></ul></div>
             <div><h4 className="font-semibold text-sm mb-4 text-gray-300">Liens</h4><ul className="space-y-2 text-sm text-gray-500"><li><span className="hover:text-white transition-colors cursor-pointer">À propos</span></li><li><span className="hover:text-white transition-colors cursor-pointer">Confidentialité</span></li><li><Link href="https://geekcoding4kids.online" target="_blank" className="hover:text-white transition-colors">GeekCoding4Kids</Link></li></ul></div>
           </div>
           <div className="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-600">
             <p>© 2026 Digital Explorers — BENILAB. Fait avec ❤️ en Afrique.</p>
-            <div className="flex items-center gap-4"><Link href="https://github.com/benilabservices-gif" target="_blank" className="hover:text-white transition-colors">GitHub</Link><span>·</span><span>v2.0.0</span></div>
+            <div className="flex items-center gap-4"><Link href="https://github.com/benilabservices-gif" target="_blank" className="hover:text-white transition-colors">GitHub</Link><span>·</span><span>v2.1.0</span></div>
           </div>
         </div>
       </footer>

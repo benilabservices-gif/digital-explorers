@@ -4,26 +4,49 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { TrendingUp, Award, FolderOpen, Zap, ArrowRight, Crown, Rocket, ChevronRight, LogOut } from 'lucide-react';
 import { WORLDS, DIGITAL_BRIDGES, BADGES as CONTENT_BADGES } from '@/data/content';
+import Nav from '@/components/Nav';
+import AICoach from '@/components/AICoach';
 
 export default function DashboardPage() {
   const router = useRouter();
   const [profile, setProfile] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [auth, setAuth] = useState(false);
 
   useEffect(() => {
-    const auth = localStorage.getItem('de_auth');
-    if (!auth) { router.push('/auth/login'); return; }
-    const saved = localStorage.getItem('de_profile');
-    if (saved) setProfile(JSON.parse(saved));
-    else {
-      const p = { id:'local_1', pseudonym:'Explorateur', age:14, gradeLevel:'4e', phase:'creator', xp:0, level:1 };
-      localStorage.setItem('de_profile', JSON.stringify(p));
-      setProfile(p);
+    const token = localStorage.getItem('de_auth');
+    const expires = localStorage.getItem('de_auth_expires');
+    if (token && expires && Date.now() > parseInt(expires)) {
+      localStorage.removeItem('de_auth');
+      localStorage.removeItem('de_auth_expires');
+      setAuth(false);
+    } else if (token) {
+      setAuth(true);
+      const saved = localStorage.getItem('de_profile');
+      if (saved) setProfile(JSON.parse(saved));
+      else {
+        const p = { id:'local_1', pseudonym:'Explorateur', age:14, gradeLevel:'4e', phase:'creator', xp:0, level:1 };
+        localStorage.setItem('de_profile', JSON.stringify(p));
+        setProfile(p);
+      }
     }
     setLoading(false);
   }, [router]);
 
   if (loading) return <div className="min-h-screen bg-[#060810] flex items-center justify-center"><div className="w-12 h-12 border-4 border-violet-500 border-t-transparent rounded-full animate-spin" /></div>;
+
+  if (!auth) {
+    return (
+      <div className="min-h-screen bg-[#060810] text-white flex items-center justify-center px-6">
+        <div className="text-center max-w-md">
+          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-500/20 to-purple-500/20 border border-violet-500/30 flex items-center justify-center mx-auto mb-6"><Award className="w-10 h-10 text-violet-400" /></div>
+          <h1 className="font-display text-3xl font-bold mb-4">Accès réservé</h1>
+          <p className="text-gray-400 mb-8">Connecte-toi pour accéder à ton espace.</p>
+          <Link href="/auth/signup"><button className="px-8 py-3 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-full font-semibold hover:opacity-90">Créer mon compte</button></Link>
+        </div>
+      </div>
+    );
+  }
 
   const level = Math.floor(profile.xp / 500) + 1;
   const progress = ((profile.xp % 500) / 500) * 100;
@@ -31,21 +54,14 @@ export default function DashboardPage() {
 
   function handleSignOut() {
     localStorage.removeItem('de_auth');
+    localStorage.removeItem('de_auth_expires');
     localStorage.removeItem('de_profile');
     router.push('/');
   }
 
   return (
     <div className="min-h-screen bg-[#060810] text-white">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#060810]/70 backdrop-blur-2xl border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3"><div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#ff6b6b] to-[#8b5cf6] flex items-center justify-center text-sm font-bold">DE</div><span className="font-bold text-lg tracking-tight">Digital Explorers</span></Link>
-          <div className="flex items-center gap-3">
-            <Link href="/pricing"><button className="px-4 py-2 text-sm text-gray-300 hover:text-white transition-colors">Tarifs</button></Link>
-            <button onClick={handleSignOut} className="p-2 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white transition-colors" title="Se déconnecter"><LogOut className="w-5 h-5" /></button>
-          </div>
-        </div>
-      </nav>
+      <Nav />
       <section className="pt-32 pb-16 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="bg-gradient-to-r from-violet-600/20 to-purple-600/20 border border-violet-500/20 rounded-2xl p-6 md:p-8 relative overflow-hidden">
@@ -53,6 +69,7 @@ export default function DashboardPage() {
             <div className="relative flex items-center justify-between">
               <div><h1 className="font-display text-2xl md:text-3xl font-bold mb-2">Bonjour, {profile.pseudonym} !</h1><p className="text-gray-400">Prêt à continuer ton exploration ?</p></div>
               <div className="text-right"><div className="text-3xl font-bold text-violet-400">Nv. {level}</div><div className="text-sm text-gray-400">{profile.xp} XP</div></div>
+              <button onClick={handleSignOut} className="ml-4 p-2 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white transition-colors" title="Se déconnecter"><LogOut className="w-5 h-5" /></button>
             </div>
           </div>
         </div>
@@ -121,6 +138,7 @@ export default function DashboardPage() {
           </div>
         </div>
       </section>
+      <AICoach />
       <footer className="border-t border-white/5 py-8 px-6">
         <div className="max-w-7xl mx-auto text-center text-sm text-gray-500">
           <p>© 2026 Digital Explorers — BENILAB. Tous droits réservés.</p>
