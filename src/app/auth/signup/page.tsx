@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Heart, Mail, Lock, User, ChevronRight, Plus, ChevronLeft } from 'lucide-react';
+import { Heart, Mail, Lock, User, ChevronRight, Plus, ChevronLeft, ArrowRight } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { GRADES, CHILD_INTERESTS, CHILD_AVATARS } from '@/data/content';
 
