@@ -4,9 +4,9 @@ import Link from "next/link";
 import { Check, Star, Shield, ArrowRight, Zap, Sparkles } from "lucide-react";
 
 const PLANS = [
-  { id:"free", name:"Explorateur", tagline:"Découvrir gratuitement", price:"0", period:"Jamais", icon:"🌱", features:["1 monde complet","3 aventures gratuites","Quiz de base","Badge premier projet","Dashboard","1 espace Parent"], cta:"Commencer gratuitement", ctaLink:"/auth/signup", popular:false },
-  { id:"monthly", name:"Aventurier", tagline:"Accès complet mois par mois", price:"2 500", period:"FCFA/mois", icon:"⚡", badge:"Populaire", features:["7 mondes complets","Aventures illimitées","Quiz IA","Badges illimités","Passport complet","Feedback IA","Early Features","Support prioritaire","3 enfants"], cta:"Démarrer l aventure", ctaLink:"/auth/signup", popular:true },
-  { id:"annual", name:"Pro", tagline:"Économise 33%", price:"20 000", period:"FCFA/an", icon:"👑", badge:"Meilleur rapport", features:["Tout Aventurier","3 mois offerts","Certificats","Rapport parent","Accès anticipé","Badge exclusif","Africa Makers","Webinaires"], cta:"Devenir Pro", ctaLink:"/auth/signup", popular:false },
+  { id:"starter", name:"Starter", tagline:"Essaie gratuit 7 jours", price:"0", period:"7 jours", icon:"🌱", badge:"Essai gratuit", features:["1 monde complet","3 aventures gratuites","Quiz de base","Badge premier projet","Dashboard","Coach IA basique"], cta:"Essayer 7 jours gratuit", ctaLink:"/auth/signup", popular:false },
+  { id:"monthly", name:"Explorateur", tagline:"Accès complet mensuel", price:"2 000", period:"FCFA/mois", icon:"⚡", badge:"Populaire", features:["Tous les mondes","Aventures illimitées","Quiz IA avancé","Badges illimités","Passport complet","Feedback IA","Coach IA premium","Support prioritaire","1 enfant"], cta:"Commencer l aventure", ctaLink:"/auth/signup", popular:true },
+  { id:"annual", name:"Pro", tagline:"Économise 25%", price:"15 000", period:"FCFA/an", icon:"👑", badge:"Meilleur rapport", features:["Tout Explorateur","10 mois offerts","Certificats","Rapport parent détaillé","Coach IA VIP","Accès anticipé","Badge exclusif","Africa Makers","Webinaires privés"], cta:"Devenir Pro", ctaLink:"/auth/signup", popular:false },
 ];
 
 const PAYMENTS = [
@@ -19,21 +19,23 @@ const PAYMENTS = [
 ];
 
 const FAQS = [
-  { q:"Est-ce vraiment gratuit ?", a:"Oui ! 1 monde complet + 3 aventures gratuitement." },
+  { q:"Pourquoi 7 jours gratuit ?", a:"Tu peux tester l application pendant une semaine sans rien payer." },
+  { q:"Qu est-ce que le Coach IA ?", a:"Un assistant intelligent qui guide ton enfant dans chaque aventure, corrige les quiz et propose des défis adaptés." },
   { q:"Modes de paiement ?", a:"Orange Money, MTN MoMo, Wave, Visa/MC, virement bancaire." },
   { q:"Changer de plan ?", a:"Oui, upgrader ou downgrader à tout moment, au prorata." },
-  { q:"Combien d enfants ?", a:"Gratuit: 1. Aventurier: 3. Pro: 5." },
+  { q:"Combien d enfants ?", a:"Gratuit: 1. Explorateur: 1. Pro: 3." },
   { q:"Garantie ?", a:"7 jours satisfait ou remboursé." },
   { q:"Tarif écoles ?", a:"Contacte ecoles@digitalexplorers.africa pour un devis." },
 ];
 
 const DATA_ROWS = [
-  ["Mondes","1","7","7"],
+  ["Mondes","1","Tous","Tous"],
   ["Aventures","3","Illimité","Illimité"],
-  ["Quiz IA","Non","Oui","Oui"],
+  ["Quiz IA","Non","Oui","Oui + VIP"],
+  ["Coach IA","Basique","Premium","VIP"],
   ["Feedback","Non","3/mois","Illimité"],
   ["Badges","1","Tous","Exclusifs"],
-  ["Enfants","1","3","5"],
+  ["Enfants","1","1","3"],
   ["Certificats","Non","Non","Oui"],
   ["Support","Forum","Prioritaire","Dédié"],
 ];
@@ -57,7 +59,7 @@ export default function PricingPage() {
         <div className="relative max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-300 text-sm mb-6"><Sparkles className="w-4 h-4" /> Tarifs simples et transparents</div>
           <h1 className="font-display text-5xl md:text-6xl font-bold mb-6">Investis dans l avenir<br /><span className="bg-gradient-to-r from-[#ff6b6b] via-[#8b5cf6] to-[#ec4899] bg-clip-text text-transparent">de ton enfant</span></h1>
-          <p className="text-gray-400 text-xl max-w-2xl mx-auto mb-12">Commence gratuitement, évolue à ton rythme.</p>
+          <p className="text-gray-400 text-xl max-w-2xl mx-auto mb-12">Commence par un essai gratuit de 7 jours, évolue à ton rythme.</p>
         </div>
       </section>
       <section className="py-16 px-6">
@@ -69,7 +71,7 @@ export default function PricingPage() {
               return (
                 <div key={plan.id} className={`relative bg-[#111827] border rounded-3xl p-8 transition-all hover:-translate-y-1 ${bc}`}>
                   {plan.badge && <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-violet-500 to-purple-600 text-white text-xs font-bold shadow-lg">{plan.badge}</div>}
-                  <div className="text-center mb-6"><div className="text-4xl mb-3">{plan.icon}</div><h3 className="font-display text-2xl font-bold mb-1">{plan.name}</h3><p className="text-sm text-gray-400 mb-4">{plan.tagline}</p><div className="flex items-baseline justify-center gap-1"><span className="text-4xl font-bold">{plan.price}</span><span className="text-gray-400 text-sm">{plan.period}</span></div>{plan.price === "0" && <p className="text-xs text-emerald-400 mt-2">Pour toujours gratuit</p>}</div>
+                  <div className="text-center mb-6"><div className="text-4xl mb-3">{plan.icon}</div><h3 className="font-display text-2xl font-bold mb-1">{plan.name}</h3><p className="text-sm text-gray-400 mb-4">{plan.tagline}</p><div className="flex items-baseline justify-center gap-1"><span className="text-4xl font-bold">{plan.price}</span><span className="text-gray-400 text-sm">{plan.period}</span></div>{plan.price === "0" && <p className="text-xs text-emerald-400 mt-2">Pas de carte requise</p>}</div>
                   <ul className="space-y-3 mb-8">{plan.features.map((f, i) => (<li key={i} className="flex items-start gap-3 text-sm"><Check className="w-5 h-5 flex-shrink-0 text-violet-400" /><span className="text-gray-300">{f}</span></li>))}</ul>
                   <Link href={plan.ctaLink}><button className={`w-full py-3.5 rounded-xl font-semibold transition-all ${bcl}`}>{plan.cta}</button></Link>
                 </div>
@@ -98,8 +100,8 @@ export default function PricingPage() {
           <div className="bg-[#111827] border border-white/5 rounded-2xl overflow-hidden">
             <div className="grid grid-cols-4 gap-0 border-b border-white/5">
               <div className="p-4 text-sm text-gray-400">Fonctionnalité</div>
-              <div className="p-4 text-center text-sm font-semibold">Gratuit</div>
-              <div className="p-4 text-center text-sm font-semibold text-violet-400">Aventurier</div>
+              <div className="p-4 text-center text-sm font-semibold">Starter</div>
+              <div className="p-4 text-center text-sm font-semibold text-violet-400">Explorateur</div>
               <div className="p-4 text-center text-sm font-semibold text-amber-400">Pro</div>
             </div>
             {DATA_ROWS.map((row,i) => (
@@ -132,16 +134,16 @@ export default function PricingPage() {
       <section className="py-24 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">Prêt à lancer<br /><span className="bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] bg-clip-text text-transparent">l aventure ?</span></h2>
-          <p className="text-gray-400 text-lg mb-8">Crée ton compte gratuit maintenant.</p>
+          <p className="text-gray-400 text-lg mb-8">Crée ton compte gratuit et découvre les 7 mondes.</p>
           <Link href="/auth/signup">
             <button className="px-10 py-4 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-full font-semibold text-lg hover:opacity-90 flex items-center gap-3 mx-auto shadow-lg shadow-violet-500/25">
-              Créer mon profil gratuit <ArrowRight className="w-5 h-5" />
+              Essayer 7 jours gratuitement <ArrowRight className="w-5 h-5" />
             </button>
           </Link>
           <div className="flex items-center justify-center gap-6 mt-8 text-sm text-gray-500">
             <div className="flex items-center gap-2"><Shield className="w-4 h-4 text-emerald-400" /> Paiement sécurisé</div>
-            <div className="flex items-center gap-2"><Star className="w-4 h-4 text-yellow-400" /> 7 jours satisfait ou remboursé</div>
-            <div className="flex items-center gap-2"><Zap className="w-4 h-4 text-violet-400" /> Annulation à tout moment</div>
+            <div className="flex items-center gap-2"><Star className="w-4 h-4 text-yellow-400" /> Annulation à tout moment</div>
+            <div className="flex items-center gap-2"><Zap className="w-4 h-4 text-violet-400" /> Coach IA inclus</div>
           </div>
         </div>
       </section>

@@ -1,17 +1,68 @@
+'use client';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { WORLDS } from '@/data/content';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Lock, Sparkles } from 'lucide-react';
 
 export default function WorldsPage() {
+  const router = useRouter();
+  const [auth, setAuth] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const token = localStorage.getItem('de_auth');
+    if (!token) {
+      setLoading(false);
+      return;
+    }
+    setAuth(true);
+    setLoading(false);
+  }, [router]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#060810] flex items-center justify-center">
+        <div className="w-12 h-12 border-4 border-violet-500 border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
+
+  if (!auth) {
+    return (
+      <div className="min-h-screen bg-[#060810] text-white flex items-center justify-center px-6">
+        <div className="text-center max-w-md">
+          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-500/20 to-purple-500/20 border border-violet-500/30 flex items-center justify-center mx-auto mb-6">
+            <Lock className="w-10 h-10 text-violet-400" />
+          </div>
+          <h1 className="font-display text-3xl md:text-4xl font-bold mb-4">Connecte-toi pour explorer</h1>
+          <p className="text-gray-400 mb-8 text-lg">Les 7 mondes t attendent. Crée ton compte gratuit et commence ton aventure avec le Coach IA.</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/auth/signup">
+              <button className="px-8 py-3 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-full font-semibold hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+                <Sparkles className="w-5 h-5" /> Créer mon compte gratuit
+              </button>
+            </Link>
+            <Link href="/auth/login">
+              <button className="px-8 py-3 border border-white/10 rounded-full text-gray-300 hover:bg-white/5 transition-all">
+                J ai déjà un compte
+              </button>
+            </Link>
+          </div>
+          <p className="text-xs text-gray-600 mt-6">7 jours d essai gratuit • Pas de carte requise</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#060810] text-white">
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#060810]/70 backdrop-blur-2xl border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3"><div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#ff6b6b] to-[#8b5cf6] flex items-center justify-center text-sm font-bold">DE</div><span className="font-bold text-lg tracking-tight">Digital Explorers</span></Link>
           <div className="flex items-center gap-3">
+            <Link href="/dashboard"><button className="px-4 py-2 text-sm text-gray-300 hover:text-white transition-colors">Dashboard</button></Link>
             <Link href="/pricing"><button className="px-4 py-2 text-sm text-gray-300 hover:text-white transition-colors">Tarifs</button></Link>
-            <Link href="/auth/login"><button className="px-4 py-2 text-sm border border-white/10 rounded-full text-gray-300 hover:bg-white/5 transition-all">Connexion</button></Link>
-            <Link href="/auth/signup"><button className="px-5 py-2 text-sm bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-full font-semibold hover:opacity-90 transition-opacity">Commencer</button></Link>
           </div>
         </div>
       </nav>
@@ -19,9 +70,9 @@ export default function WorldsPage() {
         <div className="max-w-6xl mx-auto">
           <Link href="/dashboard" className="inline-flex items-center gap-2 text-gray-400 hover:text-white text-sm mb-6 transition-colors"><ArrowLeft className="w-4 h-4" /> Retour au dashboard</Link>
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-300 text-sm mb-4">🗺️ 7 univers interactifs</div>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-300 text-sm mb-4"><Sparkles className="w-4 h-4" /> 7 univers interactifs</div>
             <h1 className="font-display text-4xl md:text-5xl font-bold mb-3">Les 7 Mondes</h1>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">Explore le numérique à travers des univers fascinants conçus pour les jeunes africains.</p>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">Explore le numérique à travers des univers fascinants conçus pour les jeunes africains. Coach IA inclus.</p>
           </div>
         </div>
       </section>
