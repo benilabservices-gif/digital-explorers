@@ -24,10 +24,6 @@ export default function LoginPage() {
       if (data.user) {
         localStorage.setItem('de_auth', 'true');
         localStorage.setItem('de_parent_email', data.user.email || '');
-        const children = JSON.parse(localStorage.getItem('de_children') || '[]');
-        if (children.length > 0) {
-          localStorage.setItem('de_active_child', JSON.stringify(children[0]));
-        }
         router.push('/dashboard');
       }
     });

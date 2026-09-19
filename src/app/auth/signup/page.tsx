@@ -33,45 +33,88 @@ export default function SignupPage() {
     setLoading(true);
     setError('');
     const supabase = createClient();
+    
+    // Sign up with Supabase Auth
     const { data, error: signUpError } = await supabase.auth.signUp({
       email: parentForm.email,
       password: parentForm.password,
       options: { data: { name: parentForm.name, phone: parentForm.phone, role: 'parent' } },
     });
+    
     if (signUpError) { setError(signUpError.message); setLoading(false); return; }
+    
     if (data.user) {
+      // Create parent record in database
+      const { error: profileError } = await supabase
+        .from('parents')
+        .upsert({ id: data.user.id, email: parentForm.email, name: parentForm.name, phone: parentForm.phone },
+          { onConflict: 'id' });
+      
+      if (profileError) {
+        console.error('Profile creation error:', profileError);
+      }
+      
+      localStorage.setItem('de_auth', 'true');
       localStorage.setItem('de_parent_email', parentForm.email);
       localStorage.setItem('de_parent_name', parentForm.name);
-      localStorage.setItem('de_auth', 'true');
       localStorage.setItem('de_plan', 'starter');
-      localStorage.setItem('de_children', '[]');
       setLoading(false);
       setStep('child');
     }
   };
 
-  const handleChildSubmit = () => {
+  const handleChildSubmit = async () => {
     if (!childForm.name || !childForm.age || !childForm.gradeLevel) { setError('Remplis les champs obligatoires'); return; }
+    
+    const supabase = createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) { setError('Tu dois être connecté'); return; }
+
     const age = parseInt(childForm.age);
     const phase = ['6e','5e'].includes(childForm.gradeLevel) ? 'explorer' : ['4e','3e'].includes(childForm.gradeLevel) ? 'creator' : 'builder';
-    const child = {
-      id: 'child_' + Date.now(),
+    
+    const childData = {
+      parent_id: user.id,
       name: childForm.name,
-      age,
-      gradeLevel: childForm.gradeLevel,
       avatar: childForm.avatar,
+      age,
+      grade_level: childForm.gradeLevel,
+      interests: childForm.interests,
+      phase,
       xp: 0,
       level: 1,
-      phase,
-      badges: [],
-      adventuresCompleted: [],
-      interests: childForm.interests,
-      createdAt: new Date().toISOString(),
+      skills: { web: 0, ai: 0, coding: 0, creator: 0, cyber: 0, blockchain: 0, innovation: 0 },
     };
-    const children = JSON.parse(localStorage.getItem('de_children') || '[]');
-    children.push(child);
-    localStorage.setItem('de_children', JSON.stringify(children));
-    setStep('done');
+
+    const { data: child, error: childError } = await supabase
+      .from('children')
+      .insert(childData)
+      .select()
+      .single();
+
+    if (childError) { setError(childError.message); return; }
+    if (child) {
+      // Also save to localStorage for immediate access
+      const localStorageChild = {
+        id: child.id,
+        name: child.name,
+        age: child.age,
+        gradeLevel: child.grade_level,
+        avatar: child.avatar,
+        xp: child.xp,
+        level: child.level,
+        phase: child.phase,
+        badges: [],
+        adventuresCompleted: [],
+        interests: child.interests || [],
+        createdAt: child.created_at,
+      };
+      const children = JSON.parse(localStorage.getItem('de_children') || '[]');
+      children.push(localStorageChild);
+      localStorage.setItem('de_children', JSON.stringify(children));
+      localStorage.setItem('de_active_child', JSON.stringify(localStorageChild));
+      setStep('done');
+    }
   };
 
   const handleGoogle = async () => {
@@ -95,7 +138,6 @@ export default function SignupPage() {
           </p>
         </div>
         <div className="bg-[#111827] border border-white/5 rounded-2xl p-8">
-          {/* Progress */}
           <div className="flex items-center gap-2 mb-6">
             {(['parent','child','done'] as Step[]).map((s,i) => (
               <div key={s} className={`flex-1 h-1.5 rounded-full ${s===step?'bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6]':'bg-white/10'}`} />
