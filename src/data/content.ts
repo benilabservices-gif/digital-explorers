@@ -120,7 +120,7 @@ export const WORLDS: World[] = [
       makeAdventure('ai-code','IA et programmation','Comment l\'IA aide les développeurs.','GitHub Copilot, ChatGPT... L\'IA devient un alliée powerful pour coder plus vite et mieux.',140,12),
       makeAdventure('data-science','Introduction à la data science','Les données sont le nouveau pétrole.','La data science combine statistiques, programmation et domaine métier pour extraire des insights.',130,12),
       makeAdventure('ai-tools','Outils IA gratuits','Les meilleures outils IA gratuits disponibles.','Teste ChatGPT, Gemini, Claude, et bien d\'autres outils IA gratuitement.',110,12),
-      makeAdventure('future-ai','Le futur de l\'IA','Vers une intelligence générale ?',\"Quelles seront les prochaines avancées de l'IA ? Et comment vont-elles affecter notre quotidien ?\",120,12),
+      makeAdventure('future-ai','Le futur de l\'IA','Vers une intelligence générale ?',\"Quelles seront les prochaines avancées de l IA ? Et comment vont-elles affecter notre quotidien ?\",120,12),
       makeAdventure('ai-project','Projet IA final','Réalise ton premier projet d\'intelligence artificielle.','Récapitule tout ce que tu as appris en créant un projet IA complet de A à Z.',150,12),
     ]
   },
