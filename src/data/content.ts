@@ -32,13 +32,6 @@ export interface ChildProfile {
   createdAt: string;
 }
 
-export interface ParentProfile {
-  id: string; email: string; name: string; phone?: string;
-  plan: 'starter' | 'monthly' | 'annual'; planEnd?: string;
-  children: ChildProfile[];
-  createdAt: string;
-}
-
 export const BADGES: Badge[] = [
   { id: 'web-explorer', slug: 'web-explorer', name: 'Web Explorer', description: 'Tu as exploré le monde du Web', icon: '🌐', rarity: 'common', xp_required: 100, world_id: 'web-digital' },
   { id: 'web-master', slug: 'web-master', name: 'Maître du Web', description: '12 aventures Web terminées', icon: '🕸️', rarity: 'rare', xp_required: 500, world_id: 'web-digital' },
@@ -79,7 +72,7 @@ function makeAdventure(slug: string, title: string, desc: string, story: string,
       type: types[i % types.length],
       order: i + 1,
       title: `Étape ${i+1}: ${title.split(' ').slice(0,3).join(' ')}`,
-      content: `Découvre et apprends à ton rythme. Chaque étape te rapproche de ta prochaine récompense.`,
+      content: 'Découvre et apprends à ton rythme. Chaque étape te rapproche de ta prochaine récompense.',
     });
   }
   return { id: `a_${slug}_${Date.now()}`, slug, title, description: desc, story, xp_reward: xp, lessons };
@@ -91,7 +84,7 @@ export const WORLDS: World[] = [
     description: 'Découvre Internet, le Web, les réseaux sociaux et la culture numérique. 12 aventures pour maîtriser le monde digital.',
     color: '#3B82F6', gradient: 'from-blue-500 to-cyan-400', phase: 'explorer',
     adventures: [
-      makeAdventure('internet-discover','L\'aventure d\'Internet',"Comment le monde entier s'est connecté en un clic ?",'Il était une fois, un réseau secret appelé ARPANET. Aujourd\'hui, Internet connecte plus de 5 milliards de personnes !',100,12),
+      makeAdventure('internet-discover','L\'aventure d\'Internet',"Comment le monde entier s'est connecté en un clic ?","Il était une fois, un réseau secret appelé ARPANET. Aujourd'hui, Internet connecte plus de 5 milliards de personnes !",100,12),
       makeAdventure('search-master','Maître de la Recherche','Apprends à trouver l\'information fiable sur Internet.','Sur Internet, il y a autant d\'informations vraies que fausses. Savoir chercher et vérifier est essentiel.',120,12),
       makeAdventure('web-history','Histoire du Web','De Tim Berners-Lee au Web 3.0.','Le World Wide Web a été inventé en 1989. Depuis, il a transformé notre monde.',110,12),
       makeAdventure('html-basics','HTML : les fondations','Construise la structure de toute page web.','HTML est le squelette du Web. Chaque site que tu visites est construit avec ces balises.',130,12),
@@ -117,10 +110,10 @@ export const WORLDS: World[] = [
       makeAdventure('ai-africa','IA en Afrique','Les innovations africaines en intelligence artificielle.','Des startups africaines utilisent l\'IA pour résoudre des problèmes locaux : agriculture, santé, éducation.',110,12),
       makeAdventure('chatbots','Crée ton propre chatbot','Construis un assistant intelligent.','Apprends les bases de la création de chatbots avec des outils accessibles à tous.',150,12),
       makeAdventure('image-gen','Génération d\'images par IA','Crée des visuels impressionnants avec l\'IA.','DALL-E, Midjourney, Stable Diffusion... L\'IA générative révolutionne la création visuelle.',130,12),
-      makeAdventure('ai-code','IA et programmation','Comment l\'IA aide les développeurs.','GitHub Copilot, ChatGPT... L\'IA devient un alliée powerful pour coder plus vite et mieux.',140,12),
+      makeAdventure('ai-code','IA et programmation','Comment l\'IA aide les développeurs.','GitHub Copilot, ChatGPT... L\'IA devient un allié powerful pour coder plus vite et mieux.',140,12),
       makeAdventure('data-science','Introduction à la data science','Les données sont le nouveau pétrole.','La data science combine statistiques, programmation et domaine métier pour extraire des insights.',130,12),
-      makeAdventure('ai-tools','Outils IA gratuits','Les meilleures outils IA gratuits disponibles.','Teste ChatGPT, Gemini, Claude, et bien d\'autres outils IA gratuitement.',110,12),
-      makeAdventure('future-ai','Le futur de l\'IA','Vers une intelligence générale ?',\"Quelles seront les prochaines avancées de l IA ? Et comment vont-elles affecter notre quotidien ?\",120,12),
+      makeAdventure('ai-tools','Outils IA gratuits','Les meilleurs outils IA gratuits disponibles.','Teste ChatGPT, Gemini, Claude, et bien d\'autres outils IA gratuitement.',110,12),
+      makeAdventure('future-ai','Le futur de l\'IA','Vers une intelligence générale ?','Quelles seront les prochaines avancées de l IA et comment vont-elles transformer notre quotidien ?',120,12),
       makeAdventure('ai-project','Projet IA final','Réalise ton premier projet d\'intelligence artificielle.','Récapitule tout ce que tu as appris en créant un projet IA complet de A à Z.',150,12),
     ]
   },
