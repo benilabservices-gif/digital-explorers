@@ -27,6 +27,17 @@ const FAQS = [
   { q:"Tarif écoles ?", a:"Contacte ecoles@digitalexplorers.africa pour un devis." },
 ];
 
+const DATA_ROWS = [
+  ["Mondes","1","7","7"],
+  ["Aventures","3","Illimité","Illimité"],
+  ["Quiz IA","Non","Oui","Oui"],
+  ["Feedback","Non","3/mois","Illimité"],
+  ["Badges","1","Tous","Exclusifs"],
+  ["Enfants","1","3","5"],
+  ["Certificats","Non","Non","Oui"],
+  ["Support","Forum","Prioritaire","Dédié"],
+];
+
 export default function PricingPage() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
   return (
@@ -93,4 +104,57 @@ export default function PricingPage() {
             </div>
             {DATA_ROWS.map((row,i) => (
               <div key={i} className={`grid grid-cols-4 gap-0 ${i%2===0?"bg-white/[0.02]":""}`}>
-                <div
+                <div className="p-4 text-sm text-gray-300 border-r border-white/5">{row[0]}</div>
+                <div className="p-4 text-center text-sm text-gray-400 border-r border-white/5">{row[1]}</div>
+                <div className="p-4 text-center text-sm text-violet-300 border-r border-white/5">{row[2]}</div>
+                <div className="p-4 text-center text-sm text-amber-300">{row[3]}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="py-16 px-6 bg-white/[0.02] border-y border-white/5">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="font-display text-3xl font-bold text-center mb-10">FAQ</h2>
+          <div className="space-y-3">
+            {FAQS.map((faq,i) => (
+              <div key={i} className="bg-[#111827] border border-white/5 rounded-xl overflow-hidden">
+                <button onClick={() => setOpenFAQ(openFAQ===i ? null : i)} className="w-full p-5 text-left flex items-center justify-between hover:bg-white/5 transition-colors">
+                  <span className="font-semibold text-sm pr-4">{faq.q}</span>
+                  <span className={openFAQ===i ? "text-xl text-violet-400 rotate-45" : "text-xl text-violet-400"}>+</span>
+                </button>
+                {openFAQ===i && <div className="px-5 pb-5 text-sm text-gray-400 leading-relaxed border-t border-white/5 pt-4">{faq.a}</div>}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="py-24 px-6">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">Prêt à lancer<br /><span className="bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] bg-clip-text text-transparent">l aventure ?</span></h2>
+          <p className="text-gray-400 text-lg mb-8">Crée ton compte gratuit maintenant.</p>
+          <Link href="/auth/signup">
+            <button className="px-10 py-4 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-full font-semibold text-lg hover:opacity-90 flex items-center gap-3 mx-auto shadow-lg shadow-violet-500/25">
+              Créer mon profil gratuit <ArrowRight className="w-5 h-5" />
+            </button>
+          </Link>
+          <div className="flex items-center justify-center gap-6 mt-8 text-sm text-gray-500">
+            <div className="flex items-center gap-2"><Shield className="w-4 h-4 text-emerald-400" /> Paiement sécurisé</div>
+            <div className="flex items-center gap-2"><Star className="w-4 h-4 text-yellow-400" /> 7 jours satisfait ou remboursé</div>
+            <div className="flex items-center gap-2"><Zap className="w-4 h-4 text-violet-400" /> Annulation à tout moment</div>
+          </div>
+        </div>
+      </section>
+      <footer className="border-t border-white/5 py-12 px-6">
+        <div className="max-w-7xl mx-auto text-center text-sm text-gray-500">
+          <p>© 2026 Digital Explorers — BENILAB. Tous droits réservés.</p>
+          <div className="flex justify-center gap-4 mt-3">
+            <span className="hover:text-white cursor-pointer">Conditions</span><span>·</span>
+            <span className="hover:text-white cursor-pointer">Confidentialité</span><span>·</span>
+            <span className="hover:text-white cursor-pointer">Contact</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
