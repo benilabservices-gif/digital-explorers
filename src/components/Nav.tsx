@@ -8,19 +8,24 @@ export default function Nav() {
   const pathname = usePathname();
   const [auth, setAuth] = useState(false);
   const [profile, setProfile] = useState<any>(null);
-  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('de_auth');
-    const saved = localStorage.getItem('de_profile');
-    if (token) {
+    const expires = localStorage.getItem('de_auth_expires');
+    if (token && expires && Date.now() > parseInt(expires)) {
+      localStorage.removeItem('de_auth');
+      localStorage.removeItem('de_auth_expires');
+      setAuth(false);
+    } else if (token) {
       setAuth(true);
+      const saved = localStorage.getItem('de_profile');
       if (saved) setProfile(JSON.parse(saved));
     }
   }, []);
 
   function handleLogout() {
     localStorage.removeItem('de_auth');
+    localStorage.removeItem('de_auth_expires');
     localStorage.removeItem('de_profile');
     setAuth(false);
     setProfile(null);
@@ -40,7 +45,7 @@ export default function Nav() {
           {auth ? (
             <>
               <Link href="/dashboard"><button className="px-4 py-2 text-sm text-gray-300 hover:text-white transition-colors">Dashboard</button></Link>
-              <Link href={isHome ? "/worlds" : "#mondes"}><button className="px-4 py-2 text-sm text-gray-300 hover:text-white transition-colors">Mondes</button></Link>
+              <Link href="/worlds"><button className="px-4 py-2 text-sm text-gray-300 hover:text-white transition-colors">Mondes</button></Link>
               <Link href="/pricing"><button className="px-4 py-2 text-sm text-gray-300 hover:text-white transition-colors">Tarifs</button></Link>
               {profile && <span className="text-xs text-violet-400 mr-2 hidden sm:block">{profile.pseudonym}</span>}
               <button onClick={handleLogout} className="p-2 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white transition-colors" title="Se déconnecter"><LogOut className="w-4 h-4" /></button>
