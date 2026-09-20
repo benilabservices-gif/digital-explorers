@@ -24,17 +24,6 @@ export default function SignupPage() {
     }
   }, []);
 
-  const [error, setError] = useState('');
-
-  // Auto-detect if already logged in - skip to child step
-  useEffect(() => {
-    const token = localStorage.getItem('de_auth');
-    const expires = localStorage.getItem('de_auth_expires');
-    if (token && (!expires || Date.now() < parseInt(expires))) {
-      setStep('child');
-    }
-  }, []);
-
   const [parentForm, setParentForm] = useState({ email:'', password:'', name:'', phone:'' });
   const [childForm, setChildForm] = useState({ name:'', age:'', gradeLevel:'', avatar: CHILD_AVATARS[0], interests:[], goal:'explorer' });
 
