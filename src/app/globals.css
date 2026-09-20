@@ -34,6 +34,16 @@
 
 * { border-color: var(--color-border); }
 
+/* All interactive elements show pointer cursor */
+button, a, [role="button"], [tabindex="0"], input[type="submit"], input[type="button"], label[for] {
+  cursor: pointer;
+}
+
+/* Ensure links that look like buttons also show pointer */
+.link-btn, .card-clickable, .nav-link, .menu-item {
+  cursor: pointer;
+}
+
 body {
   background: var(--color-bg-deep);
   color: var(--color-text);

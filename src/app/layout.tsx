@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: ["400","500","600","700"], variable: "--font-display" });
@@ -15,6 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="fr" className="dark" style={{ "--font-sans": inter.variable, "--font-display": spaceGrotesk.variable } as React.CSSProperties}>
       <body className={`${inter.className} bg-[#060810] text-white antialiased`}>
         {children}
+        <ScrollToTop />
       </body>
     </html>
   );
