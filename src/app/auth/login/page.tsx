@@ -37,10 +37,11 @@ export default function LoginPage() {
   }
 
   const handleGoogle = () => {
+    const expiresIn = Date.now() + (30 * 24 * 60 * 60 * 1000);
     localStorage.setItem('de_auth', 'true');
+    localStorage.setItem('de_auth_expires', expiresIn.toString());
     localStorage.setItem('de_parent_email', 'parent@google.com');
     localStorage.setItem('de_parent_name', 'Parent Google');
-    localStorage.setItem('de_parent_id', 'parent_google_' + Date.now());
     router.push('/dashboard');
   };
 

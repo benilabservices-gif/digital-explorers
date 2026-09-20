@@ -35,12 +35,15 @@ export default function SignupPage() {
     // Simulate API delay
     await new Promise(r => setTimeout(r, 800));
     
-    // Store parent info
+    // Store parent info with expiration (30 days)
+    const expiresIn = Date.now() + (30 * 24 * 60 * 60 * 1000);
     localStorage.setItem('de_auth', 'true');
+    localStorage.setItem('de_auth_expires', expiresIn.toString());
     localStorage.setItem('de_parent_email', parentForm.email);
     localStorage.setItem('de_parent_name', parentForm.name);
     localStorage.setItem('de_parent_id', 'parent_' + Date.now());
     localStorage.setItem('de_children', '[]');
+    localStorage.setItem('de_plan', 'starter');
     setLoading(false);
     setStep('child');
   };
@@ -73,12 +76,14 @@ export default function SignupPage() {
   };
 
   const handleGoogle = () => {
-    // For now, simulate Google signup with localStorage
+    const expiresIn = Date.now() + (30 * 24 * 60 * 60 * 1000);
     localStorage.setItem('de_auth', 'true');
+    localStorage.setItem('de_auth_expires', expiresIn.toString());
     localStorage.setItem('de_parent_email', 'parent@google.com');
     localStorage.setItem('de_parent_name', 'Parent Google');
     localStorage.setItem('de_parent_id', 'parent_google_' + Date.now());
     localStorage.setItem('de_children', '[]');
+    localStorage.setItem('de_plan', 'starter');
     setStep('child');
   };
 
