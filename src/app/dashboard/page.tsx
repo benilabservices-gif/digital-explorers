@@ -338,7 +338,7 @@ export default function DashboardPage() {
                           <div className="space-y-2">
                             {skills.map(skill => {
                               const skillKey = skill.id.replace('s', '');
-                              const skillXp = (child.skills as any)?.[skill.name.toLowerCase()] || 0;
+                              const skillXp = 0;
                               const levelIdx = skillXp >= 300 ? 3 : skillXp >= 150 ? 2 : skillXp >= 50 ? 1 : 0;
                               return (
                                 <div key={skill.id} className="flex items-center gap-2">
