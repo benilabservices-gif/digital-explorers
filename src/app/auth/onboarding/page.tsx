@@ -14,9 +14,21 @@ export default function OnboardingPage() {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) { router.push('/auth/signup'); return; }
       setUser(user);
-      const children = JSON.parse(localStorage.getItem('de_children') || '[]');
-      if (children.length > 0) {
-        localStorage.setItem('de_active_child', JSON.stringify(children[0]));
+      // Check if child exists in DB
+      const { data: children } = await supabase
+        .from('children')
+        .select('id')
+        .eq('parent_id', user.id);
+      if (children && children.length > 0) {
+        // Sync to localStorage
+        const lsChildren = children.map((c: any) => ({
+          id: c.id, name: c.name, age: c.age, gradeLevel: c.grade_level,
+          avatar: c.avatar, xp: c.xp, level: c.level, phase: c.phase,
+          badges: [], adventuresCompleted: [], interests: c.interests || [],
+          createdAt: c.created_at,
+        }));
+        localStorage.setItem('de_children', JSON.stringify(lsChildren));
+        localStorage.setItem('de_active_child', JSON.stringify(lsChildren[0]));
         router.push('/dashboard');
       } else {
         setLoading(false);

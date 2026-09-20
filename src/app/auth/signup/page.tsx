@@ -34,7 +34,6 @@ export default function SignupPage() {
     setError('');
     const supabase = createClient();
     
-    // Sign up with Supabase Auth
     const { data, error: signUpError } = await supabase.auth.signUp({
       email: parentForm.email,
       password: parentForm.password,
@@ -44,7 +43,6 @@ export default function SignupPage() {
     if (signUpError) { setError(signUpError.message); setLoading(false); return; }
     
     if (data.user) {
-      // Create parent record in database
       const { error: profileError } = await supabase
         .from('parents')
         .upsert({ id: data.user.id, email: parentForm.email, name: parentForm.name, phone: parentForm.phone },
@@ -94,8 +92,7 @@ export default function SignupPage() {
 
     if (childError) { setError(childError.message); return; }
     if (child) {
-      // Also save to localStorage for immediate access
-      const localStorageChild = {
+      const lsChild = {
         id: child.id,
         name: child.name,
         age: child.age,
@@ -110,9 +107,9 @@ export default function SignupPage() {
         createdAt: child.created_at,
       };
       const children = JSON.parse(localStorage.getItem('de_children') || '[]');
-      children.push(localStorageChild);
+      children.push(lsChild);
       localStorage.setItem('de_children', JSON.stringify(children));
-      localStorage.setItem('de_active_child', JSON.stringify(localStorageChild));
+      localStorage.setItem('de_active_child', JSON.stringify(lsChild));
       setStep('done');
     }
   };

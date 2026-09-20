@@ -13,20 +13,34 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email || !password) { setError('Remplis tous les champs'); return; }
     setLoading(true);
     const supabase = createClient();
-    supabase.auth.signInWithPassword({ email, password }).then(({ data, error: authError }) => {
-      setLoading(false);
-      if (authError) { setError(authError.message); return; }
-      if (data.user) {
-        localStorage.setItem('de_auth', 'true');
-        localStorage.setItem('de_parent_email', data.user.email || '');
-        router.push('/dashboard');
-      }
-    });
+    const { data, error: authError } = await supabase.auth.signInWithPassword({ email, password });
+    setLoading(false);
+    if (authError) { setError(authError.message); return; }
+    if (data.user) {
+      // Load children from Supabase
+      const { data: children } = await supabase
+        .from('children')
+        .select('*')
+        .eq('parent_id', data.user.id)
+        .order('created_at', { ascending: true });
+      
+      const lsChildren = (children || []).map((c: any) => ({
+        id: c.id, name: c.name, age: c.age, gradeLevel: c.grade_level,
+        avatar: c.avatar, xp: c.xp, level: c.level, phase: c.phase,
+        badges: [], adventuresCompleted: [], interests: c.interests || [],
+        createdAt: c.created_at,
+      }));
+      localStorage.setItem('de_children', JSON.stringify(lsChildren));
+      localStorage.setItem('de_active_child', JSON.stringify(lsChildren[0] || {}));
+      localStorage.setItem('de_auth', 'true');
+      localStorage.setItem('de_parent_email', data.user.email || '');
+      router.push('/dashboard');
+    }
   }
 
   const handleGoogle = async () => {
