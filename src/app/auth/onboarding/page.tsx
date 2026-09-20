@@ -1,7 +1,7 @@
 'use client';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { createClient } from '@/lib/supabase/client';
 
 export default function OnboardingPage() {
   const router = useRouter();
@@ -9,32 +9,18 @@ export default function OnboardingPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const checkUser = async () => {
-      const supabase = createClient();
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) { router.push('/auth/signup'); return; }
-      setUser(user);
-      // Check if child exists in DB
-      const { data: children } = await supabase
-        .from('children')
-        .select('id')
-        .eq('parent_id', user.id);
-      if (children && children.length > 0) {
-        // Sync to localStorage
-        const lsChildren = children.map((c: any) => ({
-          id: c.id, name: c.name, age: c.age, gradeLevel: c.grade_level,
-          avatar: c.avatar, xp: c.xp, level: c.level, phase: c.phase,
-          badges: [], adventuresCompleted: [], interests: c.interests || [],
-          createdAt: c.created_at,
-        }));
-        localStorage.setItem('de_children', JSON.stringify(lsChildren));
-        localStorage.setItem('de_active_child', JSON.stringify(lsChildren[0]));
-        router.push('/dashboard');
-      } else {
-        setLoading(false);
-      }
-    };
-    checkUser();
+    const auth = localStorage.getItem('de_auth');
+    if (!auth) { router.push('/auth/signup'); return; }
+    const email = localStorage.getItem('de_parent_email') || 'parent';
+    setUser({ email });
+    
+    const children = JSON.parse(localStorage.getItem('de_children') || '[]');
+    if (children.length > 0) {
+      localStorage.setItem('de_active_child', JSON.stringify(children[0]));
+      router.push('/dashboard');
+    } else {
+      setLoading(false);
+    }
   }, [router]);
 
   if (loading) return (

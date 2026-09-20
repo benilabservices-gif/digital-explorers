@@ -2,8 +2,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Heart, Mail, Lock, User, ChevronRight, Plus, ChevronLeft, ArrowRight } from 'lucide-react';
-import { createClient } from '@/lib/supabase/client';
+import { Heart, Mail, Lock, User, Plus, ChevronLeft, ArrowRight } from 'lucide-react';
 import { GRADES, CHILD_INTERESTS, CHILD_AVATARS } from '@/data/content';
 
 type Step = 'parent' | 'child' | 'done';
@@ -32,95 +31,55 @@ export default function SignupPage() {
     if (parentForm.password.length < 6) { setError('Mot de passe: 6 caractères minimum'); return; }
     setLoading(true);
     setError('');
-    const supabase = createClient();
     
-    const { data, error: signUpError } = await supabase.auth.signUp({
-      email: parentForm.email,
-      password: parentForm.password,
-      options: { data: { name: parentForm.name, phone: parentForm.phone, role: 'parent' } },
-    });
+    // Simulate API delay
+    await new Promise(r => setTimeout(r, 800));
     
-    if (signUpError) { setError(signUpError.message); setLoading(false); return; }
-    
-    if (data.user) {
-      const { error: profileError } = await supabase
-        .from('parents')
-        .upsert({ id: data.user.id, email: parentForm.email, name: parentForm.name, phone: parentForm.phone },
-          { onConflict: 'id' });
-      
-      if (profileError) {
-        console.error('Profile creation error:', profileError);
-      }
-      
-      localStorage.setItem('de_auth', 'true');
-      localStorage.setItem('de_parent_email', parentForm.email);
-      localStorage.setItem('de_parent_name', parentForm.name);
-      localStorage.setItem('de_plan', 'starter');
-      setLoading(false);
-      setStep('child');
-    }
+    // Store parent info
+    localStorage.setItem('de_auth', 'true');
+    localStorage.setItem('de_parent_email', parentForm.email);
+    localStorage.setItem('de_parent_name', parentForm.name);
+    localStorage.setItem('de_parent_id', 'parent_' + Date.now());
+    localStorage.setItem('de_children', '[]');
+    setLoading(false);
+    setStep('child');
   };
 
-  const handleChildSubmit = async () => {
+  const handleChildSubmit = () => {
     if (!childForm.name || !childForm.age || !childForm.gradeLevel) { setError('Remplis les champs obligatoires'); return; }
     
-    const supabase = createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) { setError('Tu dois être connecté'); return; }
-
     const age = parseInt(childForm.age);
     const phase = ['6e','5e'].includes(childForm.gradeLevel) ? 'explorer' : ['4e','3e'].includes(childForm.gradeLevel) ? 'creator' : 'builder';
-    
-    const childData = {
-      parent_id: user.id,
+    const child = {
+      id: 'child_' + Date.now(),
       name: childForm.name,
-      avatar: childForm.avatar,
       age,
-      grade_level: childForm.gradeLevel,
-      interests: childForm.interests,
-      phase,
+      gradeLevel: childForm.gradeLevel,
+      avatar: childForm.avatar,
       xp: 0,
       level: 1,
-      skills: { web: 0, ai: 0, coding: 0, creator: 0, cyber: 0, blockchain: 0, innovation: 0 },
+      phase,
+      badges: [],
+      adventuresCompleted: [],
+      interests: childForm.interests,
+      createdAt: new Date().toISOString(),
     };
-
-    const { data: child, error: childError } = await supabase
-      .from('children')
-      .insert(childData)
-      .select()
-      .single();
-
-    if (childError) { setError(childError.message); return; }
-    if (child) {
-      const lsChild = {
-        id: child.id,
-        name: child.name,
-        age: child.age,
-        gradeLevel: child.grade_level,
-        avatar: child.avatar,
-        xp: child.xp,
-        level: child.level,
-        phase: child.phase,
-        badges: [],
-        adventuresCompleted: [],
-        interests: child.interests || [],
-        createdAt: child.created_at,
-      };
-      const children = JSON.parse(localStorage.getItem('de_children') || '[]');
-      children.push(lsChild);
-      localStorage.setItem('de_children', JSON.stringify(children));
-      localStorage.setItem('de_active_child', JSON.stringify(lsChild));
-      setStep('done');
-    }
+    
+    const children = JSON.parse(localStorage.getItem('de_children') || '[]');
+    children.push(child);
+    localStorage.setItem('de_children', JSON.stringify(children));
+    localStorage.setItem('de_active_child', JSON.stringify(child));
+    setStep('done');
   };
 
-  const handleGoogle = async () => {
-    const supabase = createClient();
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: { queryParams: { access_type: 'offline', prompt: 'consent' }, redirectTo: window.location.origin + '/auth/onboarding' },
-    });
-    if (error) setError(error.message);
+  const handleGoogle = () => {
+    // For now, simulate Google signup with localStorage
+    localStorage.setItem('de_auth', 'true');
+    localStorage.setItem('de_parent_email', 'parent@google.com');
+    localStorage.setItem('de_parent_name', 'Parent Google');
+    localStorage.setItem('de_parent_id', 'parent_google_' + Date.now());
+    localStorage.setItem('de_children', '[]');
+    setStep('child');
   };
 
   return (

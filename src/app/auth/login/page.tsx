@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Eye, EyeOff } from 'lucide-react';
-import { createClient } from '@/lib/supabase/client';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -13,43 +12,36 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email || !password) { setError('Remplis tous les champs'); return; }
     setLoading(true);
-    const supabase = createClient();
-    const { data, error: authError } = await supabase.auth.signInWithPassword({ email, password });
-    setLoading(false);
-    if (authError) { setError(authError.message); return; }
-    if (data.user) {
-      // Load children from Supabase
-      const { data: children } = await supabase
-        .from('children')
-        .select('*')
-        .eq('parent_id', data.user.id)
-        .order('created_at', { ascending: true });
-      
-      const lsChildren = (children || []).map((c: any) => ({
-        id: c.id, name: c.name, age: c.age, gradeLevel: c.grade_level,
-        avatar: c.avatar, xp: c.xp, level: c.level, phase: c.phase,
-        badges: [], adventuresCompleted: [], interests: c.interests || [],
-        createdAt: c.created_at,
-      }));
-      localStorage.setItem('de_children', JSON.stringify(lsChildren));
-      localStorage.setItem('de_active_child', JSON.stringify(lsChildren[0] || {}));
+    
+    // Simulate login
+    setTimeout(() => {
+      // Accept any email/password for demo
       localStorage.setItem('de_auth', 'true');
-      localStorage.setItem('de_parent_email', data.user.email || '');
+      localStorage.setItem('de_parent_email', email);
+      localStorage.setItem('de_parent_name', email.split('@')[0]);
+      localStorage.setItem('de_parent_id', 'parent_' + Date.now());
+      
+      // Load children from localStorage
+      const children = JSON.parse(localStorage.getItem('de_children') || '[]');
+      if (children.length > 0) {
+        localStorage.setItem('de_active_child', JSON.stringify(children[0]));
+      }
+      
+      setLoading(false);
       router.push('/dashboard');
-    }
+    }, 600);
   }
 
-  const handleGoogle = async () => {
-    const supabase = createClient();
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: { redirectTo: window.location.origin + '/dashboard' },
-    });
-    if (error) setError(error.message);
+  const handleGoogle = () => {
+    localStorage.setItem('de_auth', 'true');
+    localStorage.setItem('de_parent_email', 'parent@google.com');
+    localStorage.setItem('de_parent_name', 'Parent Google');
+    localStorage.setItem('de_parent_id', 'parent_google_' + Date.now());
+    router.push('/dashboard');
   };
 
   return (
