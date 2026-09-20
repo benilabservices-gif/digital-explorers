@@ -2,8 +2,8 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Shield, CheckCircle, XCircle, Star, Trophy, ArrowRight, Sparkles, BookOpen, Play, Target, Lightbulb } from 'lucide-react';
-import { WORLDS } from '@/data/content';
+import { ArrowLeft, Shield, CheckCircle, XCircle, Star, Trophy, ArrowRight, Sparkles, BookOpen, Play, Target, Lightbulb, Zap, Award, Crown, Rocket, Confetti } from 'lucide-react';
+import { WORLDS, BADGES as CONTENT_BADGES } from '@/data/content';
 import type { Adventure } from '@/data/content';
 import Nav from '@/components/Nav';
 import AICoach from '@/components/AICoach';
@@ -25,7 +25,6 @@ interface Section {
   quiz_questions?: QuizQuestion[];
 }
 
-// Rich quiz content for each adventure
 const QUIZ_CONTENT: Record<string, QuizQuestion[]> = {
   'internet-discover': [
     { question: "Qu'est-ce qu'Internet ?", options: ["Un jeu vidéo", "Un réseau mondial d'ordinateurs connectés", "Un téléphone portable", "Un site web"], correct: 1 },
@@ -33,9 +32,8 @@ const QUIZ_CONTENT: Record<string, QuizQuestion[]> = {
     { question: "Quel pays a créé ARPANET, le prédécesseur d'Internet ?", options: ["France", "Allemagne", "États-Unis", "Brésil"], correct: 2 },
   ],
   'search-master': [
-    { question: "Quel type de site est le plus fiable pour des informations ?", options: ["Un blog personnel", "Un site .gov ou .edu", "Un réseau social", "Un forum anonyme"], correct: 1 },
+    { question: "Quel type de site est le plus fiable ?", options: ["Un blog personnel", "Un site .gov ou .edu", "Un réseau social", "Un forum anonyme"], correct: 1 },
     { question: "Pour vérifier une information, que dois-tu faire ?", options: ["Croire le premier résultat", "Chercher sur plusieurs sites", "Partager sans vérifier", "Ignorer la date"], correct: 1 },
-    { question: "Quel indice aide à vérifier la fiabilité d'un site ?", options: ["Le nombre de publicité", "La présence du cadenas HTTPS", "La couleur du site", "La taille de la police"], correct: 1 },
   ],
   'html-basics': [
     { question: "Que signifie HTML ?", options: ["HyperText Markup Language", "High Tech Modern Language", "Home Tool Markup Language", "Hyper Transfer Markup Language"], correct: 0 },
@@ -45,36 +43,29 @@ const QUIZ_CONTENT: Record<string, QuizQuestion[]> = {
   'ia-decouverte': [
     { question: "Qu'est-ce que l'IA ?", options: ["Un robot physique", "Une technologie qui permet aux machines d'apprendre", "Un jeu vidéo", "Un réseau social"], correct: 1 },
     { question: "L'IA peut-elle créer des images ?", options: ["Non, jamais", "Oui, avec des outils comme DALL-E", "Seulement en noir et blanc", "Oui mais c'est interdit"], correct: 1 },
-    { question: "Quel est un exemple d'IA dans la vie quotidienne ?", options: ["Un stylo", "Siri ou Alexa", "Une montre analogique", "Un livre papier"], correct: 1 },
   ],
   'prompting-mastery': [
     { question: "Quel est le meilleur prompt ?", options: ["Dis quelque chose", "Explique l'IA en 3 points avec des exemples africains", "Qu'est-ce que l'IA ?", "Parle-moi d'IA"], correct: 1 },
     { question: "Un bon prompt doit être :", options: ["Vague", "Précis et contextuel", "Très long", "En anglais uniquement"], correct: 1 },
-    { question: "Pourquoi le contexte est-il important dans un prompt ?", options: ["Ce n'est pas important", "Il aide l'IA à comprendre ce qu'on attend", "Les prompts n'ont pas besoin de contexte", "C'est juste pour faire joli"], correct: 1 },
   ],
   'ai-ethics': [
-    { question: "Pourquoi l'IA peut-elle avoir des biais ?", options: ["Elle est cassée", "Elle apprend de données humaines qui peuvent être biaisées", "C'est un virus", "L'IA n'a pas de biais"], correct: 1 },
-    { question: "Qu'est-ce qu'un biais dans l'IA ?", options: ["Une fonctionnalité utile", "Une discrimination automatique dans les résultats", "Un type de programme", "Un bug technique"], correct: 1 },
-    { question: "Comment utiliser l'IA de manière éthique ?", options: ["L'utiliser sans réfléchir", "Vérifier les résultats et protéger les données", "Ne jamais l'utiliser", "Partager toutes les données personnelles"], correct: 1 },
+    { question: "Pourquoi l'IA peut-elle avoir des biais ?", options: ["Elle est cassée", "Elle apprend de données humaines biaisées", "C'est un virus", "L'IA n'a pas de biais"], correct: 1 },
+    { question: "Comment utiliser l'IA de manière éthique ?", options: ["Sans réfléchir", "Vérifier les résultats et protéger les données", "Ne jamais l'utiliser", "Partager toutes les données"], correct: 1 },
   ],
   'algo-logique': [
     { question: "Qu'est-ce qu'un algorithme ?", options: ["Un type de jeu", "Une suite d'instructions pour résoudre un problème", "Un langage de programmation", "Un ordinateur"], correct: 1 },
     { question: "Lequel est un exemple d'algorithme ?", options: ["Une recette de cuisine", "Un arbre", "Une pierre", "Un nuage"], correct: 0 },
-    { question: "Pourquoi les algorithmes sont-ils importants en programmation ?", options: ["Ils ne le sont pas", "Ils permettent de décomposer les problèmes en étapes simples", "Ils rendent le code plus lent", "Ils sont optionnels"], correct: 1 },
   ],
   'html-css-firsts': [
     { question: "À quoi sert CSS ?", options: ["Structurer le contenu", "Styliser et mettre en page", "Créer des bases de données", "Faire des calculs"], correct: 1 },
     { question: "Quelle propriété CSS change la couleur du texte ?", options: ["font-size", "color", "background", "margin"], correct: 1 },
-    { question: "HTML et CSS travaillent ensemble pour :", options: ["Rien", "Créer des pages web structurées et belles", "Jouer des vidéos", "Gérer des emails"], correct: 1 },
   ],
   'python-basics': [
     { question: "Pourquoi Python est populaire ?", options: ["Parce qu'il est difficile", "Parce qu'il est simple et puissant", "Parce qu'il ne fonctionne que sur Mac", "Parce qu'il est ancien"], correct: 1 },
     { question: "Quelle fonction affiche du texte en Python ?", options: ["print()", "show()", "display()", "echo()"], correct: 0 },
-    { question: "Python est utilisé dans quel domaine ?", options: ["Cuisine uniquement", "IA, data science, automatisation", "Jeux vidéo uniquement", "Cuisine et jardinage"], correct: 1 },
   ],
 };
 
-// Default quiz if no specific content
 const DEFAULT_QUIZ: QuizQuestion[] = [
   { question: "As-tu bien compris ce chapitre ?", options: ["Oui, je comprends", "Pas vraiment", "Pas encore"], correct: 0 },
   { question: "Qu'est-ce que tu as appris aujourd'hui ?", options: ["Beaucoup de choses", "Quelques notions", "Peu de choses"], correct: 0 },
@@ -93,6 +84,9 @@ export default function AdventureSlugPage({ params }: { params: Promise<{ slug: 
   const [quizDone, setQuizDone] = useState(false);
   const [quizScore, setQuizScore] = useState(0);
   const [completed, setCompleted] = useState(false);
+  const [showRewards, setShowRewards] = useState(false);
+  const [earnedBadges, setEarnedBadges] = useState<any[]>([]);
+  const [newLevel, setNewLevel] = useState<number | null>(null);
   const [slug, setSlug] = useState('');
 
   useEffect(() => {
@@ -117,8 +111,8 @@ export default function AdventureSlugPage({ params }: { params: Promise<{ slug: 
         const quizQuestions = QUIZ_CONTENT[slug] || DEFAULT_QUIZ;
         const secs: Section[] = [
           { id: 's1', section_type: 'story', order_num: 1, title: '📖 L\'histoire', content: adv.story },
-          { id: 's2', section_type: 'discover', order_num: 2, title: '🔍 Découvre', content: adv.description + ' ' + adv.story.slice(0, 100) + '...' },
-          { id: 's3', section_type: 'quiz', order_num: 3, title: '🧠 Quiz — Teste tes connaissances', content: 'Réponds aux questions pour vérifier ta compréhension.', quiz_questions: quizQuestions },
+          { id: 's2', section_type: 'discover', order_num: 2, title: '🔍 Découvre', content: adv.description + '. ' + adv.story.slice(0, 150) + '...' },
+          { id: 's3', section_type: 'quiz', order_num: 3, title: '🧠 Quiz', content: 'Réponds aux questions pour vérifier ta compréhension.', quiz_questions: quizQuestions },
           { id: 's4', section_type: 'mission', order_num: 4, title: '🎯 Mission', content: `Applique ce que tu as appris : ${adv.description}. Réalise cette mission pour compléter l'aventure.` },
           { id: 's5', section_type: 'project', order_num: 5, title: '🛠️ Projet', content: `Crée quelque chose avec tes nouvelles compétences. ${adv.title} t'a appris l'essentiel.` },
           { id: 's6', section_type: 'reward', order_num: 6, title: '🏆 Récompense', content: `Bravo ! Tu as terminé "${adv.title}". +${adv.xp_reward} XP débloqués !` },
@@ -168,21 +162,50 @@ export default function AdventureSlugPage({ params }: { params: Promise<{ slug: 
     setQuizDone(true);
   }
 
+  function calculateNewBadges(oldChild: any, newXp: number): any[] {
+    const newBadges: any[] = [];
+    const oldBadgeSlugs = new Set(oldChild.badges || []);
+    for (const badge of CONTENT_BADGES) {
+      if (!oldBadgeSlugs.has(badge.slug) && newXp >= badge.xp_required) {
+        newBadges.push(badge);
+      }
+    }
+    return newBadges;
+  }
+
   function handleComplete() {
     if (!child) return;
     const updatedChildren = JSON.parse(localStorage.getItem('de_children') || '[]');
     const childIdx = updatedChildren.findIndex((c: any) => c.id === child.id);
     if (childIdx >= 0) {
       const c = updatedChildren[childIdx];
+      const oldXp = c.xp || 0;
+      const newXp = oldXp + adventure.xp_reward;
+      const oldLevel = c.level || 1;
+      const newLevelVal = Math.floor(newXp / 500) + 1;
+      
+      if (!c.adventuresCompleted) c.adventuresCompleted = [];
+      if (!c.badges) c.badges = [];
+      
       if (!c.adventuresCompleted.includes(adventure.slug)) {
         c.adventuresCompleted = [...c.adventuresCompleted, adventure.slug];
-        c.xp = (c.xp || 0) + adventure.xp_reward;
-        c.level = Math.floor(c.xp / 500) + 1;
       }
+      c.xp = newXp;
+      c.level = newLevelVal;
+      
+      // Check for new badges
+      const newBadgeSlugs = calculateNewBadges(c, newXp).map(b => b.slug);
+      c.badges = [...new Set([...c.badges, ...newBadgeSlugs])];
+      
       updatedChildren[childIdx] = c;
       localStorage.setItem('de_children', JSON.stringify(updatedChildren));
       localStorage.setItem('de_active_child', JSON.stringify(c));
+      
       setChild(c);
+      setNewLevel(newLevelVal > oldLevel ? newLevelVal : null);
+      setEarnedBadges(calculateNewBadges(c, newXp));
+      setShowRewards(true);
+      return;
     }
     setCompleted(true);
   }
@@ -215,12 +238,47 @@ export default function AdventureSlugPage({ params }: { params: Promise<{ slug: 
             <h1 className="text-2xl font-bold mb-1">{adventure.title}</h1>
             <p className="text-white/80 text-sm">{adventure.description}</p>
             <div className="mt-3 flex items-center gap-3 text-sm text-white/60">
-              <span className="flex items-center gap-1"><Target className="w-4 h-4" /> Niv. {adventure.id.includes('a1') ? '1' : adventure.id.includes('a2') ? '2' : '1'}</span>
+              <span className="flex items-center gap-1"><Target className="w-4 h-4" /> Niv. {adventure.id.includes('a2') ? '2' : '1'}</span>
               <span>•</span>
               <span className="flex items-center gap-1"><Star className="w-4 h-4 text-yellow-400" /> +{adventure.xp_reward} XP</span>
             </div>
           </div>
         </div>
+
+        {/* REWARD OVERLAY */}
+        {showRewards && (
+          <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-6">
+            <div className="bg-[#111827] border border-violet-500/30 rounded-3xl p-8 max-w-sm w-full text-center animate-bounce-in">
+              <div className="text-6xl mb-4">🎉</div>
+              {newLevel && (
+                <div className="mb-4">
+                  <div className="flex items-center justify-center gap-2 text-yellow-400 mb-1"><Crown className="w-6 h-6" /><span className="font-bold text-xl">Niveau {newLevel} atteint !</span></div>
+                </div>
+              )}
+              <div className="mb-4 flex items-center justify-center gap-2 text-violet-300">
+                <Zap className="w-5 h-5" />
+                <span className="font-bold text-lg">+{adventure.xp_reward} XP</span>
+              </div>
+              {earnedBadges.length > 0 && (
+                <div className="mb-6">
+                  <div className="text-sm text-gray-400 mb-2">Nouveaux badges :</div>
+                  <div className="flex justify-center gap-3">
+                    {earnedBadges.map(b => (
+                      <div key={b.slug} className="flex flex-col items-center">
+                        <span className="text-3xl">{b.icon}</span>
+                        <span className="text-xs text-gray-400 mt-1">{b.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              <div className="flex gap-3">
+                <Link href="/dashboard"><button className="flex-1 py-3 bg-emerald-500 hover:bg-emerald-400 rounded-xl font-bold transition-colors">Dashboard</button></Link>
+                <button onClick={() => { setShowRewards(false); router.push('/dashboard'); }} className="flex-1 py-3 bg-violet-600 hover:bg-violet-500 rounded-xl font-bold transition-colors">Continuer</button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Section content */}
         <div className="bg-[#111827] border border-white/5 rounded-xl p-6 mb-6 min-h-[200px]">
