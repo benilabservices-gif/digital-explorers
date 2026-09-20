@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Shield, CheckCircle, XCircle, Star, Trophy, ArrowRight, Sparkles, BookOpen, Play, Target, Lightbulb, Zap, Award, Crown, Rocket, Confetti } from 'lucide-react';
+import { ArrowLeft, Shield, CheckCircle, XCircle, Star, Trophy, ArrowRight, Sparkles, BookOpen, Play, Target, Lightbulb, Zap, Award, Crown, Rocket } from 'lucide-react';
 import { WORLDS, BADGES as CONTENT_BADGES } from '@/data/content';
 import type { Adventure } from '@/data/content';
 import Nav from '@/components/Nav';
