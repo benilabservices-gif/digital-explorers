@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Heart, Mail, Lock, User, Plus, ChevronLeft, ArrowRight } from 'lucide-react';
 import { GRADES, CHILD_INTERESTS, CHILD_AVATARS } from '@/data/content';
@@ -12,6 +12,18 @@ export default function SignupPage() {
   const [step, setStep] = useState<Step>('parent');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // Check if already logged in — skip to child step
+  useEffect(() => {
+    const token = localStorage.getItem('de_auth');
+    const expires = localStorage.getItem('de_auth_expires');
+    const valid = token && (!expires || Date.now() < parseInt(expires));
+    if (valid) {
+      setIsAuthenticated(true);
+      setStep('child');
+    }
+  }, []);
 
   const [parentForm, setParentForm] = useState({ email:'', password:'', name:'', phone:'' });
   const [childForm, setChildForm] = useState({ name:'', age:'', gradeLevel:'', avatar: CHILD_AVATARS[0], interests:[], goal:'explorer' });
@@ -32,17 +44,14 @@ export default function SignupPage() {
     setLoading(true);
     setError('');
     
-    // Simulate API delay
     await new Promise(r => setTimeout(r, 800));
     
-    // Store parent info with expiration (30 days)
     const expiresIn = Date.now() + (30 * 24 * 60 * 60 * 1000);
     localStorage.setItem('de_auth', 'true');
     localStorage.setItem('de_auth_expires', expiresIn.toString());
     localStorage.setItem('de_parent_email', parentForm.email);
     localStorage.setItem('de_parent_name', parentForm.name);
     localStorage.setItem('de_parent_id', 'parent_' + Date.now());
-    // Preserve existing children if coming from dashboard
     if (!localStorage.getItem('de_children')) {
       localStorage.setItem('de_children', '[]');
     }
@@ -85,7 +94,9 @@ export default function SignupPage() {
     localStorage.setItem('de_parent_email', 'parent@google.com');
     localStorage.setItem('de_parent_name', 'Parent Google');
     localStorage.setItem('de_parent_id', 'parent_google_' + Date.now());
-    localStorage.setItem('de_children', '[]');
+    if (!localStorage.getItem('de_children')) {
+      localStorage.setItem('de_children', '[]');
+    }
     localStorage.setItem('de_plan', 'starter');
     setStep('child');
   };
@@ -96,8 +107,16 @@ export default function SignupPage() {
         <div className="text-center mb-8">
           <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] bg-clip-text text-transparent">Digital Explorers</Link>
           <p className="text-gray-400 mt-2">
-            {step === 'parent' && 'Crée ton compte parent'}
-            {step === 'child' && "Ajoute ton premier enfant"}
+            {step === 'parent' && !isAuthenticated ? 'Crée ton compte parent' : 'Ajoute ton enfant'}
+            {step === 'done' && 'Tout est prêt !'}
+          </p>
+        </div>
+        <div className="bg-[#111827] border border-white/5 rounded-2xl p-8">
+          <div className="flex items-center gap-2 mb-6">
+            {(['parent','child','done'] as Step[]).map((s,i) => (
+              <div key={s} className={`flex-1 h-1.5 rounded-full ${s===step||isAuthenticated?'bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6]':'bg-white/10'}`} />
+            ))}
+          </div>
             {step === 'done' && 'Tout est prêt !'}
           </p>
         </div>
