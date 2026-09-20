@@ -2,12 +2,12 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { TrendingUp, Award, FolderOpen, Zap, ArrowRight, Crown, Rocket, ChevronRight, LogOut, Plus, UserPlus, Shield, Heart, Gift, Sparkles, Target, Star } from 'lucide-react';
+import { TrendingUp, Award, FolderOpen, Zap, ArrowRight, Crown, Rocket, ChevronRight, LogOut, Plus, UserPlus, Shield, Heart, Gift, Sparkles, Target, Star, Calendar, Trophy, GitBranch } from 'lucide-react';
 import { WORLDS, BADGES as CONTENT_BADGES, DIGITAL_BRIDGES } from '@/data/content';
+import { DAILY_CHALLENGES, WEEKLY_QUESTS, SKILL_TREE } from '@/data/challenges';
 import type { ChildProfile } from '@/data/content';
 import Nav from '@/components/Nav';
 import AICoach from '@/components/AICoach';
-import { createClient } from '@/lib/supabase/client';
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -26,66 +26,31 @@ export default function DashboardPage() {
   }, [router]);
 
   async function loadChildren() {
-    const supabase = createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) { setLoading(false); return; }
-
-    // Load from Supabase
-    const { data: dbChildren } = await supabase
-      .from('children')
-      .select('*')
-      .eq('parent_id', user.id)
-      .order('created_at', { ascending: true });
-
-    // Load from localStorage (fallback/merge)
     const lsChildren: ChildProfile[] = JSON.parse(localStorage.getItem('de_children') || '[]');
-    
-    // Merge: prefer DB data, fallback to LS
-    const allChildren: ChildProfile[] = dbChildren?.map(c => ({
-      id: c.id,
-      name: c.name,
-      age: c.age || 0,
-      gradeLevel: c.grade_level || '',
-      avatar: c.avatar || '👦🏾',
-      xp: c.xp || 0,
-      level: c.level || 1,
-      phase: c.phase as any,
-      badges: [],
-      adventuresCompleted: [],
-      interests: c.interests || [],
-      createdAt: c.created_at,
-    })) || lsChildren;
-
-    setChildren(allChildren);
-    
+    setChildren(lsChildren);
     const active = localStorage.getItem('de_active_child');
     if (active) {
       const child = JSON.parse(active);
       setActiveChildId(child.id);
       setActiveChild(child);
-    } else if (allChildren.length > 0) {
-      setActiveChildId(allChildren[0].id);
-      setActiveChild(allChildren[0]);
-      localStorage.setItem('de_active_child', JSON.stringify(allChildren[0]));
+    } else if (lsChildren.length > 0) {
+      setActiveChildId(lsChildren[0].id);
+      setActiveChild(lsChildren[0]);
+      localStorage.setItem('de_active_child', JSON.stringify(lsChildren[0]));
     }
     setLoading(false);
   }
 
   useEffect(() => {
-    if (!activeChildId || children.length === 0) return;
-    const child = children.find(c => c.id === activeChildId) || activeChild;
-    if (!child) return;
-    setActiveChild(child);
-    
-    // Calculate world progress
+    if (!activeChild) return;
     const progress: Record<string, number> = {};
     WORLDS.forEach(world => {
       const worldAdvs = world.adventures || [];
-      const completed = worldAdvs.filter(a => child.adventuresCompleted.includes(a.slug)).length;
+      const completed = worldAdvs.filter(a => activeChild.adventuresCompleted.includes(a.slug)).length;
       progress[world.slug] = worldAdvs.length > 0 ? Math.round((completed / worldAdvs.length) * 100) : 0;
     });
     setWorldProgress(progress);
-  }, [activeChildId, children, activeChild]);
+  }, [activeChild]);
 
   if (loading) {
     return <div className="min-h-screen bg-[#060810] flex items-center justify-center"><div className="w-12 h-12 border-4 border-violet-500 border-t-transparent rounded-full animate-spin" /></div>;
@@ -116,7 +81,7 @@ export default function DashboardPage() {
     router.push('/auth/signup');
   }
 
-  async function selectChild(id: string) {
+  function selectChild(id: string) {
     setActiveChildId(id);
     const kid = children.find(c => c.id === id);
     if (kid) {
@@ -133,18 +98,24 @@ export default function DashboardPage() {
     return 'Explorateur';
   }
 
-  function getNextAdventure(): { world: any; adventure: any } | null {
+  function getNextAdventure() {
     if (!child) return null;
     for (const world of WORLDS) {
       const unfinished = (world.adventures || []).filter(adv => !child.adventuresCompleted.includes(adv.slug));
       if (unfinished.length > 0) {
-        return { world, adventure: unfinished[0] };
+        // Prioritize based on interests
+        const interestMatch = unfinished.find(adv => (child.interests || []).some(i => adv.title.toLowerCase().includes(i.toLowerCase().slice(0,4))));
+        return { world, adventure: interestMatch || unfinished[0] };
       }
     }
     return null;
   }
 
   const nextAct = getNextAdventure();
+  const totalDone = child?.adventuresCompleted.length || 0;
+  const totalXp = child?.xp || 0;
+  const totalBadges = child?.badges?.length || 0;
+  const totalLevel = child?.level || 1;
 
   return (
     <div className="min-h-screen bg-[#060810] text-white">
@@ -157,9 +128,12 @@ export default function DashboardPage() {
               <p className="text-sm text-gray-400 mb-1">Tableau de bord parental</p>
               <h1 className="font-display text-3xl md:text-4xl font-bold">Mes enfants</h1>
             </div>
-            <button onClick={addChild} className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-full font-semibold text-sm hover:opacity-90 transition-opacity">
-              <Plus className="w-4 h-4" /> Ajouter un enfant
-            </button>
+            <div className="flex items-center gap-3">
+              <button onClick={handleSignOut} className="px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-2"><LogOut className="w-4 h-4" /> Déconnexion</button>
+              <button onClick={addChild} className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-full font-semibold text-sm hover:opacity-90 transition-opacity">
+                <Plus className="w-4 h-4" /> Ajouter un enfant
+              </button>
+            </div>
           </div>
 
           {/* Children selector */}
@@ -189,22 +163,20 @@ export default function DashboardPage() {
             </div>
           ) : (
             <>
-              {/* ACTIVE CHILD HERO — Action-Oriented */}
+              {/* Hero */}
               <div className="bg-gradient-to-r from-violet-600/20 to-purple-600/20 border border-violet-500/20 rounded-2xl p-6 md:p-8 relative overflow-hidden mb-8">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-violet-500/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
                 <div className="relative flex items-center gap-6">
                   <div className="text-6xl">{child.avatar}</div>
                   <div className="flex-1">
                     <p className="text-sm text-violet-300 mb-1">👋 Bonjour {child.name} !</p>
-                    <h2 className="font-display text-2xl md:text-3xl font-bold mb-1">
-                      {getLevelTitle(child.xp)} — Niveau {child.level}
-                    </h2>
+                    <h2 className="font-display text-2xl md:text-3xl font-bold mb-1">{getLevelTitle(child.xp)} — Niveau {child.level}</h2>
                     <p className="text-gray-400">{child.gradeLevel} • {child.age} ans • Phase {child.phase}</p>
-                    <div className="flex items-center gap-4 mt-3 text-sm">
+                    <div className="flex items-center gap-4 mt-3 text-sm flex-wrap">
                       <span className="flex items-center gap-1"><Crown className="w-4 h-4 text-yellow-400" /> Nv.{child.level}</span>
                       <span className="flex items-center gap-1"><Zap className="w-4 h-4 text-violet-400" /> {child.xp} XP</span>
-                      <span className="flex items-center gap-1"><Award className="w-4 h-4 text-pink-400" /> {child.badges.length} badges</span>
-                      <span className="flex items-center gap-1"><TrendingUp className="w-4 h-4 text-emerald-400" /> {child.adventuresCompleted.length}/84</span>
+                      <span className="flex items-center gap-1"><Award className="w-4 h-4 text-pink-400" /> {child.badges?.length || 0} badges</span>
+                      <span className="flex items-center gap-1"><TrendingUp className="w-4 h-4 text-emerald-400" /> {totalDone}/84 aventures</span>
                     </div>
                   </div>
                   <div className="text-right hidden md:block">
@@ -230,8 +202,6 @@ export default function DashboardPage() {
                       <div className="flex items-center gap-3 mt-2 text-xs text-gray-500">
                         <span>+{nextAct.adventure.xp_reward} XP</span>
                         <span>•</span>
-                        <span>Niv. {nextAct.adventure.level}</span>
-                        <span>•</span>
                         <span>{nextAct.world.name}</span>
                       </div>
                     </div>
@@ -247,12 +217,20 @@ export default function DashboardPage() {
               {/* DAILY CHALLENGE */}
               <div className="mb-8">
                 <div className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20 rounded-2xl p-5">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Star className="w-5 h-5 text-amber-400" />
+                  <div className="flex items-center gap-2 mb-3">
+                    <Calendar className="w-5 h-5 text-amber-400" />
                     <span className="text-sm font-semibold text-amber-300 uppercase tracking-wider">Défi du jour</span>
                   </div>
-                  <p className="text-gray-300 mb-3">Trouve une information fiable sur Internet et vérifie sa source.</p>
-                  <Link href="/adventure/search-master"><button className="px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-lg text-sm font-semibold text-amber-300 hover:bg-amber-500/30 transition-colors">Relever le défi</button></Link>
+                  <div className="flex flex-col md:flex-row md:items-center gap-4">
+                    <p className="text-gray-300 flex-1">{DAILY_CHALLENGES[0]?.description || "Aucun défi disponible pour le moment."}</p>
+                    {DAILY_CHALLENGES[0] && (
+                      <Link href={DAILY_CHALLENGES[0].world_slug ? `/worlds/${DAILY_CHALLENGES[0].world_slug}` : '/worlds'}>
+                        <button className="px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-lg text-sm font-semibold text-amber-300 hover:bg-amber-500/30 transition-colors whitespace-nowrap">
+                          Relever le défi (+{DAILY_CHALLENGES[0].xp_reward} XP)
+                        </button>
+                      </Link>
+                    )}
+                  </div>
                 </div>
               </div>
 
@@ -261,8 +239,8 @@ export default function DashboardPage() {
                 {[
                   { icon: Crown, label: 'Niveau', value: `Nv. ${child.level}`, color: 'text-yellow-400' },
                   { icon: Zap, label: 'XP Total', value: `${child.xp} XP`, color: 'text-violet-400' },
-                  { icon: Award, label: 'Badges', value: `${child.badges.length}/${CONTENT_BADGES.length}`, color: 'text-pink-400' },
-                  { icon: FolderOpen, label: 'Aventures', value: `${child.adventuresCompleted.length}/84`, color: 'text-emerald-400' },
+                  { icon: Award, label: 'Badges', value: `${child.badges?.length || 0}/${CONTENT_BADGES.length}`, color: 'text-pink-400' },
+                  { icon: FolderOpen, label: 'Aventures', value: `${totalDone}/84`, color: 'text-emerald-400' },
                 ].map((stat, i) => (
                   <div key={i} className="bg-[#111827] border border-white/5 rounded-xl p-4">
                     <stat.icon className={`w-5 h-5 ${stat.color} mb-2`} /><div className="text-2xl font-bold">{stat.value}</div><div className="text-sm text-gray-400">{stat.label}</div>
@@ -270,7 +248,7 @@ export default function DashboardPage() {
                 ))}
               </div>
 
-              {/* WORLDS PROGRESS */}
+              {/* WORLDS PROGRESS + WEEKLY QUEST */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
                 <div className="lg:col-span-2 bg-[#111827] border border-white/5 rounded-xl p-6">
                   <h2 className="font-display text-xl font-bold mb-4 flex items-center gap-2"><TrendingUp className="w-5 h-5 text-violet-400" /> Progression par monde</h2>
@@ -303,6 +281,23 @@ export default function DashboardPage() {
                 </div>
 
                 <div className="space-y-6">
+                  {/* Weekly Quests */}
+                  <div className="bg-[#111827] border border-white/5 rounded-xl p-6">
+                    <h2 className="font-display text-xl font-bold mb-4 flex items-center gap-2"><Trophy className="w-5 h-5 text-yellow-400" /> Quête de la semaine</h2>
+                    <div className="space-y-3">
+                      {WEEKLY_QUESTS.slice(0, 2).map(quest => (
+                        <div key={quest.id} className="bg-[#0f172a] rounded-xl p-3 border border-white/5">
+                          <div className="font-semibold text-sm mb-1">{quest.title}</div>
+                          <div className="text-xs text-gray-400 mb-2">{quest.description}</div>
+                          <div className="flex items-center justify-between text-xs">
+                            <span className="text-yellow-400">+{quest.xp_reward} XP</span>
+                            <span className="text-gray-500">Jusqu'au {quest.deadline}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
                   {/* Digital Bridge */}
                   <div className="bg-[#111827] border border-white/5 rounded-xl p-6">
                     <h2 className="font-display text-xl font-bold mb-4 flex items-center gap-2"><Rocket className="w-5 h-5 text-orange-400" /> Digital Bridge</h2>
@@ -327,11 +322,49 @@ export default function DashboardPage() {
                 </div>
               </div>
 
+              {/* SKILL TREE */}
+              <div className="mb-8">
+                <h2 className="font-display text-xl font-bold mb-4 flex items-center gap-2"><GitBranch className="w-5 h-5 text-emerald-400" /> Arbre des compétences</h2>
+                <div className="bg-[#111827] border border-white/5 rounded-xl p-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {WORLDS.slice(0, 3).map(world => {
+                      const skills = SKILL_TREE[world.slug] || [];
+                      return (
+                        <div key={world.id} className="bg-[#0f172a] rounded-xl p-4 border border-white/5">
+                          <div className="flex items-center gap-2 mb-3">
+                            <span className="text-xl">{world.icon}</span>
+                            <span className="font-bold text-sm">{world.name}</span>
+                          </div>
+                          <div className="space-y-2">
+                            {skills.map(skill => {
+                              const skillKey = skill.id.replace('s', '');
+                              const skillXp = (child.skills as any)?.[skill.name.toLowerCase()] || 0;
+                              const levelIdx = skillXp >= 300 ? 3 : skillXp >= 150 ? 2 : skillXp >= 50 ? 1 : 0;
+                              return (
+                                <div key={skill.id} className="flex items-center gap-2">
+                                  <span className="text-sm">{skill.icon}</span>
+                                  <span className="text-xs text-gray-400 flex-1">{skill.name}</span>
+                                  <div className="flex gap-0.5">
+                                    {skill.levels.map((_, i) => (
+                                      <div key={i} className={`w-2 h-2 rounded-full ${i <= levelIdx ? 'bg-violet-500' : 'bg-white/10'}`} />
+                                    ))}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
               {/* BADGES */}
               <div className="mb-8">
-                <h2 className="font-display text-xl font-bold mb-4">🏆 Badges obtenus</h2>
+                <h2 className="font-display text-xl font-bold mb-4">🏆 Badges obtenus ({child.badges?.length || 0}/{CONTENT_BADGES.length})</h2>
                 <div className="bg-[#111827] border border-white/5 rounded-xl p-5">
-                  {child.badges.length > 0 ? (
+                  {child.badges?.length > 0 ? (
                     <div className="flex flex-wrap gap-3">
                       {child.badges.map(slug => {
                         const badge = CONTENT_BADGES.find(b => b.slug === slug);
@@ -346,9 +379,25 @@ export default function DashboardPage() {
                     </div>
                   ) : (
                     <div className="text-center py-8 text-gray-400">
-                      <Award className="w-10 h-10 mx-auto mb-3 opacity-30" /><p>Aucun badge pour le moment.</p><p className="text-sm">Complète des aventures pour en gagner !</p>
+                      <Award className="w-10 h-10 mx-auto mb-3 opacity-30" /><p>Aucun badge pour le moment.</p><p className="text-sm">Termine des aventures pour en gagner !</p>
                     </div>
                   )}
+                </div>
+              </div>
+
+              {/* Quick Adventures */}
+              <div>
+                <h2 className="font-display text-xl font-bold mb-4">🎯 Continuer l'aventure</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {WORLDS.flatMap(world =>
+                    (world.adventures || []).filter(adv => !child.adventuresCompleted.includes(adv.slug)).slice(0, 2).map(adv => (
+                      <Link key={`${world.slug}-${adv.slug}`} href={`/adventure/${adv.slug}`} className="flex items-center gap-4 p-4 rounded-xl bg-[#111827] border border-white/5 hover:border-violet-500/30 transition-all group">
+                        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${world.gradient} flex items-center justify-center text-2xl flex-shrink-0`}>{world.icon}</div>
+                        <div className="flex-1 min-w-0"><div className="text-xs text-gray-500 mb-0.5">{world.name}</div><div className="font-semibold truncate">{adv.title}</div><div className="text-sm text-gray-400 truncate">{adv.description}</div></div>
+                        <div className="text-right flex-shrink-0"><div className="text-sm text-yellow-400 font-medium">+{adv.xp_reward} XP</div><ChevronRight className="w-5 h-5 text-gray-500 group-hover:text-violet-400 transition-colors" /></div>
+                      </Link>
+                    ))
+                  ).slice(0, 6)}
                 </div>
               </div>
             </>
