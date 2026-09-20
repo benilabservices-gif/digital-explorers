@@ -42,7 +42,10 @@ export default function SignupPage() {
     localStorage.setItem('de_parent_email', parentForm.email);
     localStorage.setItem('de_parent_name', parentForm.name);
     localStorage.setItem('de_parent_id', 'parent_' + Date.now());
-    localStorage.setItem('de_children', '[]');
+    // Preserve existing children if coming from dashboard
+    if (!localStorage.getItem('de_children')) {
+      localStorage.setItem('de_children', '[]');
+    }
     localStorage.setItem('de_plan', 'starter');
     setLoading(false);
     setStep('child');
