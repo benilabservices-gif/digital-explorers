@@ -25,7 +25,7 @@ export default function SignupPage() {
     }
   }, []);
 
-  const [parentForm, setParentForm] = useState({ email:'', password:'', name:'', phone:'' });
+undefined = useState({ email:'', password:'', name:'', phone:'' });
   const [childForm, setChildForm] = useState({ name:'', age:'', gradeLevel:'', avatar: CHILD_AVATARS[0], interests:[], goal:'explorer' });
 
   const updateParent = (field: string, value: unknown) => setParentForm(p => ({ ...p, [field]: value }));
