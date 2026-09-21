@@ -7,21 +7,19 @@ import { GRADES, CHILD_INTERESTS, CHILD_AVATARS } from '@/data/content';
 
 type Step = 'parent' | 'child' | 'done';
 
-// Check auth on module load
-function getInitialStep(): Step {
-  const token = localStorage.getItem('de_auth');
-  const expires = localStorage.getItem('de_auth_expires');
-  if (token && (!expires || Date.now() < parseInt(expires))) {
-    return 'child';
-  }
-  return 'parent';
-}
-
 export default function SignupPage() {
   const router = useRouter();
-  const [step, setStep] = useState<Step>(getInitialStep);
+  const [step, setStep] = useState<Step>('parent');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  // Auto-detect if already logged in
+  useEffect(() => {
+    const token = localStorage.getItem('de_auth');
+    const expires = localStorage.getItem('de_auth_expires');
+    if (token && (!expires || Date.now() < parseInt(expires))) {
+      setStep('child');
+    }
+  }, []);
 
   const [parentForm, setParentForm] = useState({ email:'', password:'', name:'', phone:'' });
   const [childForm, setChildForm] = useState({ name:'', age:'', gradeLevel:'', avatar: CHILD_AVATARS[0], interests:[], goal:'explorer' });
@@ -42,17 +40,17 @@ export default function SignupPage() {
     setLoading(true);
     setError('');
     
+    // Simulate API delay
     await new Promise(r => setTimeout(r, 800));
     
+    // Store parent info with expiration (30 days)
     const expiresIn = Date.now() + (30 * 24 * 60 * 60 * 1000);
     localStorage.setItem('de_auth', 'true');
     localStorage.setItem('de_auth_expires', expiresIn.toString());
     localStorage.setItem('de_parent_email', parentForm.email);
     localStorage.setItem('de_parent_name', parentForm.name);
     localStorage.setItem('de_parent_id', 'parent_' + Date.now());
-    if (!localStorage.getItem('de_children')) {
-      localStorage.setItem('de_children', '[]');
-    }
+    localStorage.setItem('de_children', '[]');
     localStorage.setItem('de_plan', 'starter');
     setLoading(false);
     setStep('child');
@@ -92,9 +90,7 @@ export default function SignupPage() {
     localStorage.setItem('de_parent_email', 'parent@google.com');
     localStorage.setItem('de_parent_name', 'Parent Google');
     localStorage.setItem('de_parent_id', 'parent_google_' + Date.now());
-    if (!localStorage.getItem('de_children')) {
-      localStorage.setItem('de_children', '[]');
-    }
+    localStorage.setItem('de_children', '[]');
     localStorage.setItem('de_plan', 'starter');
     setStep('child');
   };
@@ -106,7 +102,7 @@ export default function SignupPage() {
           <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] bg-clip-text text-transparent">Digital Explorers</Link>
           <p className="text-gray-400 mt-2">
             {step === 'parent' && 'Crée ton compte parent'}
-            {step === 'child' && "Ajoute ton enfant"}
+            {step === 'child' && "Ajoute ton premier enfant"}
             {step === 'done' && 'Tout est prêt !'}
           </p>
         </div>
@@ -139,4 +135,81 @@ export default function SignupPage() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-1">Mot de passe *</label>
-                  <div className="relative"><Lock className="absolute lef
+                  <div className="relative"><Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" /><input type="password" value={parentForm.password} onChange={e=>updateParent('password',e.target.value)} className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#0f172a] border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500" placeholder="6 caractères minimum" minLength={6} required /></div>
+                </div>
+                {error && <p className="text-red-400 text-sm bg-red-400/10 border border-red-400/20 rounded-lg p-3">{error}</p>}
+                <button type="submit" disabled={loading} className="w-full bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] text-white font-semibold py-3 rounded-xl hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center justify-center gap-2">
+                  {loading ? 'Création...' : <><Heart className="w-5 h-5" /> Continuer</>}
+                </button>
+              </form>
+              <div className="mt-6 text-center text-sm text-gray-400">Déjà un compte ? <Link href="/auth/login" className="text-violet-400 hover:underline">Se connecter</Link></div>
+            </>
+          )}
+
+          {step === 'child' && (
+            <>
+              <div className="text-center mb-6">
+                <div className="text-4xl mb-2">{childForm.avatar}</div>
+                <p className="text-sm text-gray-400">Crée le profil de ton enfant</p>
+              </div>
+              <form onSubmit={(e)=>{e.preventDefault();handleChildSubmit();}} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-1">Prénom de l'enfant *</label>
+                  <input type="text" value={childForm.name} onChange={e=>updateChild('name',e.target.value)} className="w-full px-4 py-3 rounded-xl bg-[#0f172a] border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500" placeholder="Ex: Awa, Koffi..." required />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-1">Âge *</label>
+                    <input type="number" min={11} max={18} value={childForm.age} onChange={e=>updateChild('age',e.target.value)} className="w-full px-4 py-3 rounded-xl bg-[#0f172a] border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-violet-500" placeholder="14" required />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-1">Classe *</label>
+                    <select value={childForm.gradeLevel} onChange={e=>updateChild('gradeLevel',e.target.value)} className="w-full px-4 py-3 rounded-xl bg-[#0f172a] border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-violet-500 appearance-none">
+                      <option value="" className="bg-[#0f172a]">Sélectionne...</option>
+                      {GRADES.map(g => <option key={g} value={g} className="bg-[#0f172a]">{g}</option>)}
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">Avatar</label>
+                  <div className="flex flex-wrap gap-2">
+                    {CHILD_AVATARS.map((av,i) => (
+                      <button key={i} type="button" onClick={()=>updateChild('avatar',av)} className={`text-2xl w-10 h-10 rounded-xl flex items-center justify-center transition-all ${childForm.avatar===av?'border-2 border-violet-400 bg-violet-500/20':'border border-white/10 hover:border-white/30'}`}>{av}</button>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">Centres d intérêt</label>
+                  <div className="flex flex-wrap gap-2">
+                    {CHILD_INTERESTS.map(item => (
+                      <button key={item} type="button" onClick={()=>toggleInterest(item)} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${childForm.interests.includes(item)?'bg-gradient-to-r from-violet-500 to-purple-500 text-white':'bg-[#0f172a] text-gray-300 border border-white/10 hover:border-violet-500/50'}`}>{item}</button>
+                    ))}
+                  </div>
+                </div>
+                {error && <p className="text-red-400 text-sm bg-red-400/10 border border-red-400/20 rounded-lg p-3">{error}</p>}
+                <div className="flex gap-3">
+                  <button type="button" onClick={()=>setStep('parent')} className="flex-1 py-3 rounded-xl border border-white/10 text-gray-300 hover:bg-white/5 transition-all flex items-center justify-center gap-2"><ChevronLeft className="w-4 h-4" /> Retour</button>
+                  <button type="submit" className="flex-1 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] text-white font-semibold py-3 rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center gap-2"><Plus className="w-4 h-4" /> Ajouter</button>
+                </div>
+              </form>
+              <div className="mt-4 text-center text-xs text-gray-500">Tu peux ajouter d'autres enfants depuis le dashboard</div>
+            </>
+          )}
+
+          {step === 'done' && (
+            <div className="text-center py-8">
+              <div className="text-6xl mb-4">🎉</div>
+              <h2 className="font-display text-2xl font-bold mb-2">Bienvenue !</h2>
+              <p className="text-gray-400 mb-6">Ton compte parent est prêt. Accède au dashboard pour gérer tes enfants.</p>
+              <Link href="/dashboard">
+                <button className="px-8 py-3 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-full font-semibold hover:opacity-90 transition-opacity">
+                  Aller au dashboard <ArrowRight className="w-5 h-5 inline" />
+                </button>
+              </Link>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
