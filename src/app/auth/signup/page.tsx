@@ -12,7 +12,7 @@ export default function SignupPage() {
   const [step, setStep] = useState<Step>('parent');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-n  // Auto-detect if already logged in
+  // Auto-detect if already logged in
   useEffect(() => {
     const token = localStorage.getItem('de_auth');
     const expires = localStorage.getItem('de_auth_expires');
