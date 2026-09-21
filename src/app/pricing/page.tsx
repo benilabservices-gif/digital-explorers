@@ -23,7 +23,7 @@ const FAQS = [
   { q:"Qu est-ce que le Coach IA ?", a:"Un assistant intelligent qui guide ton enfant dans chaque aventure, corrige les quiz et propose des défis adaptés." },
   { q:"Modes de paiement ?", a:"Orange Money, MTN MoMo, Wave, Visa/MC, virement bancaire." },
   { q:"Changer de plan ?", a:"Oui, upgrader ou downgrader à tout moment, au prorata." },
-  { q:"Combien d enfants ?", a:"Gratuit: 1. Explorateur: 1. Pro: 3." },
+  { q:"Combien d enfants ?", a:"Gratuit: 1 enfant. Explorateur: 1 enfant (5 000 FCFA/mois). Pro: 3 enfants (35 000 FCFA/an)" },
   { q:"Garantie ?", a:"7 jours satisfait ou remboursé." },
   { q:"Tarif écoles ?", a:"Contacte ecoles@digitalexplorers.africa pour un devis." },
 ];
