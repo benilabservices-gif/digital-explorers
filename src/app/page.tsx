@@ -53,7 +53,7 @@ export default function HomePage() {
                 <span className="bg-gradient-to-r from-[#ff6b6b] via-[#8b5cf6] to-[#ec4899] bg-clip-text text-transparent">monde numérique</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-300 leading-relaxed mb-4">Trouve ta voie. Imagine ton futur.</p>
-              <p className="text-gray-500 text-lg mb-10">7 mondes • 84 aventures • Coach IA • Suivi parental. Tout compris dès 2 000 FCFA/mois.</p>
+              <p className="text-gray-500 text-lg mb-10">7 mondes • 84 aventures • Coach IA • Suivi parental. Tout compris dès 5 000 FCFA/mois.</p>
               <div className="flex flex-wrap gap-4">
                 <button onClick={goToAuth} className="px-8 py-4 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-full font-semibold hover:opacity-90 transition-all hover:-translate-y-0.5 flex items-center gap-2 text-base shadow-lg shadow-violet-500/25">Commencer l aventure <ArrowRight className="w-5 h-5" /></button>
                 <a href="#mondes"><button className="px-8 py-4 border border-white/15 rounded-full font-medium text-gray-300 hover:bg-white/5 hover:text-white transition-all text-base">Explorer les mondes</button></a>

@@ -5,8 +5,8 @@ import { Check, Star, Shield, ArrowRight, Zap, Sparkles } from "lucide-react";
 
 const PLANS = [
   { id:"starter", name:"Starter", tagline:"Essaie gratuit 7 jours", price:"0", period:"7 jours", icon:"🌱", badge:"Essai gratuit", features:["1 monde complet","3 aventures gratuites","Quiz de base","Badge premier projet","Dashboard","Coach IA basique"], cta:"Essayer 7 jours gratuit", ctaLink:"/auth/signup", popular:false },
-  { id:"monthly", name:"Explorateur", tagline:"Accès complet mensuel", price:"2 000", period:"FCFA/mois", icon:"⚡", badge:"Populaire", features:["Tous les mondes","Aventures illimitées","Quiz IA avancé","Badges illimités","Passport complet","Feedback IA","Coach IA premium","Support prioritaire","1 enfant"], cta:"Commencer l aventure", ctaLink:"/auth/signup", popular:true },
-  { id:"annual", name:"Pro", tagline:"Économise 25%", price:"15 000", period:"FCFA/an", icon:"👑", badge:"Meilleur rapport", features:["Tout Explorateur","10 mois offerts","Certificats","Rapport parent détaillé","Coach IA VIP","Accès anticipé","Badge exclusif","Africa Makers","Webinaires privés"], cta:"Devenir Pro", ctaLink:"/auth/signup", popular:false },
+  { id:"monthly", name:"Explorateur", tagline:"Accès complet mensuel", price:"5 000", period:"FCFA/mois (par enfant)", icon:"⚡", badge:"Populaire", features:["Tous les mondes","Aventures illimitées","Quiz IA avancé","Badges illimités","Passport complet","Feedback IA","Coach IA premium","Support prioritaire","1 enfant"], cta:"Commencer l aventure", ctaLink:"/auth/signup", popular:true },
+  { id:"annual", name:"Pro", tagline:"Économise 38%", price:"35 000", period:"FCFA/an", icon:"👑", badge:"Meilleur rapport", features:["Tout Explorateur","10 mois offerts","Certificats","Rapport parent détaillé","Coach IA VIP","Accès anticipé","Badge exclusif","Africa Makers","Webinaires privés"], cta:"Devenir Pro", ctaLink:"/auth/signup", popular:false },
 ];
 
 const PAYMENTS = [
