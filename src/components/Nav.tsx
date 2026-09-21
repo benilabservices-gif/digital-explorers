@@ -8,20 +8,45 @@ export default function Nav() {
   const pathname = usePathname();
   const [auth, setAuth] = useState(false);
   const [profile, setProfile] = useState<any>(null);
+  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
+  // Check auth status
+  const checkAuth = () => {
     const token = localStorage.getItem('de_auth');
     const expires = localStorage.getItem('de_auth_expires');
-    if (token && expires && Date.now() > parseInt(expires)) {
+    
+    // If no token, not authenticated
+    if (!token) {
+      setAuth(false);
+      return;
+    }
+    
+    // If on auth pages, still show as not authenticated (to show login/signup buttons)
+    if (pathname.startsWith('/auth/')) {
+      setAuth(false);
+      return;
+    }
+    
+    // Check expiry
+    if (expires && Date.now() > parseInt(expires)) {
       localStorage.removeItem('de_auth');
       localStorage.removeItem('de_auth_expires');
       setAuth(false);
-    } else if (token) {
+    } else {
       setAuth(true);
       const saved = localStorage.getItem('de_profile');
       if (saved) setProfile(JSON.parse(saved));
     }
-  }, []);
+  };
+
+  useEffect(() => {
+    setMounted(true);
+    checkAuth();
+    
+    // Listen for storage changes (in case auth changes in another tab)
+    window.addEventListener('storage', checkAuth);
+    return () => window.removeEventListener('storage', checkAuth);
+  }, [pathname]);
 
   function handleLogout() {
     localStorage.removeItem('de_auth');
@@ -33,6 +58,25 @@ export default function Nav() {
   }
 
   const isHome = pathname === '/';
+
+  // Don't show nav on auth pages
+  if (pathname.startsWith('/auth/')) {
+    return null;
+  }
+
+  if (!mounted) {
+    return (
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#060810]/70 backdrop-blur-2xl border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
+          <div className="w-32 h-4 bg-white/10 rounded animate-pulse" />
+          <div className="flex gap-2">
+            <div className="w-16 h-8 bg-white/10 rounded-full animate-pulse" />
+            <div className="w-16 h-8 bg-white/10 rounded-full animate-pulse" />
+          </div>
+        </div>
+      </nav>
+    );
+  }
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#060810]/70 backdrop-blur-2xl border-b border-white/5">

@@ -1,8 +1,166 @@
+# ✅ GUIDE ULTIME — Configuration Supabase Complète
+
+## 🎯 Objectif
+Connecter Digital Explorers à une vraie base de données Supabase pour persister les parents, enfants, XP, badges et aventures.
+
+---
+
+## 📋 CHECKLIST À COCHER
+
+- [ ] Étape 1 : Créer le projet Supabase
+- [ ] Étape 2 : Créer les tables (SQL)
+- [ ] Étape 3 : Configurer Google OAuth
+- [ ] Étape 4 : Mettre les credentials sur Vercel
+- [ ] Étape 5 : Mettre à jour le code
+- [ ] Étape 6 : Tester
+
+---
+
+## ÉTAPE 1 — CRÉER LE PROJET SUPABASE (5 min)
+
+### 1.1 — Inscription
+1. Va sur **https://supabase.com**
+2. Clique **"Start your project"**
+3. Connecte-toi avec GitHub (recommandé) ou email
+
+### 1.2 — Créer le projet
+1. Clique **"New Project"**
+2. Remplis :
+   ```
+   Organization: benilabservices-2205s-projects (ou crée-en une)
+   Name: digital-explorers
+   Database Password: DEx2024!Secure (choisis un mot de passe fort)
+   Region: France (Paris)
+   ```
+3. Clique **"Create new project"**
+4. Attends ~2 minutes que le projet soit prêt
+
+### 1.3 — Récupérer les credentials
+1. Dans le dashboard, clique sur le nom du projet
+2. Menu gauche → **Settings** (roue crantée) → **API**
+3. Copie ces 2 valeurs :
+   ```
+   Project URL: https://xxxxx.supabase.co
+   anon public key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+   ```
+4. **GARDE CES VALEURS PRÈS** — tu en auras besoin à l'étape 4
+
+---
+
+## ÉTAPE 2 — CRÉER LES TABLES (3 min)
+
+### 2.1 — Ouvrir SQL Editor
+1. Dans le menu gauche → **SQL Editor**
+2. Clique **"New query"**
+
+### 2.2 — Exécuter le schéma
+1. Ouvre le fichier `database/schema.sql` dans ton projet
+2. **Tout sélectionner** (Ctrl+A) → **Copier** (Ctrl+C)
+3. **Coller** dans l'éditeur SQL
+4. Clique **"Run"**
+5. ✅ Tu devrais voir : `"Success. No rows returned."`
+
+### 2.3 — Vérifier les tables
+1. Menu gauche → **Table Editor**
+2. Tu devrais voir ces tables :
+   - `parents`
+   - `children`
+   - `child_adventures`
+   - `child_badges`
+   - `quiz_attempts`
+   - `child_projects`
+   - `skill_progress`
+   - `xp_events`
+   - `worlds`
+   - `adventures`
+   - `badges`
+   - `digital_bridges`
+
+---
+
+## ÉTAPE 3 — CONFIGURER GOOGLE OAUTH (10 min)
+
+### 3.1 — Dans Supabase
+1. Menu → **Authentication** → **Providers**
+2. Trouve **Google** → clique pour activer
+3. Dans **URL Configuration** :
+   - Site URL : `https://digital-explorers-seven.vercel.app`
+   - Redirect URLs : `https://digital-explorers-seven.vercel.app/auth/callback`
+   - Reserve URLs : `https://digital-explorers-seven.vercel.app/*`
+
+### 3.2 — Dans Google Cloud Console
+1. Va sur **https://console.cloud.google.com/**
+2. Sélectionne ton projet (ou crée-en un : `digital-explorers`)
+3. Menu → **APIs & Services** → **Credentials**
+4. Clique **+ CREATE CREDENTIALS** → **OAuth client ID**
+5. Application type : **Web application**
+6. Nom : `Digital Explorers`
+7. Authorized JavaScript origins :
+   ```
+   https://digital-explorers-seven.vercel.app
+   ```
+8. Authorized redirect URIs :
+   ```
+   https://digital-explorers-seven.vercel.app/auth/callback
+   ```
+9. Clique **Create**
+10. Une fenêtre popup s'ouvre → clique **"Download JSON"** (garde-le)
+11. Copie le **Client ID** (commence par `123456-abc.apps.googleusercontent.com`)
+12. Copie le **Client Secret** (commence par `GOCSPX-...`)
+
+---
+
+## ÉTAPE 4 — CONFIGURER VERCEL (5 min)
+
+### 4.1 — Variables d'environnement
+1. Va sur **https://vercel.com/benilabservices-2205s-projects/digital-explorers/settings/environment-variables**
+2. Supprime les anciennes valeurs placeholder
+3. Ajoute ces variables :
+
+| Variable | Valeur | Type |
+|----------|--------|------|
+| `NEXT_PUBLIC_SUPABASE_URL` | `https://xxxxx.supabase.co` | Config |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | `eyJhbGci...` | Config |
+| `GOOGLE_CLIENT_ID` | `123456-abc.apps.googleusercontent.com` | Secret |
+| `GOOGLE_CLIENT_SECRET` | `GOCSPX-xxxxx` | Secret |
+
+4. Clique **"Save"**
+
+### 4.2 — Redéployer
+1. Va dans **Deployments**
+2. Clique les **3 points** ⋮ sur le dernier deployment
+3. Clique **"Redeploy"**
+
+---
+
+## ÉTAPE 5 — METTRE À JOUR LE CODE
+
+### 5.1 — Créer le fichier de configuration Supabase
+
+Crée le fichier `src/lib/supabase/client.ts` :
+
+```typescript
+import { createBrowserClient } from '@supabase/ssr';
+
+export function createClient() {
+  return createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+}
+```
+
+### 5.2 — Mettre à jour l'inscription
+
+Remplace le contenu de `src/app/auth/signup/page.tsx` par :
+
+```typescript
 'use client';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Heart, Mail, Lock, User, Plus, ChevronLeft, ArrowRight } from 'lucide-react';
+import { createClient } from '@/lib/supabase/client';
 import { GRADES, CHILD_INTERESTS, CHILD_AVATARS } from '@/data/content';
 
 type Step = 'parent' | 'child' | 'done';
@@ -16,6 +174,16 @@ export default function SignupPage() {
   const [parentForm, setParentForm] = useState({ email:'', password:'', name:'', phone:'' });
   const [childForm, setChildForm] = useState({ name:'', age:'', gradeLevel:'', avatar: CHILD_AVATARS[0], interests:[], goal:'explorer' });
 
+  // Auto-detect if already logged in
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        setStep('child');
+      }
+    });
+  }, []);
+
   const updateParent = (field: string, value: unknown) => setParentForm(p => ({ ...p, [field]: value }));
   const updateChild = (field: string, value: unknown) => setChildForm(p => ({ ...p, [field]: value }));
   const toggleInterest = (item: string) => {
@@ -27,64 +195,134 @@ export default function SignupPage() {
 
   const handleParentSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!parentForm.email || !parentForm.password || !parentForm.name) { setError('Remplis tous les champs obligatoires'); return; }
-    if (parentForm.password.length < 6) { setError('Mot de passe: 6 caractères minimum'); return; }
+    if (!parentForm.email || !parentForm.password || !parentForm.name) { 
+      setError('Remplis tous les champs obligatoires'); 
+      return; 
+    }
+    if (parentForm.password.length < 6) { 
+      setError('Mot de passe: 6 caractères minimum'); 
+      return; 
+    }
+    
     setLoading(true);
     setError('');
     
-    // Simulate API delay
-    await new Promise(r => setTimeout(r, 800));
+    const supabase = createClient();
     
-    // Store parent info with expiration (30 days)
-    const expiresIn = Date.now() + (30 * 24 * 60 * 60 * 1000);
-    localStorage.setItem('de_auth', 'true');
-    localStorage.setItem('de_auth_expires', expiresIn.toString());
-    localStorage.setItem('de_parent_email', parentForm.email);
-    localStorage.setItem('de_parent_name', parentForm.name);
-    localStorage.setItem('de_parent_id', 'parent_' + Date.now());
-    localStorage.setItem('de_children', '[]');
-    localStorage.setItem('de_plan', 'starter');
-    setLoading(false);
-    setStep('child');
+    const { data, error: signUpError } = await supabase.auth.signUp({
+      email: parentForm.email,
+      password: parentForm.password,
+      options: {
+        data: { 
+          name: parentForm.name, 
+          phone: parentForm.phone,
+          role: 'parent'
+        },
+      },
+    });
+    
+    if (signUpError) { 
+      setError(signUpError.message); 
+      setLoading(false); 
+      return; 
+    }
+    
+    if (data.user) {
+      // Create parent record
+      const { error: profileError } = await supabase
+        .from('parents')
+        .upsert({ 
+          id: data.user.id, 
+          email: parentForm.email, 
+          name: parentForm.name, 
+          phone: parentForm.phone 
+        }, { onConflict: 'id' });
+      
+      if (profileError) {
+        console.error('Profile creation error:', profileError);
+      }
+      
+      setLoading(false);
+      setStep('child');
+    }
   };
 
-  const handleChildSubmit = () => {
-    if (!childForm.name || !childForm.age || !childForm.gradeLevel) { setError('Remplis les champs obligatoires'); return; }
+  const handleChildSubmit = async () => {
+    if (!childForm.name || !childForm.age || !childForm.gradeLevel) { 
+      setError('Remplis les champs obligatoires'); 
+      return; 
+    }
     
+    const supabase = createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) { 
+      setError('Tu dois être connecté'); 
+      return; 
+    }
+
     const age = parseInt(childForm.age);
     const phase = ['6e','5e'].includes(childForm.gradeLevel) ? 'explorer' : ['4e','3e'].includes(childForm.gradeLevel) ? 'creator' : 'builder';
-    const child = {
-      id: 'child_' + Date.now(),
+    
+    const childData = {
+      parent_id: user.id,
       name: childForm.name,
-      age,
-      gradeLevel: childForm.gradeLevel,
       avatar: childForm.avatar,
+      age,
+      grade_level: childForm.gradeLevel,
+      interests: childForm.interests,
+      phase,
       xp: 0,
       level: 1,
-      phase,
-      badges: [],
-      adventuresCompleted: [],
-      interests: childForm.interests,
-      createdAt: new Date().toISOString(),
+      skills: { web: 0, ai: 0, coding: 0, creator: 0, cyber: 0, blockchain: 0, innovation: 0 },
     };
+
+    const { data: child, error: childError } = await supabase
+      .from('children')
+      .insert(childData)
+      .select()
+      .single();
+
+    if (childError) { 
+      setError(childError.message); 
+      return; 
+    }
     
-    const children = JSON.parse(localStorage.getItem('de_children') || '[]');
-    children.push(child);
-    localStorage.setItem('de_children', JSON.stringify(children));
-    localStorage.setItem('de_active_child', JSON.stringify(child));
-    setStep('done');
+    if (child) {
+      // Also save to localStorage for immediate UI updates
+      const lsChild = {
+        id: child.id,
+        name: child.name,
+        age: child.age,
+        gradeLevel: child.grade_level,
+        avatar: child.avatar,
+        xp: child.xp,
+        level: child.level,
+        phase: child.phase,
+        badges: [],
+        adventuresCompleted: [],
+        interests: child.interests || [],
+        createdAt: child.created_at,
+      };
+      
+      const children = JSON.parse(localStorage.getItem('de_children') || '[]');
+      children.push(lsChild);
+      localStorage.setItem('de_children', JSON.stringify(children));
+      localStorage.setItem('de_active_child', JSON.stringify(lsChild));
+      
+      setStep('done');
+    }
   };
 
-  const handleGoogle = () => {
-    const expiresIn = Date.now() + (30 * 24 * 60 * 60 * 1000);
-    localStorage.setItem('de_auth', 'true');
-    localStorage.setItem('de_auth_expires', expiresIn.toString());
-    localStorage.setItem('de_parent_email', 'parent@google.com');
-    localStorage.setItem('de_parent_name', 'Parent Google');
-    localStorage.setItem('de_parent_id', 'parent_google_' + Date.now());
-    localStorage.setItem('de_children', '[]');
-    localStorage.setItem('de_plan', 'starter');
-    setStep('child');
+  const handleGoogle = async () => {
+    const supabase = createClient();
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: { 
+        queryParams: { access_type: 'offline', prompt: 'consent' }, 
+        redirectTo: window.location.origin + '/auth/onboarding' 
+      },
+    });
+    if (error) setError(error.message);
   };
 
   return (
@@ -93,7 +331,7 @@ export default function SignupPage() {
         <div className="text-center mb-8">
           <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] bg-clip-text text-transparent">Digital Explorers</Link>
           <p className="text-gray-400 mt-2">
-            {step === 'parent' && 'Crée ton compte parent'}
+            {step === 'parent' && !loading && 'Crée ton compte parent'}
             {step === 'child' && "Ajoute ton premier enfant"}
             {step === 'done' && 'Tout est prêt !'}
           </p>
@@ -205,3 +443,60 @@ export default function SignupPage() {
     </div>
   );
 }
+```
+
+---
+
+## ÉTAPE 6 — TESTER (5 min)
+
+### 6.1 — Tester l'inscription
+1. Va sur **https://digital-explorers-seven.vercel.app/auth/signup**
+2. Crée un compte avec email + mot de passe
+3. Ajoute un enfant
+4. ✅ Tu devrais être redirigé vers le dashboard
+
+### 6.2 — Vérifier dans Supabase
+1. Va sur **https://supabase.com/dashboard**
+2. Menu → **Table Editor**
+3. Clique sur `parents` → tu devrais voir ton compte
+4. Clique sur `children` → tu devrais voir ton enfant
+
+### 6.3 — Tester la connexion
+1. Déconnecte-toi
+2. Retourne sur /auth/login
+3. Connecte-toi avec le même email/mot de passe
+4. ✅ Tu devrais voir ton enfant sur le dashboard
+
+---
+
+## 🎉 C'EST FINI !
+
+Ton site est maintenant connecté à une vraie base de données Supabase.
+
+### Prochaines améliorations possibles :
+- [ ] Migrer complètement le dashboard pour utiliser Supabase (au lieu de localStorage)
+- [ ] Ajouter le suivi des aventures complétées dans la DB
+- [ ] Ajouter les badges gagnés dans la DB
+- [ ] Créer un admin panel pour gérer le contenu
+- [ ] Ajouter les défis quotidiens dynamiques
+- [ ] Implementer les rapports parentaux
+
+---
+
+## 🆘 En cas de problème
+
+| Problème | Solution |
+|----------|----------|
+| "Invalid API key" | Vérifie que `NEXT_PUBLIC_SUPABASE_ANON_KEY` est bien configuré sur Vercel |
+| "Tables not found" | Relance le SQL Editor avec le contenu de `database/schema.sql` |
+| "Google OAuth error" | Vérifie les URLs dans Supabase ET Google Cloud Console |
+| "Row Level Security" | Vérifie que les policies RLS sont bien créées dans le schema |
+
+---
+
+## 📞 Support
+
+Si tu bloques sur une étape, envoie-moi :
+1. La capture d'écran de l'erreur
+2. L'étape où tu bloques
+3. Je t'aiderai immédiatement
