@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Heart, Mail, Lock, User, Plus, ChevronLeft, ArrowRight } from 'lucide-react';
 import { GRADES, CHILD_INTERESTS, CHILD_AVATARS } from '@/data/content';
@@ -12,6 +12,14 @@ export default function SignupPage() {
   const [step, setStep] = useState<Step>('parent');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+n  // Auto-detect if already logged in
+  useEffect(() => {
+    const token = localStorage.getItem('de_auth');
+    const expires = localStorage.getItem('de_auth_expires');
+    if (token && (!expires || Date.now() < parseInt(expires))) {
+      setStep('child');
+    }
+  }, []);
 
   const [parentForm, setParentForm] = useState({ email:'', password:'', name:'', phone:'' });
   const [childForm, setChildForm] = useState({ name:'', age:'', gradeLevel:'', avatar: CHILD_AVATARS[0], interests:[], goal:'explorer' });
