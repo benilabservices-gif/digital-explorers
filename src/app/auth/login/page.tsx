@@ -21,6 +21,7 @@ export default function LoginPage() {
     setTimeout(() => {
       // Accept any email/password for demo
       localStorage.setItem('de_auth', 'true');
+      localStorage.setItem('de_auth_expires', (Date.now() + 30*24*60*60*1000).toString());
       localStorage.setItem('de_parent_email', email);
       localStorage.setItem('de_parent_name', email.split('@')[0]);
       localStorage.setItem('de_parent_id', 'parent_' + Date.now());
@@ -39,6 +40,7 @@ export default function LoginPage() {
   const handleGoogle = () => {
     const expiresIn = Date.now() + (30 * 24 * 60 * 60 * 1000);
     localStorage.setItem('de_auth', 'true');
+      localStorage.setItem('de_auth_expires', (Date.now() + 30*24*60*60*1000).toString());
     localStorage.setItem('de_auth_expires', expiresIn.toString());
     localStorage.setItem('de_parent_email', 'parent@google.com');
     localStorage.setItem('de_parent_name', 'Parent Google');
