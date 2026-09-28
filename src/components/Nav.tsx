@@ -1,66 +1,68 @@
 'use client';
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { Sparkles, LogOut } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState, useSyncExternalStore } from "react";
+import { LogOut } from "lucide-react";
+import { createClient } from "@/lib/supabase/client";
+
+/** Abonnement factice : mounted=true côté client, false pendant le SSR. */
+const emptySubscribe = () => () => {};
 
 export default function Nav() {
   const pathname = usePathname();
+  const router = useRouter();
   const [auth, setAuth] = useState(false);
-  const [profile, setProfile] = useState<any>(null);
-  const [mounted, setMounted] = useState(false);
-
-  // Check auth status
-  const checkAuth = () => {
-    const token = localStorage.getItem('de_auth');
-    const expires = localStorage.getItem('de_auth_expires');
-    
-    // If no token, not authenticated
-    if (!token) {
-      setAuth(false);
-      return;
-    }
-    
-    // If on auth pages, still show as not authenticated (to show login/signup buttons)
-    if (pathname.startsWith('/auth/')) {
-      setAuth(false);
-      return;
-    }
-    
-    // Check expiry
-    if (expires && Date.now() > parseInt(expires)) {
-      localStorage.removeItem('de_auth');
-      localStorage.removeItem('de_auth_expires');
-      setAuth(false);
-    } else {
-      setAuth(true);
-      const saved = localStorage.getItem('de_profile');
-      if (saved) setProfile(JSON.parse(saved));
-    }
-  };
+  const [profileName, setProfileName] = useState<string | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const mounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
 
   useEffect(() => {
-    setMounted(true);
-    checkAuth();
-    
-    // Listen for storage changes (in case auth changes in another tab)
-    window.addEventListener('storage', checkAuth);
-    return () => window.removeEventListener('storage', checkAuth);
+    // Ne rien monter côté auth tant qu'on ne connaît pas l'état de session
+    if (pathname.startsWith("/auth/")) return;
+
+    const supabase = createClient();
+
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setAuth(!!user);
+      if (user) {
+        supabase
+          .from("profiles")
+          .select("full_name,role")
+          .eq("id", user.id)
+          .single()
+          .then(({ data }) => {
+            setProfileName(data?.full_name ?? null);
+            setIsAdmin(data?.role === "admin");
+          });
+      } else {
+        setProfileName(null);
+        setIsAdmin(false);
+      }
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setAuth(!!session);
+      if (!session) setProfileName(null);
+    });
+
+    return () => subscription.unsubscribe();
   }, [pathname]);
 
-  function handleLogout() {
-    localStorage.removeItem('de_auth');
-    localStorage.removeItem('de_auth_expires');
-    localStorage.removeItem('de_profile');
+  async function handleLogout() {
+    const supabase = createClient();
+    await supabase.auth.signOut();
     setAuth(false);
-    setProfile(null);
-    window.location.href = '/';
+    setProfileName(null);
+    router.push("/");
+    router.refresh();
   }
 
-  const isHome = pathname === '/';
+  const isHome = pathname === "/";
 
   // Don't show nav on auth pages
-  if (pathname.startsWith('/auth/')) {
+  if (pathname.startsWith("/auth/")) {
     return null;
   }
 
@@ -90,8 +92,10 @@ export default function Nav() {
             <>
               <Link href="/dashboard"><button className="px-4 py-2 text-sm text-gray-300 hover:text-white transition-colors">Dashboard</button></Link>
               <Link href="/worlds"><button className="px-4 py-2 text-sm text-gray-300 hover:text-white transition-colors">Mondes</button></Link>
+              <Link href="/challenges"><button className="px-4 py-2 text-sm text-gray-300 hover:text-white transition-colors">Défis</button></Link>
               <Link href="/pricing"><button className="px-4 py-2 text-sm text-gray-300 hover:text-white transition-colors">Tarifs</button></Link>
-              {profile && <span className="text-xs text-violet-400 mr-2 hidden sm:block">{profile.pseudonym}</span>}
+              {isAdmin && <Link href="/admin"><button className="px-4 py-2 text-sm text-violet-300 hover:text-violet-200 transition-colors">Admin</button></Link>}
+              {profileName && <span className="text-xs text-violet-400 mr-2 hidden sm:block">{profileName}</span>}
               <button onClick={handleLogout} className="p-2 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white transition-colors" title="Se déconnecter"><LogOut className="w-4 h-4" /></button>
             </>
           ) : (
