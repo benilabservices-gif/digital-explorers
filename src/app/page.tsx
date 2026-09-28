@@ -1,6 +1,7 @@
 'use client';
 import Link from "next/link";
-import { ArrowRight, Star, Shield, Users, Rocket, Sparkles } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ArrowRight, Star, Shield, Users, Rocket } from "lucide-react";
 import { WORLDS } from "@/data/content";
 import Nav from "@/components/Nav";
 
@@ -26,8 +27,17 @@ const STATS = [
   { value: "∞", label: "Possibilités", icon: "✨" },
 ];
 
+/** Particules déterministes : même rendu serveur/client (pas de Math.random). */
+const PARTICLES = Array.from({length: 20}, (_, i) => ({
+  top: `${(i * 37) % 100}%`,
+  left: `${(i * 53) % 100}%`,
+  animation: `pulse-glow ${2 + (i % 5) * 0.7}s ease-in-out infinite`,
+  animationDelay: `${(i % 7) * 0.4}s`,
+}));
+
 export default function HomePage() {
-  function goToAuth() { window.location.href = '/auth/signup'; }
+  const router = useRouter();
+  function goToAuth() { router.push('/auth/signup'); }
 
   return (
     <div className="min-h-screen bg-[#060810] text-white overflow-x-hidden">
@@ -38,8 +48,8 @@ export default function HomePage() {
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-violet-600/10 rounded-full blur-[120px] animate-pulse-glow" />
         <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#ff6b6b]/10 rounded-full blur-[120px] animate-float" />
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {Array.from({length:20}).map((_,i) => (
-            <div key={i} className="absolute w-1 h-1 bg-white/15 rounded-full" style={{top:Math.random()*100+"%",left:Math.random()*100+"%",animation:"pulse-glow "+(2+Math.random()*3)+"s ease-in-out infinite",animationDelay:Math.random()*3+"s"}} />
+          {PARTICLES.map((p, i) => (
+            <div key={i} className="absolute w-1 h-1 bg-white/15 rounded-full" style={p} />
           ))}
         </div>
         <div className="relative max-w-7xl mx-auto w-full">

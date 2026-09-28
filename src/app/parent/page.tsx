@@ -2,51 +2,98 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, BookOpen, Trophy, FolderOpen, Rocket, Shield, Users, CreditCard, BarChart3, Download, Plus, Trash2, Edit, Sparkles, Target, Zap, Star } from 'lucide-react';
-import { WORLDS, BADGES as CONTENT_BADGES } from '@/data/content';
-import type { ChildProfile } from '@/data/content';
+import { ArrowLeft, BookOpen, Trophy, Shield, Users, CreditCard, BarChart3, Download, Plus, Trash2, Target, Zap, TrendingUp } from 'lucide-react';
 import Nav from '@/components/Nav';
+import { createClient } from '@/lib/supabase/client';
+import { fetchChildrenWithProgress, findActiveChild, type ChildData } from '@/lib/children';
+import { fetchBadges, fetchWorldsWithAdventures, type WorldWithAdventures } from '@/lib/content-queries';
+import { getActiveChildId, setActiveChildId as persistActiveChildId } from '@/lib/active-child';
+import { weeklyStats, type BadgeLike } from '@/lib/game';
 
 export default function ParentPage() {
   const router = useRouter();
-  const [children, setChildren] = useState<ChildProfile[]>([]);
+  const [children, setChildren] = useState<ChildData[]>([]);
+  const [worlds, setWorlds] = useState<WorldWithAdventures[]>([]);
+  const [badges, setBadges] = useState<BadgeLike[]>([]);
   const [activeChildId, setActiveChildId] = useState<string | null>(null);
   const [auth, setAuth] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [busy, setBusy] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('de_auth');
-    if (!token) { router.push('/auth/login'); return; }
-    setAuth(true);
-    const saved = localStorage.getItem('de_children');
-    if (saved) {
-      const kids: ChildProfile[] = JSON.parse(saved);
+    const supabase = createClient();
+    let cancelled = false;
+
+    supabase.auth.getUser().then(async ({ data: { user } }) => {
+      if (!user) { router.push('/auth/login'); return; }
+      if (cancelled) return;
+      setAuth(true);
+
+      const [kids, worldRows, badgeRows] = await Promise.all([
+        fetchChildrenWithProgress(supabase),
+        fetchWorldsWithAdventures(supabase),
+        fetchBadges(supabase),
+      ]);
+      if (cancelled) return;
+
       setChildren(kids);
-      const active = localStorage.getItem('de_active_child');
-      if (active) setActiveChildId(JSON.parse(active).id);
-      else if (kids.length > 0) setActiveChildId(kids[0].id);
-    }
-    setLoading(false);
+      setWorlds(worldRows);
+      setBadges(badgeRows);
+      const pointer = getActiveChildId();
+      setActiveChildId(kids.length > 0 ? (kids.find(k => k.id === pointer)?.id ?? kids[0].id) : null);
+      setLoading(false);
+    });
+
+    return () => { cancelled = true; };
   }, [router]);
 
   if (loading) return <div className="min-h-screen bg-[#060810] flex items-center justify-center"><div className="w-12 h-12 border-4 border-violet-500 border-t-transparent rounded-full animate-spin" /></div>;
   if (!auth) return null;
 
-  const activeChild = children.find(c => c.id === activeChildId) || children[0];
-
+  const activeChild = findActiveChild(children, activeChildId);
+  const totalAdventures = worlds.reduce((sum, w) => sum + w.adventures.length, 0);
   const totalXP = children.reduce((sum, c) => sum + c.xp, 0);
-  const totalAdvs = children.reduce((sum, c) => sum + c.adventuresCompleted.length, 0);
-  const totalBadges = children.reduce((sum, c) => sum + c.badges.length, 0);
+  const totalAdvs = children.reduce((sum, c) => sum + c.completedAdventureSlugs.length, 0);
+  const totalBadges = children.reduce((sum, c) => sum + c.badgeSlugs.length, 0);
 
-  function deleteChild(id: string) {
-    const updated = children.filter(c => c.id !== id);
-    setChildren(updated);
-    localStorage.setItem('de_children', JSON.stringify(updated));
-    if (activeChildId === id && updated.length > 0) {
-      localStorage.setItem('de_active_child', JSON.stringify(updated[0]));
-      setActiveChildId(updated[0].id);
+  function selectChild(id: string) {
+    setActiveChildId(id);
+    persistActiveChildId(id);
+  }
+
+  async function deleteChild(id: string) {
+    const kid = children.find(c => c.id === id);
+    const confirmed = window.confirm(
+      `Supprimer définitivement le profil de ${kid?.name ?? 'cet enfant'} ? Toute sa progression (XP, badges, complétions) sera effacée.`
+    );
+    if (!confirmed || busy) return;
+    setBusy(true);
+    try {
+      const supabase = createClient();
+      const { error } = await supabase.from('children').delete().eq('id', id);
+      if (error) {
+        window.alert('Suppression impossible : ' + error.message);
+        return;
+      }
+      const updated = children.filter(c => c.id !== id);
+      setChildren(updated);
+      if (activeChildId === id) {
+        const next = updated[0]?.id ?? null;
+        setActiveChildId(next);
+        persistActiveChildId(next);
+      }
+    } finally {
+      setBusy(false);
     }
   }
+
+  // Rapport hebdo réel : complétions des 7 derniers jours.
+  const weekReport = activeChild
+    ? weeklyStats(
+        activeChild.completions.map(c => ({ completedAt: c.completedAt, xpReward: c.xpReward })),
+        activeChild.badgeAwards.map(b => ({ awardedAt: b.awardedAt }))
+      )
+    : { count: 0, xp: 0, badges: 0 };
 
   return (
     <div className="min-h-screen bg-[#060810] text-white">
@@ -54,7 +101,7 @@ export default function ParentPage() {
       <section className="pt-28 pb-8 px-6">
         <div className="max-w-6xl mx-auto">
           <Link href="/dashboard" className="inline-flex items-center gap-2 text-gray-400 hover:text-white text-sm mb-6 transition-colors"><ArrowLeft className="w-4 h-4" /> Retour au dashboard</Link>
-          
+
           {/* Header */}
           <div className="bg-gradient-to-r from-violet-600/20 to-purple-600/20 border border-violet-500/30 rounded-2xl p-8 mb-8">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-300 text-xs mb-4">👨‍👩‍👧 Espace parent sécurisé</div>
@@ -65,9 +112,9 @@ export default function ParentPage() {
           {/* Children Overview */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
             {children.map(child => {
-              const pct = Math.round((child.adventuresCompleted.length / 84) * 100);
+              const pct = totalAdventures > 0 ? Math.round((child.completedAdventureSlugs.length / totalAdventures) * 100) : 0;
               return (
-                <div key={child.id} className={`bg-[#111827] border rounded-xl p-5 transition-all cursor-pointer hover:border-violet-500/30 ${child.id === activeChildId ? 'border-violet-500 bg-violet-500/5' : 'border-white/5'}`} onClick={() => { setActiveChildId(child.id); localStorage.setItem('de_active_child', JSON.stringify(child)); }}>
+                <div key={child.id} className={`bg-[#111827] border rounded-xl p-5 transition-all cursor-pointer hover:border-violet-500/30 ${child.id === activeChildId ? 'border-violet-500 bg-violet-500/5' : 'border-white/5'}`} onClick={() => selectChild(child.id)}>
                   <div className="flex items-center gap-4 mb-4">
                     <span className="text-4xl">{child.avatar}</span>
                     <div className="flex-1 min-w-0">
@@ -75,12 +122,12 @@ export default function ParentPage() {
                       <div className="text-xs text-gray-400">{child.gradeLevel} • {child.age} ans</div>
                       <div className="text-xs text-violet-400">Niveau {child.level}</div>
                     </div>
-                    <button onClick={(e) => { e.stopPropagation(); deleteChild(child.id); }} className="p-1.5 rounded-lg hover:bg-red-500/20 text-gray-500 hover:text-red-400 transition-colors"><Trash2 className="w-4 h-4" /></button>
+                    <button onClick={(e) => { e.stopPropagation(); deleteChild(child.id); }} disabled={busy} className="p-1.5 rounded-lg hover:bg-red-500/20 text-gray-500 hover:text-red-400 transition-colors disabled:opacity-50"><Trash2 className="w-4 h-4" /></button>
                   </div>
                   <div className="grid grid-cols-3 gap-3 text-center">
                     <div><div className="text-lg font-bold text-yellow-400">{child.xp}</div><div className="text-xs text-gray-500">XP</div></div>
-                    <div><div className="text-lg font-bold text-pink-400">{child.badges.length}</div><div className="text-xs text-gray-500">Badges</div></div>
-                    <div><div className="text-lg font-bold text-emerald-400">{child.adventuresCompleted.length}</div><div className="text-xs text-gray-500">Aventures</div></div>
+                    <div><div className="text-lg font-bold text-pink-400">{child.badgeSlugs.length}</div><div className="text-xs text-gray-500">Badges</div></div>
+                    <div><div className="text-lg font-bold text-emerald-400">{child.completedAdventureSlugs.length}</div><div className="text-xs text-gray-500">Aventures</div></div>
                   </div>
                   <div className="mt-3 flex items-center justify-between text-xs text-gray-400">
                     <span>Progression</span><span>{pct}%</span>
@@ -113,30 +160,28 @@ export default function ParentPage() {
           {/* Active Child Detail */}
           {activeChild && (
             <>
-              {/* This Week Report */}
+              {/* This Week Report — calculé depuis adventure_completions */}
               <div className="bg-[#111827] border border-white/5 rounded-xl p-6 mb-8">
                 <h2 className="font-display text-xl font-bold mb-4 flex items-center gap-2"><BarChart3 className="w-5 h-5 text-violet-400" /> Rapport — {activeChild.name}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div>
-                    <div className="text-sm text-gray-400 mb-3">Cette semaine</div>
+                    <div className="text-sm text-gray-400 mb-3">Cette semaine (7 derniers jours)</div>
                     <div className="space-y-2 text-sm">
-                      <div className="flex justify-between"><span className="text-gray-400">Activités terminées</span><span className="font-bold">{Math.min(3, activeChild.adventuresCompleted.length)} / 3</span></div>
-                      <div className="flex justify-between"><span className="text-gray-400">XP gagné</span><span className="font-bold text-yellow-400">+{Math.min(240, activeChild.xp)} XP</span></div>
-                      <div className="flex justify-between"><span className="text-gray-400">Badges obtenus</span><span className="font-bold text-pink-400">{activeChild.badges.length}</span></div>
-                      <div className="flex justify-between"><span className="text-gray-400">Projets soumis</span><span className="font-bold text-emerald-400">{activeChild.adventuresCompleted.length > 0 ? '1' : '0'}</span></div>
+                      <div className="flex justify-between"><span className="text-gray-400">Aventures terminées</span><span className="font-bold">{weekReport.count}</span></div>
+                      <div className="flex justify-between"><span className="text-gray-400">XP gagné</span><span className="font-bold text-yellow-400">+{weekReport.xp} XP</span></div>
+                      <div className="flex justify-between"><span className="text-gray-400">Badges obtenus</span><span className="font-bold text-pink-400">{weekReport.badges}</span></div>
+                      <div className="flex justify-between"><span className="text-gray-400">XP total</span><span className="font-bold text-violet-400">{activeChild.xp} XP</span></div>
                     </div>
                   </div>
                   <div>
                     <div className="text-sm text-gray-400 mb-3">Compétences développées</div>
                     <div className="flex flex-wrap gap-2">
-                      {activeChild.adventuresCompleted.length > 0 && (
-                        <>
-                          <span className="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs">🌐 Web</span>
-                          <span className="px-3 py-1 rounded-full bg-violet-500/10 text-violet-400 text-xs">🤖 IA</span>
-                          <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs">💻 Coding</span>
-                        </>
-                      )}
-                      {activeChild.adventuresCompleted.length === 0 && <span className="text-sm text-gray-500">Commence une aventure pour voir tes compétences</span>}
+                      {worlds
+                        .filter(w => (activeChild.worldXp[w.slug] ?? 0) > 0)
+                        .map(w => (
+                          <span key={w.id} className="px-3 py-1 rounded-full bg-violet-500/10 text-violet-300 text-xs">{w.icon} {w.name}</span>
+                        ))}
+                      {Object.keys(activeChild.worldXp).length === 0 && <span className="text-sm text-gray-500">Commence une aventure pour voir tes compétences</span>}
                     </div>
                   </div>
                   <div>
@@ -144,9 +189,9 @@ export default function ParentPage() {
                     <div className="bg-[#0f172a] rounded-xl p-4 border border-white/5">
                       <div className="flex items-center gap-2 mb-1">
                         <Target className="w-4 h-4 text-emerald-400" />
-                        <span className="font-semibold text-sm">Continuer l'aventure</span>
+                        <span className="font-semibold text-sm">Continuer l&apos;aventure</span>
                       </div>
-                      <p className="text-xs text-gray-400">Termine {84 - activeChild.adventuresCompleted.length} aventures restantes pour débloquer tous les mondes.</p>
+                      <p className="text-xs text-gray-400">Il reste {totalAdventures - activeChild.completedAdventureSlugs.length} aventures pour débloquer tous les mondes.</p>
                       <Link href="/dashboard"><button className="mt-3 text-xs text-violet-400 hover:text-violet-300 font-medium">Aller au dashboard →</button></Link>
                     </div>
                   </div>
@@ -157,9 +202,9 @@ export default function ParentPage() {
               <div className="bg-[#111827] border border-white/5 rounded-xl p-6 mb-8">
                 <h2 className="font-display text-xl font-bold mb-4 flex items-center gap-2"><TrendingUp className="w-5 h-5 text-violet-400" /> Progression par monde</h2>
                 <div className="space-y-3">
-                  {WORLDS.map(world => {
-                    const done = activeChild.adventuresCompleted.filter(a => world.adventures?.some(av => av.slug === a)).length;
-                    const total = world.adventures?.length || 0;
+                  {worlds.map(world => {
+                    const total = world.adventures.length;
+                    const done = world.adventures.filter(av => activeChild.completedAdventureSlugs.includes(av.slug)).length;
                     const pct = total > 0 ? Math.round((done / total) * 100) : 0;
                     return (
                       <div key={world.id} className="flex items-center gap-4">
@@ -179,8 +224,8 @@ export default function ParentPage() {
               <div className="bg-[#111827] border border-white/5 rounded-xl p-6 mb-8">
                 <h2 className="font-display text-xl font-bold mb-4 flex items-center gap-2"><Trophy className="w-5 h-5 text-yellow-400" /> Badges de {activeChild.name}</h2>
                 <div className="flex flex-wrap gap-3">
-                  {activeChild.badges.length > 0 ? activeChild.badges.map(slug => {
-                    const badge = CONTENT_BADGES.find(b => b.slug === slug);
+                  {activeChild.badgeSlugs.length > 0 ? activeChild.badgeSlugs.map(slug => {
+                    const badge = badges.find(b => b.slug === slug);
                     if (!badge) return null;
                     return (
                       <div key={slug} className="flex flex-col items-center gap-1 p-3 rounded-xl bg-[#0f172a] min-w-[80px]">
@@ -192,21 +237,21 @@ export default function ParentPage() {
                 </div>
               </div>
 
-              {/* Billing */}
+              {/* Billing — prix unifiés 5 000 / 35 000 FCFA */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
                 <div className="bg-[#111827] border border-white/5 rounded-xl p-6">
                   <h2 className="font-display text-xl font-bold mb-4 flex items-center gap-2"><CreditCard className="w-5 h-5 text-emerald-400" /> Abonnement & Paiement</h2>
                   <div className="space-y-3">
                     <div className="flex items-center justify-between p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
-                      <div className="flex items-center gap-3"><span className="text-2xl">🌱</span><div><div className="font-semibold text-sm">Plan Starter</div><div className="text-xs text-gray-400">7 jours d'essai gratuit</div></div></div>
+                      <div className="flex items-center gap-3"><span className="text-2xl">🌱</span><div><div className="font-semibold text-sm">Plan Starter</div><div className="text-xs text-gray-400">7 jours d&apos;essai gratuit</div></div></div>
                       <span className="text-emerald-400 font-bold">Gratuit</span>
                     </div>
                     <div className="flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/10">
-                      <div className="flex items-center gap-3"><span className="text-2xl">⚡</span><div><div className="font-semibold text-sm">Plan Explorateur</div><div className="text-xs text-gray-400">2 000 FCFA/mois</div></div></div>
+                      <div className="flex items-center gap-3"><span className="text-2xl">⚡</span><div><div className="font-semibold text-sm">Plan Explorateur</div><div className="text-xs text-gray-400">5 000 FCFA/mois</div></div></div>
                       <Link href="/pricing"><button className="px-3 py-1.5 text-xs bg-violet-500/20 border border-violet-500/30 rounded-lg text-violet-300 hover:bg-violet-500/30">Choisir</button></Link>
                     </div>
                     <div className="flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/10">
-                      <div className="flex items-center gap-3"><span className="text-2xl">👑</span><div><div className="font-semibold text-sm">Plan Pro</div><div className="text-xs text-gray-400">15 000 FCFA/an</div></div></div>
+                      <div className="flex items-center gap-3"><span className="text-2xl">👑</span><div><div className="font-semibold text-sm">Plan Pro</div><div className="text-xs text-gray-400">35 000 FCFA/an</div></div></div>
                       <Link href="/pricing"><button className="px-3 py-1.5 text-xs bg-violet-500/20 border border-violet-500/30 rounded-lg text-violet-300 hover:bg-violet-500/30">Choisir</button></Link>
                     </div>
                   </div>
@@ -256,8 +301,4 @@ export default function ParentPage() {
       </footer>
     </div>
   );
-}
-
-function TrendingUp(props: any) {
-  return <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>;
 }

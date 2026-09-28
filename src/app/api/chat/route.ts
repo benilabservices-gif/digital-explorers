@@ -30,9 +30,9 @@ export async function POST(req: NextRequest) {
 
     const data = await response.json();
     return NextResponse.json(data, { status: response.status });
-  } catch (err: any) {
+  } catch (err) {
     return NextResponse.json(
-      { error: err.message || 'Failed to get AI response' },
+      { error: err instanceof Error ? err.message : 'Failed to get AI response' },
       { status: 500 }
     );
   }

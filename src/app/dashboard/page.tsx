@@ -2,55 +2,68 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { TrendingUp, Award, FolderOpen, Zap, ArrowRight, Crown, Rocket, ChevronRight, LogOut, Plus, UserPlus, Shield, Heart, Gift, Sparkles, Target, Star, Calendar, Trophy, GitBranch } from 'lucide-react';
-import { WORLDS, BADGES as CONTENT_BADGES, DIGITAL_BRIDGES } from '@/data/content';
-import { DAILY_CHALLENGES, WEEKLY_QUESTS, SKILL_TREE } from '@/data/challenges';
-import type { ChildProfile } from '@/data/content';
+import { TrendingUp, Award, FolderOpen, Zap, Crown, Rocket, LogOut, Plus, UserPlus, Gift, Sparkles, Target, Calendar, Trophy, GitBranch, ChevronRight } from 'lucide-react';
+import { SKILL_TREE } from '@/data/challenges';
 import Nav from '@/components/Nav';
 import AICoach from '@/components/AICoach';
+import { createClient } from '@/lib/supabase/client';
+import { fetchChildrenWithProgress, findActiveChild, type ChildData } from '@/lib/children';
+import {
+  fetchBadges,
+  fetchCurrentPlan,
+  fetchChallenges,
+  fetchDigitalBridges,
+  fetchWorldsWithAdventures,
+  type PlanInfo,
+  type WorldWithAdventures,
+} from '@/lib/content-queries';
+import { getActiveChildId, setActiveChildId as persistActiveChildId } from '@/lib/active-child';
+import { dailyChallengeIndex, getLevelTitle, weeklyChallengeIndex, type BadgeLike } from '@/lib/game';
 
 export default function DashboardPage() {
   const router = useRouter();
-  const [children, setChildren] = useState<ChildProfile[]>([]);
+  const [children, setChildren] = useState<ChildData[]>([]);
+  const [worlds, setWorlds] = useState<WorldWithAdventures[]>([]);
+  const [badges, setBadges] = useState<BadgeLike[]>([]);
+  const [bridges, setBridges] = useState<{ id: string; name: string; description: string; targetUrl: string; icon: string }[]>([]);
+  const [challenges, setChallenges] = useState<{ id: string; type: 'daily' | 'weekly'; slug: string; title: string; description: string; worldSlug: string | null; xpReward: number }[]>([]);
+  const [plan, setPlan] = useState<PlanInfo | null>(null);
   const [activeChildId, setActiveChildId] = useState<string | null>(null);
-  const [activeChild, setActiveChild] = useState<ChildProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [auth, setAuth] = useState(false);
-  const [worldProgress, setWorldProgress] = useState<Record<string, number>>({});
 
   useEffect(() => {
-    const token = localStorage.getItem('de_auth');
-    if (!token) { setAuth(false); setLoading(false); return; }
-    setAuth(true);
-    loadChildren();
-  }, [router]);
+    const supabase = createClient();
+    let cancelled = false;
 
-  async function loadChildren() {
-    const lsChildren: ChildProfile[] = JSON.parse(localStorage.getItem('de_children') || '[]');
-    setChildren(lsChildren);
-    const active = localStorage.getItem('de_active_child');
-    if (active) {
-      const child = JSON.parse(active);
-      setActiveChildId(child.id);
-      setActiveChild(child);
-    } else if (lsChildren.length > 0) {
-      setActiveChildId(lsChildren[0].id);
-      setActiveChild(lsChildren[0]);
-      localStorage.setItem('de_active_child', JSON.stringify(lsChildren[0]));
-    }
-    setLoading(false);
-  }
+    supabase.auth.getUser().then(async ({ data: { user } }) => {
+      if (!user) { setAuth(false); setLoading(false); return; }
+      if (cancelled) return;
+      setAuth(true);
 
-  useEffect(() => {
-    if (!activeChild) return;
-    const progress: Record<string, number> = {};
-    WORLDS.forEach(world => {
-      const worldAdvs = world.adventures || [];
-      const completed = worldAdvs.filter(a => activeChild.adventuresCompleted.includes(a.slug)).length;
-      progress[world.slug] = worldAdvs.length > 0 ? Math.round((completed / worldAdvs.length) * 100) : 0;
+      const [kids, worldRows, badgeRows, bridgeRows, challengeRows, planInfo] = await Promise.all([
+        fetchChildrenWithProgress(supabase),
+        fetchWorldsWithAdventures(supabase),
+        fetchBadges(supabase),
+        fetchDigitalBridges(supabase),
+        fetchChallenges(supabase),
+        fetchCurrentPlan(supabase, user.id),
+      ]);
+      if (cancelled) return;
+
+      setChildren(kids);
+      setWorlds(worldRows);
+      setBadges(badgeRows);
+      setBridges(bridgeRows);
+      setChallenges(challengeRows);
+      setPlan(planInfo);
+      const pointer = getActiveChildId();
+      setActiveChildId(kids.length > 0 ? (kids.find(k => k.id === pointer)?.id ?? kids[0].id) : null);
+      setLoading(false);
     });
-    setWorldProgress(progress);
-  }, [activeChild]);
+
+    return () => { cancelled = true; };
+  }, [router]);
 
   if (loading) {
     return <div className="min-h-screen bg-[#060810] flex items-center justify-center"><div className="w-12 h-12 border-4 border-violet-500 border-t-transparent rounded-full animate-spin" /></div>;
@@ -69,12 +82,20 @@ export default function DashboardPage() {
     );
   }
 
-  const child = activeChild || children[0];
+  const child = findActiveChild(children, activeChildId);
+  const totalAdventures = worlds.reduce((sum, w) => sum + w.adventures.length, 0);
 
-  function handleSignOut() {
-    localStorage.removeItem('de_auth');
-    localStorage.removeItem('de_active_child');
+  // Défis : rotation déterministe par date depuis la table challenges.
+  const dailies = challenges.filter(c => c.type === 'daily');
+  const weeklies = challenges.filter(c => c.type === 'weekly');
+  const daily = dailies.length > 0 ? dailies[dailyChallengeIndex(new Date(), dailies.length)] : null;
+  const weekly = weeklies.length > 0 ? weeklies[weeklyChallengeIndex(new Date(), weeklies.length)] : null;
+
+  async function handleSignOut() {
+    const supabase = createClient();
+    await supabase.auth.signOut();
     router.push('/');
+    router.refresh();
   }
 
   function addChild() {
@@ -83,39 +104,23 @@ export default function DashboardPage() {
 
   function selectChild(id: string) {
     setActiveChildId(id);
-    const kid = children.find(c => c.id === id);
-    if (kid) {
-      setActiveChild(kid);
-      localStorage.setItem('de_active_child', JSON.stringify(kid));
-    }
+    persistActiveChildId(id); // pointeur localStorage (ID uniquement)
   }
 
-  function getLevelTitle(xp: number): string {
-    if (xp >= 4000) return 'Innovateur';
-    if (xp >= 2000) return 'Maker';
-    if (xp >= 1000) return 'Créateur';
-    if (xp >= 500) return 'Apprenti';
-    return 'Explorateur';
-  }
+  const totalDone = child?.completedAdventureSlugs.length ?? 0;
+  const totalXp = child?.xp ?? 0;
+  const childBadges = child ? child.badgeSlugs : [];
+  const totalLevel = child?.level ?? 1;
 
-  function getNextAdventure() {
+  // Prochaine aventure suggérée : première non terminée, par ordre des mondes.
+  const nextAct = (() => {
     if (!child) return null;
-    for (const world of WORLDS) {
-      const unfinished = (world.adventures || []).filter(adv => !child.adventuresCompleted.includes(adv.slug));
-      if (unfinished.length > 0) {
-        // Prioritize based on interests
-        const interestMatch = unfinished.find(adv => (child.interests || []).some(i => adv.title.toLowerCase().includes(i.toLowerCase().slice(0,4))));
-        return { world, adventure: interestMatch || unfinished[0] };
-      }
+    for (const world of worlds) {
+      const unfinished = world.adventures.filter(adv => !child.completedAdventureSlugs.includes(adv.slug));
+      if (unfinished.length > 0) return { world, adventure: unfinished[0] };
     }
     return null;
-  }
-
-  const nextAct = getNextAdventure();
-  const totalDone = child?.adventuresCompleted.length || 0;
-  const totalXp = child?.xp || 0;
-  const totalBadges = child?.badges?.length || 0;
-  const totalLevel = child?.level || 1;
+  })();
 
   return (
     <div className="min-h-screen bg-[#060810] text-white">
@@ -159,7 +164,7 @@ export default function DashboardPage() {
               <div className="text-6xl mb-4">👨‍👩‍👧</div>
               <h2 className="font-display text-2xl font-bold mb-2">Aucun enfant ajouté</h2>
               <p className="text-gray-400 mb-6">Commence par ajouter ton enfant pour suivre sa progression.</p>
-              <Link href="/auth/signup"><button className="px-8 py-3 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-full font-semibold hover:opacity-90">Ajouter un enfant</button></Link>
+              <button onClick={addChild} className="px-8 py-3 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-full font-semibold hover:opacity-90">Ajouter un enfant</button>
             </div>
           ) : (
             <>
@@ -175,8 +180,8 @@ export default function DashboardPage() {
                     <div className="flex items-center gap-4 mt-3 text-sm flex-wrap">
                       <span className="flex items-center gap-1"><Crown className="w-4 h-4 text-yellow-400" /> Nv.{child.level}</span>
                       <span className="flex items-center gap-1"><Zap className="w-4 h-4 text-violet-400" /> {child.xp} XP</span>
-                      <span className="flex items-center gap-1"><Award className="w-4 h-4 text-pink-400" /> {child.badges?.length || 0} badges</span>
-                      <span className="flex items-center gap-1"><TrendingUp className="w-4 h-4 text-emerald-400" /> {totalDone}/84 aventures</span>
+                      <span className="flex items-center gap-1"><Award className="w-4 h-4 text-pink-400" /> {childBadges.length} badges</span>
+                      <span className="flex items-center gap-1"><TrendingUp className="w-4 h-4 text-emerald-400" /> {totalDone}/{totalAdventures} aventures</span>
                     </div>
                   </div>
                   <div className="text-right hidden md:block">
@@ -200,7 +205,7 @@ export default function DashboardPage() {
                       <h3 className="text-xl font-bold mb-1">{nextAct.adventure.title}</h3>
                       <p className="text-gray-400 text-sm">{nextAct.adventure.description}</p>
                       <div className="flex items-center gap-3 mt-2 text-xs text-gray-500">
-                        <span>+{nextAct.adventure.xp_reward} XP</span>
+                        <span>+{nextAct.adventure.xpReward} XP</span>
                         <span>•</span>
                         <span>{nextAct.world.name}</span>
                       </div>
@@ -214,7 +219,7 @@ export default function DashboardPage() {
                 </div>
               )}
 
-              {/* DAILY CHALLENGE */}
+              {/* DAILY CHALLENGE (rotation depuis la table challenges) */}
               <div className="mb-8">
                 <div className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20 rounded-2xl p-5">
                   <div className="flex items-center gap-2 mb-3">
@@ -222,11 +227,11 @@ export default function DashboardPage() {
                     <span className="text-sm font-semibold text-amber-300 uppercase tracking-wider">Défi du jour</span>
                   </div>
                   <div className="flex flex-col md:flex-row md:items-center gap-4">
-                    <p className="text-gray-300 flex-1">{DAILY_CHALLENGES[0]?.description || "Aucun défi disponible pour le moment."}</p>
-                    {DAILY_CHALLENGES[0] && (
-                      <Link href={DAILY_CHALLENGES[0].world_slug ? `/worlds/${DAILY_CHALLENGES[0].world_slug}` : '/worlds'}>
+                    <p className="text-gray-300 flex-1">{daily ? `${daily.title} — ${daily.description}` : "Aucun défi disponible pour le moment."}</p>
+                    {daily && (
+                      <Link href={daily.worldSlug ? `/worlds/${daily.worldSlug}` : '/challenges'}>
                         <button className="px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-lg text-sm font-semibold text-amber-300 hover:bg-amber-500/30 transition-colors whitespace-nowrap">
-                          Relever le défi (+{DAILY_CHALLENGES[0].xp_reward} XP)
+                          Relever le défi (+{daily.xpReward} XP)
                         </button>
                       </Link>
                     )}
@@ -237,10 +242,10 @@ export default function DashboardPage() {
               {/* STATS */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
                 {[
-                  { icon: Crown, label: 'Niveau', value: `Nv. ${child.level}`, color: 'text-yellow-400' },
-                  { icon: Zap, label: 'XP Total', value: `${child.xp} XP`, color: 'text-violet-400' },
-                  { icon: Award, label: 'Badges', value: `${child.badges?.length || 0}/${CONTENT_BADGES.length}`, color: 'text-pink-400' },
-                  { icon: FolderOpen, label: 'Aventures', value: `${totalDone}/84`, color: 'text-emerald-400' },
+                  { icon: Crown, label: 'Niveau', value: `Nv. ${totalLevel}`, color: 'text-yellow-400' },
+                  { icon: Zap, label: 'XP Total', value: `${totalXp} XP`, color: 'text-violet-400' },
+                  { icon: Award, label: 'Badges', value: `${childBadges.length}/${badges.length}`, color: 'text-pink-400' },
+                  { icon: FolderOpen, label: 'Aventures', value: `${totalDone}/${totalAdventures}`, color: 'text-emerald-400' },
                 ].map((stat, i) => (
                   <div key={i} className="bg-[#111827] border border-white/5 rounded-xl p-4">
                     <stat.icon className={`w-5 h-5 ${stat.color} mb-2`} /><div className="text-2xl font-bold">{stat.value}</div><div className="text-sm text-gray-400">{stat.label}</div>
@@ -253,10 +258,10 @@ export default function DashboardPage() {
                 <div className="lg:col-span-2 bg-[#111827] border border-white/5 rounded-xl p-6">
                   <h2 className="font-display text-xl font-bold mb-4 flex items-center gap-2"><TrendingUp className="w-5 h-5 text-violet-400" /> Progression par monde</h2>
                   <div className="space-y-3">
-                    {WORLDS.map(world => {
-                      const pct = worldProgress[world.slug] || 0;
-                      const done = world.adventures?.filter(av => child.adventuresCompleted.includes(av.slug)).length || 0;
-                      const total = world.adventures?.length || 0;
+                    {worlds.map(world => {
+                      const total = world.adventures.length;
+                      const done = world.adventures.filter(av => child.completedAdventureSlugs.includes(av.slug)).length;
+                      const pct = total > 0 ? Math.round((done / total) * 100) : 0;
                       const locked = child.xp < 100 && world.phase !== 'explorer';
                       return (
                         <div key={world.id} className={`bg-[#0f172a] rounded-xl p-4 border ${locked ? 'border-white/5 opacity-50' : 'border-white/5 hover:border-violet-500/30'} transition-colors`}>
@@ -269,7 +274,7 @@ export default function DashboardPage() {
                             <div className="text-right">
                               <div className="text-sm font-medium text-violet-400">{pct}%</div>
                               {!locked && done < total && (
-                                <Link href={`/adventure/${world.adventures?.find(a => !child.adventuresCompleted.includes(a.slug))?.slug}`} className="text-xs text-gray-500 hover:text-white">Continuer →</Link>
+                                <Link href={`/adventure/${world.adventures.find(a => !child.completedAdventureSlugs.includes(a.slug))?.slug}`} className="text-xs text-gray-500 hover:text-white">Continuer →</Link>
                               )}
                             </div>
                           </div>
@@ -281,28 +286,30 @@ export default function DashboardPage() {
                 </div>
 
                 <div className="space-y-6">
-                  {/* Weekly Quests */}
+                  {/* Weekly Quest (rotation depuis la table challenges) */}
                   <div className="bg-[#111827] border border-white/5 rounded-xl p-6">
                     <h2 className="font-display text-xl font-bold mb-4 flex items-center gap-2"><Trophy className="w-5 h-5 text-yellow-400" /> Quête de la semaine</h2>
                     <div className="space-y-3">
-                      {WEEKLY_QUESTS.slice(0, 2).map(quest => (
-                        <div key={quest.id} className="bg-[#0f172a] rounded-xl p-3 border border-white/5">
-                          <div className="font-semibold text-sm mb-1">{quest.title}</div>
-                          <div className="text-xs text-gray-400 mb-2">{quest.description}</div>
+                      {weekly ? (
+                        <div className="bg-[#0f172a] rounded-xl p-3 border border-white/5">
+                          <div className="font-semibold text-sm mb-1">{weekly.title}</div>
+                          <div className="text-xs text-gray-400 mb-2">{weekly.description}</div>
                           <div className="flex items-center justify-between text-xs">
-                            <span className="text-yellow-400">+{quest.xp_reward} XP</span>
-                            <span className="text-gray-500">Jusqu'au {quest.deadline}</span>
+                            <span className="text-yellow-400">+{weekly.xpReward} XP</span>
+                            <Link href="/challenges" className="text-violet-400 hover:text-violet-300">Voir les défis →</Link>
                           </div>
                         </div>
-                      ))}
+                      ) : (
+                        <p className="text-sm text-gray-400">Aucune quête disponible.</p>
+                      )}
                     </div>
                   </div>
 
-                  {/* Digital Bridge */}
+                  {/* Digital Bridge (table digital_bridges) */}
                   <div className="bg-[#111827] border border-white/5 rounded-xl p-6">
                     <h2 className="font-display text-xl font-bold mb-4 flex items-center gap-2"><Rocket className="w-5 h-5 text-orange-400" /> Digital Bridge</h2>
                     <div className="space-y-3">
-                      {DIGITAL_BRIDGES.map(bridge => (
+                      {bridges.map(bridge => (
                         <a key={bridge.id} href={bridge.targetUrl} target="_blank" rel="noopener noreferrer" className="block p-3 rounded-xl bg-[#0f172a] hover:bg-[#1e293b] border border-white/5 hover:border-orange-300/30 transition-all">
                           <div className="text-lg mb-1">{bridge.icon}</div>
                           <div className="font-semibold text-sm">{bridge.name}</div>
@@ -312,34 +319,40 @@ export default function DashboardPage() {
                     </div>
                   </div>
 
-                  {/* Plan */}
+                  {/* Plan (depuis subscriptions) */}
                   <div className="bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/20 rounded-xl p-5">
                     <div className="flex items-center gap-2 mb-2"><Gift className="w-5 h-5 text-amber-400" /><span className="font-bold">Plan actuel</span></div>
-                    <div className="text-2xl font-bold text-amber-400 mb-1">Starter — Gratuit</div>
-                    <p className="text-xs text-gray-400 mb-3">Accès limité. Passe à Explorateur pour tout débloquer.</p>
+                    <div className="text-2xl font-bold text-amber-400 mb-1">
+                      {plan ? `${plan.name}${plan.priceFcfa > 0 ? ` — ${plan.priceFcfa.toLocaleString('fr-FR')} FCFA/${plan.period}` : ' — Gratuit'}` : 'Starter — Gratuit'}
+                    </div>
+                    <p className="text-xs text-gray-400 mb-3">
+                      {plan && plan.code !== 'starter'
+                        ? `Actif jusqu'au ${plan.expiresAt ? new Date(plan.expiresAt).toLocaleDateString('fr-FR') : '—'}.`
+                        : 'Accès limité. Passe à Explorateur pour tout débloquer.'}
+                    </p>
                     <Link href="/pricing"><button className="w-full py-2 bg-amber-500/20 border border-amber-500/30 rounded-lg text-sm font-semibold text-amber-300 hover:bg-amber-500/30 transition-colors">Voir les tarifs</button></Link>
                   </div>
                 </div>
               </div>
 
-              {/* SKILL TREE */}
+              {/* SKILL TREE — XP réel par monde (child.worldXp) */}
               <div className="mb-8">
                 <h2 className="font-display text-xl font-bold mb-4 flex items-center gap-2"><GitBranch className="w-5 h-5 text-emerald-400" /> Arbre des compétences</h2>
                 <div className="bg-[#111827] border border-white/5 rounded-xl p-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {WORLDS.slice(0, 3).map(world => {
+                    {worlds.slice(0, 3).map(world => {
                       const skills = SKILL_TREE[world.slug] || [];
+                      const worldXp = child.worldXp[world.slug] ?? 0;
                       return (
                         <div key={world.id} className="bg-[#0f172a] rounded-xl p-4 border border-white/5">
                           <div className="flex items-center gap-2 mb-3">
                             <span className="text-xl">{world.icon}</span>
                             <span className="font-bold text-sm">{world.name}</span>
+                            <span className="ml-auto text-xs text-violet-400">{worldXp} XP</span>
                           </div>
                           <div className="space-y-2">
                             {skills.map(skill => {
-                              const skillKey = skill.id.replace('s', '');
-                              const skillXp = 0;
-                              const levelIdx = skillXp >= 300 ? 3 : skillXp >= 150 ? 2 : skillXp >= 50 ? 1 : 0;
+                              const levelIdx = worldXp >= 300 ? 3 : worldXp >= 150 ? 2 : worldXp >= 50 ? 1 : 0;
                               return (
                                 <div key={skill.id} className="flex items-center gap-2">
                                   <span className="text-sm">{skill.icon}</span>
@@ -360,14 +373,14 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              {/* BADGES */}
+              {/* BADGES (depuis la table badges) */}
               <div className="mb-8">
-                <h2 className="font-display text-xl font-bold mb-4">🏆 Badges obtenus ({child.badges?.length || 0}/{CONTENT_BADGES.length})</h2>
+                <h2 className="font-display text-xl font-bold mb-4">🏆 Badges obtenus ({childBadges.length}/{badges.length})</h2>
                 <div className="bg-[#111827] border border-white/5 rounded-xl p-5">
-                  {child.badges?.length > 0 ? (
+                  {childBadges.length > 0 ? (
                     <div className="flex flex-wrap gap-3">
-                      {child.badges.map(slug => {
-                        const badge = CONTENT_BADGES.find(b => b.slug === slug);
+                      {childBadges.map(slug => {
+                        const badge = badges.find(b => b.slug === slug);
                         if (!badge) return null;
                         return (
                           <div key={slug} className="flex flex-col items-center gap-1 p-3 rounded-xl bg-[#0f172a] min-w-[80px]">
@@ -387,14 +400,14 @@ export default function DashboardPage() {
 
               {/* Quick Adventures */}
               <div>
-                <h2 className="font-display text-xl font-bold mb-4">🎯 Continuer l'aventure</h2>
+                <h2 className="font-display text-xl font-bold mb-4">🎯 Continuer l&apos;aventure</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {WORLDS.flatMap(world =>
-                    (world.adventures || []).filter(adv => !child.adventuresCompleted.includes(adv.slug)).slice(0, 2).map(adv => (
+                  {worlds.flatMap(world =>
+                    world.adventures.filter(adv => !child.completedAdventureSlugs.includes(adv.slug)).slice(0, 2).map(adv => (
                       <Link key={`${world.slug}-${adv.slug}`} href={`/adventure/${adv.slug}`} className="flex items-center gap-4 p-4 rounded-xl bg-[#111827] border border-white/5 hover:border-violet-500/30 transition-all group">
                         <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${world.gradient} flex items-center justify-center text-2xl flex-shrink-0`}>{world.icon}</div>
                         <div className="flex-1 min-w-0"><div className="text-xs text-gray-500 mb-0.5">{world.name}</div><div className="font-semibold truncate">{adv.title}</div><div className="text-sm text-gray-400 truncate">{adv.description}</div></div>
-                        <div className="text-right flex-shrink-0"><div className="text-sm text-yellow-400 font-medium">+{adv.xp_reward} XP</div><ChevronRight className="w-5 h-5 text-gray-500 group-hover:text-violet-400 transition-colors" /></div>
+                        <div className="text-right flex-shrink-0"><div className="text-sm text-yellow-400 font-medium">+{adv.xpReward} XP</div><ChevronRight className="w-5 h-5 text-gray-500 group-hover:text-violet-400 transition-colors" /></div>
                       </Link>
                     ))
                   ).slice(0, 6)}

@@ -1,28 +1,22 @@
 'use client';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { WORLDS } from '@/data/content';
+import { createClient } from '@/lib/supabase/client';
 import { Lock, Sparkles } from 'lucide-react';
 import Nav from '@/components/Nav';
 
 export default function WorldsPage() {
-  const router = useRouter();
   const [auth, setAuth] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem('de_auth');
-    const expires = localStorage.getItem('de_auth_expires');
-    if (token && expires && Date.now() > parseInt(expires)) {
-      localStorage.removeItem('de_auth');
-      localStorage.removeItem('de_auth_expires');
-      setAuth(false);
-    } else if (token) {
-      setAuth(true);
-    }
-    setLoading(false);
-  }, [router]);
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setAuth(!!user);
+      setLoading(false);
+    });
+  }, []);
 
   if (loading) {
     return (

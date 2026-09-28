@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowLeft, BookOpen } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { WORLDS } from '@/data/content';
 
 export function generateStaticParams() {
@@ -28,7 +28,7 @@ export default async function WorldSlugPage({ params }: { params: Promise<{ slug
         </div>
         <h2 className="text-xl font-bold mb-4">Aventures</h2>
         <div className="space-y-4">
-          {world.adventures?.map((adv: any, idx: number) => (
+          {world.adventures?.map((adv, idx) => (
             <Link key={adv.id} href={`/adventure/${adv.slug}`} className="block p-5 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-indigo-500/40 transition-all">
               <div className="flex items-start gap-4">
                 <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${world.gradient} flex items-center justify-center font-bold text-lg flex-shrink-0`}>{idx + 1}</div>
@@ -43,7 +43,7 @@ export default async function WorldSlugPage({ params }: { params: Promise<{ slug
             <span className="text-2xl">🌉</span>
             <div>
               <h3 className="font-bold mb-1">Tu veux aller plus loin ?</h3>
-              <p className="text-sm text-gray-400 mb-3">Passe à l'action sur GeekCoding4Kids !</p>
+              <p className="text-sm text-gray-400 mb-3">Passe à l&apos;action sur GeekCoding4Kids !</p>
               <a href="https://geekcoding4kids.online" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-sm font-medium hover:opacity-90 transition-opacity">
                 Continuer sur GeekCoding4Kids →
               </a>
