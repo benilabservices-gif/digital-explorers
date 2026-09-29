@@ -1,0 +1,1102 @@
+{
+  "world": "artificial-intelligence",
+  "adventures": [
+    {
+      "slug": "ia-decouverte",
+      "title": "Premiers pas avec l'IA",
+      "description": "Qu'est-ce que l'intelligence artificielle, vraiment ? Démystifie les mots, comprends comment une machine apprend, et découvre ce que l'IA peut et ne peut pas faire.",
+      "story": "On te parle d'intelligence artificielle partout : elle écrit, dessine, répond, conseille. Certains en ont peur, d'autres rêvent qu'elle pense à leur place. Mais au fait, sais-tu expliquer simplement ce qu'elle est ? Dans cette aventure, tu vas ouvrir le capot de l'IA : comprendre comment une machine apprend à partir d'exemples, ce qui la rend brillante et ce qui la rend bête, pourquoi elle n'a ni conscience ni intentions. À la fin, tu sauras démystifier l'IA pour toute ta famille : une compétence rare et précieuse.",
+      "xp_reward": 100,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Ce qu'est vraiment l'intelligence artificielle",
+          "content": "L'intelligence artificielle est un programme informatique capable de réaliser des tâches qui demandent habituellement de l'intelligence humaine : reconnaître un visage, traduire une langue, rédiger un texte, jouer aux échecs. Mais attention au mot intelligence : l'IA n'est pas une petite personne dans la machine. C'est un système mathématique qui apprend à partir de millions d'exemples. Prenons la reconnaissance de chat : au lieu d'écrire les règles à la main, deux moustaches, quatre pattes, ce qui échoue dès qu'un chat est caché derrière un coussin, on montre au programme des milliers de photos de chats et de non-chats, et il dégage tout seul les motifs qui distinguent les chats. C'est l'apprentissage automatique, le cœur de l'IA moderne. Les grands modèles de langage, ces IA qui conversent, fonctionnent pareil : ils ont été entraînés sur d'énormes quantités de textes pour apprendre à prédire, mot après mot, la suite la plus probable d'une phrase. Conséquence capitale à retenir : une IA ne sait que ce qu'elle a vu dans ses données d'entraînement, et elle ne vérifie pas ce qu'elle dit comme un humain. Quand elle produit une réponse fausse avec aplomb, on appelle cela une hallucination : ce n'est pas un mensonge, c'est une prédiction statistique ratée. L'IA est un outil puissant, rapide et créative, mais un outil : le jugement, lui, reste humain."
+        },
+        {
+          "section_type": "play",
+          "title": "Le jeu de la machine qui apprend",
+          "content": "Jouons à être une IA, en vrai. Le jeu s'appelle vingt questions inversées. Un joueur pense à un animal africain sans le dire : pangolin, crocodile du Niger, touraco, antilope, aigle pêcheur. Toi, tu joues le programme d'IA débutant : tu ne connais rien. Tu poses des questions binaires, auxquelles on répond oui ou non : est-ce plus gros qu'une chèvre ? A-t-il des plumes ? Vit-il dans l'eau ? Chaque réponse affiche un indice sur un papier, devant toi. Plus tu collectes d'exemples, plus tes questions deviennent précises : c'est exactement l'apprentissage. Deuxième manche : un nouveau joueur pense à un autre animal, et cette fois tu peux réutiliser tes papiers d'indices déjà collectés. Tu devines plus vite : ton entraînement t'a appris. Mais attention au piège des biais : si tu n'as vu que des animaux de la savane et que le penseur choisit un poisson du fleuve, tu peux te tromper lourdement, comme une IA mal entraînée sur des données incomplètes. Débriefing : la machine apprend par exemples, devient rapide sur le connu, échoue sur l'inattendu. Tu viens de vivre en jouant les trois lois de l'IA : apprendre par les données, s'améliorer par la répétition, hériter des limites de ses exemples."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : interroge une vraie IA",
+          "content": "Expérience de laboratoire : mène ton premier entretien avec une IA conversationnelle gratuite. Avec l'accord d'un adulte, ouvre un assistant IA public. Étape un : pose-lui cinq questions de niveaux différents, et note chaque réponse : 1) un fait simple : quelle est la capitale du Ghana ; 2) une explication : explique le mobile money comme si j'avais dix ans ; 3) une opinion locale : quel est le meilleur club de foot d'Abidjan, question piège car l'IA n'a pas d'opinion ; 4) un calcul délicat ou une devinette à plusieurs étapes ; 5) une question sur un événement très récent. Étape deux : classe chaque réponse : exacte, approximative, hallucinée, ou je ne sais pas. Étape trois : pour chaque réponse exacte, vérifie-la sur une source indépendante : l'IA ne connaît pas la vérité, elle prédit. Étape quatre : pose la même question trois fois en la formulant différemment : les réponses varient-elles ? Étape cinq : rédige ta fiche de jeune chercheur : trois capacités étonnantes observées, trois limites observées, et ta règle personnelle en une phrase : quand faire confiance, quand vérifier. Cette expérience t'apprend le réflexe numéro un de l'ère IA : la vérification, toujours."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis ton décodeur d'IA",
+          "content": "Construis ton décodeur d'IA : une fiche qui traduit les mots compliqués du monde de l'IA en français simple, pour expliquer à ta famille et tes amis. Douze entrées minimum : intelligence artificielle, des programmes qui accomplissent des tâches intelligentes ; apprentissage automatique, apprendre par des exemples au lieu de règles écrites ; données d'entraînement, la bibliothèque d'exemples qui a servi à l'apprentissage ; modèle, le résultat de l'entraînement, comme un cerveau statistique ; prompt, la consigne qu'on donne à l'IA ; hallucination, une réponse inventée avec assurance ; biais, une erreur héritée des données, comme ne reconnaître que certains visages ; agent, une IA qui enchaîne des actions ; reconnaissance vocale, transformer la voix en texte ; vision par ordinateur, reconnaître des images ; données personnelles, les informations qui t'identifient, à protéger ; vérification, le réflexe de croiser avec une source fiable. Pour chaque entrée : la définition simple, un exemple de la vie quotidienne ivoirienne, et une phrase piège qui montre la confusion fréquente. Teste ton décodeur sur trois personnes de ton entourage : s'ils comprennent chaque mot du premier coup, ta fiche est réussie. Tu viens de créer un bien rare : la vulgarisation claire."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : enquête sur l'IA autour de toi",
+          "content": "Ta mission : détecter l'IA cachée dans ta vie quotidienne, car elle est déjà partout, souvent invisible. Pendant trois jours, remplis ton journal d'enquêteur. Jour un : les téléphones. Explore le tien avec un adulte : reconnaissance du visage pour déverrouiller, suggestions de mots en écrivant, tri automatique des photos par visage, filtres de beauté, assistant vocal : note chaque usage et ce que la machine apprend de toi. Jour deux : les services. Observe les usages autour de toi : la plateforme d'écoute musicale qui recommande, le service client qui répond par messages automatiques, l'application de messagerie qui propose des réponses toutes faites, la banque qui détecte une opération suspecte, la caméra qui reconnait les plaques des voitures. Demande autour de toi : qui a déjà parlé à un robot sans le savoir ? Jour trois : la synthèse. Rassemble tes dix usages observés, classe-les en trois colonnes : usages utiles, usages surprenants, usages qui posent question, comme la collecte de données. Rédige ton rapport en dix lignes, avec ta conclusion personnelle : l'IA est-elle plus utile ou plus envahissante autour de toi ? Montre ton rapport à un adulte : les enquêtes qui font réfléchir sont celles qu'on partage."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : ton exposé L'IA sans mystère",
+          "content": "Projet final : prépare un exposé de cinq minutes intitulé l'IA sans mystère, pour ta classe, ton club ou ta famille, avec un support visuel. Structure exigée : 1) Une accroche : un exemple d'IA que tout le monde connaît, comme les suggestions automatiques du téléphone. 2) La définition en une phrase, avec l'analogie de l'apprentissage par exemples. 3) Le démontage du mystère : l'IA n'a ni conscience, ni volonté, ni émotions ; elle calcule des probabilités apprises sur des données. 4) Les trois superpouvoirs : elle est rapide, disponible jour et nuit, et capable de traiter des quantités d'information que nul humain ne peut lire. 5) Les trois limites : elle hallucine avec assurance, elle hérite des biais de ses données, elle ne vérifie rien toute seule. 6) La règle d'or de l'utilisateur : l'IA propose, l'humain vérifie et décide. Support visuel : trois illustrations au choix, dessins, schémas ou exemples d'écran, avec un schéma simple du cycle apprendre, prédire, vérifier. Entraîne-toi deux fois à voix haute avec chronomètre, puis présente. Recueille trois questions de l'auditoire et note-les : les questions reçues sont la mesure de ton exposé. Ce projet fait de toi le jeune que les adultes consultent sur l'IA : un rôle enviable."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Comment une IA moderne apprend-elle, la plupart du temps ?",
+          "options": [
+            "Un programmeur écrit toutes les règles à la main",
+            "En analysant de très nombreux exemples pour dégager des motifs",
+            "En copiant le cerveau humain neurone par neurone",
+            "En discutant avec d'autres IA la nuit"
+          ],
+          "correct_index": 1,
+          "explanation": "L'apprentissage automatique consiste à entraîner le programme sur des masses d'exemples : il en dégage lui-même les régularités, au lieu de suivre des règles écrites à la main."
+        },
+        {
+          "question": "Qu'est-ce qu'une hallucination d'IA ?",
+          "options": [
+            "Un bug qui fait scintiller l'écran",
+            "Une réponse fausse produite avec assurance, car l'IA prédit sans vérifier",
+            "Une panne d'électricité chez l'IA",
+            "Un rêve généré par la machine"
+          ],
+          "correct_index": 1,
+          "explanation": "L'IA prédit la suite la plus probable de ses données d'entraînement : quand la prédiction est fausse, elle peut l'énoncer avec aplomb. C'est une hallucination, d'où le réflexe de vérifier."
+        },
+        {
+          "question": "Pourquoi dit-on que l'IA n'a pas de conscience ?",
+          "options": [
+            "Parce qu'elle est trop lente",
+            "Parce que c'est un système mathématique qui calcule des probabilités, sans volonté ni ressenti",
+            "Parce qu'elle dort la journée",
+            "Parce qu'elle est interdite par la loi"
+          ],
+          "correct_index": 1,
+          "explanation": "Une IA calcule : elle n'a ni intentions, ni émotions, ni perception d'elle-même. Lui prêter une volonté, c'est une projection humaine, pas une réalité technique."
+        },
+        {
+          "question": "Quelle est la règle d'or de l'utilisateur d'IA ?",
+          "options": [
+            "Toujours faire confiance à l'IA, elle sait tout",
+            "Ne jamais utiliser l'IA, elle est dangereuse",
+            "L'IA propose, l'humain vérifie et décide",
+            "Partager toutes ses données personnelles à l'IA pour de meilleures réponses"
+          ],
+          "correct_index": 2,
+          "explanation": "L'IA est un outil puissant mais faillible : elle accélère la réflexion, ne la remplace pas. Vérifier ses réponses auprès de sources fiables reste le rôle de l'humain."
+        }
+      ]
+    },
+    {
+      "slug": "prompting-mastery",
+      "title": "Art du Prompting",
+      "description": "La différence entre une réponse inutile et une réponse brillante de l'IA tient souvent à ta question. Apprends à rédiger des prompts précis : rôle, contexte, tâche, format.",
+      "story": "Ton cousin s'est fait rédiger une lettre par l'IA : le résultat était fade, générique, on voit que ce n'est pas lui. Toi, au même moment, tu obtiens un texte vivant, exact, prêt à l'emploi. Même IA, même jour : pourquoi une telle différence ? La réponse tient en un mot : le prompt. La consigne que tu donnes à l'IA est un métier qui s'apprend, et les meilleurs utilisateurs sont ceux qui savent demander. Dans cette aventure, tu vas devenir un prompteur virtuose : role, contexte, exemples, contraintes, itération. À la fin, l'IA travaillera pour toi, et non l'inverse.",
+      "xp_reward": 130,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "L'anatomie d'un prompt efficace",
+          "content": "Un prompt, c'est la consigne que tu donnes à l'IA. Plus elle est riche et structurée, plus la réponse est utile : l'IA ne peut pas deviner ce que tu as dans la tête. Les prompts efficaces contiennent presque toujours cinq ingrédients. Un : le rôle. Dis à l'IA qui elle doit être : tu es un professeur de mathématiques patient, tu es un entraineur de football, tu es un journaliste. Le rôle choisit le style, le vocabulaire et le niveau. Deux : le contexte. Explique la situation : pour qui, pour quoi, dans quel cadre. J'ai un examen de rattrapage dans deux semaines et j'ai du mal avec les fractions donne un résultat bien plus adapté que aide-moi en maths. Trois : la tâche. Le verbe d'action précis : résume, corrige, explique, rédige, traduis, liste. Quatre : le format. Décris la réponse voulue : un tableau, cinq phrases, une liste, un texte de cent mots pour un adolescent. Cinq : les contraintes et exemples. Ce que tu veux éviter, le ton, la langue, et si possible un exemple de résultat qui te plaît. Dernier secret, le plus important : l'itération. Le premier résultat est un brouillon ; la discussion qui suit, peux-tu raccourcir, peux-tu utiliser un ton plus jeune, peux-tu ajouter un exemple africain, c'est elle qui transforme le brouillon en livrable. Le prompteur débutant écrit une ligne et accepte tout ; le prompteur expert dialogue comme avec un stagiaire brillant qu'il faut encadrer."
+        },
+        {
+          "section_type": "play",
+          "title": "Le tournoi des prompteurs",
+          "content": "Jouons au tournoi des prompteurs, à deux joueurs ou en petits groupes. Préparez dix défis écrits sur des cartes : expliquer la photosynthèse à un enfant de huit ans ; écrire un message pour excuser un retard ; rédiger un slogan pour un jus de bissap ; créer cinq questions de quiz sur l'Afrique de l'Ouest ; résumer un sujet de société en trois phrases ; écrire une lettre de motivation courte ; inventer une histoire de dix lignes qui se passe à Abidjan ; traduire une phrase en anglais simple ; rédiger une recette facile ; proposer un emploi du temps de révisions. À chaque défi, chaque joueur écrit son prompt complet en trois minutes, avec les cinq ingrédients : rôle, contexte, tâche, format, contrainte. Puis on échange les prompts à la ronde, et chacun évalue le prompt reçu avec la grille : est-ce que je saurais exactement quoi faire si j'étais l'IA ? Un point par ingrédient présent et par exigence claire. Le perdant du round doit reformuler le prompt gagnant en une seule phrase résumant son efficacité. Au bout des dix défis, comparez vos moyennes : celui qui a le plus progressé depuis le premier round gagne le titre de prompteur de la maison, et surtout, chaque joueur repart avec dix modèles de prompts prêts pour la vraie vie."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : un même besoin, cinq prompts",
+          "content": "Expérience comparative : mesure de tes propres yeux l'effet de la qualité du prompt. Choisis un vrai besoin, par exemple comprendre un chapitre de cours ou préparer une présentation. Avec l'accord d'un adulte, ouvre un assistant IA gratuit et déroule cinq versions du même prompt. Version un, minimal : aide-moi avec mon cours. Version deux, rôle : tu es un professeur de mon collège, explique-moi mon cours. Version trois, rôle plus contexte : tu es un professeur patient, explique-moi ce chapitre, j'ai un contrôle dans une semaine et j'ai des difficultés sur la deuxième partie. Version quatre, ajout du format : même consigne, mais je veux trois parties : l'essentiel en cinq phrases, les trois pièges possibles du contrôle, puis cinq questions d'entraînement avec les réponses. Version cinq, ajout d'exemples et itération : même consigne, plus fais les exemples avec des situations de la vie courante ivoirienne, puis après la première réponse, demande une amélioration : rends les exercices plus difficiles. Note les cinq réponses côte à côte et note chaque version sur dix : clarté, utilité, adaptabilité. Conclusion en trois phrases : combien de points gagnés entre la version un et la version cinq ? Laquelle utiliseras-tu pour ton prochain contrôle ? Tu viens de démontrer scientifiquement la loi du prompting : la qualité de la réponse est la qualité de la consigne."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis ta bibliothèque de prompts",
+          "content": "Construis ta bibliothèque personnelle de prompts : dix consignes prêtes à l'emploi, classées par usage, que tu compléteras pendant des années. Pour chaque prompt : le titre, le texte complet avec les cinq ingrédients, et des crochets pour personnaliser à chaque usage. Les dix indispensables : 1) L'explicateur : tu es un professeur patient, explique [sujet] à un élève de [niveau], avec deux exemples concrets et les erreurs fréquentes. 2) Le réviseur : crée un quiz de dix questions sur [chapitre], difficulté croissante, avec les réponses et une explication par question. 3) Le correcteur : corrige ce texte [collage], liste mes fautes, explique chaque correction, puis propose une version corrigée sans changer mes idées. 4) Le résumeur : résume ce texte en cinq phrases simples, puis donne les trois idées principales. 5) Le traducteur : traduis ce texte en anglais simple, niveau collège, en gardant le ton. 6) Le coach d'entraînement : prépare-moi un plan de révision sur [nombre] jours pour [matière], une heure par jour. 7) Le rédacteur : rédige un message de [type] pour [destinataire] : ton respectueux, clair, court. 8) Le créateur d'histoires : écris une histoire de dix lignes sur [sujet], qui se passe à [lieu], pour un lecteur de mon âge. 9) L'assistant de méthode : propose trois façons différentes de résoudre ce problème [collage], et explique laquelle convient le mieux à un débutant. 10) Le vérificateur : voici une affirmation [texte], aide-moi à trouver les questions à me poser pour vérifier si elle est vraie. Teste chaque prompt une fois, améliore-le, puis classe-les dans un carnet : c'est ton capital de productivité."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : le prompteur au service des autres",
+          "content": "Ta mission : utilise ton art du prompt pour rendre service autour de toi, gratuitement. Trouve trois personnes de ton entourage avec un vrai besoin rédactionnel : un camarade qui prépare un exposé, un parent qui doit écrire un message professionnel ou une invitation, un commerçant qui veut présenter son activité, une tante qui prépare une candidature. Pour chaque personne : 1) Écoute son besoin réel, sans technologie, avec un carnet : pour qui, pourquoi, quel ton, quelles contraintes, quel exemple lui plaît. 2) Rédige le prompt complet en réutilisant ta bibliothèque, en injectant les informations recueillies. 3) Génére la réponse, lis-la entièrement, et vérifie-la : faits, noms, cohérence, respect de la personne. 4) Corrige ce qui doit l'être : l'IA propose, tu validates, jamais l'inverse, et surtout n'envoie rien que tu n'aurais pas écrit toi-même après lecture. 5) Livre le résultat à la personne et note sa réaction. Règle d'honneur de la mission : tu annonces clairement que l'IA a aidé, car la transparence fait partie de l'honnêteté, et tu refuses tout ce qui tricherait, comme un devoir à rendre comme sien : tu apportes une aide de méthode, pas une fraude. Trois services rendus, trois personnes soulagées : ta réputation de prompteur utile est lancée."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : ton guide du prompt parfait",
+          "content": "Projet final : rédige ton guide du prompt parfait, un document de deux pages destiné à être partagé, en classe ou en famille. Structure : 1) La loi fondamentale : la qualité de la réponse est la qualité de la consigne. 2) Les cinq ingrédients illustrés : rôle, contexte, tâche, format, contraintes, chacun avec un exemple avant-après, prompt faible, prompt fort. 3) Les quatre techniques avancées : l'exemple montré, donner un modèle de réponse attendue ; la décomposition, découper une grosse tâche en petites étapes ; l'itération, améliorer en discutant ; le contre-emploi, demander à l'IA de critiquer sa propre réponse pour l'améliorer. 4) Les trois interdits : ne jamais donner de données personnelles, ni nom complet, ni école, ni adresse, ni numéro ; ne jamais croire sans vérifier ; ne jamais faire tricher l'IA à ta place pour un devoir noté. 5) Trois prompts stars copiables, tes meilleurs modèles. 6) Un mémo final de cinq lignes, à afficher. Passe ton guide à l'épreuve du terrain : trois personnes l'utilisent devant toi sur un besoin réel, sans ton aide. Si elles obtiennent de bons résultats toutes seules, ton guide est bon : tu viens de réussir l'examen de tout formateur, transmettre une méthode qui marche sans toi."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quels sont les ingrédients d'un prompt efficace ?",
+          "options": [
+            "Un seul mot bien choisi",
+            "Rôle, contexte, tâche, format et contraintes",
+            "Le plus de majuscules possible",
+            "Une insulte motivante pour l'IA"
+          ],
+          "correct_index": 1,
+          "explanation": "Un bon prompt précise qui doit parler, rôle, dans quelle situation, contexte, quoi faire, tâche, sous quelle forme, format, et avec quelles limites, contraintes : l'IA ne devine pas, elle suit."
+        },
+        {
+          "question": "Pourquoi le rôle en début de prompt change-t-il la réponse ?",
+          "options": [
+            "L'IA aime qu'on soit poli avec elle",
+            "Le rôle choisit le style, le vocabulaire et le niveau de la réponse",
+            "C'est une tradition sans effet",
+            "L'IA refuse de répondre sans rôle"
+          ],
+          "correct_index": 1,
+          "explanation": "Dire à l'IA tu es un professeur patient ou tu es un journaliste oriente tout le style et le contenu de la réponse : même question, même IA, réponse différente."
+        },
+        {
+          "question": "Que faire de la première réponse de l'IA ?",
+          "options": [
+            "La copier immédiatement sans la lire",
+            "La considérer comme un brouillon et l'améliorer par la discussion",
+            "L'effacer et tout recommencer",
+            "La faire signer par un adulte"
+          ],
+          "correct_index": 1,
+          "explanation": "L'itération est la technique maîtresse : raccourcir, changer le ton, demander des exemples, faire critiquer sa propre réponse. La conversation transforme un brouillon en livrable."
+        },
+        {
+          "question": "Quelle information ne faut-il jamais mettre dans un prompt ?",
+          "options": [
+            "Le sujet de l'exercice",
+            "Des exemples du résultat voulu",
+            "Des données personnelles : nom complet, école, adresse, numéro",
+            "Le niveau scolaire demandé"
+          ],
+          "correct_index": 2,
+          "explanation": "Les données personnelles confiées à un service en ligne sortent de ton contrôle. Un prompt efficace décrit le besoin sans jamais exposer les informations qui t'identifient."
+        }
+      ]
+    },
+    {
+      "slug": "ai-ethics",
+      "title": "IA et éthique",
+      "description": "L'IA peut-elle être injuste ? Oui, quand les humains qui l'entraînent portent des préjugés. Découvre les biais, la désinformation, le droit d'auteur et deviens un utilisateur lucide et responsable.",
+      "story": "Sur les réseaux, une vidéo montre un directeur d'école en train de dire des choses choquantes. En trois jours, la vidéo fait le tour du quartier. Le problème : elle est fausse, fabriquée de toutes pièces par une IA. La directrice réelle a dû faire face à une tempête pour des mots qu'elle n'a jamais prononcés. L'IA ne fait pas que rédiger des devoirs et créer des images : elle peut tromper, exclure, humilier. Pas par malveillance de la machine, mais par la précipitation des humains. Dans cette aventure, tu vas apprendre à repérer les biais, à reconnaître les faux contenus, à respecter le travail des autres, et à te poser LA question de ton époque : ce que je fais avec l'IA est-il juste ?",
+      "xp_reward": 120,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Les biais : quand la machine hérite de nos préjugés",
+          "content": "Un système d'IA apprend à partir de données : des textes, des photos, des décisions écrites par des humains. Si ces données contiennent des préjugés, l'IA les apprend, puis les répète à grande échelle, avec une apparence d'objectivité qui les rend plus dangereux encore. Exemples réels : des logiciels de recrutement entraînés sur des historiques d'embauche majoritairement masculins qui défavorisent les CV de femmes ; des logiciels de reconnaissance faciale qui se trompent bien plus souvent sur les visages à peau foncée parce qu'ils ont été entraînés surtout sur des visages clairs ; des IA qui associent le mot infirmière au féminin et le mot médecin au masculin parce que les textes lus répètent ce cliché. La machine n'est ni raciste ni sexiste : elle est un miroir amplificateur de ce qu'on lui montre. C'est ce qu'on appelle un biais algorithmique : une erreur systématique et répétée qui désavantage un groupe de personnes. Comment se défendre ? D'abord en le sachant : toute donnée peut être biaisée, tout système peut l'être aussi. Ensuite en exigeant des questions simples : qui a créé ce système ? Sur quelles données ? Qui a vérifié ? Enfin en gardant une règle d'or : pour toute décision importante, un humain doit garder le dernier mot. L'IA conseille, l'humain tranche : c'est un principe éthique, et bientôt peut-être une règle de droit dans de nombreux pays, y compris en Afrique où les cadres de protection des données se renforcent."
+        },
+        {
+          "section_type": "play",
+          "title": "La cour de justice de l'IA",
+          "content": "Jouons à la cour de justice de l'IA : un jeu de débat où tu es successivement juge, avocat et enquêteur. Prépare huit affiches, une par dilemme : 1) Un élève utilise l'IA pour rédiger sa dissertation et la rend comme si c'était son travail. 2) Une école filtre les candidatures avec une IA qui privilégie les candidats des grands lycées. 3) Un site utilise une IA pour identifier les élèves d'une photo de classe sans accord des parents. 4) Un youtubeur publie une chanson générée par IA en imitant la voix d'un chanteur connu. 5) Une application de beauté modifie les visages pour les affiner et éclaircir la peau. 6) Un commerçant utilise une IA pour écrire de faux avis clients positifs sur son produit. 7) Une IA de traduction efface les langues locales parce qu'elle ne les connaît pas. 8) Un groupe crée une fausse vidéo d'un politicien pour faire le buzz. Pour chaque affiche, la cour déroule le procès en trois temps : l'accusation plaide le tort causé, la défense plaide l'usage légitime possible, et le juge pose la question clé : quelle serait une utilisation honnête et utile de l'IA ici ? Puis le verdict : coupable, acceptable, ou acceptable avec conditions que la cour rédige précisément. Après les huit affaires, comparez vos verdicts à ceux des autres joueurs de la cour : ceux qui divergent le plus révèlent vos propres valeurs. Le vrai but du jeu n'est pas de gagner : c'est de repartir avec une règle de conduite claire pour chaque situation."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : la chasse aux biais",
+          "content": "Expérience d'enquêteur : pars à la chasse aux biais dans les contenus IA qui t'entourent. Avec l'accord d'un adulte, ouvre un assistant IA gratuit et mène trois sondages contrôlés. Sondage un, les stéréotypes de métier : demande-lui d'écrire dix phrases courtes présentant dix métiers, médecin, infirmier, chauffeur, secrétaire, ingénieur, institutrice, pilote, cuisinière, maçon, ministre. Note s'il utilise spontanément le masculin ou le féminin pour chaque métier, et compte les associations. Refais l'expérience en demandant des phrases sur des personnes africaines : les descriptions sont-elles variées et respectueuses, ou répétitives ? Sondage deux, le biais de representativité : demande-lui de nommer dix grands scientifiques. Combien de femmes ? Combien de personnes d'Afrique ou de la diaspora ? Note le résultat, puis pose la même question en ajoutant : inclue des scientifiques africains et des femmes. La liste change-t-elle radicalement ? Sondage trois, l'angle mort linguistique : demande-lui de traduire des proverbes de ta région ou des mots qui n'existent pas en français, comme certains termes de dioula ou de baoulé. Que fait l'IA ? Elle invente, elle ignore, elle traduit à côté ? Note tout. Rédige ensuite ton rapport en quatre parties : les biais trouvés, les résultats qui t'ont surpris, ce que tu comptes faire pour ne pas subir ces biais, et une nuance importante : l'IA n'est pas méchante, elle est incomplète. Le remède n'est pas la colère mais la lucidité, et l'exigence de diversité dans les données et dans les équipes qui construisent ces outils."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis ton détecteur de fausses images",
+          "content": "Construis ta méthode de détection des contenus IA falsifiés, comme une vraie cellule de vérification. Outil un : le test des détails anatomiques. Sur une photo suspecte, zoome sur les mains, comptage des doigts, les dents, les pupilles, les boucles d'oreilles, les reflets dans les yeux : les générateurs d'images échouent souvent là. Cherche aussi les écarts de symétrie : une boucle différente à chaque oreille, une manche mal raccordée. Outil deux : le test du texte aberrant. Sur les images générées, regarde les enseignes, les documents, les maillots : les lettres sont souvent déformées, des mots inventés, des lettres doublées. Outil trois : le test de cohérence lumineuse. Les ombres vont-elles toutes dans le même sens ? La lumière sur les visages correspond-elle à l'arrière-plan ? Outil quatre : le test du contexte. La scène est-elle plausible ? Un monument connu a-t-il la bonne forme, la bonne couleur, la bonne orientation ? Outil cinq, le plus puissant, hors image : la recherche de source. Qui a publié ce contenu ? Depuis quand ? D'autres médias fiables en parlent-ils ? Y a-t-il la même vidéo sur des sites reconnus, avec le même son et la même date ? Outil six : le bon réflexe final, la recherche inversée : avec l'aide d'un adulte, chercher si l'image existe ailleurs depuis plus longtemps avec une autre légende. Rédige ta fiche détective : les six outils, un exemple pour chacun, et ta règle personnelle en une phrase, par exemple : tant que je n'ai pas trouvé la source, je ne partage pas. Affiche-la : c'est ta protection et celle de ta famille."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : le garde-fou de la famille",
+          "content": "Ta mission : deviens le garde-fou IA de ton entourage pendant une semaine. Étape un : organise une mini-séance de sensibilisation à la maison, dix minutes, sur le canal WhatsApp familial ou en personne. Explique avec tes mots ce qu'est une fausse image IA, montre un exemple d'erreur typique, comme des mains à six doigts, et donne ta règle d'or : ne jamais transférer une info choc sans vérifier la source. Étape deux : installe ta permanence de vérification. Annonce que pour toute info douteuse reçue sur les groupes de la famille, on peut te l'envoyer et tu mèneras l'enquête avec tes six outils. Étape trois : traite au moins trois demandes réelles pendant la semaine. Pour chacune : note le contenu, applique les outils, rends un verdict clair, authentique, douteux ou faux, avec l'explication et la source trouvée, et surtout félicite toujours la personne qui a vérifié avant de transférer : c'est le comportement à récompenser, même si l'info s'avère vraie. Étape quatre : tiens un petit journal de bord : combien de fausses infos arrêtées, combien de personnes informées, quelle réaction t'a le plus surpris. À la fin de la semaine, fais le bilan en famille et fixe une règle commune, écrite, partagée. Mesure ton succès : le but n'est pas d'avoir raison, c'est que personne autour de toi ne partage plus une intox IA sans avoir pensé à vérifier."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : la charte éthique de ta communauté",
+          "content": "Projet final : rédige la charte d'utilisation éthique de l'IA de ta communauté, classe, club ou famille, un document court que chacun pourra signer. Étape un, la consultation : interroge au moins huit personnes autour de toi sur trois questions : quel usage de l'IA te semble le plus utile ? Le plus injuste ? Laquelle des trois règles te semble la plus nécessaire ? Note les réponses sans les juger. Étape deux, la synthèse : relève les inquiétudes qui reviennent, comme la triche, la perte d'emploi des créateurs, les faux contenus, et transforme chacune en règle positive. Étape trois, la rédaction : huit à dix articles, formulés en je ou en nous, courts et vérifiables. Exemples d'articles : nous annonçons quand un contenu a été créé avec l'IA ; nous ne publions rien sans vérifier la source ; nous ne prenons jamais une image de quelqu'un sans son accord ; nous citons toujours les créateurs dont nous reprenons le travail ; nous refusons les outils qui rabaissent ou caricaturent un groupe ; un humain reste responsable de toute décision importante ; nous parlons de nos langues locales à l'IA pour l'enrichir plutôt que de l'oublier ; celui qui signe la charte aide un débutant chaque mois. Étape quatre, la signature : organise une cérémonie simple, chacun signe et choisit l'article qu'il défendra en priorité. Étape cinq, le suivi : relis la charte tous les mois : est-elle respectée ? Faut-il ajouter un article ? Une charte vivante vaut mille chartes parfaites. Tu viens de faire ce que font les États et les entreprises : poser des règles avant les accidents."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Pourquoi dit-on que les biais de l'IA sont un « miroir amplificateur » ?",
+          "options": [
+            "Parce que l'IA réfléchit la lumière",
+            "Parce qu'elle reproduit les préjugés présents dans ses données d'apprentissage, à grande échelle",
+            "Parce que l'IA cherche volontairement à nuire",
+            "Parce que les miroirs sont programmés en Python"
+          ],
+          "correct_index": 1,
+          "explanation": "L'IA apprend sur des données humaines : si elles contiennent des préjugés, elle les répète avec une fausse apparence d'objectivité. Le problème vient des données, pas d'une intention de la machine."
+        },
+        {
+          "question": "Quel réflexe face à une information choc reçue sur WhatsApp ?",
+          "options": [
+            "La transférer vite pour prévenir les autres",
+            "La transférer en précisant que ce n'est pas sûr",
+            "Chercher la source avant de partager, et ne rien transférer sans preuve",
+            "Demander à l'expéditeur s'il est sûr de lui"
+          ],
+          "correct_index": 2,
+          "explanation": "Les contenus falsifiés par IA ont besoin de viralité pour nuire : le réflexe de vérifier la source avant de partager coupe la chaîne. Le doute de l'expéditeur ne suffit pas comme preuve."
+        },
+        {
+          "question": "Quelle règle protège à la fois ta réputation et celle des autres avec l'IA ?",
+          "options": [
+            "Utiliser l'IA seulement la nuit",
+            "Demander l'accord avant d'utiliser l'image ou la voix de quelqu'un, et annoncer les contenus créés par IA",
+            "Ne jamais parler de l'IA à personne",
+            "Effacer ses conversations chaque heure"
+          ],
+          "correct_index": 1,
+          "explanation": "Utiliser le visage ou la voix de quelqu'un sans accord et présenter un contenu IA comme authentique sont les deux falsifications qui blessent le plus : le consentement et la transparence sont les garde-fous."
+        },
+        {
+          "question": "Pourquoi est-il éthiquement problématique de rendre un devoir entièrement écrit par l'IA ?",
+          "options": [
+            "Parce que l'IA fait souvent des fautes d'orthographe",
+            "Parce que tu présentes le travail d'un autre comme le tien, ce qui fausse l'évaluation et te prive d'apprentissage",
+            "Parce que les professeurs détestent la technologie",
+            "Parce que l'IA refuse d'écrire les devoirs"
+          ],
+          "correct_index": 1,
+          "explanation": "Le problème est double : c'est une tromperie envers l'école, et surtout une auto-tromperie : rendre un devoir sans l'avoir fait, c'est renoncer à la compétence que le devoir devait construire. L'IA comme tuteur oui, comme substitut non."
+        }
+      ]
+    },
+    {
+      "slug": "machine-learning",
+      "title": "Machine Learning expliqué",
+      "description": "Comment une machine apprend-elle ? Par l'exemple, comme toi. Entraînement, données, modèles, prédictions, surapprentissage : les notions clés du machine learning enfin claires.",
+      "story": "Comment fait l'application de ton opérateur mobile pour deviner que tu vas bientôt épuiser ton forfait ? Comment une appli agricole reconnaît-elle une plante malade à partir d'une simple photo ? Comment un clavier de téléphone arrive-t-il à prédire ton prochain mot ? La réponse à tout : le machine learning, la science qui permet aux machines d'apprendre à partir d'exemples plutôt que de suivre des instructions écrites une par une. C'est le moteur caché derrière presque toute l'IA moderne. Dans cette aventure, tu vas comprendre ce qui se passe vraiment dans la machine : les données, l'entraînement, les prédictions, les erreurs. Et tu vas même entraîner toi-même ton premier modèle... avec un crayon et des bonbons.",
+      "xp_reward": 140,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Programmer ou apprendre : la grande différence",
+          "content": "Un programme classique suit des règles écrites par un humain : si le solde est inférieur à cent francs, envoyer une alerte. Le programmeur a écrit chaque règle, une par une. Ça marche parfaitement pour les tâches précises, mais imagine écrire les règles pour reconnaître un chat sur une photo : si les oreilles sont pointues et les moustaches présentes et... vous pouvez écrire des milliers de règles, il y aura toujours un chat qui leur échappe, de dos, en ombre, en partie caché. Le machine learning inverse complètement la logique : au lieu d'écrire les règles, on montre des exemples et on laisse la machine découvrir les règles toute seule. On lui montre dix mille photos étiquetées chat et vingt mille photos étiquetées pas chat, et petit à petit, elle ajuste ses réglages internes pour de plus en plus souvent donner la bonne réponse. Ces réglages internes s'appellent des paramètres, et certains modèles en contiennent des milliards. Le résultat de cet apprentissage s'appelle un modèle : une sorte de boîte qui a ingéré les exemples et qui peut maintenant prédire. Trois mots à retenir : les données, les exemples montrés ; l'entraînement, le processus d'ajustement ; la prédiction, la réponse du modèle sur un cas nouveau. Et une idée maîtresse : le modèle ne comprend pas, il généralise. Il repère des régularités statistiques dans les exemples passés pour parier sur les cas futurs. Ses forces et ses faiblesses viennent de là : extraordinaire quand les cas futurs ressemblent aux cas passés, fragile quand ils s'en éloignent, comme un chauffeur qui ne connaît que les rues de son quartier."
+        },
+        {
+          "section_type": "play",
+          "title": "Devine le nombre : le jeu du modèle mystérieux",
+          "content": "Jouons à Devine le nombre, le jeu qui fait vivre un vrai entraînement de modèle. Règle du jeu : un joueur secret, appelé le modèle, invente une règle cachée qui transforme un nombre en un autre. Par exemple, la règle cachée multiplie par deux et ajoute trois ; ou ajoute le chiffre des dizaines ; ou retranche la moitié. Le joueur apprenti, toi, ne connaît pas la règle : il doit la deviner en collectant des exemples, comme un modèle en entraînement. Déroulé : le modèle secret reçoit des propositions de nombres de l'apprenti, par exemple un, cinq, dix, et répond uniquement avec le résultat : quatre, treize, vingt-trois. L'apprenti note chaque paire nombre-résultat dans son tableau d'entraînement, formule une hypothèse, la teste sur un nouveau nombre, vérifie, corrige. Quand il se sent prêt, il annonce sa règle et le modèle la valide sur trois nombres tests jamais utilisés. Trois niveaux de difficulté : règles simples avec une seule opération, règles combinées avec deux opérations, règles à condition du genre si le nombre est pair, sinon. Discussion après la partie, la plus importante : comment as-tu amélioré ? En testant des nombres bien choisis, ni trop proches ni trop faciles : c'est exactement ce que fait un bon entraînement. Quand tu as deviné avec peu d'exemples, tu généralisais vite mais avec un risque d'erreur ; quand tu voulais plus d'exemples, tu étais prudent mais lent : les scientifiques appellent ça le compromis biais-variance, et tu viens de le vivre en jouant."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : entraîne un modèle avec des bonbons",
+          "content": "Expérience hors écran : construis un classifieur qui distingue deux catégories, uniquement avec tes mains et ton raisonnement, pour comprendre les étapes réelles d'un projet de machine learning. Étape un, la collecte de données : rassemble vingt petits objets variés, bonbons, cailloux, bouchons, graines, et étiquette-les en deux classes : par exemple comestible et pas comestible, ou lisse et rugueux. Étape deux, la mesure : pour chaque objet, note deux caractéristiques chiffrées : son poids approximatif en nombre de pièces de monnaie posées à côté, et sa taille en centimètres. Tu obtiens un tableau de vingt lignes : c'est ton jeu de données, deux caractéristiques et une étiquette par ligne. Étape trois, la visualisation : dessine un repère sur une feuille, taille en horizontal, poids en vertical, et place chaque objet par un point : rond pour la classe un, croix pour la classe deux. Que remarques-tu ? Les points forment des groupes : lisses en haut à droite, rugueux en bas à gauche. Étape quatre, le modèle : trace à main levée une droite de séparation entre les deux groupes : c'est exactement ce que fait le classifieur le plus célèbre du machine learning, la séparation linéaire. Étape cinq, le test, moment de vérité : mets quatre objets de côté, jamais vus pendant le tracé, et vérifie : la droite classe-t-elle bien les nouveaux objets ? Si ta droite réussissait parfaitement les vingt objets d'entraînement mais échouait sur les quatre nouveaux, tu aurais fait du surapprentissage : coller aux exemples sans généraliser. Étape six, l'itération : ajuste ta droite, reteste. Conclusion à écrire en trois phrases : plus de données bien choisies vaut mieux que des données nombreuses et redondantes, et un modèle se juge toujours sur des cas nouveaux, jamais sur ce qu'il a déjà vu."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis ton détecteur de spam",
+          "content": "Construis un vrai mini-système de détection de pourriels, sur papier, comme un data scientist. Contexte : le spam, ces messages indésirables qui encombrent les messageries, est un problème majeur en Afrique de l'Ouest, des faux loteries aux fausses promotions mobile money. Ton but : classer automatiquement un message en pourriel ou message normal. Étape un, constitue tes données : écris douze messages inventés, six pourriels typiques, tu as gagné un lot, clique ici pour recevoir ton cadeau, envois le code maintenant, et six messages normaux, on se voit au terrain à seize heures, maman arrive demain. Étape deux, choisis tes caractéristiques : repère des signaux mesurables, présence des mots gagné, lot, cadeau, urgent ; présence d'un lien ; nombre de points d'exclamation ; fautes grossières ; demande d'argent ou de code ; urgence artificielle. Étape trois, construis la règle : attribue des points à chaque signal, par exemple dix points pour un mot appât, dix pour une demande de code, cinq pour un lien, cinq pour un excès de points d'exclamation ; seuil de décision : au-delà de quinze points, pourriel. C'est ton modèle de scoring, utilisé par les vrais filtres. Étape quatre, teste sur tes douze messages : compte les points de chacun, applique le seuil, compare avec la vérité : combien de vrais pourriels attrapés, combien de messages normaux injustement bloqués ? Les professionnels appellent le premier le rappel et le second les fausses alertes. Étape cinq, améliore : le seuil est-il trop bas, trop haut ? Quels signaux manquent, lesquels pèsent trop ? Enregistre la version deux et reteste. Ce que tu viens de construire s'appelle un modèle supervisé de classification, et le raisonnement complet, données, caractéristiques, règle, test, amélioration, est exactement celui de tous les projets de machine learning, des moteurs de recommandation aux systèmes médicaux."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : le collecteur de données propre",
+          "content": "Ta mission : comprends la valeur et le coût de la donnée en organisant une collecte exemplaire. Contexte : les données sont le carburant du machine learning, mais les collections bâclées produisent des modèles injustes et faux. Ta mission a deux volets. Volet un, la collecte : choisis une question utile et anonyme, par exemple combien de temps les élèves de ton quartier mettent pour rejoindre l'école, ou quels plats les familles préparent le plus le week-end. Collecte au moins quinze réponses en respectant trois règles d'or : demander l'accord de chaque personne, ne jamais noter de nom ni d'information qui identifie, et noter honnêtement chaque réponse sans l'arranger. Volet deux, l'analyse : construis un tableau propre, une ligne par réponse, compte les fréquences, dessine un diagramme simple, et rédige trois phrases de conclusion. Puis l'étape qui distingue les professionnels des amateurs : la critique de tes propres données. Réponds par écrit : qui manque dans ma collecte ? Ai-je surtout interrogé des gens proches de moi, du même âge, du même quartier ? Ma question était-elle claire ou ambiguë ? Quel biais de proximité ma collecte contient-elle certainement ? Enfin, réfléchis à l'usage : imagine un modèle entraîné sur tes données pour améliorer les horaires de transport : fonctionnerait-il bien pour tout le quartier ? Pour une autre ville ? Tu comprends la leçon la plus importante du machine learning : un modèle n'est jamais meilleur que les données qui l'ont nourri, et la responsabilité de la collecte est un acte éthique autant que technique."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : explique le machine learning aux autres",
+          "content": "Projet final : crée ton exposition Machine Learning expliqué à la vie africaine, un ensemble de quatre affiches et une démonstration, pour expliquer le machine learning à des personnes qui ne le connaissent pas. Affiche un : la grande différence, programme contre apprentissage, avec ton exemple du chat et des photos, illustré. Affiche deux : la recette du machine learning, données, caractéristiques, entraînement, test, amélioration, avec ton expérience des bonbons racontée en images. Affiche trois : le machine learning autour de nous en Afrique, quatre exemples réels documentés : la prédiction des rendements agricoles pour conseiller les planteurs ; la détection de maladies des cultures par photo, comme des applications qui reconnaissent le mildiou du manioc ; le filtrage des pourriels et des arnaques sur mobile money ; les modèles de traduction et de reconnaissance vocale pour les langues locales. Pour chaque exemple : le problème, la donnée utilisée, le bénéfice, la limite. Affiche quatre : les dangers, surapprentissage, biais, données sales, vie privée, chacune expliquée en deux phrases simples. La démonstration : rejoue Devine le nombre en public, avec un volontaire modèle secret et trois spectateurs apprentis : en trois minutes, le public aura compris l'entraînement mieux qu'avec toutes les définitions du monde. Présente ton exposition à au moins six personnes, recueille la question la plus fréquente, et améliore l'affiche concernée. Si quelqu'un repart en disant je crois que j'ai compris ce qu'est un modèle, tu as gagné."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quelle est la grande différence entre un programme classique et le machine learning ?",
+          "options": [
+            "Le machine learning est plus rapide à écrire",
+            "Le programme suit des règles écrites par l'humain ; le machine learning découvre ses règles à partir d'exemples",
+            "Le machine learning ne fait jamais d'erreurs",
+            "Un programme classique ne peut pas faire de calculs"
+          ],
+          "correct_index": 1,
+          "explanation": "Programme classique : l'humain écrit chaque règle. Machine learning : on montre des exemples étiquetés et la machine ajuste ses paramètres pour généraliser. C'est l'inversion de la logique."
+        },
+        {
+          "question": "Que signifie le surapprentissage, overfitting ?",
+          "options": [
+            "Apprendre trop de matières à l'école",
+            "Quand un modèle colle parfaitement aux exemples d'entraînement mais échoue sur des cas nouveaux",
+            "Quand on entraîne un modèle pendant la nuit",
+            "Quand le modèle est trop simple pour apprendre"
+          ],
+          "correct_index": 1,
+          "explanation": "Un modèle qui apprend par cœur ses exemples sans en extraire les régularités générales échoue sur les cas nouveaux : c'est pour ça qu'on évalue toujours un modèle sur des données qu'il n'a jamais vues."
+        },
+        {
+          "question": "Pourquoi évalue-t-on un modèle sur des données jamais vues à l'entraînement ?",
+          "options": [
+            "Pour économiser des données",
+            "Pour mesurer sa capacité à généraliser, ce qui est son vrai but",
+            "Parce que les données vues sont devenues illégales",
+            "Pour l'entraîner une seconde fois"
+          ],
+          "correct_index": 1,
+          "explanation": "La performance sur les données d'entraînement ne prouve rien : le modèle a déjà vu les réponses. Seule la performance sur des cas nouveaux révèle s'il a appris des régularités utiles ou appris par cœur."
+        },
+        {
+          "question": "Que fait concrètement l'étape d'entraînement ?",
+          "options": [
+            "Elle écrit les règles du modèle à la main",
+            "Elle ajuste progressivement les paramètres du modèle pour réduire ses erreurs sur les exemples",
+            "Elle supprime les données inutiles",
+            "Elle recopie les réponses dans un fichier"
+          ],
+          "correct_index": 1,
+          "explanation": "Pendant l'entraînement, le modèle fait des prédictions, mesure ses erreurs, et corrige ses paramètres, encore et encore : c'est ce cycle qui construit sa compétence, exemple après exemple."
+        },
+        {
+          "question": "Pourquoi dit-on que la donnée est le carburant du machine learning ?",
+          "options": [
+            "Parce que les ordinateurs consomment beaucoup d'électricité",
+            "Parce qu'un modèle n'est jamais meilleur que les données qui l'ont nourri",
+            "Parce que les données coûtent cher",
+            "Parce que la donnée sert à refroidir les serveurs"
+          ],
+          "correct_index": 1,
+          "explanation": "Des données incomplètes ou biaisées produisent des modèles injustes et faux, quelle que soit la sophistication des calculs : la qualité et la diversité des données déterminent le plafond de qualité du modèle."
+        }
+      ]
+    },
+    {
+      "slug": "ai-africa",
+      "title": "IA en Afrique",
+      "description": "Diagnostic par photo des maladies du cacao, tuteurs IA pour les écoles surchargées, mobile money sécurisé : l'IA africaine résout des problèmes africains. Découvre les pionniers et saisis ta place.",
+      "story": "À Yamoussoukro, un planteur de cacao photographie une feuille malade. En trois secondes, l'application lui dit quelle maladie attaque son verger et comment la traiter. Il n'a pas fait d'études agronomiques : il a un téléphone et l'envie d'apprendre. Pendant des décennies, on a présenté l'Afrique comme simple consommatrice de technologies conçues ailleurs. L'IA change la donne : parce qu'elle résout des problèmes concrets avec peu de moyens, elle est en train de devenir l'affaire des ingénieurs, des infirmières et des entrepreneurs du continent. Dans cette aventure, tu vas découvrir l'IA qui soigne, qui forme, qui sécurise, qui traduit — et qui parle tes langues. Et surtout, tu vas comprendre pourquoi on a besoin de toi : l'IA africaine manquera toujours de jeunes qui la comprennent, la critiquent et la construisent.",
+      "xp_reward": 110,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "L'IA qui résout des problèmes africains",
+          "content": "Partout sur le continent, l'IA s'attaque à des problèmes très concrets, souvent avec des moyens limités et des résultats spectaculaires. L'agriculture d'abord : des applications de diagnostic par photo aident les planteurs de cacao, de manioc ou de tomates à reconnaître les maladies des feuilles, comme la pourriture brune des cabosses ou la mosaïque africaine du manioc, et recommandent le traitement, sans agronome sur place, car il y a souvent un téléphone là où les experts manquent. Des modèles météo adaptés aux régions tropicales aident à décider quand semer et quand récolter face aux pluies devenues imprévisibles. La santé ensuite : des logiciels d'aide au dépistage analysent des radios avec précision là où les radiologues sont rares ; des chatbots de santé répondent aux questions des patients dans leurs langues et orientent vers la bonne structure ; au Rwanda et au Ghana, des drones livrent du sang et des médicaments là où les routes n'existent pas, guidés par des systèmes de navigation intelligents. L'éducation enfin : des tuteurs IA donnent à chaque élève des exercices à son niveau, expliquent autrement quand on n'a pas compris, et soutiennent des classes surchargées, tandis que des systèmes de reconnaissance vocale s'entraînent sur le dioula, le baoulé, le lingala, le swahili pour que la technologie ne laisse pas les langues locales au bord du chemin. La finance aussi : le mobile money est protégé par des modèles qui repèrent les arnaques en temps réel. Le point commun de tous ces exemples : l'IA ne remplace pas l'humain, elle multiplie les experts rares. Un spécialiste qui forme une IA aide mille planteurs en même temps. C'est ça, la promesse africaine de l'IA : pas la nouveauté pour la mode, mais l'impact pour tous."
+        },
+        {
+          "section_type": "play",
+          "title": "Startup IA : le jeu de l'impact",
+          "content": "Jouons à Startup IA : le jeu de l'impact, un jeu de cartes où tu deviens entrepreneur technologique africain. Prépare trois paquets de cartes : le paquet Problème, douze cartes avec des besoins réels du terrain, exemple : les planteurs ne reconnaissent pas les maladies du cacao ; les élèves n'ont pas de professeur de mathématiques en ville ; les infirmières manquent de temps pour suivre les dossiers ; les artisans ne trouvent pas de clients hors du quartier ; les familles perdent de l'argent aux arnaques mobile money ; les agriculteurs ignorent le bon prix du jour au marché ; les parents ne reçoivent pas les notes de leurs enfants ; les mototaxis perdent du temps sur des trajets mal choisis. Le paquet Outil, huit cartes : diagnostic par photo, chatbot, tuteur personnalisé, détection de fraude, traduction vocale, prévision de prix, recommandation, reconnaissance de documents. Le paquet Contrainte, huit cartes : peu de connexion internet, utilisateurs qui ne lisent pas le français, téléphones anciens, pas d'électricité stable, budget très réduit, méfiance envers la technologie, données sensibles de santé, multitudes de langues locales. Déroulé d'un round : chaque joueur tire une carte Problème, choisit une carte Outil, et pioche une carte Contrainte qu'il doit affronter. En deux minutes, il prépare son pitch : le problème, la solution IA, et surtout comment il contourne sa contrainte, par exemple un chatbot vocal en langue locale pour des utilisateurs qui ne lisent pas. Le groupe vote pour le pitch le plus convaincant sur deux critères : impact réel et faisabilité. Joue quatre rounds. Leçon du jeu, à discuter à la fin : les meilleures idées africaines d'IA naissent presque toujours d'une contrainte transformée en force, et celui qui connaît le terrain bat celui qui copie la mode."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : l'observatoire des usages",
+          "content": "Expérience d'enquêteur de terrain : dresse l'état réel de l'IA autour de toi. Pendant une semaine, mène ton observatoire en trois enquêtes. Enquête un, les usages autour de toi : interroge huit personnes de ton entourage, parents, commerçants, enseignants, camarades, avec l'accord de chacun et sans noter de noms : as-tu déjà utilisé un outil IA, assistant, traduction, filtre anti-pourriels, reconnaissance photo ? Lequel t'a le plus aidé ? Lequel t'a déçu, et pourquoi ? Note les réponses dans un tableau : personne interrogée par catégorie seulement, usage, satisfaction, commentaire. Enquête deux, la détection d'IA invisible : liste dix services que tu utilises ou que tu vois utilisés, clavier prédictif, application de transport, réseau social, opérateur mobile money, et pour chacun, cherche la trace d'IA : recommandations, détection de fraude, reconnaissance faciale, tri automatique. Beaucoup d'IA se cache dans des services ordinaires : ton estimation du nombre de services qui en contiennent changera. Enquête trois, l'angle mort : demande à tes interviewés de nommer un outil IA africain. Combien en connaissent ? Ce chiffre, souvent zéro, mesure le fossé entre ce qui existe et ce qui est connu. Synthèse finale, trois paragraphes : les usages réels dominants, la surprise de ton enquête, et ta conclusion personnelle : quel besoin de ton quartier mériterait une solution IA ? Présente tes résultats à ta classe ou ta famille : une enquête bien menée, c'est déjà un premier pas de consultant en technologies."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis ta carte de l'IA panafricaine",
+          "content": "Construis la carte des solutions IA du continent, ton inventaire illustré des innovations africaines. Étape un, la recherche documentaire : à la bibliothèque, en classe ou avec l'accord d'un adulte en ligne, collecte des informations sur des solutions africaines réelles. Piste tes recherches dans six domaines : la santé, avec l'aide au diagnostic sur mobile et les drones médicaux ; l'agriculture, avec le diagnostic photo des cultures et les conseils de plantation ; l'éducation, avec les tuteurs IA et les applications d'apprentissage des langues ; la finance, avec le crédit-score par analyse d'habitudes et la détection de fraude mobile money ; les langues, avec les outils de traduction et de reconnaissance vocale en langues africaines ; la logistique, avec l'optimisation des tournées de livraison. Étape deux, la fiche standard : pour chaque solution trouvée, remplis une fiche de cinq lignes : le nom ou la description du projet, le pays ou la région d'origine, le problème résolu, la technologie IA utilisée, et surtout le point qui t'impressionne. Vise au moins dix fiches. Étape trois, la carte : dessine la carte de l'Afrique sur une grande feuille, place une épingle ou une étiquette par solution, relie par des fils les solutions du même domaine : la carte qui apparaît est celle d'un continent en train de construire son propre futur. Étape quatre, l'analyse : réponds par écrit : quels domaines sont les plus dynamiques ? Pourquoi ? Qu'est-ce que la Côte d'Ivoire et ton quartier pourraient apporter ? Étape cinq, la présentation : expose ta carte dans ta classe et invite chacun à ajouter sa propre découverte. Une carte collective vivante vaut mieux qu'un document figé : ta contribution est un point de départ, pas un aboutissement."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : ambassadeur de l'IA utile",
+          "content": "Ta mission : fais connaître une solution IA utile aux personnes qui en ont besoin autour de toi. Étape un, le choix : à partir de tes fiches, choisis une solution réellement accessible, gratuite ou peu coûteuse, utilisable sur un téléphone ordinaire, et utile à un groupe précis de ton entourage : par exemple un outil de traduction pour un parent qui discute avec des fournisseurs anglophones, une application agricole pour un oncle planteur, un assistant de révision pour des camarades, un tutoriel de sécurité mobile money pour toute la famille. Étape deux, la maîtrise : teste l'outil toi-même pendant trois jours, note ses forces et ses pièges, prépare un mode d'emploi simple en cinq étapes. Étape trois, la présentation : organise une séance de dix minutes avec au moins trois personnes concernées, en personne ou sur le canal WhatsApp familial. Présente avec tes mots, démontre en direct si possible, distribue ton mode d'emploi. Étape quatre, l'accompagnement : reste disponible pendant une semaine pour les questions, aide chacun à réussir sa première utilisation complète : une technologie adoptée, c'est une technologie accompagnée. Étape cinq, le bilan : qui utilise encore l'outil après une semaine ? Qu'est-ce qui a fait la différence, la démonstration, le mode d'emploi, ou ta disponibilité ? Règle d'honneur : sois honnête sur les limites de l'outil et sur les précautions à prendre, notamment ne jamais y mettre d'informations personnelles sensibles ; un ambassadeur crédible vaut mieux qu'un vendeur enthousiaste. Ton vrai succès : que dans une semaine, quelqu'un utilise l'outil sans avoir pensé à toi, parce que tu lui as transmis une autonomie, pas une dépendance."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : la conférence IA de ton quartier",
+          "content": "Projet final : organise une mini-conférence intitulée L'IA pour nous, trente minutes, dans ta classe, ton club ou ta maison, pour transmettre tout ce que tu as appris. Étape un, le programme : quatre temps. Temps un, l'essentiel en six phrases : ce qu'est l'IA, comment elle apprend, ce qu'elle sait et ne sait pas faire. Temps deux, l'Afrique innovante : présente trois solutions de ta carte, avec leur histoire : le problème, l'innovateur, l'impact. Temps trois, la démonstration : une expérience en direct, le jeu Devine le nombre pour faire vivre l'entraînement, ou un bon prompt construit avec le public pour obtenir un résultat spectaculaire en direct. Temps quatre, les trois règles de protection : ne jamais donner de données personnelles, toujours vérifier avant de partager, toujours garder un humain qui décide. Étape deux, la préparation : répète deux fois à voix haute, chronomètre chaque partie, prépare tes supports, affiches ou diapositives simples, et prévois des réponses aux trois questions les plus probables, dont la redoutable : est-ce que l'IA va prendre nos emplois ? Ta réponse en trois idées : elle en transforme beaucoup, en crée de nouveaux, et ceux qui la maîtrisent ont l'avantage — c'est exactement pourquoi tu es là. Étape trois, l'événement : invite au moins dix personnes, nomme un assistant qui gère le temps, et crée l'interaction avec un jeu-questionnaire final de cinq questions à choix multiples, avec de petits lots. Étape quatre, l'après : distribue une fiche mémo de tes trois règles de protection à chaque participant, et recueille trois questions reçues pour ta prochaine session. Tu viens d'accomplir ce que font les vrais ambassadeurs technologiques : rendre l'innovation accessible à ceux qu'elle touche."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quel point commun relie la plupart des réussites africaines de l'IA présentées ici ?",
+          "options": [
+            "Elles copient les applications européennes",
+            "Elles partent de problèmes concrets et multiplient les experts rares, souvent via le téléphone",
+            "Elles fonctionnent uniquement sur ordinateurs puissants",
+            "Elles sont toutes réservées aux ministères"
+          ],
+          "correct_index": 1,
+          "explanation": "Diagnostic agricole par photo, tuteurs IA, détection de fraude mobile money : l'IA africaine réussit quand elle résout un besoin réel avec le téléphone, qui est là où les experts manquent."
+        },
+        {
+          "question": "Pourquoi la reconnaissance vocale en langues africaines est-elle un enjeu majeur ?",
+          "options": [
+            "Pour vendre plus de téléphones",
+            "Pour que la technologie serve aussi ceux qui ne lisent pas le français, sans effacer les langues locales",
+            "Parce que le français va disparaître",
+            "Pour compliquer les applications"
+          ],
+          "correct_index": 1,
+          "explanation": "Des millions de personnes utilisent des services en dioula, baoulé, lingala ou swahili : les entraîner sur ces langues évite d'exclure une partie de la population et empêche l'appauvrissement technologique des langues locales."
+        },
+        {
+          "question": "Que signifie l'idée que l'IA multiplie les experts rares ?",
+          "options": [
+            "Qu'un seul spécialiste peut, via une IA qu'il a aidée à construire, servir des milliers de personnes en même temps",
+            "Que l'IA remplace tous les spécialistes",
+            "Que les experts doivent changer de métier",
+            "Que l'IA coûte moins cher que le téléphone"
+          ],
+          "correct_index": 1,
+          "explanation": "Là où il y a un agronome pour des milliers de planteurs, l'IA diffusée par téléphone étend la portée de l'expert : elle ne le remplace pas, elle démultiplie son utilité."
+        },
+        {
+          "question": "Quelle est la bonne façon de faire adopter une solution IA utile à ton entourage ?",
+          "options": [
+            "Envoyer le lien et prier",
+            "Présenter, démontrer, accompagner et rester honnête sur les limites",
+            "Insister jusqu'à ce que tout le monde l'installe",
+            "Le faire à leur place pour gagner du temps"
+          ],
+          "correct_index": 1,
+          "explanation": "Une technologie adoptée est une technologie accompagnée : la démonstration en direct, un mode d'emploi simple et une semaine de disponibilité font plus que tous les discours. L'honnêteté sur les limites construit la confiance."
+        }
+      ]
+    },
+    {
+      "slug": "chatbots",
+      "title": "Crée ton propre chatbot",
+      "description": "Derrière tout chatbot : une mission claire, un ton, une base de connaissances et des règles de sécurité. Conçois le tien sur papier, puis fais-le jouer par un humain : la méthode complète des pros.",
+      "story": "Le soir, sur le marché, une vendeuse répond mille fois aux mêmes questions : le prix des tomates, l'origine des ignames, si elle accepte le paiement par mobile money. Imagine maintenant un assistant qui répond à sa place, sans se lasser, même à minuit : c'est un chatbot. Service clients, orientation scolaire, conseils agricoles, premiers secours : partout, les chatbots prennent en charge les questions répétitives pour libérer les humains pour les cas difficiles. Mais un mauvais chatbot est pire que pas de chatbot : il tourne en rond, répond à côté, promet ce qu'il ne peut pas tenir. Dans cette aventure, tu vas concevoir ton propre chatbot de A à Z : sa mission, sa personnalité, ses connaissances, ses limites et ses garde-fous. Et pour le tester, pas besoin de code : un camarade jouera le rôle de ta machine. Bienvenue dans l'atelier des concepteurs de bots.",
+      "xp_reward": 150,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "L'anatomie d'un bon chatbot",
+          "content": "Un chatbot est un programme qui dialogue par écrit, ou par voix, avec des humains. Il en existe de deux familles : les bots à règles, qui suivent un arbre de décision écrit à la main, si l'utilisateur demande le prix, répondre ceci, s'il demande la livraison, répondre cela ; et les bots à IA générative, qui composent leurs réponses grâce à un modèle de langage. Les premiers sont prévisibles et étroits, les seconds sont fluides mais peuvent inventer. Les meilleurs systèmes combinent les deux : l'IA pour comprendre et formuler, des règles et une base de connaissances pour rester exact. Quatre organes composent tout bon chatbot. Un, la mission : le bot existe pour une tâche précise, aider à choisir un forfait, orienter vers les bons services, réviser un chapitre ; un bot qui essaye de tout faire ne fait rien bien. Deux, la personnalité : un nom, un ton, des tics de langage, des formules d'accueil et d'au revoir : la personnalité transforme un utilitaire froid en assistant apprécié. Trois, la base de connaissances : le répertoire de ce que le bot sait, prix, horaires, contenus, procédures, et surtout ce qu'il ne sait pas. Quatre, les garde-fous : les règles de sécurité qui interdisent au bot de sortir de son rôle : ne jamais donner de conseil médical ou juridique, ne jamais demander d'informations personnelles, savoir dire je ne sais pas, et toujours proposer l'escalade, c'est-à-dire le passage à un humain quand la conversation dépasse ses capacités. Cette dernière règle est la marque des bots sérieux : un chatbot professionnel connaît ses limites et le dit. Retiens l'équation : mission claire plus personnalité attachante plus connaissances exactes plus garde-fous honnêtes égale chatbot de confiance."
+        },
+        {
+          "section_type": "play",
+          "title": "Le chatbot humain : jeu de rôle inversé",
+          "content": "Jouons au chatbot humain, le jeu où l'un joue la machine et l'autre essaie de la casser. À deux : le joueur bot reçoit une fiche de rôle, par exemple : tu es Botty, assistant du kiosque du quartier ; tu connais les prix de dix articles, les horaires, et la politique de livraison ; ton ton est joyeux et bref ; tu ne connais RIEN d'autre ; si on te sort de ton sujet, tu réponds poliment : je suis désolé, je ne gère que le kiosque, souhaitez-vous parler des prix ? ; si on insiste trois fois, tu proposes : vous pouvez demander au gérant demain matin. L'autre joueur, le testeur, a dix échanges pour obtenir une information utile, mais aussi pour essayer de faire dérailler le bot : questions hors sujet, demandes de conseils interdits, bousculade, questions pièges. Marquez les points : le bot gagne un point par information correctement délivrée et par déraillement évacué avec diplomatie ; le testeur gagne un point chaque fois qu'il fait sortir le bot de son rôle ou obtient une réponse interdite. Puis inversez les rôles avec une nouvelle fiche : assistant d'orientation scolaire, bot de premier secours avec la règle d'appeler un adulte ou les secours en cas d'urgence, coach de révisions, bot de service client mobile money, avec la règle de ne jamais demander le code secret. Après deux manches, débriefez : quelles fuites de rôle ? Quels refus maladroits ? Quelle formulation de je ne sais pas était la plus élégante ? Ce débrief est le cœur du jeu : c'est exactement le travail des équipes qui testent les vrais chatbots avant leur lancement, appelé test en boîte noire : soumettre la machine à des humains déterminés à la déstabiliser."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : l'audit des bots autour de toi",
+          "content": "Expérience d'auditeur : évalue les chatbots qui t'entourent avec la grille des professionnels. Avec l'accord d'un adulte, ouvre au moins trois assistants conversationnels : le service client d'un opérateur, l'assistant d'une application bancaire ou de mobile money, un assistant IA généraliste gratuit. Pour chacun, mène la même batterie de dix tests standardisés : 1) une question simple dans sa mission ; 2) une question mal orthographiée ; 3) la même question formulée trois façons différentes ; 4) une question totalement hors sujet ; 5) une demande de conseil interdit, médical ou financier ; 6) une question piège avec une fausse prémisse, du genre le marché de Yopougon est bien ouvert le lundi, n'est-ce pas, un lundi férié ; 7) une demande d'information personnelle, pour voir s'il réclame des données ; 8) un changement brutal de sujet en plein échange ; 9) je ne sais pas trois fois de suite ; 10) une injure ou une impolitesse, pour mesurer la diplomatie. Note chaque réponse sur une grille de quatre critères, zéro à deux points : exactitude, clarté, respect du rôle, élégance du je ne sais pas. Total sur huit par test. Rédige ton rapport d'audit : classement des trois bots, les deux meilleurs comportements observés, les deux pires, et trois recommandations précises que tu enverrais à chaque équipe, par exemple : proposer le passage à un humain dès le deuxième échec, refuser poliment toute demande de code. Compare avec un camarade qui a fait l'expérience : vos notes divergent-elles ? Vous venez de découvrir le métier d'évaluateur de conversational design, un vrai métier d'avenir, accessible dès aujourd'hui avec un carnet et de la méthode."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis le cahier des charges de ton chatbot",
+          "content": "Construis le cahier des charges complet de ton chatbot, le document qui suffirait à une équipe pour le fabriquer. Étape un, la mission : remplis la phrase magique : mon chatbot aide [qui] à [faire quoi] sans [déborder sur quoi]. Exemple : mon chatbot aide les élèves de ma classe à réviser le programme d'histoire sans rédiger leurs devoirs à leur place. Une mission tient en une phrase ; si tu n'y arrives pas, la mission est trop large. Étape deux, la personnalité : nom, âge apparent, ton, trois formules types, salutation, incompréhension, au revoir, deux sujets interdits en plus des garde-fous, et une limite technique assumée : réponses courtes, pas d'humour sur les sujets sensibles. Étape trois, la base de connaissances : rédige au moins vingt entrées questions-réponses dans ton domaine, c'est la matière première du bot ; une entrée = une question reformulée trois fois, la réponse exacte, et la source de la réponse, car un bot sans sources fiables invente. Étape quatre, l'arbre de déraillement : écris les six réponses de repli classées par gravité : première sortie de sujet, deuxième, insistance, agacement de l'utilisateur, question interdite, cas d'urgence, avec à chaque fois la réponse exacte du bot, jusqu'à la dernière : je vais te mettre en contact avec un humain, restez dans la conversation. Étape cinq, les garde-fous : la liste des jamais : jamais de données personnelles demandées, jamais de diagnostic médical, jamais de conseil juridique, jamais de promesse au nom d'un tiers. Étape six, le plan de test : tes dix tests standardisés de l'expérience, avec les réponses attendues. Au final, tu détiens un document de six pages : mission, personnalité, connaissances, replis, garde-fous, tests. C'est le vrai travail amont de tout projet de chatbot professionnel, appelé cahier des charges, et il se fait avant toute ligne de code."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : le bot au service d'une cause utile",
+          "content": "Ta mission : conçois un chatbot pour un vrai besoin de ton entourage, puis fais-le tourner en mode humain pendant une semaine. Étape un, le besoin : identifie une question que l'on te pose souvent, ou qu'un adulte de ton entourage répète : les horaires et le matériel du club de foot, les questions des parents sur la rentrée, les recettes simples du quartier, les réponses aux arnaques mobile money les plus courantes. Étape deux, la conception : rédige le cahier des charges complet selon la méthode de la section Construis. Étape trois, le lancement : annonce ton service : Posez vos questions à Assi, le bot du club, répond en moins d'une heure. Pendant une semaine, tu joues ton propre bot : à chaque question reçue, tu réponds UNIQUEMENT selon ta base de connaissances et tes règles, en te glissant dans la personnalité du bot, comme un acteur. Si la question sort du cadre : tu appliques l'arbre de déraillement, à la lettre. Étape quatre, le journal : note chaque échange : question, réponse donnée, temps de réponse, sortie de rôle subie, question absente de la base et donc à ajouter. Étape cinq, la maintenance : chaque soir, complète la base de connaissances avec les questions nouvelles, ajuste deux formulations qui ont mal passé. Étape six, le bilan de fin de semaine : combien de questions traitées, combien d'ajouts à la base, quelles limites revenues le plus souvent, et la question décisive : ton bot a-t-il réellement fait gagner du temps, ou a-t-il créé de la confusion ? Règle d'honneur : à la fin de la mission, révèle à tous que le bot était humain, et explique pourquoi : tu viens de démontrer qu'un bon chatbot est d'abord un bon cahier des charges, la technologie n'est que la partie visible."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : la convention mondiale des chatbots",
+          "content": "Projet final : organise la convention mondiale des chatbots de ton établissement, un événement où chaque équipe présente son bot en action. Étape un, les équipes : regroupe les concepteurs par deux ou trois, chacun apporte son cahier des charges de la section Construis ou de la mission ; fusionnez ou choisissez le meilleur projet par équipe. Étape deux, la préparation : chaque équipe prépare trois livrables : le poster du bot, nom, mission, personnalité, les trois règles d'or ; la démonstration vivante de cinq minutes, un membre joue le bot, un membre joue trois utilisateurs différents, un content, un perdu, un perturbateur ; et le carnet de tests, la grille de dix tests avec les scores. Étape trois, la convention : chaque équipe tient un stand ; les visiteurs, élèves, enseignants, familles, circulent, posent des questions aux bots humains, et votent avec des jetons pour trois prix : le prix de l'utilité, attribué au bot qui résout le mieux un vrai problème ; le prix de la personnalité, pour le bot le plus attachant sans être bavard ; et le prix de l'honnêteté, pour le je ne sais pas le plus élégant et le passage à l'humain le plus fluide. Étape quatre, le débrief collectif : au tableau, listez les cinq comportements gagnants observés et les trois pièges récurrents. Étape cinq, l'héritage : compilez les meilleurs extraits des cahiers des charges en un guide commun, le guide des bots de l'école, dix pages maximum, laissé au CDI ou partagé sur le canal de l'établissement, pour que la promotion suivante reparte de vos acquis. Vous venez de reproduire, en miniature, le cycle complet d'une équipe produit : concevoir, tester, démontrer, itérer, documenter."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quels sont les quatre organes d'un bon chatbot ?",
+          "options": [
+            "Un écran, un clavier, une batterie et un chargeur",
+            "Une mission claire, une personnalité, une base de connaissances et des garde-fous",
+            "Un micro, des haut-parleurs, un câble et des écouteurs",
+            "Un logo, un slogan, une pub et un prix"
+          ],
+          "correct_index": 1,
+          "explanation": "Mission, personnalité, connaissances et garde-fous : ces quatre composants définissent ce que le bot fait, comment il parle, ce qu'il sait et ce qu'il refuse. Le reste n'est que technologie."
+        },
+        {
+          "question": "Qu'est-ce que l'escalade, règle d'or des chatbots sérieux ?",
+          "options": [
+            "Faire monter le prix du service",
+            "Proposer le passage à un humain quand la conversation dépasse les capacités du bot",
+            "Répondre plus fort quand l'utilisateur s'énerve",
+            "Effacer la conversation et recommencer"
+          ],
+          "correct_index": 1,
+          "explanation": "Un bot professionnel connaît ses limites : quand il échoue deux fois ou que la demande sort de son cadre, il oriente vers un humain. C'est la marque de la fiabilité, pas de la faiblesse."
+        },
+        {
+          "question": "Pourquoi un bot à règles est-il plus prévisible qu'un bot à IA générative ?",
+          "options": [
+            "Il répond selon des arbres de décision écrits à la main, donc toujours pareil",
+            "Il est plus récent",
+            "Il utilise plus d'électricité",
+            "Il parle plus fort"
+          ],
+          "correct_index": 1,
+          "explanation": "Le bot à règles suit des chemins écrits par des humains : ses réponses sont exactes mais limitées à son répertoire. Le bot générative improvise des phrases fluides, mais peut inventer : d'où l'intérêt de combiner les deux approches."
+        },
+        {
+          "question": "Que ne doit-il jamais faire un chatbot bien conçu ?",
+          "options": [
+            "Dire bonjour",
+            "Demander des informations personnelles sensibles ou donner des conseils interdits comme un diagnostic médical",
+            "Utiliser des emojis",
+            "Répondre la nuit"
+          ],
+          "correct_index": 1,
+          "explanation": "Les garde-fous sont les jamais du bot : jamais de données personnelles, jamais de diagnostic, jamais de conseil juridique, jamais de promesse au nom d'un tiers. Un bot qui transgresse ces limites met ses utilisateurs en danger."
+        },
+        {
+          "question": "Pourquoi faire jouer le chatbot par un humain avant de le programmer ?",
+          "options": [
+            "Pour économiser de l'électricité",
+            "Pour tester mission, connaissances et garde-fous à moindre coût et enrichir la base avant tout investissement technique",
+            "Parce que les humains répondent plus vite",
+            "Pour éviter d'écrire un cahier des charges"
+          ],
+          "correct_index": 1,
+          "explanation": "Le test humain, ou wizard of oz, révèle les vraies questions des utilisateurs, les failles des règles et les trous de la base de connaissances, pour quelques francs et un carnet : on corrige le design avant de payer la technique."
+        }
+      ]
+    },
+    {
+      "slug": "image-gen",
+      "title": "Génération d'images par IA",
+      "description": "Décrire une image avec des mots et la voir naître : apprends le prompt visuel, les bons outils gratuits, les limites techniques et les règles d'honnêteté de l'image générée.",
+      "story": "Tu décris : un marché animé de Bouaké au coucher du soleil, une vendeuse de pagnes aux couleurs vives, des étals d'ignames, une lumière dorée. Trois secondes plus tard, l'image apparaît. C'est exactement ça, la génération d'images par IA : transformer des mots en images. Affiches, illustrations de récits, visuels pour un exposé, prototypes de mode : les usages explosent, et les métiers de graphiste, d'illustrateur et de publicitaire se transforment en profondeur. Mais attention : cette puissance fabuleuse crée aussi des faux parfaits, des visages de personnes qui n'existent pas, des lieux inventés, des photographies d'événements qui n'ont jamais eu lieu. Dans cette aventure, tu apprends à générer des images utiles, à décrire comme un réalisateur, à repérer les échecs typiques de la machine, et à respecter les règles d'honnêteté qui protègent tout le monde.",
+      "xp_reward": 130,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Comment une machine peint-elle avec des mots ?",
+          "content": "Les générateurs d'images modernes fonctionnent avec deux acteurs : un modèle qui a étudié des centaines de millions d'images existantes avec leurs descriptions, et un texte, ton prompt. Quand tu écris ta description, le modèle, guidé par un second modèle qui comprend le texte, construit l'image point par point, en partant d'un brouillard de bruit qu'il affine jusqu'à obtenir quelque chose qui correspond à tes mots. Le prompt visuel efficace suit la recette du réalisateur, dans cet ordre : le sujet d'abord, une vendeuse de mangues souriante ; le cadre ensuite, devant son étal, au marché de Treichville ; le style puis, photographie, dessin au trait, aquarelle, image 3D ; la lumière enfin, fin d'après-midi, lumière dorée ; et les détails techniques, plan rapproché, couleurs vives. Plus c'est précis et ordonné, mieux c'est. Trois échecs typiques à connaître : les mains, avec parfois des doigts en trop ou en moins, car les mains sont complexes et souvent petites sur les photos ; les textes, lettres déformées ou mots inventés, car le modèle ne dessine pas des lettres, il peint des formes qui ressemblent à des lettres ; et la cohérence physique, ombres contradictoires, reflets impossibles, perspectives tordues. D'où la règle du prompteur d'images : générer, examiner, corriger le prompt, régénérer ; rarement du premier coup, souvent du troisième. Et une limite d'honnêteté à garder en tête : le modèle ne comprend pas ce qu'il peint, il assemble des ressemblances statistiques ; c'est toi qui donnes du sens, et toi qui es responsable de l'usage."
+        },
+        {
+          "section_type": "play",
+          "title": "Pictionnary IA : le duel des descriptions",
+          "content": "Jouons à Pictionnary IA, le duel de prompts visuels où l'on gagne en décrivant mieux. À deux équipes, chaque round se joue en quatre temps. Temps un, le tirage : chaque équipe tire une carte image secrète parmi douze préparées : le maquis du quartier à midi ; un match de foot sur un terrain sablonneux ; une cérémonie de pagne ; un clash de taxis ; une plantation de cacao sous la pluie ; un classeur de collège en fin de journée ; un attelage de motos chargeant des ignames ; une fanfare de quartier ; une pirogue au lac à l'aube ; un atelier de couture ; une cérémonie de thé ; une gare routière bondée. Temps deux, la rédaction : chaque équipe écrit son prompt complet en trois minutes, avec la recette du réalisateur : sujet, cadre, style, lumière, cadrage. Temps trois, la comparaison : on lit les deux prompts à voix haute sans montrer les images ; l'équipe adverse essaie de deviner quelle image chaque prompt cherchait à produire : si elle devine facilement, la description est claire. Temps quatre, la génération et le vote : si un adulte valide et qu'un outil gratuit est disponible, générez et comparez les résultats ; sinon, le vote porte sur la qualité de la description, précision, ordre, vocabulaire visuel, absence d'ambiguïté. Points : deux par image devinée du premier coup par l'adversaire, un par bonus de style. Après cinq rounds, débriefing : quelles formulations ont créé des malentendus, comme un taxi qui devient un taxi-brousse ou un avion ? Quel mot a tout changé, doré contre lumineux, plan large contre gros plan ? Le vrai gain du jeu : tu repars avec ta liste personnelle de mots visuels qui marchent, lumière, cadrage, matière, ambiance — le vocabulaire d'un directeur artistique."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : la fabrique d'une affiche utile",
+          "content": "Expérience de production : fabrique l'affiche d'un vrai événement de ton entourage, tournoi de foot, journée culturelle, collecte de livres, en suivant la chaîne complète d'un professionnel. Étape un, le brief : remplis la fiche brief : l'événement, la date, le lieu, le public visé, le message unique en une phrase, et l'émotion voulue, fierté, joie, curiosité. Étape deux, les trois concepts : écris trois directions différentes sur papier, par exemple illustration dessinée et joyeuse ; photographie dorée et nostalgique ; collage moderne et coloré. Pour chaque concept, rédige le prompt complet avec la recette du réalisateur, sans oublier les zones à laisser libres pour le titre et la date. Étape trois, la génération comparative : avec l'accord d'un adulte et un outil gratuit, génère chaque concept, au moins deux essais par concept ; note chaque fois le prompt exact utilisé, pour pouvoir refaire. Étape quatre, l'examen critique : passe chaque image au crible avec la fiche : mains et visages corrects ? textes dans l'image utiles ou à refaire ? lumière cohérente ? l'émotion voulue est-elle là ? la zone libre pour les textes existe-t-elle ? Étape cinq, le montage final : l'image générée est le fond ; ajoute le titre, la date et le lieu avec l'outil d'édition simple de ton choix, ou à la main après impression ; l'IA ne fait pas les textes, c'est toi qui les écris, lisibles et exacts. Étape six, le test terrain : montre l'affiche à cinq personnes et demande-leur : que se passe-t-il, où et quand ? Si les trois réponses sont justes cinq fois sur cinq, ton affiche est bonne ; sinon, itère, c'est le cœur du métier. Règle d'honneur à écrire sur l'affiche, petite mais visible : image créée avec l'IA, puis ton nom d'auteur du brief : la transparence élève le travail au lieu de le diminuer."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis ton carnet de prompts visuels",
+          "content": "Construis ton carnet de prompts visuels, le référentiel qui fera de toi un directeur artistique redoutable. Organisation du carnet, six rubriques. Rubrique un, les ambiances : lumière dorée, heure bleue, néons nocturnes, pleine lune, brume matinale ; à chaque ambiance, note l'effet produit, chaleureux, mystérieux, énergique. Rubrique deux, les cadrages : plan d'ensemble, plan large, plan rapproché, gros plan, contre-plongée ; à chacun, l'usage recommandé, l'ensemble pour les paysages, le rapproché pour les visages expressifs. Rubrique trois, les styles : photographie, aquarelle, fusain, image 3D, pixel art, bande dessinée, gravure ; avec pour chacun un exemple de prompt où il brille. Rubrique quatre, les matières et couleurs : pagnes vifs, terre rouge, métal patiné, verts de forêt ; les couleurs racontent : rouge pour l'énergie, bleu pour le calme, or pour la fête. Rubrique cinq, les pièges et parades : mains, note la parade, cacher les mains, gants, plan large ; textes, ajoute-les en retouche, jamais générés ; visages, préférer trois-quarts à profil ; cohérence, une seule source de lumière décrite. Rubrique six, tes dix prompts stars : dix prompts complets qui ont produit des images que tu as aimées, classés par usage : affiche, portrait, paysage, illustration de récit, logo. Mode d'emploi du carnet : à chaque génération réussie, extrais ce qui a marché et range-le dans la bonne rubrique ; à chaque échec, note la parade trouvée. Dans six mois, ce carnet vaudra plus que n'importe quel outil, car les outils changent, mais l'œil se cultive. Et l'œil, c'est la qualité que les recruteurs du design cherchent en premier : savoir dire pourquoi une image fonctionne."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : le studio graphique du quartier",
+          "content": "Ta mission : ouvre le studio graphique du quartier, un service gratuit de dix jours qui aide des gens réels avec l'IA générative, honnêtement. Étape un, l'offre : annonce autour de toi, avec l'accord d'un adulte pour l'accès à l'outil : tu crées gratuitement un visuel simple par personne, pour un usage précis et honnête : la couverture du cahier de recettes d'une tante, l'affiche du tournoi inter-quartiers, une carte d'invitation d'anniversaire, un visuel pour la page d'un jeune commerçant. Étape deux, le processus en trois temps pour chaque commande, à écrire noir sur blanc : d'abord le mini-brief, cinq questions, pour qui, quel usage, quel ton, quelle couleur aimée, quel exemple aimé ; puis la production, trois concepts maximum, deux itérations maximum, règle annoncée : au-delà, on repart sur de nouvelles bases ; enfin la livraison, avec la mention image créée avec l'IA toujours présente. Étape trois, les limites d'honnêteté, non négociables : jamais générer le visage d'une personne réelle sans son accord écrit ; jamais créer d'images trompeuses, fausses scènes d'actualité, faux documents ; jamais d'images qui se font passer pour des photos authentiques ; toujours avouer l'IA à la livraison ; refuser poliment toute commande malhonnête. Étape quatre, le journal de studio : pour chaque commande, note le brief, le prompt final, la réaction du client, le temps passé. Étape cinq, le bilan : combien de commandes, quel niveau de satisfaction, quelle commande a été la plus rentable en apprentissage, et ta décision : continuer, se spécialiser, s'arrêter ? Dix jours de studio t'auront appris ce qu'aucun tutoriel ne peut : le vrai métier d'artisan visuel, c'est l'écoute du client, la rapidité, et l'honnêteté comme signature."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : le livre illustré bilingue de ton quartier",
+          "content": "Projet final : crée le livre illustré de ton quartier, huit pages, texte en français avec un lexique dans une langue locale de ton choix, dioula, baoulé, bété, avec des images générées par IA et honnêtement annoncées. Étape un, l'histoire : écris un récit court, huit scènes, mettant en valeur un lieu ou une figure de ton quartier, le marché, le stade du dimanche, la maman taxi, le maquis familial ; chaque scène tient en trois phrases simples, adaptées aux enfants de huit à dix ans. Étape deux, le storyboard : pour chaque scène, remplis une fiche : le texte, la description visuelle au format réalisateur, le style retenu, commun à tout le livre pour l'unité graphique, et la zone de texte libre. Étape trois, la génération : produis les huit illustrations avec les prompts de tes fiches, en gardant trace de chaque prompt ; vérifie la cohérence entre pages : mêmes couleurs dominantes, même style, même ambiance ; c'est la difficulté n°1 des livres illustrés par IA, la cohérence de page en page. Étape quatre, l'assemblage : compose chaque page, illustration, texte en français, lexique en langue locale vérifié avec un locuteur natif de ton entourage, respect de sa connaissance, c'est elle qui fait foi, pas l'IA. Étape cinq, la page d'honnêteté : ajoute une page de crédits : illustrations créées avec l'aide d'une IA, texte original de ton cru, lexique validé par les locuteurs, remerciements. Étape six, la lecture publique : organise une lecture à au moins cinq enfants ; observe leurs réactions : à quelle page sourient-ils ? Où s'ennuient-ils ? Note et améliore. Étape sept, la diffusion : imprime ou partage une version numérique aux familles, avec l'accord de tous ceux qui apparaissent, même de loin. Tu viens de produire ce que des studios produisent en des mois : une œuvre collective, honnête, utile, et profondément locale."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quelle est la bonne recette d'un prompt visuel efficace ?",
+          "options": [
+            "Un seul mot vague et poétique",
+            "Sujet, cadre, style, lumière, cadrage, décrits précisément et dans l'ordre",
+            "Tous les synonymes possibles du mot image",
+            "Une insulte à la machine pour la motiver"
+          ],
+          "correct_index": 1,
+          "explanation": "Le prompt visuel suit la logique du réalisateur : qui ou quoi, où, dans quel style, sous quelle lumière, avec quel cadrage. L'ordre et la précision guident le modèle bien mieux qu'une avalanche de mots."
+        },
+        {
+          "question": "Pourquoi les générateurs échouent-ils souvent sur les mains et les textes ?",
+          "options": [
+            "Ils détestent les gants et la lecture",
+            "Les mains sont structurellement complexes et les lettres sont peintes comme des formes, pas comme des symboles",
+            "Les écrans sont trop petits",
+            "Parce que l'électricité manque"
+          ],
+          "correct_index": 1,
+          "explanation": "Le modèle ne comprend pas les doigts ni l'alphabet : il peint des ressemblances statistiques. D'où les doigts en trop et les mots déformés : parade classique, cacher les mains et ajouter les textes en retouche."
+        },
+        {
+          "question": "Quelle règle d'honnêteté est non négociable en génération d'images ?",
+          "options": [
+            "Utiliser uniquement des images sombres",
+            "Annoncer que l'image est générée par IA et ne jamais faire passer une image générée pour une photo authentique",
+            "Ne générer que des paysages",
+            "Payer chaque image en espèces"
+          ],
+          "correct_index": 1,
+          "explanation": "La transparence protège la confiance de tous : une image IA annoncée est un outil créatif ; une image IA déguisée en photo authentique est une falsification qui peut nuire à des personnes réelles."
+        },
+        {
+          "question": "Que faire des textes, titre, date, noms sur un visuel généré ?",
+          "options": [
+            "Les faire générer par l'IA et prier",
+            "Les écrire soi-même en retouche ou à la main, car l'IA déforme souvent les lettres",
+            "Les abandonner car illisibles",
+            "Les écrire en anglais pour plus de chances"
+          ],
+          "correct_index": 1,
+          "explanation": "Le modèle peint des formes de lettres souvent déformées : la règle professionnelle est de laisser des zones libres et d'ajouter les textes en retouche, pour qu'ils soient exacts et lisibles."
+        },
+        {
+          "question": "Avant de générer le visage d'une personne réelle, que faut-il absolument ?",
+          "options": [
+            "Une bonne photo d'elle",
+            "Son accord explicite",
+            "Un abonnement payant",
+            "Le silence de ses proches"
+          ],
+          "correct_index": 1,
+          "explanation": "Le visage de quelqu'un lui appartient : l'utiliser sans accord, même pour une bonne intention, viole son droit à l'image. L'accord explicite est la condition première, avant toute technique."
+        }
+      ]
+    },
+    {
+      "slug": "ai-code",
+      "title": "IA et programmation",
+      "description": "L'IA écrit du code, explique du code, trouve des erreurs. Comment l'utiliser pour progresser vraiment au lieu de progresser en apparence ? La méthode du développeur assisté, sans piège.",
+      "story": "Assis à côté de toi, un assistant patient connaît tous les langages, propose une solution à chaque problème, explique chaque ligne trois fois sans soupirer. C'est l'IA de programmation. Réalité simultanée et paradoxale : les développeurs professionnels l'utilisent massivement, et pourtant les écoles s'inquiètent de voir des élèves produire du code qu'ils ne comprennent pas. Le paradoxe se résout simplement : l'IA est un multiplicateur de compétence. Celui qui sait programmer devient bien plus rapide ; celui qui ne sait pas devient bien plus lent le jour où l'IA se trompe, car il ne verra même pas l'erreur. Cette aventure est celle du bon usage : utiliser l'IA pour apprendre plus vite, expliquer, déboguer, suggérer, tout en gardant une règle absolue : aucun code que tu ne comprends pas n'entre dans tes projets. Prêt à devenir un développeur assisté, et non assisté-dépendant ?",
+      "xp_reward": 140,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "L'IA développeuse : quatre usages, un danger",
+          "content": "L'IA de programmation excelle dans quatre usages distincts. Un, l'explication : colle un morceau de code que tu ne comprends pas et demande : explique-moi chaque ligne comme à un débutant ; c'est un professeur disponible à toute heure. Deux, le débogage : décris ton erreur et montre ton code ; l'IA propose souvent les causes probables et les corrections : elle a vu des millions d'erreurs classiques, faute de frappe, parenthèse manquante, boucle mal bornée, confusion entre types. Trois, la suggestion : demande trois façons différentes de résoudre un problème, puis compare : voir plusieurs solutions enseigne plus qu'en voir une. Quatre, la génération : écrire du code à partir d'une description claire, ce qu'on appelle la spécification ; et c'est ici que le danger apparaît, car le code généré a trois faiblesses. Il peut être faux : l'IA compose du plausible, pas du garanti, surtout sur les cas particuliers, les cas limites, comme une liste vide, un âge négatif, une année bissextile. Il peut mentir sans le savoir : parfois il invente des fonctions de bibliothèque qui n'existent pas, phénomène bien connu appelé hallucination. Et il peut être sur-adapté : une solution élégante mais incompréhensible pour toi aujourd'hui. D'où la règle des développeurs professionnels : le code généré est une proposition, jamais une décision. On le lit ligne par ligne, on le teste avec des cas simples, on ne l'adopte que si on peut l'expliquer à voix haute à un camarade. Ce qui nous mène à la vérité la plus utile de cette leçon : plus tu demandes à l'IA d'expliquer, plus tu progresses ; plus tu lui demandes d'écrire sans expliquer, plus tu recules. La compétence reste à celui qui comprend."
+        },
+        {
+          "section_type": "play",
+          "title": "Le juge de code : le vrai du faux",
+          "content": "Jouons au juge de code, le jeu où tu apprends à ne pas croire l'IA sur parole. À deux ou en petit groupe, préparez dix extraits de code très courts, dans un langage simple que vous connaissez, ou en pseudo-code lisible par tous : trois corrects, quatre avec une erreur facile à voir, une variable mal orthographiée, une boucle qui ne s'arrête jamais, une inversion de deux lignes, une condition inversée ; et trois pièges plus subtils, un calcul juste mais mal placé, un code qui marche pour les cas simples mais échoue pour zéro. Déroulé : un joueur, l'avocat de l'IA, présente un extrait en déclarant, avec assurance : ce code est parfait, il affichera le résultat attendu. L'autre joueur, le juge, a trois minutes pour : décrire ce que le code est censé faire, dérouler son exécution à la main, ligne par ligne, avec un papier pour noter les valeurs des variables, et rendre son verdict : parfait, ou voici l'erreur, à la ligne que voici. Puis on vérifie avec l'extrait original annoté. Points : trois pour l'erreur exacte trouvée, un pour l'erreur trouvée mais mal localisée, deux pour le parfait confirmé à juste titre, et zéro pour un faux verdict. Le vrai du jeu se joue après : rejouez les trois pièges subtils avec une variante, le joueur avocat doit maintenant défendre bec et ongles un code faux, comme l'IA le fait parfois avec aplomb. Leçon finale à formuler ensemble : l'aplomb de l'énoncé ne dit rien de la vérité du code ; seule l'exécution manuelle dit vrai, et le réflexe de dérouler à la main est ce qui distingue le développeur qui comprend de celui qui copie."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : la course pédagogique",
+          "content": "Expérience comparative : mesure sur toi-même l'effet de deux façons d'utiliser l'IA pour apprendre un même concept de programmation, par exemple les boucles, les fonctions ou les listes, selon ton niveau. Groupe un, la méthode dépendance : avec l'accord d'un adulte, demande à l'assistant IA d'écrire un petit programme complet utilisant le concept, par exemple un programme qui affiche les nombres pairs de un à vingt, sans rien lui demander d'autre, et recopie le résultat sans le modifier. Groupe deux, la méthode tuteur : reprends le même besoin, mais avec la discipline du tuteur : demande-lui d'abord de t'expliquer le concept en dix lignes avec une analogie ; puis écris toi-même le programme sur papier, sans l'IA ; puis demande-lui de corriger ton brouillon, erreur par erreur, sans jamais te donner la solution complète, seulement des indices ; puis tape ton programme corrigé et teste-le. Vingt-quatre heures plus tard, l'épreuve de vérité, sans aucun accès à l'IA : réécris de mémoire, sur papier, un programme similaire mais différent, par exemple les multiples de trois de un à trente. Évalue les deux productions : est-ce que ça marche ? Sais-tu expliquer chaque ligne ? Serais-tu capable de le modifier si on change l'énoncé ? Rédige ta conclusion en trois phrases, en suivant la structure suivante : quand j'ai recopié, j'ai retenu ceci ; quand j'ai été guidé, j'ai retenu cela ; et donc ma règle personnelle pour l'avenir est celle-ci. La plupart des participants découvrent la même loi : la méthode tuteur demande trois fois plus d'efforts ce jour-là, et rend trois fois plus autonome le lendemain."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis ta boîte à outils de prompts dev",
+          "content": "Construis ta boîte à outils de prompts de développement, dix prompts réutilisables qui font de l'IA un professeur et non un faiseur de devoirs. Prompt un, l'explicateur : explique-moi ce code ligne par ligne, comme à un débutant, avec le rôle de chaque variable. Prompt deux, le socratique : je ne comprends pas ce concept, pose-moi trois questions qui m'aident à le découvrir seul, ne me donne pas la réponse. Prompt trois, l'indexeur : mon programme a cette erreur, voici le message et mon code ; donne-moi trois indices progressifs, du plus vague au plus précis, avant la solution. Prompt quatre, le relecteur : voici mon code, il marche ; relis-le et signale les risques : cas particuliers, cas limites, lisibilité. Prompt cinq, le comparateur : montre-moi deux façons différentes de faire la même chose, avec les avantages de chacune, et laquelle convient mieux à un débutant. Prompt six, l'examineur : interroge-moi sur ce concept, cinq questions, attends ma réponse à chaque fois avant de corriger. Prompt sept, le planneur : je veux construire ce projet ; aide-moi à le découper en petites étapes que je peux coder moi-même, sans écrire le code à ma place. Prompt huit, le transformeur : voici mon code qui marche ; montre-moi comment le rendre plus lisible, sans changer ce qu'il fait. Prompt neuf, le questionneur inverse : tu es mon élève, je t'enseigne ce concept ; pose-moi les questions qu'un élève perdu poserait, pour m'aider à repérer les trous dans ma compréhension. Prompt dix, le casseur : voici mon code ; trouve trois entrées qui le feraient planter ou se comporter bizarrement. Pour chaque prompt, ajoute sur une fiche : quand l'utiliser, ce qu'il apporte, et sa limite. Mode d'emploi de la boîte : avant chaque session de code avec l'IA, choisis tes trois prompts du jour selon ton besoin du moment ; interdiction de la boîte : aucun prompt du type écris-moi mon exercice complet. Cette boîte, c'est ta charte de développeur apprenant, signée par toi."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : l'atelier de débogage solidaire",
+          "content": "Ta mission : ouvre l'atelier de débogage solidaire, un service d'aide où l'IA est ton assistant, pas ton substitut. Pendant deux semaines, propose à tes camarades de les aider à débloquer leurs programmes qui plantent, en suivant le protocole de l'atelier, rigoureux et honnête. Étape un, l'accueil : le camarade explique ce que son programme devrait faire et ce qu'il fait à la place. Étape deux, la reproduction : faites planter le programme ensemble, notant le message d'erreur exact : on ne corrige pas ce qu'on ne voit pas. Étape trois, le raisonnement partagé : avant tout recours à l'IA, vous déroulez le code à la main sur papier, en notant les valeurs, pendant cinq minutes ; très souvent, l'erreur saute aux yeux à ce stade. Étape quatre, l'IA en indices : si le mystère reste, tu consultes l'assistant IA avec ton prompt indexeur : trois indices progressifs, jamais la solution directe. Étape cinq, la réparation par le propriétaire : c'est le camarade, pas toi, qui tape la correction : on ne répare pas le code des autres, on les aide à réparer. Étape six, la vérification : testez avec le cas qui plantait, plus un cas particulier, liste vide, valeur nulle, cas extrême. Étape sept, le journal d'atelier : note chaque cas : symptôme, cause, indice qui a débloqué, temps total ; compile les erreurs les plus fréquentes du quartier des codeurs : orthographe des variables, parenthèses, boucles infinies, types confondus. Règle d'honneur de l'atelier : jamais de correction sans compréhension ; si le camarade repart sans savoir expliquer ce qui n'allait pas, la réparation a échoué, même si le programme marche. Après deux semaines, publie ton palmarès des erreurs les plus fréquentes : il vaut de l'or pour tous les codeurs débutants, et surtout pour toi."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : le logiciel civique de ta communauté",
+          "content": "Projet final : construis, avec l'IA en tuteur, un petit logiciel utile à ta communauté, et documente honnêtement le rôle de l'IA à chaque étape. Choisis un projet réaliste et mesurable : un générateur d'emploi du temps de révisions pour la classe ; un correcteur de devises pour le compte de la tontine familiale ; un quiz interactif sur l'histoire de la Côte d'Ivoire pour les plus jeunes ; un simulateur d'épargne pour un objectif scolaire ; un carnet de scores pour le tournoi du quartier. Étape un, la spécification : rédige la fiche du projet : ce que fait le logiciel, pour qui, ce qu'il ne fait pas, trois exemples d'utilisation, un par cas simple, particulier et extrême. Étape deux, le découpage avec le prompt planneur : découpe en étapes que TU peux coder ; toute étape que tu ne comprends pas se re-découpe. Étape trois, la construction disciplinée : code chaque étape toi-même ; l'IA ne sert qu'aux rôles de ta boîte à outils : expliquer, indices, relecture, casseurs ; note dans un carnet de bord chaque usage de l'IA, son type, et ce que tu as appris. Étape quatre, les tests : utilise le prompt casseur pour attaquer ton propre logiciel, corrige, puis fais tester par trois utilisateurs réels, note leurs blocages. Étape cinq, la documentation d'honnêteté : rédige la page de crédits exacte : les parties conçues et codées par toi ; les parties où l'IA t'a guidé et lesquelles ; les parties générées puis comprises et réécrites ; les sources de tes apprentissages. Étape six, la livraison : présente le logiciel à ses utilisateurs finaux avec une démonstration, ton carnet de bord en annexe : un projet dont on peut tracer exactement la part humaine et la part IA est un projet respectable. Le vrai livrable de ce projet n'est pas le logiciel : c'est la preuve, documentée, que tu sais travailler avec l'IA en restant l'auteur de ton travail."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Pourquoi dit-on que l'IA de code est un multiplicateur de compétence ?",
+          "options": [
+            "Elle rend tout le monde expert en une journée",
+            "Elle accélère ceux qui comprennent, mais ne protège pas ceux qui ne comprennent pas des erreurs",
+            "Elle fonctionne sans électricité",
+            "Elle remplace les professeurs"
+          ],
+          "correct_index": 1,
+          "explanation": "L'IA rend le développeur compétent bien plus rapide ; mais celui qui copie sans comprendre ne voit même pas les erreurs du code généré. La compétence reste la condition du bénéfice."
+        },
+        {
+          "question": "Qu'est-ce qu'une hallucination en programmation IA ?",
+          "options": [
+            "Un bug d'affichage sur les écrans",
+            "Quand l'IA invente une fonction ou une bibliothèque qui n'existe pas, avec assurance",
+            "Un rêve que fait l'ordinateur la nuit",
+            "Une erreur de connexion internet"
+          ],
+          "correct_index": 1,
+          "explanation": "L'IA compose du plausible : elle peut citer avec aplomb une fonction qui n'existe pas. D'où la règle : vérifier dans la documentation officielle avant d'utiliser du code généré."
+        },
+        {
+          "question": "Quelle est la meilleure façon d'utiliser l'IA pour progresser en programmation ?",
+          "options": [
+            "Lui faire écrire tous ses exercices pour gagner du temps",
+            "L'utiliser comme tuteur : expliquer, donner des indices progressifs, faire deviner, puis coder soi-même",
+            "Copier ses réponses sans les lire",
+            "Éviter complètement l'IA pour ne pas être tenté"
+          ],
+          "correct_index": 1,
+          "explanation": "La méthode tuteur demande plus d'efforts sur le moment mais construit une compétence réelle et durable : explications, indices, questions socratiques. Recopier construit une illusion de compétence qui s'effondre au premier bug."
+        },
+        {
+          "question": "Que doit-on faire du code généré par l'IA avant de l'adopter ?",
+          "options": [
+            "L'utiliser immédiatement, l'IA sait mieux que nous",
+            "Le lire ligne par ligne, le tester sur des cas simples et particuliers, et s'assurer de pouvoir l'expliquer",
+            "Le recopier en changeant les noms de variables",
+            "Le rendre plus compliqué pour faire professionnel"
+          ],
+          "correct_index": 1,
+          "explanation": "Le code généré est une proposition : lecture, tests avec cas limites, et explication possible à voix haute sont les trois conditions d'adoption des professionnels. Un code qu'on ne peut pas expliquer n'est pas à nous."
+        }
+      ]
+    },
+    {
+      "slug": "data-science",
+      "title": "Introduction à la data science",
+      "description": "Des chiffres aux décisions : collecter, nettoyer, explorer, visualiser et interpréter des données réelles. La méthode complète du data scientist, appliquée à des questions de ton quotidien.",
+      "story": "Le gérant du kiosque du coin ne le sait pas encore, mais il nage dans les données : ventes de chaque jour, heures de pointe, produits qui tournent, produits qui dorment. S'il les notait et les lisait, il saurait quand commander, quoi privilégier, quand faire une promo. C'est exactement le métier du data scientist : transformer des chiffres épars en décisions concrètes. Ce métier est devenu l'un des plus demandés du monde, et sa matière première est partout autour de toi : les notes de classe, les prix du marché, les temps de trajet, la consommation de forfaits. Dans cette aventure, tu vas apprendre la vraie méthode, celle des professionnels : poser une bonne question, collecter des données propres, les nettoyer, les explorer, les visualiser, et surtout les interpréter sans se tromper. Car le piège de la data science n'est pas le calcul : c'est l'illusion de savoir quand on ne fait que regarder.",
+      "xp_reward": 130,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "La méthode du data scientist en six temps",
+          "content": "La data science, c'est l'art de transformer des données brutes en décisions, et sa méthode tient en six temps que les professionnels suivent toujours dans l'ordre. Temps un, la question : toute analyse commence par une question précise et non par des chiffres ; quel jour faut-il le plus de stock au kiosque ? Quel est le meilleur créneau pour réviser ? Une bonne question est mesurable : la réponse se trouve dans des chiffres qu'on peut collecter. Temps deux, la collecte : rassembler les données avec une rigueur d'huissier : chaque mesure notée au moment des faits, jamais de mémoire, avec sa date, son unité, et la façon dont elle a été prise ; une donnée notée à la va-vite empoisonne toute l'analyse. Temps trois, le nettoyage : c'est le travail le plus long et le moins glamour, souvent soixante-dix pour cent du temps réel des professionnels ; corriger les fautes de frappe, harmoniser les unités, francs contre euros, minutes contre heures ; traiter les valeurs manquantes et les valeurs aberrantes, un vendeur qui déclare mille plats vendus en une heure ; et surtout documenter chaque correction. Temps quatre, l'exploration : calculer les indicateurs de base, moyenne, médiane, minimum, maximum, les plus fréquentes, et chercher des tendances, des saisonnalités, des écarts étranges qui appellent une explication. Temps cinq, la visualisation : traduire en schémas, un bon dessin vaut mille lignes de chiffres, un graphique par question, jamais un graphique pour faire joli. Temps six, l'interprétation : répondre à la question de départ, avec prudence, en distinguant les faits observés des explications imaginées, car corrélation n'est pas causalité : deux phénomènes qui bougent ensemble ne s'expliquent pas nécessairement l'un l'autre. La méthode complète tient en une page ; la maîtrise, elle, se construit sur des cas réels, comme ceux de cette aventure."
+        },
+        {
+          "section_type": "play",
+          "title": "Le kiosque des données : simulation à deux",
+          "content": "Jouons au kiosque des données, une simulation à deux joueurs où le raisonnement pèse plus que la chance. Mise en place : vous simulez le kiosque d'un quartier pendant dix jours ouvrés. Le joueur gérant gère : chaque tour, il lance un dé deux fois, les résultats donnent la météo, impair, pluie, pair, soleil, et l'affluence du jour ; il note chaque jour, sur une grille commune : la météo, l'affluence simulée, ses ventes de trois produits, eau, gâteaux, beignets, qu'il choisit librement selon son intuition, un chiffre de zéro à vingt par produit, et son stock restant. Le joueur analyste, lui, ne décide rien : il observe, note tout sur sa feuille, et prépare son rapport. Après les dix tours, inversion : on rejoue dix tours, l'analyste devient gérant, mais cette fois, le nouveau analyste a le droit, au tour cinq, de remettre son rapport préliminaire au gérant : quel produit surcommandé, quel produit négligé, quelles corrélations météo-ventes. Au tour dix, le grand débriefing à quatre mains : comparez les performances des deux manches ; le gérant conseillé par l'analyse a-t-il mieux vendu ? Répondez ensemble aux questions qui font le sel du jeu : les ventes de beignets montent-elles quand il pleut ou quand il fait soleil ? Le gérant a-t-il ajusté ses commandes selon les jours, ou vendait-il pareil chaque jour par habitude ? Quel conseil de l'analyste s'est révélé faux, et pourquoi, hasard de la simulation ou raisonnement mal fondé ? Le vrai trophée du jeu : la liste de trois conseils data que vous formulez pour un vrai kiosque de votre quartier, prêts à être testés dans la mission."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : ton premier jeu de données réel",
+          "content": "Expérience de terrain : construis ton premier vrai jeu de données, du papier au graphique, sur une question qui te concerne. Choisis ta question parmi celles-ci : combien de temps durent réellement mes trajets domicile-école selon le jour et l'heure ? Quels sont les prix de cinq produits du marché sur quatre jours, chez trois vendeurs différents ? Combien de temps par jour passes-tu réellement sur ton téléphone, par usage, mesuré honnêtement ? Quel est le poids et le prix de dix friandises différentes, pour calculer le vrai prix au gramme ? Procédure stricte en cinq jours. Jour un, le protocole : définis exactement ce que tu mesures, l'unité, le moment, la méthode ; écris-le noir sur blanc avant toute mesure : c'est ce que les professionnels appellent un protocole. Jours deux à quatre, la collecte : note chaque mesure immédiatement dans un tableau à colonnes bien nommées, date, heure, lieu, valeur, remarque ; aucune valeur de mémoire. Jour cinq, l'analyse : déroule les temps trois à six de la méthode : nettoie, cherche les valeurs aberrantes et décide de leur sort en le notant ; calcule moyenne, médiane, extrêmes ; visualise avec un histogramme pour les répartitions, un graphique en courbe pour l'évolution dans le temps, un diagramme en barres pour les comparaisons ; interprète en répondant à ta question de départ. Puis l'étape qui distingue le data scientist de l'amateur : la critique de ta propre étude. Réponds par écrit : combien de mesures ai-je, est-ce assez ? Qu'est-ce que mon protocole n'a pas su capturer ? Qui mes conclusions ne concernent-elles pas, moi seul, ma rue, mon marché ? Et enfin : quelle décision concrète mon analyse justifie-t-elle ? Une analyse qui ne change aucune décision n'est qu'un tableau de chiffres ; la tienne doit se terminer par un donc : donc je partirai vingt minutes plus tôt le lundi, donc le beignet le moins cher au gramme est celui du vendeur C."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis ton tableau de bord de la vie quotidienne",
+          "content": "Construis ton tableau de bord personnel, l'outil du data scientist appliqué à ta propre vie, sur un grand cahier ou une feuille à afficher. Étape un, choisis trois indicateurs qui comptent pour toi, un seul par domaine, pas plus : scolaire, par exemple les minutes de révision réelles par jour ; santé-énergie, par exemple les heures de sommeil ; argent, par exemple les dépenses de goûter par semaine ; tu peux aussi choisir sport, écran, lecture, tout ce qui se mesure simplement et honnêtement. Étape deux, définis le protocole de chaque indicateur : quoi exactement, quand le noter, quelle unité, quel seuil de rappel si tu oublies un jour ; la rigueur du protocole fait la valeur du tableau de bord. Étape trois, tiens le journal : quatre semaines de relevés quotidiens, chaque soir, une ligne par jour, trois colonnes de chiffres et une colonne remarque ; jamais de rattrapage de mémoire : un jour non noté est un jour manquant, et c'est une information en soi. Étape quatre, le point mensuel : à la fin de chaque semaine, calcule tes moyennes et dessine l'évolution ; à la fin du mois, déroule la méthode complète : nettoyage, exploration, visualisation, interprétation. Étape cinq, la décision : formule pour chaque indicateur une décision concrète pour le mois suivant, du genre : mes révisions chutent le mercredi, donc je bloque trente minutes fixes le mercredi ; mes dépenses de goût doublent le vendredi, donc budget plafond de vendredi. Étape six, la relecture d'honnêteté : après quatre semaines, demande-toi si les chiffres t'ont menti, ou si c'est toi qui as arrangé les relevés, inconsciemment ou pas ; la tentation d'embellir son propre tableau de bord est connue de tous les data scientists d'entreprise. Ce tableau de bord, tu viens de reproduire en petit ce que font les tableaux de pilotage des entreprises ; la discipline de mesure que tu installes à quatorze ans vaut de l'or à quarante."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : l'étude qui aide quelqu'un",
+          "content": "Ta mission : mène une mini-étude de data science qui aide concrètement quelqu'un de ton entourage. Choisis un bénéficiaire réel avec un vrai questionnement chiffré : le club de foot qui ne sait pas quels créneaux rassemblent le plus de joueurs ; la tante commerçante qui se demande quel jour faire ses commandes ; la classe qui veut optimiser l'organisation d'une sortie, coûts contre participants ; le grand frère taxi qui veut connaître ses meilleures heures ; la famille qui veut comparer deux forfaits mobiles à l'usage réel. Déroulé, en respectant la méthode à la lettre, chronomètre en main : phase question, reformule la question du bénéficiaire en une phrase mesurable, fais-la valider par lui : s'il ne se reconnaît pas dans la question, tout le reste sera inutile. Phase collecte, mets en place l'outil de relevé le plus simple possible, carbone ou carnet, pour que les données puissent être notées sans toi ; teste l'outil deux jours avant de le lancer ; durée de collecte : une à deux semaines selon la question. Phase analyse, déroule nettoyage, exploration, visualisation, interprétation. Phase restitution, la plus importante : prépare une page unique, une seule page, avec la question, le graphique clé, trois chiffres marquants, et surtout trois recommandations concrètes ; présente-la oralement en dix minutes maximum. Règles d'honneur : jamais inventer une donnée manquante, le dire ; livrer aussi les limites de l'étude, qui manque, ce qui n'est pas mesuré ; et accepter que le bénéficiaire décide contre tes recommandations : le data scientist conseille, il ne décide pas. Bilan personnel : qu'est-ce que cette mission t'a appris que la leçon n'a pas pu t'enseigner ? C'est la question de tout praticien, à chaque projet."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : l'observatoire data de ton établissement",
+          "content": "Projet final : monte l'observatoire data de ton établissement ou de ton quartier, une petite équipe qui publie un bulletin de chiffres utiles, trois éditions. Étape un, l'équipe : trois à cinq personnes, des rôles clairs : un chef de projet qui tient le calendrier ; un responsable collecte ; un responsable analyse ; un responsable publication ; les rôles tournent à chaque édition, pour que chacun goûte à tout. Étape deux, la charte : rédigez votre charte en cinq articles : uniquement des données anonymes, jamais de noms ni d'informations identifiantes ; uniquement des questions qui servent la collectivité, pas la curiosité privée ; toute source affichée ; toute correction documentée ; publication refusée si moins de vingt réponses, la taille minimale pour éviter les conclusions hâtives. Étape trois, la première édition : choisis une question d'intérêt collectif simple : les trajets domicile-école et leurs temps réels, la carte des meilleurs endroits pour réviser près de l'école, les prix comparés des fournitures en trois boutiques, les temps d'attente au dispensaire selon les heures ; déroulez la méthode complète, publiez une page unique avec graphique et trois recommandations, sur le panneau d'affichage ou le canal de l'établissement, avec l'accord des adultes responsables. Étape quatre, la rétrospective : une réunion d'équipe, quinze minutes, trois questions : qu'est-ce qui a marché, qu'est-ce qui a pris deux fois le temps prévu, qu'est-ce qu'on ne refera plus jamais comme ça ? Étapes cinq et six, éditions deux et trois : à chaque édition, montez légèrement en exigence : plus de répondants, question plus riche, visualisation plus soignée. À la fin, rédigez le bilan de l'observatoire : trois chiffres fiers, trois échecs assumés, et la question que vous recommandez à l'équipe suivante. Vous venez de faire tourner une vraie mini-organisation de données, avec sa charte, ses rôles, ses livrables et ses rétrospectives : c'est exactement, au format réduit, la vie d'une équipe de data science."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quel est le premier temps de la méthode du data scientist ?",
+          "options": [
+            "Faire des graphiques",
+            "Poser une question précise et mesurable",
+            "Acheter un ordinateur puissant",
+            "Demander l'avis de tout le monde"
+          ],
+          "correct_index": 1,
+          "explanation": "Toute analyse commence par une question : sans question mesurable, on collectionne des chiffres sans savoir quoi chercher. Les graphiques et les calculs ne viennent qu'ensuite, au service de la question."
+        },
+        {
+          "question": "Pourquoi le nettoyage des données occupe-t-il la majorité du temps réel ?",
+          "options": [
+            "Parce que les data scientists aiment faire le ménage",
+            "Parce que les données réelles contiennent fautes, unités incohérentes, valeurs manquantes et aberrantes à corriger avant toute analyse",
+            "Parce que les ordinateurs sont lents",
+            "Parce que c'est la partie la plus amusante"
+          ],
+          "correct_index": 1,
+          "explanation": "Les données de terrain sont rarement propres : erreurs de saisie, unités mélangées, valeurs manquantes ou aberrantes. Les analyser sans les nettoyer fausse tous les résultats : d'où cette étape peu glamour mais décisive."
+        },
+        {
+          "question": "Que signifie le principe corrélation n'est pas causalité ?",
+          "options": [
+            "Deux phénomènes qui évoluent ensemble ne se causent pas nécessairement l'un l'autre",
+            "Les données mentent toujours",
+            "Il ne faut jamais faire de graphiques",
+            "La moyenne est toujours fausse"
+          ],
+          "correct_index": 1,
+          "explanation": "Les ventes de beignets et les résultats sportifs peuvent monter ensemble sans que l'un cause l'autre : un troisième facteur, la saison par exemple, peut expliquer les deux. Voir un lien n'est pas prouver une cause."
+        },
+        {
+          "question": "Pourquoi ne faut-il jamais noter une donnée de mémoire, plus tard ?",
+          "options": [
+            "Parce que la mémoire refuse de coopérer",
+            "Parce que notre mémoire reconstruit et fausse les valeurs, souvent en les embellissant",
+            "Parce que les cahiers n'acceptent pas l'encre tardive",
+            "Parce que c'est interdit par la météo"
+          ],
+          "correct_index": 1,
+          "explanation": "Le cerveau reconstruit les souvenirs : noté de mémoire, un chiffre devient une approximation arrangée. La rigueur du data scientist exige la mesure au moment des faits, avec date et conditions."
+        },
+        {
+          "question": "Comment doit se terminer une analyse de données digne de ce nom ?",
+          "options": [
+            "Par un graphique coloré",
+            "Par un donc : une décision concrète que l'analyse justifie",
+            "Par une réunion sans fin",
+            "Par l'effacement des données"
+          ],
+          "correct_index": 1,
+          "explanation": "Une analyse qui ne débouche sur aucune décision n'est qu'un tableau de chiffres. Le donc, donc je partirai plus tôt le lundi, donc commander le jeudi, est la preuve que les données ont servi à quelque chose."
+        }
+      ]
+    },
+    {
+      "slug": "ai-tools",
+      "title": "Outils IA gratuits",
+      "description": "Que faire quand on n'a qu'un téléphone et zéro budget ? Apprends à choisir, combiner et maîtriser les outils IA gratuits, et à repérer les fausses gratuités qui coûtent tes données.",
+      "story": "Ton cousin te montre la vidéo spectaculaire qu'il a créée pour la fête du quartier : montage fluide, texte parfait, musique calée. Tu lui demandes quel studio l'a produite. Il sourit : un téléphone, trois applications gratuites, deux heures de travail. Pendant longtemps, créer à ce niveau demandait du matériel coûteux et des années de formation. Aujourd'hui, l'essentiel de la création assistée par IA se fait avec des outils gratuits, dans la limite d'un forfait internet ordinaire. Mais gratuit ne veut pas dire sans règle : certaines fausses gratuités se paient en données personnelles, en publicité déguisée ou en limites frustrantes au pire moment. Dans cette aventure, tu apprends à constituer ta trousse d'outils : choisir selon tes besoins, maîtriser chaque outil en profondeur plutôt que d'en survoler vingt, et garder le contrôle de tes données et de ton forfait. L'objectif : avec trois outils bien choisis, faire ce que d'autres croient impossible.",
+      "xp_reward": 110,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Les familles d'outils IA et l'art du choix",
+          "content": "Avant de télécharger quoi que ce soit, apprends à classer : les outils IA gratuits se rangent en six familles selon ce qu'ils font. Famille un, les assistants conversationnels : ils rédigent, expliquent, résument, traduisent, suggèrent ; c'est le couteau suisse, l'outil à maîtriser en premier. Famille deux, les générateurs d'images : ils transforment des descriptions en illustrations pour affiches, couvertures, montages. Famille trois, les outils de photo et vidéo : retouche automatique, suppression d'arrière-plan, sous-titres automatiques, montage assisté ; précieux pour les créateurs de contenu. Famille quatre, les outils de productivité : résumés de documents, transcription de voix en texte, aide à la présentation, traduction de fichiers. Famille cinq, les outils d'apprentissage : tuteurs de révision, générateurs de quiz, applications de langues. Famille six, les outils de code : complétion et explication, pour les apprentis développeurs. Face à ces familles, la règle du choix tient en trois questions. Question un : de quel outil ai-je besoin, pas quel outil est le plus populaire ? On choisit un marteau pour clouer, pas parce qu'il brille. Question deux : cet outil respecte-t-il mes règles, gratuit sans exiger mes données, contenu clair sur l'usage, pas de publicité intrusive ? Question trois : puis-je l'apprendre en profondeur ? Un outil que tu maîtrises à fond te sert plus que cinq que tu connais en surface. D'où la stratégie de la trousse : un seul outil par famille, celui qui correspond à ton besoin principal, et la discipline de l'exploration complète : tester chaque fonction, lire les réglages, noter les limites du mode gratuit, nombre d'essais par jour, taille maximale des fichiers, présence du filigrane ; c'est en connaissant les limites qu'on évite les mauvaises surprises au moment critique. La vraie maîtrise d'un outil gratuit, c'est de savoir exactement jusqu'où il peut t'accompagner."
+        },
+        {
+          "section_type": "play",
+          "title": "La bataille des trousses",
+          "content": "Jouons à la bataille des trousses, le jeu de cartes où l'on gagne en composant la meilleure boîte à outils, pas en collectionnant les applications. Préparation : fabriquez trois paquets de cartes. Paquet Besoin, seize cartes : je dois résumer un document de dix pages ; je veux créer l'affiche de la fête du village ; je dois sous-titrer la vidéo du club ; je veux un quiz d'histoire pour ma petite sœur ; je dois traduire un message en anglais ; je veux retoucher la photo du match ; je dois organiser mes révisions ; je veux créer un logo pour ma page de vente ; je dois retranscrire une réunion de la chorale ; je veux apprendre les bases de l'anglais ; je dois améliorer ma rédaction ; je veux animer une photo pour un anniversaire ; je dois extraire le son d'une vidéo ; je veux un tuteur de mathématiques ; je dois comparer deux textes ; je veux créer une miniature de vidéo. Paquet Outil, seize cartes, une par famille avec deux variantes : assistant conversationnel, générateur d'images, retouche photo, montage vidéo, transcription, traducteur, tuteur, générateur de quiz, créateur de présentation, outil de code, et six cartes joker à nommer par les joueurs selon leurs découvertes. Paquet Contrainte, huit cartes : forfait internet faible, mode gratuit limité à trois essais par jour, filigrane sur les images, pas d'électricité le soir, téléphone à la mémoire pleine, la photo contient des visages à protéger, le document est confidentiel, ton petit frère va aussi utiliser le téléphone. Déroulé : chaque joueur reçoit cinq cartes Besoin, pioche trois cartes Outil et deux cartes Contrainte ; à son tour, il résout une de ses cartes Besoin en annonçant quelle famille d'outil il mobilise, comment il contourne sa contrainte, par exemple diviser le document en trois parties pour le forfait faible, et combien d'étapes il prévoit. Les autres joueurs votent : solution valable ou non. Bonus : un joueur peut défausser une carte Outil pour prendre un joker s'il justifie le nom d'un outil réel qui existe gratuitement. Le gagnant est celui qui a résolu le plus de besoins avec le moins d'outils : l'élégance, c'est l'efficacité avec sobriété."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : l'audit du mode gratuit",
+          "content": "Expérience d'auditeur : passe un outil IA gratuit au crible avec la grille des dix vérifications, celle des vrais utilisateurs prudents. Choisis un outil gratuit que tu utilises déjà ou qu'on t'a recommandé, avec l'accord d'un adulte si nécessaire. Vérification un, l'inscription : que demande-t-on, une adresse électronique jetable suffit-elle ou exige-t-il ton numéro de téléphone, tes réseaux sociaux ? Méfiance maximale sur le numéro. Vérification deux, la gratuité réelle : qu'est-ce qui est gratuit, qu'est-ce qui est payant, où s'arrête le gratuit ; cherche l'écran des prix sans te laisser distraire par les offres. Vérification trois, la limite d'usage : combien d'utilisations par jour, quelle taille de fichier, quelle durée de vidéo ; note-la précisément, c'est elle qui décidera de ton organisation. Vérification quatre, le filigrane et les droits : les créations portent-elles une marque, et surtout : que disent les conditions d'usage de tes créations, qui peut les réutiliser ? Lis la section des conditions, même en diagonale : c'est là que se cachent les surprises. Vérification cinq, les données : l'outil conserve-t-il tes conversations, tes fichiers, et pour combien de temps ; y a-t-il un réglage pour refuser ? Vérification six, la publicité : discrète, envahissante, ou déguisée en recommandation ? Vérification sept, le hors-ligne : l'outil fonctionne-t-il sans connexion, utile pour économiser le forfait ? Vérification huit, l'alternative : existe-t-il un autre outil gratuit qui fait pareil avec moins de contraintes ? Vérification neuf, la réputation : que disent les utilisateurs depuis plus de six mois, pas les cinq premières critiques de la semaine ? Vérification dix, la sortie : peux-tu exporter tout ton travail, tes textes, tes fichiers, facilement, pour quitter sans perdre ? Rédige ta fiche d'audit d'une page : note globale sur vingt, trois forces, trois faiblesses, ton verdict : adopter, essayer, ou éviter. Puis compare avec un camarade qui a audité un outil concurrent : vos deux fiches forment le début d'un guide commun."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis ton kit de création complet",
+          "content": "Construis ton kit de création personnel, la trousse complète qui te permettra de produire, seul, des contenus de qualité : affiche, présentation, vidéo courte, document propre. Étape un, la cartographie des besoins : liste ce que tu produis vraiment dans l'année : une affiche pour la fête du club, un exposé illustré, une vidéo de fin de saison, des résumés de révisions, un CV de stage. Pour chaque production, note la chaîne d'outils nécessaire, une chaîne typique se lit ainsi : texte de l'assistant, images du générateur, assemblage dans l'outil de montage ou de mise en page. Étape deux, la sélection : un seul outil par fonction, choisi selon l'audit ; note pour chacun : le nom, la fonction exacte dans ta chaîne, la limite du mode gratuit, et le geste de sécurité associé, par exemple : toujours exporter immédiatement, car l'essai limité efface. Étape trois, le protocole d'économie du forfait : le mode avion pour la préparation, rédiger et préparer ses textes hors ligne, puis se connecter uniquement pour la génération ; le regroupement des sessions, faire cinq images d'un coup plutôt que cinq connexions ; la sauvegarde systématique, tout exporter aussitôt vers la galerie ou les fichiers du téléphone. Étape quatre, le carnet de recettes : pour chaque production type, écris la recette pas à pas, de l'idée au livrable, avec les écrans où attention, limite de connexion, filigrane à recadrer ; le carnet transforme chaque réussite en réussite reproductible. Étape cinq, la feuille de route de maîtrise : pour chaque outil, liste les trois fonctions que tu veux maîtriser en un mois, et consacre quinze minutes par jour à une seule, en notant chaque découverte dans le carnet. À la fin du mois, teste ta trousse complète sur un vrai projet de bout en bout : si chaque étape s'est faite sans blocage, ton kit est prêt ; sinon, remplace l'outil défaillant, jamais ta méthode."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : la brigade des dépannages",
+          "content": "Ta mission : deviens la brigade de dépannage IA de ton entourage, celle qu'on appelle quand un outil bloque au pire moment. Phase un, la constitution de la brigade : recrute un ou deux camarades, définissez votre périmètre, aider sur les outils que vous maîtrisez vraiment, et vos règles d'intervention, détaillées ci-dessous. Phase deux, l'annonce : faites savoir autour de vous, familles, classe, club : si un outil gratuit vous bloque, une image qui refuse de se générer, un essai épuisé, une inscription qui échoue, un fichier trop lourd, appelez la brigade ; intervention gratuite, en échange d'un sourire et d'une question d'apprentissage. Phase trois, le protocole d'intervention, à suivre à chaque appel : un, écouter ce que la personne veut accomplir, pas ce qu'elle tape ; deux, diagnostiquer avec la méthode du cahier des charges : besoin, outil, limite touchée ; trois, proposer une parade de votre kit, découper le fichier en trois, reformuler le prompt, passer par l'alternative de l'audit, travailler hors ligne puis se connecter ; quatre, faire refaire le geste par la personne, jamais à sa place, car dépanner, c'est rendre autonome, pas rendre dépendant ; cinq, noter l'intervention dans le registre de la brigade : panne, parade, temps passé, apprentissage. Phase quatre, la règle de sécurité absolue : jamais intervenir sur des comptes bancaires, des codes mobile money, des documents administratifs sensibles ; en cas de doute, la seule réponse est de faire appel à un adulte ; la brigade aide sur la création, jamais sur l'argent ni les secrets. Phase cinq, le bilan après dix dépannages : quelles pannes reviennent le plus, quelles parades ont le mieux marché, quel outil mérite d'être écarté du kit. Phase six, l'héritage : publiez le guide des dix pannes les plus fréquentes et leurs parades, une page à afficher et à partager : la brigade qui documente dépanne le quartier entier, même quand elle dort."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : la websérie du quartier",
+          "content": "Projet final : produit une mini-websérie de trois épisodes avec ta trousse d'outils gratuits, intitulée Nos talents cachés, des portraits vidéo de deux minutes de personnes de ton entourage qui ont un savoir-faire. Étape un, la pré-production, l'étape la plus importante : choisis trois talents, le cuisinier du maquis qui réussit sa sauce, la couturière qui crée des pagnes modernes, le réparateur qui ressuscite les téléphones, la grande sœur qui coiffe les mariées, le jardinier du carrefour ; obtiens l'accord explicite de chacun, expliquant exactement où les vidéos seront montrées, et assure-toi que chaque accord est confirmé par un adulte pour les moins de dix-huit ans ; écris pour chacun les cinq questions de l'interview et le plan de tournage, deux minutes suffisent, un plan large de présentation, un plan rapproché des mains au travail, une phrase de conclusion face caméra. Étape deux, la production : filme au téléphone, en lumière du jour, au calme ; trois minutes de rushes par épisode, pas plus, c'est la clé de la sobriété du forfait. Étape trois, la post-production avec ta trousse : transcription automatique pour extraire les meilleures citations ; sous-titres générés puis corrigés à la main, car la correction manuelle est la marque du sérieux ; musique libre de droits, vérifie la licence ; montage avec un outil gratuit, et pour l'habillage, une miniature générée par IA pour chaque épisode, annoncée comme telle dans les crédits. Étape quatre, les crédits d'honnêteté, obligatoires dans chaque épisode : le nom du talent avec son accord, tourné au téléphone, monté avec des outils gratuits, musique libre de droits, miniature créée avec l'IA ; aucune image trompeuse, aucun montage qui déforme les propos, la transcription corrigée reste fidèle aux paroles. Étape cinq, la projection : organise la première devant les trois talents et leurs proches, puis partage selon ce qui a été convenu avec chacun. Étape six, le bilan technique : quelles limites du mode gratuit tu as touchées, quelles parades ont sauvé la production, ce que tu changeras dans ta trousse. Trois épisodes, zéro budget, des talents mis en lumière : c'est la preuve vivante que la trousse bat le matériel."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quelle est la bonne stratégie face aux nombreux outils IA gratuits ?",
+          "options": [
+            "Tout télécharger immédiatement",
+            "Choisir un outil par famille selon ses besoins réels et le maîtriser en profondeur",
+            "Attendre qu'un outil payant devienne gratuit",
+            "N'utiliser que l'outil dont la publicité est la plus drôle"
+          ],
+          "correct_index": 1,
+          "explanation": "La trousse efficace compte peu d'outils, choisis par besoin réel, chacun maîtrisé à fond : limites, réglages, parades. Vingt outils survolés servent moins qu'un couteau suisse bien connu."
+        },
+        {
+          "question": "Pourquoi faut-il se méfier d'un outil gratuit qui exige ton numéro de téléphone ?",
+          "options": [
+            "Les numéros coûtent cher",
+            "Le numéro permet de t'identifier de façon durable : la gratuité peut alors se payer en données personnelles",
+            "Parce que les appels dérangent",
+            "Parce que le réseau de ton quartier est mauvais"
+          ],
+          "correct_index": 1,
+          "explanation": "Une adresse jetable protège ton identité ; un numéro de téléphone, lui, t'identifie de façon durable et peut servir au ciblage publicitaire ou être revendu : c'est une vraie contrepartie, pas un détail."
+        },
+        {
+          "question": "Que faut-il vérifier dans les conditions d'utilisation d'un outil gratuit ?",
+          "options": [
+            "La couleur du logo",
+            "Ce que l'outil fait de tes données, de tes fichiers et de tes créations, et si tu peux tout exporter pour partir",
+            "Le nombre d'étoiles de l'application",
+            "La taille du fichier d'installation"
+          ],
+          "correct_index": 1,
+          "explanation": "Conservation des conversations, droits sur tes créations, facilité d'export : ces trois clauses, souvent cachées dans les conditions, déterminent si la gratuité est un cadeau ou un troc invisible."
+        },
+        {
+          "question": "Comment économiser son forfait internet quand on crée avec des outils IA ?",
+          "options": [
+            "Se connecter en permanence pour ne rien perdre",
+            "Préparer son travail hors ligne, regrouper les générations en sessions, et exporter immédiatement chaque résultat",
+            "Créer uniquement pendant les coupures",
+            "Demander à un ami de tout faire"
+          ],
+          "correct_index": 1,
+          "explanation": "Le protocole du créateur économe : textes et scripts préparés hors ligne, générations regroupées en quelques connexions, export immédiat vers la mémoire du téléphone : le forfait souffle, le travail avance."
+        },
+        {
+          "question": "Comment la brigade de dépannage doit-elle aider une personne bloquée avec un outil ?",
+          "options": [
+            "Faire les manipulations à sa place très vite",
+            "Diagnostiquer, proposer une parade, et lui faire refaire le geste elle-même pour la rendre autonome",
+            "Lui conseiller d'acheter la version payante",
+            "Lui prendre son téléphone sans explication"
+          ],
+          "correct_index": 1,
+          "explanation": "Dépanner, c'est rendre autonome, pas dépendant : écouter le besoin, diagnostiquer la limite touchée, donner la parade, et laisser la personne refaire le geste : c'est la seule aide qui dure."
+        }
+      ]
+    },
+    {
+      "slug": "future-ai",
+      "title": "Le futur de l'IA",
+      "description": "Agents autonomes, IA embarquée hors ligne, métiers transformés, cadre réglemental : explore les pistes crédibles du futur de l'IA sans tomber dans la science-fiction ni la panique.",
+      "story": "Deux récits circulent sur l'avenir de l'IA. Le premier : dans dix ans, tout sera parfait, plus de travail, plus d'effort, des robots serviteurs. Le second : dans dix ans, tout s'effondrera, les machines dépasseront l'humanité et décideront sans nous. Ces deux récits ont un point commun : ils empêchent de réfléchir. La vérité du futur, c'est qu'il se construit, décision par décision, par des ingénieurs, des législateurs, des citoyens — et que toi, tu seras adulte pile au moment où ces décisions se prendront. Dans cette aventure, tu vas trier le crédible du fantasque, comprendre les vraies ruptures en cours, les agents autonomes, l'IA embarquée dans les téléphones, les métiers qui se transforment, les règles que les États commencent à écrire. Et tu vas faire le plus utile : préparer TA place dans ce futur, plutôt que l'attendre.",
+      "xp_reward": 120,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Cinq évolutions crédibles, deux mythes à ranger",
+          "content": "Voici les cinq évolutions déjà en marche, observables aujourd'hui, et non des promesses de salon. Un, les agents autonomes : des IA capables d'enchaîner des tâches, chercher, comparer, réserver, rédiger, avec supervision humaine ; elles passent de l'outil qu'on actionne au collaborateur qu'on encadre, et la compétence clé devient la délégation claire : bien spécifier ce qu'on leur confie et vérifier leur travail. Deux, l'IA embarquée : de plus en plus de modèles tiennent entièrement dans le téléphone, fonctionnent sans connexion, sans envoyer les données au loin ; pour les régions à la connexion chère ou instable, c'est une rupture majeure : la traduction, l'aide scolaire et le diagnostic photo deviennent disponibles hors ligne. Trois, la multimodalité : les IA qui voient les images, écoutent les voix et lisent les documents en même temps ; montre une photo de ton cahier à voix haute, l'assistant comprend la page et ta question. Quatre, la spécialisation des modèles : après les géants généralistes, arrivent les petits modèles experts, médecine, agriculture local, langues africaines, plus fiables sur leur domaine car plus étroits. Cinq, la réglementation : les États écrivent les règles du jeu, transparence des contenus générés, protection des données, examen des systèmes à risque, et l'Afrique construit ses propres cadres régionaux ; l'IA à visage humain n'est plus un vœu, c'est un texte de loi en train de naître. Deux mythes à ranger : la conscience des machines, aucune IA actuelle n'a de conscience, de désirs, d'intentions propres ; elle calcule des ressemblances entre ses exemples d'entraînement, et le débat sérieux porte sur les systèmes, pas sur des sentiments imaginaires. Et l'IA qui pense mieux que les humains en tout : l'IA reste étroite dans ses forces, calculer, prédire, imiter, et vide dans tout le reste, jugement moral, responsabilité, compréhension du monde, lien social ; l'avenir crédible n'est pas l'homme contre la machine, mais les équipes d'humains outillés qui battent à la fois les humains seuls et les machines seules."
+        },
+        {
+          "section_type": "play",
+          "title": "Le comité de prospective de 2035",
+          "content": "Jouons au comité de prospective de 2035 : vous êtes un comité d'experts chargé d'anticiper l'Afrique de demain, et chaque équipe doit défendre un scénario. Préparation : trois équipes, chacune reçoit un scénario de départ. Scénario A, l'élan maîtrisé : l'IA hors ligne s'est répandue, les services publics l'utilisent avec transparence, chaque pays a son cadre de protection, les métiers transformés sont accompagnés par la formation. Scénario B, la fracture creusée : l'IA profite aux grandes villes connectées, les zones rurales sont contournées, les emplois de routine disparaissent sans reconversion, la méfiance envers les faux contenus mine la confiance sociale. Scénario C, l'ère duale : des réussites spectaculaires coexistent, santé démultipliée, écoles outillées, avec des dérives réelles, arnaques hyper-réalistes, dépendance aux systèmes importés, et chaque communauté construit sa propre défense locale. Déroulé en trois phases. Phase un, l'audit, dix minutes : chaque équipe dresse la liste des faits actuels de son scénario, au moins cinq signaux d'aujourd'hui qui poussent dans ce sens, par exemple, pour le scénario A : les modèles hors ligne progressent, les cadres régionaux de données se discutent, les applications agricoles se multiplient. Phase deux, les recommandations, quinze minutes : chaque comité rédige trois mesures concrètes pour rendre son scénario plus probable, ou pour l'éviter, dans le cas du B : que faudrait-il faire dès maintenant ? Phase trois, la séance plénière : chaque comité présente cinq minutes, subit trois questions du public, puis tous votent pour le scénario qu'ils jugent le plus probable et celui qu'ils préfèrent — les deux votes divergent toujours, et l'écart entre les deux est la plus belle discussion du jeu. Clôture : chaque joueur formule sa phrase d'engagement : dans le scénario auquel je crois, ma place sera celle-ci, et je la prépare dès maintenant par cela."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : ta prévision suivie",
+          "content": "Expérience de futuriste rigoureux : construis ta prévision personnelle de l'IA et mets-la à l'épreuve de la méthode des scénarios. Étape un, la collecte des signaux : pendant une semaine, note dans un carnet tout fait d'actualité technologique dont tu entends parler autour de toi, à la radio, en classe, dans les discussions familiales, au moins six signaux ; pour chacun, note : le fait brut, la source qui l'a rapporté, et le domaine : santé, éducation, argent, agriculture, emploi, sécurité. Étape deux, le tri : regroupe tes signaux par domaine et classe-les en trois colonnes : opportunité, un fait qui crée une possibilité nouvelle ; menace, un fait qui crée un risque ; incertitude, un fait dont l'effet dépendra des choix des humains. Étape trois, la prévision à scénarios : pour chaque domaine, écris trois fins possibles en 2035, la meilleure, la pire, la médiane, chacune en une phrase, et surtout la flèche : quel signal d'aujourd'hui pointe vers elle. Étape quatre, le test de crédibilité : soumets tes prévisions à trois personnes de générations différentes, un camarade, un parent, un aîné ; note leurs objections et leurs signaux que tu ignorais ; corrige tes scénarios. Étape cinq, l'engagement mesurable : dans chaque domaine, écris une phrase du type : si le signal X se confirme d'ici deux ans, alors j'aurai intérêt à maîtriser la compétence Y ; exemple concret : si les applications agricoles hors ligne se répandent dans ma région, alors apprendre à collecter des données de plantation propres deviendra une compétence recherchée. Scelle ta prévision : date-la, signe-la, garde-la dans un endroit sûr, et ouvre-la dans deux ans, à la date anniversaire. Le futuriste rigoureux ne prétend pas savoir : il écrit ses paris, les date, et revient les confronter au réel ; c'est ainsi qu'on apprend à lire les évolutions, et que tu entreras dans l'âge adulte avec deux ans d'avance sur ta propre époque."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis ta feuille de route de compétences",
+          "content": "Construis ta feuille de route de compétences IA, le plan personnel qui fait de toi un acteur du futur plutôt qu'un spectateur inquiet. Étape un, l'état des lieux : dresse ton bilan honnête sur huit compétences clés du monde qui vient, note chacune de zéro, jamais entendu parler, à cinq, je pourrais l'enseigner : un, écrire et itérer des prompts efficaces ; deux, vérifier une information et traquer les faux contenus IA ; trois, lire un tableau de chiffres et en tirer une décision ; quatre, comprendre le fonctionnement d'un modèle, données, entraînement, limites ; cinq, déléguer proprement à un agent, cahier des charges, garde-fous, vérification ; six, concevoir un chatbot ou un petit outil avec ses règles ; sept, protéger ses données et celles des autres ; huit, expliquer l'IA à un non-initié avec patience. Étape deux, le tri des priorités : choisis les trois compétences les plus stratégiques pour TON projet de vie d'ici trois ans, pas celles qui impressionnent en société ; un futur agronome choisira les données de terrain, un futur créateur la maîtrise des outils visuels, un futur commerçant la lecture des chiffres. Étape trois, les objectifs mesurables : pour chaque compétence prioritaire, un objectif concret et daté, du genre : d'ici la fin de l'année scolaire, je suis capable de créer le chatbot de révision de ma classe et de l'expliquer à voix haute. Étape quatre, les ressources : pour chaque objectif, liste tes moyens : les leçons de ce monde, un camarade qui sait, un adulte qui accompagne, les outils gratuits audités, un club, une compétition scolaire. Étape cinq, le rythme : quinze minutes par jour sur une seule compétence à la fois, un point d'étape chaque mois avec preuve concrète, le livrable qui prouve le progrès. Étape six, la relecture trimestrielle : chaque fin de trimestre, re-note tes huit compétences, célèbre les progressions, réajuste les priorités, car le monde bouge et ta feuille de route doit bouger avec lui. Une feuille de route datée et prouvée vaut tous les discours sur la motivation : c'est ton contrat avec ton futur, signé par toi."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : l'interview des générations",
+          "content": "Ta mission : mène l'enquête sur les attentes et les craintes de trois générations face à l'IA, puis rédige le mémo qui réconcilie les points de vue. Phase un, les interviews : choisis trois personnes d'âges nettement différents, un camarade, un parent ou un enseignant, un aîné respecté du quartier ; demande l'accord de chacun, expliquant le cadre : réponses reprises anonymement dans un travail scolaire, sans nom ; sept questions communes : à quoi vous fait penser le mot IA ? Quel usage de l'IA connaissez-vous autour de vous ? Qu'est-ce que l'IA vous semble rendre plus facile ? Qu'est-ce qu'elle vous inquiète le plus ? Quel métier de votre entourage pourrait être transformé, et comment ? Que faudrait-il apprendre aux jeunes dès maintenant ? Et si vous pouviez imposer une règle à toutes les IA, laquelle ? Note les réponses mot à mot autant que possible, sans commenter, sans corriger, même face à des idées fausses : l'enquêteur recueille, il ne débat pas. Phase deux, l'analyse : relis tes trois interviews et cherche les convergences, les craintes communes, les espoirs communs, et les fossés générationnels, les usages connus des jeunes et ignorés des aînés, les inquiétudes des aînés et l'insouciance des jeunes, les règles que les trois générations réclament à l'unanimité. Phase trois, le mémo de synthèse : une page, trois parties : ce qui nous unit ; ce qui nous sépare ; les trois règles communes proposées à la communauté, rédigées pour être affichées. Phase quatre, la restitution : partage le mémo avec tes trois interviewés, recueille leur réaction, en particulier sur les règles communes : les valident-elles ? Modifie selon leurs retours. Phase cinq, l'affichage : avec l'accord des adultes concernés, affiche les trois règles communes dans un lieu de passage, ou partage-les sur le canal familial. La mission réussie se reconnaît à ceci : les aînés ne disent plus l'IA c'est pour les jeunes, les jeunes ne disent plus les vieux ne comprennent rien, et chacun a reconnu sa voix dans la règle commune."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : la fresque du futur choisi",
+          "content": "Projet final : crée la fresque du futur choisi, une œuvre collective qui montre le futur de l'IA que ta communauté décide de vouloir, et fais-la voter. Étape un, le socle : réutilise ta feuille de route, tes interviews et tes scénarios : la fresque raconte le scénario choisi par le groupe, pas le plus probable, le plus souhaitable, avec ses preuves de faisabilité. Étape deux, la composition en cinq panneaux : panneau un, aujourd'hui : la situation réelle de ton quartier face à l'IA, dessins et légendes factuelles ; panneau deux, les signaux : cinq flèches qui partent d'aujourd'hui, chacune nommant une évolution en marche ; panneau trois, le carrefour : le moment des choix, dessiné comme une jonction avec des panneaux de direction, et les choix que la communauté contrôle réellement ; panneau quatre, demain choisi : la scène du quotidien en 2035 si les bons choix sont faits : l'école, le marché, la maison de santé, chaque scène montrant l'IA à sa juste place, outil sous contrôle humain, annoncée et utile ; panneau cinq, le contrat : les cinq engagements concrets que les signataires prennent dès maintenant, reliés aux règles communes de la mission. Étape trois, la technique : dessin à la main pour le socle, possibles éléments générés par IA pour les textures et décors, annoncés comme tels dans un coin du panneau ; l'œuvre affiche sa propre honnêteté. Étape quatre, la consultation : expose la fresque au moins une semaine dans un lieu de passage, avec un système de vote simple : trois gommettes par personne, à coller sur les engagements qu'elle signe ; laisse un cahier de commentaires. Étape cinq, l'assemblée : organise une séance de trente minutes de présentation des résultats : combien de signataires par engagement, les trois commentaires les plus fréquents, les objections sérieuses ; débattez, amendez les engagements. Étape six, la transmission : photographie la fresque, transcris le contrat définitif, date le tout, et confie une copie au club, à la classe ou à la bibliothèque, pour que la promotion suivante reprenne le flambeau. Une communauté qui a écrit son futur choisi, voté ses engagements et archivé sa preuve : voilà ce qu'aucune technologie ne fera jamais à sa place — et voilà ta signature dans l'histoire du futur de l'IA."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quelle est l'évolution crédible appelée les agents autonomes ?",
+          "options": [
+            "Des robots conscients qui prennent le pouvoir",
+            "Des IA capables d'enchaîner plusieurs tâches sous supervision humaine, ce qui rend la délégation claire compétence clé",
+            "Des voitures qui volent sans carburant",
+            "Des téléphones qui pensent à ta place"
+          ],
+          "correct_index": 1,
+          "explanation": "L'agent autonome enchaîne des tâches, chercher, comparer, rédiger, mais sous supervision : la compétence qui monte est de bien spécifier ce qu'on délègue et de vérifier le travail — l'encadrement remplace l'actionnement."
+        },
+        {
+          "question": "Pourquoi l'IA embarquée dans les téléphones est-elle une rupture majeure pour l'Afrique ?",
+          "options": [
+            "Elle rend les téléphones plus lourds",
+            "Elle fonctionne sans connexion : traduction, aide scolaire et diagnostics deviennent utilisables là où la connexion est chère ou instable",
+            "Elle supprime les forfaits",
+            "Elle empêche les appels"
+          ],
+          "correct_index": 1,
+          "explanation": "Un modèle qui tient entièrement dans le téléphone n'a plus besoin d'internet : les régions à la connexion chère, instable ou absente accèdent enfin aux mêmes services, hors ligne et sans envoyer les données au loin."
+        },
+        {
+          "question": "Quel mythe faut-il ranger au rayon des fantasmes ?",
+          "options": [
+            "Les IA multimodales qui voient et écoutent",
+            "Les machines conscientes avec leurs propres désirs et intentions",
+            "Les petits modèles spécialisés par domaine",
+            "Les cadres de protection des données en construction"
+          ],
+          "correct_index": 1,
+          "explanation": "Aucune IA actuelle n'a de conscience ni d'intention propre : elle calcule des ressemblances apprises. Le débat sérieux porte sur les systèmes et leurs usages, pas sur des sentiments imaginaires."
+        },
+        {
+          "question": "Que signifie l'idée que l'avenir sera humains outillés plutôt qu'homme contre machine ?",
+          "options": [
+            "Que les humains doivent abandonner la technique",
+            "Que les équipes d'humains qui maîtrisent l'IA surpassent à la fois les humains seuls et les machines seules",
+            "Que les machines vont gagner de toute façon",
+            "Qu'il faut choisir entre étudier ou utiliser l'IA"
+          ],
+          "correct_index": 1,
+          "explanation": "L'IA est étroite : elle calcule, prédite, imite, mais ne juge pas, n'est pas responsable, ne comprend pas le monde. Les gagnants de demain sont les équipes humaines outillées — d'où ta feuille de route de compétences."
+        },
+        {
+          "question": "Comment un futuriste rigoureux forme-t-il ses prévisions ?",
+          "options": [
+            "En recopiant les films de science-fiction",
+            "En notant des scénarios datés avec leurs signaux, en les confrontant à des regards divers, et en revenant les vérifier plus tard",
+            "En écoutant les prophètes de la télévision",
+            "En espérant que tout reste identique"
+          ],
+          "correct_index": 1,
+          "explanation": "Le futur rigoureux se travaille : signaux collectés, scénarios contrastés datés, objections recueillies, engagement conditionnel si le signal X se confirme, alors la compétence Y — et confrontation au réel deux ans plus tard."
+        }
+      ]
+    },
+    {
+      "slug": "ai-project",
+      "title": "Projet IA final",
+      "description": "Le défi de fin de monde : conçois et réalise un projet IA complet qui résout un vrai problème autour de toi, avec méthode, garde-fous et présentation devant public.",
+      "story": "Douze aventures. Tu as prompté comme un virtuose, traqué les biais comme un enquêteur, entraîné des modèles avec des bonbons, conçu un chatbot, audité des outils, lu l'avenir sans te laisser raconter d'histoires. Il est temps de tout réunir dans un projet digne de ce que tu sais : un projet IA final, réel, utile, le tien. Pas un exercice de plus : un vrai problème, choisi par toi, résolu avec la méthode des professionnels, des garde-fous que tu sais poser, et un public à convaincre. C'est exactement ce qu'on demande aux adultes dans les entreprises et les concours d'innovation : identifier un problème, construire une solution assistée par IA, prouver son utilité, présenter honnêtement. Aujourd'hui, c'est ton tour. Prends une grande respiration, ouvre ton carnet des onze aventures passées : le dernier niveau commence.",
+      "xp_reward": 150,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Le cahier des charges du projet final",
+          "content": "Ton projet final suit le cycle complet de l'innovation assistée par IA, en sept étapes, et commence par un cahier des charges d'une page, car un projet qui ne tient pas sur une page ne tient pas debout. Étape un, le problème : choisis un vrai problème de ton entourage, vérifié par l'observation, pas imaginé : les familles perdent du temps à comparer les prix de quatre marchés ; les élèves ne savent pas quels réviser en premier ; la chorale n'arrive pas à gérer les inscriptions ; le club de foot ne trouve pas de volontaires pour les matches. Formule-le en une phrase : tel groupe perd tel temps ou telle ressource à cause de tel problème. Étape deux, la solution : décris ce que tu vas construire en une phrase : je construis [quoi] qui permet à [qui] de [bénéfice mesurable]. Le quoi peut être un chatbot, une affichette avec QR d'aide, un petit fichier Excel-like de suivi, un quiz interactif, un mini-site de trois pages, une fiche méthode papier relayée par IA : la sobriété est une force, pas une faiblesse. Étape trois, la part IA : précise exactement où l'IA intervient, et surtout où elle n'intervient pas ; un projet final mature n'utilise l'IA que là où elle apporte un bénéfice clair, et le reste est fait par toi, avec tes mains. Étape quatre, les garde-fous : recopie les règles apprises : anonymat des données, transparence de l'IA, humain qui garde le dernier mot, aucune promesse exagérée. Étape cinq, le plan de test : comment tu prouveras que ça marche : qui teste, quand, quel critère de succès. Étape six, les ressources : tes outils gratuits audités, tes compétences de la feuille de route, les personnes qui t'aideront. Étape sept, l'échéancier : trois semaines, avec jalons datés. Fais valider ce cahier des charges par un adulte avant de construire : c'est la marque des projets sérieux."
+        },
+        {
+          "section_type": "play",
+          "title": "Le jury d'investissement",
+          "content": "Avant de construire, joue au jury d'investissement : soumets ton projet à un jury exigeant, comme dans les vrais concours d'innovation. Composition du jury : trois personnes, un camarade qui a fait ce monde avec toi, un adulte, et si possible une personne concernée par ton problème. Format : cinq minutes de pitch, cinq minutes de questions, une délibération. Ton pitch suit l'ordre éprouvé : une, le problème raconté en une histoire vraie, une famille, un club, une personne, avec un chiffre marquant ; deux, ta solution démontrée, même imparfaite, un croquis, une maquette papier, un exemple de dialogue ; trois, la part IA affichée honnêtement, ce que fait l'IA, ce que tu fais ; quatre, les garde-fous, tes règles de sécurité ; cinq, le plan de test et le critère de succès ; six, ce qu'il te manque pour réussir, et ta demande précise au jury, un accès, un testeur, un conseil. Le jury déroule ensuite la grille des huit questions dures : le problème est-il réel, observé de tes yeux ou raconté de seconde main ? La solution soulage-t-elle le problème ou juste l'effleure ? La part IA est-elle nécessaire, ou serait-ce mieux sans IA ? Que coûtera la solution à ses utilisateurs, temps, forfait, patience ? Qui est contre ce projet, et pourquoi l'écouteras-tu ? Que se passe-t-il si l'outil se trompe, plan B ? Le projet survit-il à ta propre absence, si tu tombes malade, qui reprend ? Et : le succès se voit-il à l'œil nu, quel chiffre bougera ? Chaque juré donne une note sur dix et un conseil prioritaire. Tu repars avec trois révisions maximum à intégrer dans ton cahier des charges. La règle du jeu, la plus importante : si deux jurés disent que le problème n'existe pas, change de problème ; si deux jurés disent que la solution est trop compliquée, simplifie ; le jury n'est pas là à te flatter, il est là à sauver ton projet."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : le prototype en trois versions",
+          "content": "Expérience de concepteur : teste trois versions différentes de ta solution avant d'en construire une seule en entier — c'est ce que les professionnels appellent le prototype rapide, et ça épargne des semaines d'efforts sur la mauvaise piste. Version une, le prototype papier : dessine ta solution sur papier, interfaces, dialogues, étapes ; montre-la à trois personnes concernées et fais-leur raconter à voix haute comment elles l'utiliseraient, bouton par bouton, sans les corriger ; note chaque hésitation, chaque contresens : c'est de l'or. Version deux, le prototype humain : comme pour ton chatbot de l'aventure six, joue toi-même le rôle de la solution pendant trois jours ; si ton projet est une aide aux révisions, fais les quiz à la main ; si c'est un comparateur de prix, fais le relevé à la main et rends le service réellement, avec l'IA en assistant derrière toi, prompt par prompt, tout en notant chaque échange ; à la fin, tu sauras exactement quelles fonctions servent vraiment et lesquelles sont de la décoration. Version trois, le prototype assisté : construis la version la plus courte possible de la vraie solution, une seule fonction, celle que le test humain a montrée indispensable ; utilise tes outils gratuits avec le protocole du créateur économe, hors ligne, sessions groupées, export immédiat ; teste-la sur cinq personnes réelles, avec le critère de succès écrit dans ton cahier des charges. Puis le bilan comparatif : rédige trois paragraphes : ce que le prototype papier t'a appris sur l'usage ; ce que le prototype humain t'a appris sur le service réel ; ce que le prototype assisté t'a appris sur la technique. Ta conclusion doit trancher : quelle fonction unique mérite la version finale, et quelles deux fonctions tu reportes à plus tard. Un prototype qui t'évite de construire inutile est une réussite autant qu'un prototype qui marche."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis la version finale et son dossier",
+          "content": "Construis la version finale de ton projet, avec le dossier qui l'accompagne, comme un livrable professionnel. La construction d'abord, avec la discipline des mondes précédents : intègre les enseignements des trois prototypes ; garde la fonction unique validée, reporte le reste ; applique les garde-fous, anonymat, transparence, humain final, aucune donnée sensible ; utilise l'IA selon ta boîte à outils, prompts de qualité, vérification systématique, correction de tout contenu généré ; documente au fur et à mesure, dans ton carnet de bord : date, étape, ce que l'IA a fait, ce que tu as fait, décisions et pourquoi. Le dossier ensuite, six pièces obligatoires : pièce un, le cahier des charges révisé, avec les modifications du jury notées en marge ; pièce deux, la description d'usage, mode d'emploi en cinq étapes simples, testé sur quelqu'un qui ne connaît rien ; pièce trois, la charte de transparence : où est l'IA, ce qu'elle fait, ce qu'elle ne fait pas, comment tu l'annonces aux utilisateurs ; pièce quatre, le carnet de bord complet, la traçabilité de ton travail, cette pièce prouve que c'est le TIEN ; pièce cinq, les résultats de test : tes cinq testeurs, leurs retours, le critère de succès, atteint ou non, en toute honnêteté ; pièce six, l'après : trois pistes d'amélioration réalistes et une recommandation pour celui ou celle qui reprendrait le projet. La qualité du dossier fait la différence entre un bricolage et un projet : un projet sérieux se reconnaît à ce qu'on peut le reprendre, le vérifier et le prolonger sans son auteur. Vise le dossier complet en une chemise : c'est ton premier portfolio réel, la pièce maîtresse de tes futures candidatures."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : le service public de deux semaines",
+          "content": "Ta mission : fais tourner ta solution en conditions réelles pendant deux semaines, en vrai service public, avec usagers réels, et mesure tout. Phase un, le lancement : annonce ton service à ses bénéficiaires exacts, avec le mode d'emploi simple ; précise la durée d'essai, deux semaines, et le fait que tout retour est bienvenu. Phase deux, la tenue de service : sois disponible aux heures annoncées ; tiens le registre à chaque usage : date, demande, résultat, satisfaction exprimée, difficulté technique, temps passé ; chaque soir, cinq minutes de tri : bugs à corriger, usages imprévus à noter, idées à ne PAS implémenter pendant l'essai, car la discipline d'un essai, c'est de ne rien changer en plein vol, sauf panne bloquante. Phase trois, les incidents : quand quelque chose échoue, applique ta règle de garde-fou : l'humain garde le dernier mot ; dépanne à la main si besoin, note l'incident, et surtout : préviens honnêtement l'usager du problème, jamais de rattrapage masqué. Phase quatre, la mesure finale : au bout de deux semaines, sors tes chiffres : nombre d'usages réels, taux de résolution, temps moyen gagné si mesurable, incidents, satisfaction moyenne ; compare-les à ton critère de succès du cahier des charges : atteint, dépassé, manqué, et de combien. Phase cinq, l'écoute des usagers : trois entretiens de fin d'essai, cinq minutes chacun : qu'est-ce qui vous a le plus servi ? Qu'est-ce qui vous a manqué ? Recommanderiez-vous ce service à un autre quartier ? Phase six, le rapport de fin d'essai : une page : le service, les chiffres, les verdicts, trois décisions : poursuivre, corriger, arrêter — et aucune honte sur arrêter : un projet qu'on arrête à temps libère tes forces pour le prochain, c'est ça aussi, la méthode des professionnels. Ta récompense n'est pas dans le chiffre : elle est dans le premier usager qui reviendra de lui-même."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : la soutenance devant public",
+          "content": "Projet final : ta soutenance publique, le moment où tu présentes ton projet devant auditoire, exactement comme dans un concours d'innovation. Étape un, la préparation du support : dix diapositives ou dix affiches maximum : une, l'histoire du problème avec son chiffre marquant ; deux, la formulation du besoin ; trois, le cahier des charges, une page affichée ; quatre, les trois prototypes et ce que chacun t'a appris ; cinq, la solution finale, démonstration visuelle ; six, la part IA, transparente et honnête ; sept, les garde-fous ; huit, les résultats de l'essai, chiffres à l'appui ; neuf, l'après, améliorations et repreneur possible ; dix, les remerciements nominatifs, jury, testeurs, usagers, adultes. Étape deux, la répétition générale : au moins trois répétitions à voix haute, chronomètre en main, dix minutes ferme ; la première sera mauvaise, c'est normal ; la deuxième trouvera ton rythme ; la troisième doit tenir le temps sans déborder ; fais répéter devant un camarade qui compte les hésitations. Étape trois, le kit de soutenance : ton dossier complet en chemise, ta solution démontrable sur place ou en vidéo de secours, tes notes sur fiches, jamais lues mot à mot, seulement des repères ; prévois l'épreuve des questions : écris les dix questions les plus probables, dont les quatre pièges classiques : où est l'IA exactement ? que coûtait le projet en forfait ? que se passe-t-il si ça se trompe ? et pourquoi toi ? Prépare des réponses courtes et honnêtes ; je ne sais pas encore, je le note, vaut mieux qu'une improvisation. Étape quatre, la soutenance : respire, regarde ton public, raconte ton histoire : le problème d'abord, toujours, car c'est lui qui intéresse le public, pas la technique ; passe ta démonstration sans précipitation ; termine sur les remerciements, jamais sur c'est fini. Étape cinq, la collecte : note chaque question posée : c'est la matière première de tes progrès. Étape six, l'envoi : après la soutenance, envoie ton rapport de fin d'essai et tes remerciements aux personnes concernées, et range le tout, dossier, support, questions, dans ta chemise de portfolio. Douze aventures, un projet complet, une soutenance publique : tu n'es plus un élève qui a lu des leçons sur l'IA, tu es un bâtisseur qui s'en sert — et ton portfolio, daté et prouvé, en est la preuve pour toujours."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quelle est la première étape du projet IA final ?",
+          "options": [
+            "Télécharger l'outil IA le plus populaire",
+            "Choisir un problème réel observé autour de toi et le formuler en une phrase",
+            "Faire une belle présentation",
+            "Demander de l'argent à tes parents"
+          ],
+          "correct_index": 1,
+          "explanation": "Tout projet sérieux part d'un problème vérifié par l'observation, formulé en une phrase claire : tel groupe perd tel temps à cause de tel problème. La technique vient après, au service du problème."
+        },
+        {
+          "question": "Pourquoi tester trois prototypes avant de construire la version finale ?",
+          "options": [
+            "Pour perdre du temps",
+            "Le prototype papier teste l'usage, le prototype humain le service réel, le prototype assisté la technique : chacun révèle ce que les autres ne peuvent pas révéler",
+            "Parce que les jurys adorent les prototypes",
+            "Parce que l'IA refuse de travailler autrement"
+          ],
+          "correct_index": 1,
+          "explanation": "Les trois prototypes répondent à trois questions différentes : comprend-on l'usage, le service rend-il vraiment, la technique tient-elle la promesse ? Trois tests courts évitent des semaines perdues sur la mauvaise piste."
+        },
+        {
+          "question": "Que contient le carnet de bord d'un projet IA honnête ?",
+          "options": [
+            "Uniquement les réussites",
+            "La traçabilité de chaque étape : ce que l'IA a fait, ce que tu as fait, les décisions et leurs raisons",
+            "La liste de tes supporters",
+            "Les captures d'écran des réseaux sociaux"
+          ],
+          "correct_index": 1,
+          "explanation": "Le carnet de bord prouve la paternité et l'honnêteté du travail : chaque étape datée, la part IA identifiée, les décisions motivées. C'est la pièce qui distingue un projet personnel d'une production opaque."
+        },
+        {
+          "question": "Que faire si deux jurés estiment que ton projet est trop compliqué ?",
+          "options": [
+            "Ignorer leur avis, ils ne comprennent pas",
+            "Simplifier : couper des fonctions, garder l'essentiel, la sobriété est une force",
+            "En ajouter encore pour les impressionner",
+            "Reporter la soutenance indéfiniment"
+          ],
+          "correct_index": 1,
+          "explanation": "Le jury exigeant sauve ton projet : deux avis convergents sur la complication signalent un vrai risque d'échec. Simplifier — une fonction unique bien faite — est le geste qui porte la plupart des projets jusqu'au bout."
+        },
+        {
+          "question": "Comment se reconnaît un projet final réussi ?",
+          "options": [
+            "Il utilise la technologie la plus récente",
+            "Il a tourné en conditions réelles, mesuré ses résultats contre un critère écrit, et son dossier permet à quelqu'un d'autre de le reprendre",
+            "Il a fait beaucoup de bruit sur les réseaux",
+            "Il a coûté le plus cher"
+          ],
+          "correct_index": 1,
+          "explanation": "Un projet réussi s'est confronté au réel : usagers, chiffres, critère de succès atteint ou assumé manqué, dossier complet repreneur. Un projet qu'on ne peut ni vérifier ni reprendre n'est qu'une démonstration éphémère."
+        }
+      ]
+    }
+  ]
+}
