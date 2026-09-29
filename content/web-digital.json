@@ -1,0 +1,981 @@
+{
+  "world": "web-digital",
+  "adventures": [
+    {
+      "slug": "internet-discover",
+      "title": "L'aventure d'Internet",
+      "description": "Plonge dans les coulisses du plus grand réseau du monde : serveurs, câbles sous-marins, paquets de données. Comprends ce qui se passe vraiment quand tu ouvres une page depuis Abidjan.",
+      "story": "Tu regardes une vidéo sur ton téléphone à Abidjan. Une seconde plus tard, des images arrivent depuis un serveur situé à des milliers de kilomètres. Comment est-ce possible ? Dans cette aventure, tu vas suivre le voyage secret des données, traverser des câbles sous l'océan et découvrir la magie invisible qui relie des milliards de personnes.",
+      "xp_reward": 100,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Comment Internet relie le monde",
+          "content": "Internet est un réseau de réseaux : des millions d'appareils connectés entre eux partout sur la planète. Quand tu envoies un message WhatsApp, il ne voyage pas d'un seul bloc. Il est découpé en petits paquets de données, comme un puzzle. Chaque paquet prend éventuellement une route différente, à travers des machines appelées routeurs, puis tout se réassemble chez le destinataire. Les continents sont reliés par des câbles sous-marins posés au fond des océans : presque tout le trafic mondial passe par ces câbles, pas par satellite ! Ton fournisseur d'accès, en Côte d'Ivoire comme ailleurs, te connecte à ce réseau géant. Chaque appareil connecté possède une adresse, appelée adresse IP, comme une adresse postale pour les données."
+        },
+        {
+          "section_type": "play",
+          "title": "Le jeu des paquets",
+          "content": "Jouons au voyage d'un message. Découpe une phrase en petits papiers, un ou deux mots par papier : ce sont tes paquets. Demande à trois camarades de jouer les routeurs, placés en ligne entre toi et un destinataire. Chaque papier passe de main en main, mais tu décides à chaque fois par quel camarade il passe, en changeant parfois de chemin. Une fois tous les papiers arrivés, le destinataire remet la phrase dans l'ordre : c'est la réassemblage des paquets. Si un papier se perd, demande-le à nouveau au seul expéditeur : c'est exactement ce que fait Internet quand un paquet n'arrive pas. Tu viens de rejouer, en vrai, le cœur du réseau mondial."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Piste la route d'une page web",
+          "content": "Expérimentons pour voir le réseau de tes propres yeux. 1) Sur un ordinateur, ouvre une invite de commande et tape : ping wikipedia.org puis Entrée. Tu vois des réponses avec un temps en millisecondes : c'est le temps d'aller-retour de tes paquets vers le serveur. 2) Si tu es sur smartphone, active le mode avion cinq secondes : plus rien ne charge. Rien n'est cassé, mais ta porte d'entrée vers le réseau vient de se fermer. 3) Relance la connexion et recharge une page en comptant : avant même d'afficher le site, ton appareil a demandé son adresse au réseau, puis téléchargé le contenu par paquets. Note dans un carnet ce que tu observes : le ping le plus rapide, le plus lent, et ce que le mode avion a bloqué exactement."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis la carte de ton Internet",
+          "content": "Construis le plan du réseau tel qu'il existe chez toi. Prends une feuille et dessine au centre ta box internet ou le hotspot de ton téléphone. Autour, dessine tous les appareils qui s'y connectent : téléphones, ordinateur, télévision, console. Chaque appareil reçoit une petite étiquette avec une adresse IP inventée, par exemple 192.168.1.10, 192.168.1.11 : toutes différentes, comme dans un vrai réseau. Puis dessine la suite du voyage : ta box, puis le fournisseur d'accès, puis un câble qui plonge vers l'océan, puis un serveur lointain où sont stockées tes vidéos. Termine en traçant en couleur le trajet exact d'un message qui part de ton téléphone vers ce serveur. Montre ta carte : n'importe qui doit pouvoir suivre le trajet du doigt sans explication supplémentaire."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : enquête sur ton quartier",
+          "content": "Ta mission d'explorateur : découvrir comment Internet travaille autour de toi. Choisis trois lieux différents, par exemple un cybercafé, une boutique qui utilise le mobile money et un taxi-moto qui utilise une application de course. Pour chaque lieu, mène une mini-enquête : à quoi sert Internet ici ? Grâce à quoi la connexion passe ? Que se passerait-il si la connexion tombait une journée ? Note les réponses dans un tableau : lieu, usage, risque si panne. Tu vas découvrir que derrière chaque paiement Wave ou Orange Money, chaque appel WhatsApp, il y a tout le voyage que tu viens d'apprendre : paquets, routeurs, câbles et serveurs. Ta rue est une autoroute de données sans le montrer."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : le réseau qui t'entoure",
+          "content": "Pour clore l'aventure, crée un petit guide illustré : Internet autour de moi. Sur une ou deux pages : dessine ou décris le voyage d'un message de ton quartier vers l'autre bout du monde, raconte ce que tu as appris dans ton enquête sur les trois lieux, et ajoute une section conseil pour les débutants : comment bien utiliser sa connexion, éviter de saturer un forfait data, choisir le bon moment pour télécharger. Ajoute enfin cinq questions de quiz que tu inventes, avec leurs réponses, et fais passer le quiz à deux personnes de ta famille. Garde ce guide : il deviendra le premier objet de ton portfolio numérique d'explorateur."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Comment un message voyage-t-il sur Internet ?",
+          "options": [
+            "En un seul bloc, comme une lettre",
+            "Découpé en paquets qui se réassemblent à l'arrivée",
+            "Par satellite uniquement",
+            "Il ne voyage pas, il est recopié à la main"
+          ],
+          "correct_index": 1,
+          "explanation": "Les données sont découpées en petits paquets qui prennent des routes différentes puis se réassemblent chez le destinataire."
+        },
+        {
+          "question": "Quelle entreprise fournit ton accès à Internet ?",
+          "options": [
+            "Un moteur de recherche",
+            "Un réseau social",
+            "Un fournisseur d'accès Internet",
+            "Le magasin où tu as acheté ton téléphone"
+          ],
+          "correct_index": 2,
+          "explanation": "Le fournisseur d'accès Internet, souvent appelé FAI, est l'entreprise qui te connecte au réseau mondial, que ce soit par fibre, par 4G ou par câble."
+        },
+        {
+          "question": "Comment les continents sont-ils principalement reliés ?",
+          "options": [
+            "Par des câbles sous-marins",
+            "Uniquement par satellites",
+            "Par des ballons stratosphériques",
+            "Par des tourterelles voyageurs"
+          ],
+          "correct_index": 0,
+          "explanation": "La grande majorité du trafic mondial passe par des câbles posés au fond des océans, extrêmement rapides et fiables."
+        }
+      ]
+    },
+    {
+      "slug": "search-master",
+      "title": "Maître de la Recherche",
+      "description": "Transforme-toi en détective du web : apprends à poser les bonnes questions aux moteurs de recherche, à repérer les informations fiables et à déjouer la désinformation.",
+      "story": "Ton professeur te confie une mission : préparer un exposé sur le cacao ivoirien et il veut des chiffres exacts, pas des idées reçues. Problème : quand tu cherches, tu trouves tout et n'importe quoi, des blogs abandonnés aux fausses rumeurs. Pas de panique ! Dans cette aventure, tu vas apprendre les secrets des chercheurs du web : les bons mots-clés, les astuces de recherche et surtout l'art de vérifier. À la fin, personne ne pourra te berner avec une fausse info.",
+      "xp_reward": 120,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Comment un moteur de recherche réfléchit",
+          "content": "Un moteur de recherche ne fouille pas le web en direct à chaque question. Il possède un index géant : des robots, appelés robots d'exploration, parcourent les pages en permanence et notent tout dans ce catalogue géant, comme une bibliothèque qui recopierait le monde entier. Quand tu cherches, le moteur pioche dans son index, puis classe les résultats. Le classement tient compte de la pertinence de la page par rapport à tes mots, de sa popularité, du nombre de sites qui parlent d'elle, et même de ta langue et de ton pays. C'est pour cela que deux personnes peuvent obtenir des résultats différents sur le même sujet. Retiens la règle d'or : plus ta question est précise, moins le moteur a de chances de se tromper sur ce que tu cherches."
+        },
+        {
+          "section_type": "play",
+          "title": "Le défi des mots-clés",
+          "content": "Jouons au duel des requêtes. Trouve un partenaire. Chacun choisit un sujet secret, par exemple la fabrication du attiéké ou la forêt du Banco. Manche une : vous tapez chacun un mot unique, comme cacao, et vous notez le nombre de résultats et la qualité de la première page. Manche deux : vous reformulez avec une question précise de quatre à six mots, comme histoire de la culture du cacao en Côte d'Ivoire, et vous notez à nouveau. Manche trois : celui qui trouve le premier une information exacte et vérifiable gagne. Comparez vos notes : la requête précise gagne presque toujours. Tu viens de comprendre pourquoi les professionnels de la recherche choisissent leurs mots comme on choisit ses outils."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Teste les opérateurs magiques",
+          "content": "Les chercheurs du web possèdent des formules secrètes : les opérateurs. Expérimente chacun et note l'effet dans un tableau. 1) Les guillemets : cherche réserves du Banco puis cherche forêt du Banco avec guillemets autour des mots : les guillemets exigent l'expression exacte. 2) Le mot site : tape site:un-site-officiel ou un domaine comme site:org suivi de ton sujet : le moteur ne fouille que ce domaine. 3) Le tiret : cherche cacao -chocolat pour éliminer les pages qui parlent de chocolat. 4) Le type de fichier : cherche ton sujet suivi de filetype:pdf pour trouver des rapports et documents officiels. Vérifie à chaque fois : combien de résultats, quel type de site en premier. Ces quatre opérateurs vont devenir tes réflexes de détective."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis ta fiche méthode de recherche",
+          "content": "Réalise un objet que tu utiliseras des années : ta fiche méthode de recherche, une page que tu garderas dans ton carnet ou ton téléphone. 1) Liste les cinq étapes d'une bonne recherche : définir précisément ce que je cherche, choisir mes mots-clés, utiliser les opérateurs, ouvrir au moins trois résultats différents, recouper l'information. 2) Ajoute les quatre opérateurs magiques avec un exemple chacun. 3) Ajoute ta grille de fiabilité en quatre questions : qui écrit ce site, quand l'information a été publiée, quelle est la source de l'information, d'autres sites sérieux disent-ils la même chose. 4) Termine par trois pièges à éviter : cliquer sur le premier lien sans lire, faire confiance à un site sans date, recopier sans vérifier. Ta fiche est réussie si un camarade peut s'en servir sans toi pour expliquer."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : traque la rumeur",
+          "content": "Ta mission : démasquer une rumeur. Dans les groupes WhatsApp et les réseaux sociaux, circulent souvent des messages du genre : boire tel thé guérit toutes les maladies, ou une école fermera pour tel motif. Trouve un message virale reçu autour de toi, ou invente-en un pour l'exercice. Maintenant, enquête comme un vrai journaliste : 1) Cherche la même information avec des mots-clés précis sur un moteur de recherche. 2) Consulte au moins trois sources sérieuses : un site institutionnel, un média reconnu, une encyclopédie en ligne. 3) Note pour chaque source : confirme, dément ou ignore. 4) Rédige ton verdict en trois phrases : vraie, fausse ou invérifiable, avec tes preuves. Partage ta méthode avec ta famille : tu viens de devenir le garde-fou des rumeurs de la maison."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : l'exposé blindé",
+          "content": "Pour clore l'aventure, prépare un mini-dossier de recherche complet sur un sujet qui te passionne : une culture ivoirienne, un animal d'Afrique de l'Ouest, une startup du continent. 1) Utilise ta fiche méthode pour mener toute la recherche. 2) Rédige une page avec une introduction, trois informations vérifiées avec la source citée pour chacune, et une conclusion. 3) Crée une liste de tes sources en bas de page : nom du site, titre de l'article, date. 4) Montre ton dossier à un adulte et demande-lui de jouer au douteur : il doit essayer de trouver une faille dans tes informations. Si ta défense tient, tu es officiellement un maître de la recherche. Garde ce dossier : c'est la preuve que tu sais chercher, vérifier et citer, trois compétences que les recruteurs adoreront demain."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Comment exiger une expression exacte dans une recherche ?",
+          "options": [
+            "Écrire les mots en majuscules",
+            "Mettre l'expression entre guillemets",
+            "Ajouter trois points d'exclamation",
+            "Traduire la phrase en anglais"
+          ],
+          "correct_index": 1,
+          "explanation": "Les guillemets forcent le moteur à chercher l'expression exacte, mot pour mot, dans cet ordre."
+        },
+        {
+          "question": "Quel est le premier réflexe devant une information surprenante lue en ligne ?",
+          "options": [
+            "La partager tout de suite",
+            "La recopier sans réfléchir",
+            "La recouper avec au moins deux autres sources fiables",
+            "Modifier la phrase pour qu'elle soit plus courte"
+          ],
+          "correct_index": 2,
+          "explanation": "Avant de croire ou de partager, un explorateur vérifie l'information auprès de plusieurs sources sérieuses et récentes. Recouper, c'est le réflexe numéro un contre la désinformation."
+        },
+        {
+          "question": "Sur quoi un moteur de recherche se base-t-il pour classer ses résultats ?",
+          "options": [
+            "Par ordre alphabétique des sites",
+            "Sur la pertinence et la popularité des pages",
+            "Sur les sites les plus anciens",
+            "Uniquement sur les sites qui paient le plus"
+          ],
+          "correct_index": 1,
+          "explanation": "Le moteur classe les résultats selon la pertinence par rapport à ta requête et la popularité de la page, entre autres critères. Les liens commerciaux existent mais ils sont affichés comme publicités, séparés des résultats."
+        }
+      ]
+    },
+    {
+      "slug": "web-history",
+      "title": "Histoire du Web",
+      "description": "Voyage dans le temps : des premières connexions militaires aux réseaux sociaux d'aujourd'hui, découvre les inventions et les inventeurs qui ont construit le web que tu utilises chaque jour.",
+      "story": "Imagine une machine à remonter le temps. Destination : 1969, une époque sans smartphones, sans wifi, où un message mettait des jours à traverser le monde. Pourtant, dans un laboratoire américain, un réseau envoyait son tout premier message. Dans cette aventure, tu vas remonter les décennies, rencontrer les visionnaires qui ont construit le web, et comprendre pourquoi le monde a basculé en quelques années. Prêt pour le grand voyage ?",
+      "xp_reward": 110,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Des origines surprises du web",
+          "content": "Commençons par une confusion classique : Internet et le web ne sont pas la même chose. Internet, c'est le réseau de câbles et de machines, né dans les années 1960 avec un projet militaire américain appelé ARPANET, qui envoya son premier message en 1969. Le web, c'est l'ensemble des pages et de sites qui vivent sur ce réseau, inventé bien plus tard, en 1989, par un informaticien britannique : Tim Berners-Lee. Il a créé trois choses simples qui ont changé le monde : le format des pages web, le langage pour les écrire, et les adresses pour les relier entre elles. En 1991, le premier site web est en ligne. Puis les navigateurs sont arrivés, ces logiciels qui affichent les pages : le web devient visible pour tous. Aujourd'hui, le web tient dans ta poche : les smartphones l'ont rendu mobile et social."
+        },
+        {
+          "section_type": "play",
+          "title": "Le quiz des époques",
+          "content": "Jouons au jeu des époques. Prépare dix petits papiers : sur cinq, écris des inventions : ARPANET, le premier site web, le navigateur, les réseaux sociaux, le smartphone. Sur les cinq autres, écris des dates piochées dans le siècle : 1969, 1991, 1995, 2005, 2010. Mélange le tout face cachée. À deux joueurs, chacun pioche une invention et une date et essaie de former le bon couple. L'adversaire vérifie dans la leçon. Bon couple gagné, mauvais couple repose dans la pile. Le gagnant est celui qui reconstitue le plus de couples. Astuce pour gagner : souviens-toi des trois grandes époques du web. Le web 1.0, les débuts : on lisait des pages écrites par de rares auteurs. Le web 2.0, celui des réseaux : chacun publie, commente, partage. Le web 3.0, en construction : des services plus intelligents et parfois décentralisés."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Visite un site des années 90",
+          "content": "Il existe une machine à remonter le temps du web : la Wayback Machine, une archive en ligne qui conserve des copies de sites depuis des décennies. Expérience : ouvre un navigateur et cherche Wayback Machine archive. Dans la barre de recherche du site, tape l'adresse d'un grand site encore actif, par exemple celui d'une grande encyclopédie ou d'un journal international. Choisis une année ancienne dans le calendrier proposé, idéalement les années 1990 ou 2000. Observe bien : la page est souvent grise ou blanche, les images minuscules, la mise en page rudimentaire, parfois juste du texte et des liens bleus soulignés. Note trois différences avec le même site aujourd'hui : couleurs, images, organisation. Puis essaie une année récente pour voir le changement. Tu viens de voir de tes yeux ce que tes parents appelaient le web."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis ta frise chronologique du web",
+          "content": "Construis ta propre ligne du temps du web, à garder dans ton cahier. Prends une feuille en format paysage et trace une ligne horizontale. Place-y huit étapes clés, dans cet ordre : 1969 premier message d'ARPANET, 1989 invention du web par Tim Berners-Lee, 1991 premier site web, 1995 arrivée massive des navigateurs, 2000 bulle des entreprises du web, 2005 l'essor des réseaux sociaux, 2010 le web dans la poche avec les smartphones, aujourd'hui le web social et mobile en Afrique. Pour chaque étape, dessine un petit symbole et écris une phrase simple. Décore avec les couleurs de chaque époque : noir et blanc au début, couleurs vives aujourd'hui. Ta frise est réussie si, en la montrant à un parent, il t'apprend quelque chose que tu ne savais pas encore sur son propre souvenir du web."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : interviewe un adulte sur son premier Internet",
+          "content": "Ta mission : récolter des souvenirs vrais. Choisis un adulte de ta famille ou un voisin et pose-lui ces cinq questions : la première fois que tu as utilisé Internet, c'était où et comment ? À quoi servait le web à l'époque ? Combien coûtait une connexion, par exemple au cybercafé ? Quel était ton site ou mon jeu préféré ? Qu'est-ce qui t'a le plus étonné quand le web est arrivé ? Note ses réponses mot pour mot dans ton carnet. En Afrique de l'Ouest, beaucoup de réponses parlent de cybercafé, de connexion lente au crépuscule, de messageries qui coutaient cher. Compare avec ta vie numérique d'aujourd'hui et écris trois changements énormes en trois phrases. Cette interview devient un trésor : dans vingt ans, on te la demandera aussi."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : le web de tes rêves en 2040",
+          "content": "Dernier projet de cette aventure : imaginer la suite de l'histoire. En t'appuyant sur tout ce que tu as appris sur les époques du web, imagine à quoi ressemblera le web en 2040, quand tu auras l'âge de tes parents. Rédige une page en trois parties : 1) Le web en 2040 : à quoi je l'imagine, avec au moins trois détails concrets. 2) Ce qui aura disparu ou changé, en t'appuyant sur la vitesse des changements passés. 3) Une question que tu poserais à Tim Berners-Lee si tu le rencontrais. Termine par un dessin ou un schéma de ta vision. Présente ton projet à deux personnes : un adulte et un jeune de ton âge, et note la réaction de chacun. L'histoire du web n'est pas finie : la suite, c'est toi qui l'écris."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Qui a inventé le web ?",
+          "options": [
+            "Mark Zuckerberg",
+            "Bill Gates",
+            "Tim Berners-Lee",
+            "Steve Jobs"
+          ],
+          "correct_index": 2,
+          "explanation": "Tim Berners-Lee, un informaticien britannique, a inventé le web en 1989 en créant le langage des pages, leur format et les liens qui les relient."
+        },
+        {
+          "question": "Quelle phrase est correcte ?",
+          "options": [
+            "Internet et le web sont exactement la même chose",
+            "Le web est un service qui fonctionne grâce au réseau Internet",
+            "Internet est apparu après le web",
+            "Le web fonctionne sans connexion"
+          ],
+          "correct_index": 1,
+          "explanation": "Internet est le réseau physique mondial, né en 1969 avec ARPANET. Le web, inventé en 1989, est l'ensemble des pages qui vivent sur ce réseau : le web a donc besoin d'Internet, pas l'inverse."
+        },
+        {
+          "question": "Quelle évolution caractérise le web 2.0 ?",
+          "options": [
+            "Seuls les experts peuvent publier des pages",
+            "Les utilisateurs créent et partagent eux-mêmes le contenu",
+            "Les pages sont uniquement en noir et blanc",
+            "Le web fonctionne uniquement sur ordinateur"
+          ],
+          "correct_index": 1,
+          "explanation": "Le web 2.0 est celui des réseaux sociaux, des blogs et des commentaires : chacun devient auteur et publie facilement, ce qui a tout changé."
+        }
+      ]
+    },
+    {
+      "slug": "html-basics",
+      "title": "HTML : les fondations",
+      "description": "Apprends la langue dans laquelle sont écrites toutes les pages du web. Balises, titres, liens, images : à la fin de cette aventure, tu auras construit ta première page web de tes propres mains.",
+      "story": "Devant chaque site web que tu visites se cache une langue secrète : le HTML. Sans elle, pas de page, pas de bouton, pas de vidéo. Bonne nouvelle : c'est une langue très simple, inventée pour être lue par les machines et écrite par les humains. Dans cette aventure, tu vas apprendre à assembler les briques d'une page web, comme un maçon construit une maison, brique par brique. À la fin, ta première page vivra dans un navigateur. Prêt à poser ta première brique ?",
+      "xp_reward": 130,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Les briques invisibles des pages",
+          "content": "Fais ce test : sur n'importe quel site, fais un clic droit puis choisis afficher la source de la page. Tu verras apparaître du texte étrange rempli de mots entourés de chevrons : ce sont des balises, et cette langue, c'est le HTML. Le HTML structure le contenu : chaque balise dit au navigateur ce qu'est un élément. Une balise de titre dit : ceci est un titre important. Une balise de paragraphe dit : ceci est un texte courant. Une balise image dit : affiche cette photo ici. Une balise lien dit : en cliquant ici, on va vers cette autre page. La plupart des balises fonctionnent en paires : une balise ouvrante au début de l'élément, une balise fermante à la fin, marquée par une barre oblique. Le navigateur lit ce texte et construit l'affichage que tu vois : sans HTML, il n'y a que du texte en vrac. Retiens l'image de la maison : le HTML est les murs, les pièces, les portes. C'est la structure de tout ce qui existe sur le web, du plus petit blog au plus grand réseau social."
+        },
+        {
+          "section_type": "play",
+          "title": "Le jeu des étiquettes",
+          "content": "Jouons à être un navigateur. Découpe dix étiquettes en papier. Sur chacune, écris une balise en toutes lettres : un titre principal, un paragraphe, une image, un lien, un titre secondaire, une liste. Sur d'autres papiers, écris des morceaux de contenu : une phrase d'accroche, le nom de ton plat préféré, la description de ton quartier, l'adresse d'un site. Mélange tout, puis reconstruct une page logique : pose les étiquettes balises autour des contenus, comme un navigateur assemble une page. Défi à deux : chacun construit sa page, puis l'autre joue le navigateur et lit la page à voix haute en expliquant ce qu'il affiche à chaque balise : ici un grand titre, ici un paragraphe, ici une image. Le gagnant est celui dont la page se lit le plus naturellement. Tu comprends en jouant la logique profonde du HTML : des boîtes qui contiennent du contenu."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Ta première page dans un bloc-notes",
+          "content": "Expérience historique : créer une vraie page web sans aucun logiciel spécial. Ouvre un éditeur de texte simple, comme le bloc-notes ou un éditeur libre. Tape exactement ces lignes en texte brut. Première ligne : la balise html entre chevrons. Deuxième ligne : la balise head, puis dedans la balise title avec le mot Bienvenue, puis la fermeture des deux. Ensuite la balise body, puis un titre principal avec la balise h un contenant ton prénom, puis un paragraphe avec la balise p contenant une phrase qui te présente, et referme body puis html. Enregistre le fichier sous le nom : mapage.html, en choisissant tous les fichiers comme type. Puis ouvre ce fichier avec ton navigateur : ta page est en ligne, sur ta machine. Change le titre, réenregistre, recharge la page dans le navigateur : la modification apparaît. Tu viens de faire exactement le métier de développeur web : écrire, enregistrer, recharger, corriger."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis ta page présentation",
+          "content": "Construis maintenant une vraie page de présentation, étape par étape. Repars de ton fichier mapage.html et enrichis-le. 1) Ajoute trois niveaux de titres : un grand titre avec ton prénom, un titre de section pour mes passions, un autre pour mes projets. 2) Sous chaque titre, écris un paragraphe de deux phrases. 3) Crée une liste de tes trois activités préférées avec la balise de liste et ses éléments. 4) Ajoute un lien vers un site que tu aimes, avec la balise lien et son adresse. 5) Ajoute une image : pour l'instant, cherche une image libre de droits en ligne et copie son adresse dans la balise image. 6) Enregistre, recharge, vérifie chaque point de cette liste dans ton navigateur. Ta page est réussie quand les six éléments s'affichent tous correctement et qu'un camarade peut la lire et cliquer sur le lien sans que rien ne casse. C'est ta première oeuvre web : garde-la précieusement."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : auditeur de sites",
+          "content": "Ta mission : auditer un vrai site comme un professionnel. Choisis le site simple d'une école, d'une association ou d'une petite entreprise de ton quartier. Parcours la page d'accueil et remplis une fiche d'audit en quatre colonnes : les titres utilisés, combien de liens vers d'autres pages, les images présentes, et les informations manquantes. Pour les informations manquantes, pose-toi la question d'un visiteur pressé : est-ce que je trouve en trois clics le contact, le lieu, les horaires ? Ensuite, fais la même inspection technique : clic droit, afficher la source, et cherche la présence des balises de titre, de lien et d'image dans le code. Termine par un mini rapport de trois phrases : ce que ce site fait bien, ce qu'il devrait ajouter, et l'élément HTML que tu lui conseillerais en priorité. Ton audit éveillera peut-être des vocations : c'est exactement le premier travail d'un web designer."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : ta carte de visite numérique",
+          "content": "Projet final : une carte de visite web qui te représente, réutilisable pour toujours. Sur une seule page : ton prénom en grand titre, une phrase de présentation percutante, ta liste de trois compétences en cours d'acquisition, un lien vers ta page présentation de l'activité construis, et une image qui te plaît. Ajoute une section contact avec un simple texte indiquant comment te joindre, sans donner d'information personnelle réelle en ligne : prénom et initiale suffisent. Vérifie la page dans un navigateur, puis demande à deux personnes de la lire pendant trente secondes et de te dire ce qu'elles retiennent. Si elles retiennent qui tu es et ce que tu aimes, ta carte fonctionne. Dans l'aventure suivante, tu lui donneras des couleurs et du style avec le CSS. Le squelette est prêt : l'aventure de l'apparence commence."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "À quoi sert le langage HTML ?",
+          "options": [
+            "À structurer le contenu d'une page web",
+            "À colorer les pages",
+            "À se connecter à Internet",
+            "À créer des mots de passe"
+          ],
+          "correct_index": 0,
+          "explanation": "Le HTML structure le contenu : titres, paragraphes, images, liens. C'est le squelette de chaque page web. Les couleurs, elles, sont gérées par le CSS."
+        },
+        {
+          "question": "Que fait le navigateur avec le code HTML d'une page ?",
+          "options": [
+            "Il l'imprime automatiquement",
+            "Il lit les balises et construit l'affichage",
+            "Il le traduit en anglais",
+            "Il le transforme en image"
+          ],
+          "correct_index": 1,
+          "explanation": "Le navigateur lit les balises une par une et construit la page affichée : chaque balise lui indique la nature et l'organisation de chaque élément."
+        },
+        {
+          "question": "Comment fonctionnent la plupart des balises HTML ?",
+          "options": [
+            "Seulement en version anglaise",
+            "En paires : une balise ouvrante et une balise fermante",
+            "Uniquement avec des majuscules",
+            "Elles n'existent qu'en version payante"
+          ],
+          "correct_index": 1,
+          "explanation": "La plupart des balises vont par paires : une balise ouvrante marque le début de l'élément, une balise fermante marquée d'une barre oblique marque sa fin."
+        }
+      ]
+    },
+    {
+      "slug": "css-style",
+      "title": "CSS : donner vie au Web",
+      "description": "Le HTML pose les murs, le CSS peint la maison. Apprends à changer les couleurs, les tailles et les mises en page : ta carte de visite web va prendre un style qui te ressemble.",
+      "story": "Tu as construit ta page web dans l'aventure HTML : elle fonctionne, mais elle ressemble à un chantier. Texte noir sur fond blanc, tout collé, austère. Imagine maintenant la même page avec tes couleurs, des espaces qui respirent, des titres qui claquent. C'est le travail du CSS, la langue du style. Dans cette aventure, tu vas apprendre à choisir l'aspect de chaque élément, comme un décorateur transforme une maison. À la fin, ta page sera unique : personne d'autre n'aura la même.",
+      "xp_reward": 130,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "La langue qui habille les pages",
+          "content": "CSS veut dire feuilles de style en cascade. Où HTML structure le contenu, CSS décrit son apparence. Une règle CSS s'écrit toujours pareil : un sélecteur, qui choisit les éléments visés, puis entre accolades des paires propriété-valeur séparées par deux-points. Par exemple, si tu écris p puis accolade, puis color : bleu ; puis accolade fermante, tous les paragraphes deviennent bleus. Chaque propriété commande un détail : la couleur du texte, la couleur du fond, la taille de police, l'épaisseur des bordures, les marges autour d'un élément. Le mot cascade cache une règle importante : quand plusieurs règles touchent le même élément, c'est la plus précise, ou la dernière déclarée à précision égale, qui gagne. C'est pour cela qu'on peut commencer avec un style général, puis affiner titre par titre. Le CSS vit soit dans un fichier séparé relié à la page, soit à l'intérieur de la page elle-même. Pour débuter, un fichier style.css à côté de ta page suffit : une seule feuille pour habiller tout le site."
+        },
+        {
+          "section_type": "play",
+          "title": "Le salon de relooking",
+          "content": "Jouons au décorateur sans ordinateur. Dessine sur une feuille une maison en coupe : un salon, une chambre, une cuisine. Prépare une dizaine d'étiquettes, une par règle CSS imaginaire : par exemple, la règle numéro un cible les murs du salon, entre accolades, couleur : vert menthe. La règle numéro deux cible les murs du salon, couleur : ocre. La règle numéro trois cible toutes les portes, couleur : rouge. À deux joueurs, chacun pioche des étiquettes et les applique dans l'ordre sur son dessin, en respectant la cascade : si deux règles visent le même élément, la dernière gagne, mais une règle plus précise, qui vise un élément seul, gagne sur une règle générale. Vérifiez vos dessins : qui a appliqué la cascade sans se tromper ? Ce jeu fait ressentir dans les mains ce que le navigateur calcule en millisecondes sur chaque page que tu visites."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Habille ta page en dix minutes",
+          "content": "Expérience concrète : reprends ta page mapage.html de l'aventure HTML. Crée un nouveau fichier dans le même dossier, nomme-le style.css. Dedans, écris trois règles : une pour le fond de la page, avec la propriété background-color et une couleur douce ; une pour les titres, avec la propriété color et une couleur qui te plaît ; une pour les paragraphes, avec la propriété font-size et une valeur comme 18px. Relie la feuille à ta page : dans la partie head de ton fichier html, écris une balise link qui pointe vers style.css. Enregistre, puis ouvre ta page dans le navigateur : les changements apparaissent comme par magie. Maintenant amuse-toi : change la couleur du fond, réenregistre, recharge. Teste ensuite des propriétés nouvelles une par une, en notant leur effet : text-align pour centrer, margin pour créer de l'espace autour d'un élément, border pour encadrer. Dix minutes de tests valent une heure de théorie : le navigateur est ton laboratoire."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis ta mini bibliothèque de styles",
+          "content": "Construis maintenant un outil que tu réutiliseras sur tous tes sites : ta bibliothèque personnelle de styles. Crée un fichier styles-perso.css et remplis-le au fur et à mesure en testant dans ta page : 1) une palette de trois couleurs pour ton identité : une couleur principale, une couleur de fond, une couleur de lien ; 2) une taille de texte lisible pour le corps, par exemple 16 ou 18px ; 3) un style pour tes titres avec une propriété font-family pour choisir la police ; 4) un encadré à toi : une classe que tu nommes encadre, avec bordure, coins arrondis via border-radius, et une marge intérieure via padding. Pour l'appliquer à un seul élément, utilise l'attribut class dans le HTML et cible-le dans le CSS avec un point devant le nom. Teste chaque brique dans ta page carte de visite, une par une, en rechargeant le navigateur à chaque fois. Ta bibliothèque est réussie quand tu peux changer l'ambiance complète de ta page en modifiant trois lignes seulement."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : détective du design local",
+          "content": "Ta mission : évaluer le design de vrais sites autour de toi. Choisis trois sites que connaît ta famille ou ton quartier : par exemple le site d'une école, d'une boutique, d'un média ivoirien ou d'une administration. Pour chaque site, remplis une grille sur cinq points : les couleurs sont-elles cohérentes ou criardes ? Le texte est-il lisible, assez grand, avec du contraste ? Trouve-t-on le menu du premier coup d'œil ? La page fonctionne-t-elle bien sur ton téléphone, pas seulement sur un grand écran ? Y a-t-il des éléments qui bougent et attirent l'œil au bon moment ? Note chaque site sur dix et écris pour chacun un conseil concret de style, comme : centrer le titre, augmenter la taille du texte, ajouter une couleur de fond douce. Envoie ou montre ta grille au propriétaire d'un des sites si tu le connais : tu découvriras que ton œil neuf vaut de l'or."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : ta carte de visite stylée",
+          "content": "Projet final : transformer ta carte de visite web de l'aventure HTML en une page dont tu seras fier. Objectif : une page claire, lisible et originale, entièrement stylée par ton fichier CSS. Contraintes à respecter : au moins trois couleurs cohérentes, un titre centré, des sections séparées par des marges généreuses, un encadré pour tes compétences, et une adaptation mobile : teste la page sur un téléphone et ajoute si besoin une règle qui réduit la taille des titres sur petit écran. Écris ta palette au début de ton fichier CSS en commentaire pour t'en souvenir : mes trois couleurs. Termine par le test des trois regards : montre la page à trois personnes et demande-leur le mot qui décrit le style. Si les trois répondent dans l'esprit de ce que tu voulais exprimer, ton style parle. Garde ta bibliothèque de styles : elle servira dans l'aventure où tu créeras ton premier site complet."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "À quoi sert le langage CSS ?",
+          "options": [
+            "À structurer le contenu d'une page",
+            "À décrire l'apparence et le style des éléments",
+            "À stocker les données des utilisateurs",
+            "À se connecter à Internet"
+          ],
+          "correct_index": 1,
+          "explanation": "Le CSS décrit l'apparence : couleurs, tailles, marges, disposition. Le contenu, lui, est structuré par le HTML. Les deux langages travaillent ensemble."
+        },
+        {
+          "question": "Comment se compose une règle CSS ?",
+          "options": [
+            "Un sélecteur, puis des paires propriété-valeur entre accolades",
+            "Une liste de mots-clés séparés par des virgules",
+            "Uniquement un nom de couleur",
+            "Une adresse de site web"
+          ],
+          "correct_index": 0,
+          "explanation": "Une règle CSS commence par un sélecteur qui vise les éléments concernés, suivi d'accolades contenant des paires propriété-valeur, par exemple color : bleu."
+        },
+        {
+          "question": "Que signifie le C de cascade dans CSS ?",
+          "options": [
+            "Que les pages défilent de haut en bas",
+            "Que les règles se combinent selon un ordre de priorité",
+            "Que le CSS ne fonctionne que sur ordinateur",
+            "Que chaque site doit écrire ses règles dans l'ordre alphabétique"
+          ],
+          "correct_index": 1,
+          "explanation": "La cascade est la règle qui décide quelle instruction gagne quand plusieurs visent le même élément : la plus précise l'emporte, et à précision égale, la dernière déclarée s'applique."
+        },
+        {
+          "question": "Tu veux appliquer un style à un seul élément bien précis, pas à tous les paragraphes. Que utilises-tu ?",
+          "options": [
+            "Une classe, ciblée dans le CSS avec un point",
+            "Une couleur plus foncée",
+            "Une règle pour la balise p",
+            "Un titre plus long"
+          ],
+          "correct_index": 0,
+          "explanation": "Une classe, ajoutée dans le HTML via l'attribut class, permet de viser un ou quelques éléments choisis : dans le CSS, on la cible en écrivant un point suivi du nom de la classe."
+        }
+      ]
+    },
+    {
+      "slug": "social-media",
+      "title": "Réseaux sociaux",
+      "description": "Comprend de l'intérieur comment fonctionnent les réseaux sociaux : algorithmes, fils d'actualité, engagement. Prends le contrôle de ton feed au lieu de le subir.",
+      "story": "Chaque matin, des millions de jeunes d'Afrique et du monde ouvrent les mêmes applications que toi : le pouce glisse, les vidéos défilent, le temps s'envole. Mais sais-tu vraiment pourquoi TU vois CES contenus-là ? Derrière ton fil d'actualité, un algorithme prend des décisions pour toi, à chaque seconde. Dans cette aventure, tu vas ouvrir le capot des réseaux sociaux, comprendre ce qui te fait rester scotché, et apprendre à reprendre le volant. Objectif : devenir un utilisateur stratège, pas un consommateur passif.",
+      "xp_reward": 110,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Comment un algorithme décide de ce que tu vois",
+          "content": "Un réseau social n'affiche jamais les publications dans l'ordre où elles ont été postées. Il trie, classe et choisit grâce à un programme appelé algorithme de recommandation. Son objectif est simple à énoncer : te montrer ce qui te fera rester le plus longtemps possible. Pour cela, il observe tout ce que tu fais : ce que tu regardes longtemps, ce que tu aimes, partages, commentes, les comptes que tu suis, les vidéos que tu repasses, même les publications que tu fais défiler rapidement. Chaque action est une information : elle apprend à la machine ce qui te captive. À partir de ces signaux, l'algorithme prédit ce qui a le plus de chances de te plaire et le place en haut de ton fil. Conséquence importante : deux personnes ne voient jamais le même réseau social. Ton feed est le reflet de tes comportements passés, amplifiés. Si tu regardes souvent des vidéos de foot, tu en verras de plus en plus. Si tu cliques sur du contenu en colère, la machine te servira de la colère. La bonne nouvelle : puisque le feed réagit à tes actions, tu peux le dresser comme on dresse un animal, en changeant tes habitudes."
+        },
+        {
+          "section_type": "play",
+          "title": "Joue à être l'algorithme",
+          "content": "Jouons à l'algorithme, en vrai. À trois joueurs minimum : un joueur incarne la personne, les autres incarnent l'algorithme. La personne annonce ses goûts de départ : par exemple, j'aime la musique, le foot et les blagues. L'algorithme distribue alors des cartes-contenus préparées à l'avance : quinze papiers avec des suggestions écrites, comme une vidéo de buts, un extrait de concert, une dispute entre influenceurs, un conseil de révision, une recette, une blague. À chaque tour, la personne choisit une carte et indique son temps d'attention : cinq secondes, vingt secondes ou deux minutes. L'algorithme note tout. Au tour suivant, l'algorithme ne peut proposer que des cartes proches de ce qui a capté le plus d'attention. Après cinq tours, l'algorithme annonce son verdict : voilà ton profil, et voilà les contenus que je vais te servir en boucle. La personne découvre souvent avec surprise qu'elle a elle-même fabriqué un fil étroit. Débriefing : qui a été piégé par ses propres clics ?"
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : dresse ton propre fil",
+          "content": "Passons au laboratoire : ton propre compte. Choisis un réseau social que tu utilises régulièrement et mène l'expérience sur une semaine. Jour un : capture l'état actuel de ton fil, sans rien changer : quels sujets reviennent ? Note les trois thèmes dominants et ton ressenti après dix minutes d'utilisation : motivé, détendu, agacé, fatigué ? Jours deux à quatre : deviens un utilisateur stratège. Chaque jour, indique que tu n'aimes pas ou masque un contenu qui ne t'apporte rien, suis un ou deux comptes qui t'apprennent des choses : un média sérieux, un compte scientifique, un créateur ivoirien talentueux, un compte de langue anglaise pour t'entraîner. Arrête-toi dès que tu remarques que tu scrolles sans lire vraiment. Jours cinq à sept : capture le nouveau fil et compare avec le jour un. Trois questions pour analyser : les sujets ont-ils changé ? Ton temps passé a-t-il bougé ? Ton ressenti après utilisation est-il meilleur ? Rédige tes conclusions en cinq phrases : tu viens de prouver par l'expérience que ton feed n'est pas une fatalité."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis ta charte d'utilisation",
+          "content": "Construis ton outil de protection : une charte personnelle d'utilisation des réseaux, à afficher ou garder dans ton téléphone. Écris-la en six articles, en la personnalisant : 1) Mon objectif : pourquoi je suis sur les réseaux, en une phrase, par exemple suivre l'actualité du rap ivoirien et partager mes dessins. 2) Mes limites de temps : une durée par jour que je m'engage à respecter, et un moment sans écran, par exemple pendant les repas et avant de dormir. 3) Mes critères de partage : avant de partager, je me demande : est-ce vrai, est-ce utile, est-ce gentil. 4) Mes comptes pouces verts : la liste des comptes qui m'apportent quelque chose. 5) Mes signaux d'alerte : scroller sans lire, comparer ma vie aux autres et me sentir triste, me disputer en ligne. 6) Mon plan de sortie : ce que je fais quand je remarque un signal d'alerte, comme fermer l'application et bouger dix minutes. Fais signer ta charte par un adulte de confiance et signe-la toi-même : un engagement écrit vaut mieux qu'une promesse dans la tête."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : repère les techniques d'accroche",
+          "content": "Ta mission : décortiquer les techniques que les créateurs utilisent pour capter ton attention. Sur une semaine, collecte cinq publications qui t'ont accroché au point de rester plus longtemps que prévu. Pour chacune, identifie la ou les techniques utilisées et note-les dans un tableau : la miniature intriguante, avec un visage surpris ou une flèche rouge ; le titre mystère, comme tu ne devineras jamais la suite ; l'appel à l'action, comme abonne-toi vite ; la musique tendance reconnaissable entre mille ; le début direct dans l'action ; la promesse de secret ou d'astuce ; la longueur exactement calibrée pour ne pas que tu t'arrêtes. Réflexion ensuite : ces techniques sont-elles mauvaises en soi ? Non, ce sont des outils de créateur. La question est ce qu'elles servent : informer, divertir, ou juste retenir ton attention pour la monétiser. Écris trois phrases de conclusion : les techniques que tu respectes, celles que tu vois comme des pièges, et celle que tu utiliserais toi-même honnêtement si tu créais du contenu."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : lance une page à impact positif",
+          "content": "Projet final : crée le plan complet d'une page qui apporte quelque chose, sans forcément la publier. Choisis une idée utile pour ton entourage : faire découvrir des métiers du numérique en Côte d'Ivoire, partager des astuces de révision, mettre en valeur les talents de ton quartier, expliquer une passion comme la cuisine ou le basketball local. Puis construis le dossier de lancement : 1) le nom et la description de la page en deux phrases claires ; 2) ta ligne éditoriale : les trois types de contenus que tu publierais, avec un exemple chacun ; 3) ton calendrier : deux publications par semaine, à quels jours et heures, et pourquoi ; 4) ta charte graphique : deux couleurs, un style de photo, un ton ; 5) tes règles de sécurité : aucune information personnelle des personnes filmées sans accord, commentaires surveillés, zéro contenu faux. Présente ton dossier à deux personnes de ton âge et un adulte : demandent-ils à suivre la page ? Si oui, ton plan tient la route. Ce dossier est une vraie compétence : les entreprises recrutent des gens capables de piloter une page avec stratégie."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quel est l'objectif principal d'un algorithme de fil d'actualité ?",
+          "options": [
+            "Trier les publications par ordre alphabétique",
+            "Maximiser le temps que tu passes sur l'application",
+            "Montrer uniquement les publications de ta famille",
+            "Empêcher les publicités de s'afficher"
+          ],
+          "correct_index": 1,
+          "explanation": "Le fil d'actualité classe les contenus pour te faire rester le plus longtemps possible : plus tu restes, plus l'application peut afficher de publicités et recueillir de données."
+        },
+        {
+          "question": "Comment l'algorithme apprend-il ce qui te plaît ?",
+          "options": [
+            "Il te demande directement chaque matin",
+            "Il observe tes actions : temps de visionnage, j'aime, partages, commentaires",
+            "Il lit tes pensées",
+            "Il affiche les mêmes contenus à tout le monde"
+          ],
+          "correct_index": 1,
+          "explanation": "Chaque action est un signal : le temps passé sur un contenu, les mentions j'aime, les partages et les commentaires enseignent à la machine tes préférences."
+        },
+        {
+          "question": "Deux amis utilisent le même réseau social. Que voient-ils ?",
+          "options": [
+            "Exactement le même fil d'actualité",
+            "Des fils différents, adaptés à leurs comportements",
+            "Uniquement les publications les plus récentes",
+            "Les contenus les plus anciens"
+          ],
+          "correct_index": 1,
+          "explanation": "Chaque fil est personnalisé : comme les algorithmes se basent sur les actions passées de chacun, deux personnes ne voient jamais exactement les mêmes contenus."
+        },
+        {
+          "question": "Que peut-on faire pour changer son fil d'actualité ?",
+          "options": [
+            "Rien, il est imposé pour toujours",
+            "Changer ses habitudes : masquer, s'abonner à des comptes utiles, gérer son temps",
+            "Supprimer l'application chaque semaine",
+            "Changer de téléphone"
+          ],
+          "correct_index": 1,
+          "explanation": "Le feed réagit à tes actions : masquer les contenus inutiles, suivre des comptes qui t'apprennent des choses et limiter ton temps redresse la machine en quelques jours."
+        }
+      ]
+    },
+    {
+      "slug": "digital-citizenship",
+      "title": "Citoyenneté numérique",
+      "description": "Sur Internet, tu n'es pas seulement un utilisateur : tu es un citoyen, avec des droits, des devoirs et une empreinte. Apprends à agir en ligne avec les mêmes valeurs que dans la vraie vie.",
+      "story": "Dans la vraie vie, tu sais qu'il ne faut ni insulter, ni voler, ni humilier. Mais dès que tu ouvres une application, ces règles semblent s'effacer : on voit des adultes se déchirer, des rumeurs voyager à la vitesse de la fibre, des photos partagées sans permission. Pourtant, la personne derrière chaque écran est réelle, et ce que tu publies en ligne peut te suivre pendant des années. Dans cette aventure, tu vas découvrir ce que signifie être un citoyen numérique : protéger sa réputation, respecter les autres, agir face aux injustices. Le web a besoin d'explorateurs responsables. C'est toi.",
+      "xp_reward": 100,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Des droits, des devoirs et une empreinte",
+          "content": "La citoyenneté numérique, c'est l'ensemble des comportements responsables, respectueux et conscients qu'on adopte en ligne. Elle repose sur trois piliers. Premier pilier : tes droits. Tu as le droit d'exprimer ton opinion, de protéger tes données personnelles, de signaler un contenu qui te nuit et d'être protégé par des lois : en Côte d'Ivoire comme dans beaucoup de pays, la cyberintimidation et la diffamation en ligne sont punies par la loi. Deuxième pilier : tes devoirs. Ne pas publier de fausses informations, ne pas partager des photos de quelqu'un sans son accord, respecter le travail des créateurs, défendre les victimes plutôt que les filmer. Troisième pilier : ton empreinte numérique. Chaque publication, commentaire, photo ou j'aime laisse une trace qui peut ressortir des années plus tard, lors d'un entretien d'embauche ou d'une demande de bourse. Un recruteur qui tape ton nom trouvera ce que tu as écrit à quinze ans. Règle simple : ne publie jamais ce que tu ne voudrais pas voir affiché devant toute ta classe et ta famille réunies. La vraie question de la citoyenneté numérique n'est pas technique, elle est humaine : quelle personne es-tu quand personne ne te regarde, sauf des millions d'écrans ?"
+        },
+        {
+          "section_type": "play",
+          "title": "Le jeu des dilemmes",
+          "content": "Jouons au jeu des dilemmes numériques. Prépare huit cartes-situations. En voici des exemples, que tu peux adapter : un camarade envoie un screenshot d'une conversation privée d'une autre élève ; tu découvres un compte parodique moqueur sur un professeur ; une connaissance te demande une photo de toi en écrivant c'est juste entre nous ; tu vois un inconnu se faire insulter dans les commentaires d'une vidéo ; un message annonce un gain d'argent si tu partages un lien de parrainage ; un ami te demande ton mot de passe pour t'aider à jouer ; tu trouves un dossier de révisions piraté, donc volé ; une rumeur sur la fermeture de ton école tourne sur WhatsApp. À chaque carte, chaque joueur vote en secret sur trois questions : est-ce légal, est-ce morale, quelle est la bonne action. Puis chacun révèle et justifie en une phrase. Les réponses justes suivent une méthode simple : stoppe, réfléchis, refuse si ça te met mal à l'aise, parle-en à un adulte de confiance. Le gagnant n'est pas celui qui a le plus de points, mais celui qui explique le mieux ses choix : la citoyenneté se discute, elle ne s'improvise pas."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : enquête sur ton empreinte",
+          "content": "Expérience révélatrice : enquête sur ta propre empreinte numérique, comme le ferait un recruteur. Étape un : cherche ton prénom et ton nom entre guillemets dans un moteur de recherche, puis ajoute le nom de ta ville ou de ton école. Note ce que tu trouves : des résultats sur toi, sur des homonymes, rien du tout ? Étape deux : demande à un ami de faire la même recherche depuis son téléphone et compare : les résultats sont-ils identiques ? La personnalisation des moteurs change ce que chacun voit. Étape trois : passe en revue tes propres comptes. Ouvre tes anciennes publications et regarde-les avec l'œil d'un inconnu : que révèlent-elles de toi ? Y a-t-il des photos qui te montrent mal, des commentaires écrits vite, des informations personnelles comme ton école, ton quartier, ton horaire de sortie ? Étape quatre : nettoie. Supprime ou masque ce qui ne te représente pas, vérifie les paramètres de confidentialité de tes comptes : qui peut voir tes publications, qui peut te contacter ? Rédige trois phrases de bilan : ce que j'ai trouvé, ce que j'ai corrigé, ce que je ne publierai plus. Cette demi-heure d'enquête vaut des années de réputation."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis le code numérique de ta famille",
+          "content": "Construis un objet durable : le code numérique de ta famille, comme une charte de la maison. Rassemble les utilisateurs de ton foyer, petits et grands, et propose-leur de le rédiger ensemble. Huit articles minimum, rédigés avec leurs mots : 1) Nous demandons la permission avant de publier une photo de quelqu'un de la famille. 2) Nous ne partageons pas d'informations personnelles : adresse, école, horaires, numéros. 3) Nous parlons aux autres en ligne comme en face à face. 4) Chacun a droit à sa vie privée : on ne lit pas les messages des autres sans accord. 5) Face à un contenu choquant, on n'enfonce pas : on arrête et on en parle. 6) Les mots de passe ne se partagent qu'avec les parents, jamais avec des amis. 7) Avant de croire, on vérifie. 8) Chacun peut demander de l'aide sans être jugé. Fais-le signer par tous, affiche-le près du téléphone ou de l'ordinateur familial, et fixe une réunion tous les six mois pour le mettre à jour. Un code écrit par tous protège mieux qu'un code imposé par un seul."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : photographe d'archiviste du quartier",
+          "content": "Ta mission : agir concrètement pour une mémoire collective responsable. Dans ton quartier ou ton entourage, choisis un sujet utile que personne ne documente : le métier du soumbala ambulant, l'histoire du marché, la vie des joueuses du quartier, les vieux autocars qui circulent encore. Avec l'accord écrit ou oral clair des personnes concernées, recueille des photos, des sons ou des témoignages courts, en expliquant toujours pourquoi et pour qui. Construis un carnet de collecte : pour chaque élément, note la date, le lieu, la personne, et surtout son autorisation : a-t-elle accepté que ce soit partagé en ligne, ou seulement gardé dans la famille ? Respecte la réponse sans discuter : c'est le cœur de la mission. Ensuite, présente ta collecte à ta classe ou ta famille : que raconte ce petit patrimoine ? Cette mission t'apprend le métier d'archiviste numérique : documenter, oui, mais toujours avec le consentement, la précision et le respect. Ces qualités manquent cruellement sur le web : entraîne-les dès maintenant."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : le guide du citoyen numérique de ta classe",
+          "content": "Projet final : rédiger un guide court et percutant, fait pour ta classe ou ton école, qui résume l'essentiel de la citoyenneté numérique. Format : une page ou deux, à imprimer ou à envoyer par le canal que les élèves utilisent. Contenu obligatoire : une définition en une phrase de la citoyenneté numérique ; trois droits et trois devoirs, écrits simplement ; la méthode face à un problème en ligne : capturer les preuves, ne pas répondre, bloquer, signaler, en parler à un adulte ; trois pièges fréquents, comme le screenshot privé partagé, la rumeur de groupe WhatsApp et le faux compte de célébrité ; une section sur l'empreinte, avec la question test : est-ce que je veux que ça reste sur moi pendant dix ans ? Termine par un slogan de ta création qui résume le tout. Fais relire ton guide par un adulte, puis diffuse-le : demande à un enseignant de l'afficher ou envoie-le au délégué de classe. Un guide utile ne reste pas dans un tiroir : il circule, il protège, il fait de toi un auteur."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Qu'est-ce que l'empreinte numérique ?",
+          "options": [
+            "Un code secret d'accès aux sites",
+            "L'ensemble des traces qu'on laisse en ligne : publications, commentaires, photos, j'aime",
+            "Un virus qui ralentit le téléphone",
+            "Le nom d'utilisateur choisi sur un réseau social"
+          ],
+          "correct_index": 1,
+          "explanation": "Chaque action en ligne laisse une trace qui peut ressortir des années plus tard : c'est pourquoi on réfléchit avant de publier, car effacer complètement est presque impossible."
+        },
+        {
+          "question": "Un camarade te demande de partager un screenshot d'une conversation privée pour rigoler. Que fais-tu ?",
+          "options": [
+            "Tu partages vite, c'est trop drôle",
+            "Tu partages juste avec un ami de confiance",
+            "Tu refuses : la conversation privée n'est pas à toi",
+            "Tu modifies le message pour qu'il soit moins méchant"
+          ],
+          "correct_index": 2,
+          "explanation": "Une conversation privée appartient à ceux qui l'ont échangée : la diffuser sans accord est une trahison, parfois punie par la loi, et toujours blessante. Refuser est le réflexe du citoyen numérique."
+        },
+        {
+          "question": "Face à une injustice en ligne, que dit la méthode la plus efficace ?",
+          "options": [
+            "Répondre avec des insultes pires",
+            "Regarder sans rien faire, ce n'est pas ton problème",
+            "Capturer les preuves, bloquer, signaler et en parler à un adulte de confiance",
+            "Supprimer tous tes comptes immédiatement"
+          ],
+          "correct_index": 2,
+          "explanation": "La bonne méthode : garder les preuves par capture, protéger la victime, signaler le contenu à la plateforme et alerter un adulte. La vengeance en ligne amplifie toujours le problème."
+        },
+        {
+          "question": "Pourquoi demander la permission avant de publier la photo de quelqu'un ?",
+          "options": [
+            "Parce que les photos sont toujours floues",
+            "Parce que chacun a droit à contrôler son image et sa vie privée",
+            "Parce que ça coûte des données mobiles",
+            "Parce que les réseaux l'interdisent la nuit"
+          ],
+          "correct_index": 1,
+          "explanation": "Publier l'image de quelqu'un sans son accord viole son droit à l'image et sa vie privée, deux droits protégés. Le consentement est la règle d'or, même entre amis."
+        }
+      ]
+    },
+    {
+      "slug": "email-mastery",
+      "title": "Maîtrise l'email",
+      "description": "L'email reste la langue officielle du monde professionnel : candidatures, écoles, entreprises. Apprends à écrire des messages clairs, à gérer une boîte de réception et à repérer les arnaques.",
+      "story": "Un jour, tu enverras une candidature de stage, une demande de bourse ou un message à un client. Ce jour-là, ce ne sera pas un statut WhatsApp qui décidera de ton avenir, mais un email. Malheureusement, beaucoup de jeunes écrivent en ligne comme ils écrivent en message privé : sans objet, sans bonjour, sans signature, avec des abréviations mystérieuses. Dans cette aventure, tu vas apprendre à écrire des emails qui inspirent confiance dès la première ligne, à organiser ta boîte comme un pro et à ne jamais te faire piéger. Ton adresse email deviendra ton passeport professionnel.",
+      "xp_reward": 110,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Comment un email voyage",
+          "content": "Comprendre l'email, c'est d'abord comprendre le courrier postal, en version électronique. Ton adresse email fonctionne comme une adresse postale : elle contient un nom unique, le nom de domaine du service qui héberge ta boîte, séparés par le symbole arobase. Quand tu cliques sur envoyer, ton message part vers un serveur d'envoi, comparable au bureau de poste de ton quartier. Ce serveur interroge le domaine du destinataire : où dois-je livrer ce message ? Le message traverse alors Internet jusqu'au serveur de réception, qui le range dans la boîte du destinataire, comme un facteur glisse une lettre dans une boîte aux lettres. Tout ce voyage dure quelques secondes. Deux enseignements pratiques. Premier : un email envoyé n'appartient plus seulement à toi : il peut être transféré, imprimé, conservé, donc écris chaque message comme s'il pouvait être lu à voix haute. Deuxième : tout le monde peut inventer l'expéditeur affiché, comme on peut écrire n'importe quelle adresse au dos d'une enveloppe. C'est le principe des emails frauduleux : l'affichage menteur. La vraie identité se vérifie par d'autres indices, jamais par le nom affiché seul. C'est pour cela que les services sérieux ne demandent jamais un mot de passe par email."
+        },
+        {
+          "section_type": "play",
+          "title": "Le championnat des objets efficaces",
+          "content": "Jouons au championnat des objets d'email. La ligne objet d'un email est la plus importante de tout le message : c'est elle qui décide si le destinataire ouvre vite, ouvre tard ou supprime. Prépare dix situations : demander un délai de devoir, inviter un club à une réunion, signaler un problème à un vendeur en ligne, demander une attestation à l'administration, remercier un entraîneur, proposer un partenariat à une association. Pour chaque situation, chaque joueur écrit trois objets possibles en moins d'une minute : un objet vague, un objet correct et un objet parfait. Un bon objet répond à trois critères : il est court, moins de huit mots ; il annonce le contenu exact du message ; il contient l'information clé, comme une date ou une demande. Comparez les propositions à voix haute et votez pour le meilleur de chaque situation. Le perdant des objets vagues, comme urgent ouvre vite ou coucou, explique pourquoi personne ne l'ouvrirait. À la fin, chaque joueur repart avec sa liste des cinq meilleurs objets du match : un carnet d'exemples réutilisables pour sa vie entière."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : anatomie d'un faux email",
+          "content": "Expérience d'analyste : dissection d'un email suspect. Va dans ton dossier spam ou courrier indésirable : il en regorge. Choisis-en un et remplis une fiche d'analyse en sept points : 1) L'expéditeur affiché : quel nom ? Quelle vraie adresse complète, souvent différente du nom affiché ? 2) L'objet : joue-t-il sur l'urgence, la peur, le gain ? 3) La formule d'appel : s'adresse-t-il à toi par ton nom précis, ou à un destinataire générique comme cher client ? 4) La demande : que veut-il te faire faire ? Cliquer, payer, donner un code, confirmer un mot de passe ? 5) Le lien : survolele avec le doigt ou la souris sans cliquer : l'adresse réelle affichée correspond-elle à celle du texte ? 6) Les fautes : un français approximatif, des majuscules bizarres, un logo déformé ? 7) Le verdict : réel, suspect ou fraude certaine. Répète l'analyse sur trois emails. Puis cherche les constantes : urgence artificielle, gain facile, menace de suspension, expéditeur imité. Tu viens de construire ton radar anti-arnaque, le même que celui des professionnels de la sécurité."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis ta messagerie professionnelle",
+          "content": "Construis maintenant ta boîte email comme un outil de travail, pas comme un dépotoir. Étape un : ton adresse. Si ton adresse actuelle ressemble à un pseudonyme de joueur, crée une adresse sobre au format prenom.nom, éventuellement complétée d'un chiffre. Une adresse sérieuse inspire confiance avant même le premier mot. Étape deux : crée ta signature automatique en quatre lignes : ton prénom et nom, ta qualité, comme élève ou étudiant, un moyen de contact, et éventuellement une citation courte et correcte. Pas de gif clignotant. Étape trois : organise ta boîte avec des dossiers ou libellés : candidatures, école, achats en ligne, important. Crée au moins ces quatre catégories et range tes messages existants. Étape quatre : configure deux filtres automatiques : les messages d'un expéditeur précis, comme ton école, partent directement dans le bon dossier, et la newsletter que tu ne lis jamais part directement à la corbeille. Étape cinq : adopte la règle du un-toucher : chaque email ouvert est traité, rangé ou supprimé immédiatement, jamais refermé pour plus tard. Une boîte vide d'éléments non lus, c'est une vie numérique maîtrisée."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : le vrai email qui compte",
+          "content": "Ta mission : écrire et envoyer un email réel, utile, à une vraie personne. Choisis une occasion authentique : demander des informations à un organisme de formation ou de bourse, écrire à un enseignant pour un projet, contacter une association pour proposer ton aide, demander un rendez-conseil à un professionnel dont tu admires le métier, avec tact. Construis ton email en respectant la structure en cinq étages : 1) Un objet précis, testé au championnat. 2) Une formule d'appel correcte : Bonjour Madame ou Bonjour Monsieur suivi du nom si tu le connais, jamais de salut ou de yo. 3) Une introduction d'une phrase : qui tu es et pourquoi tu écris. 4) Le corps : ta demande, en deux ou trois phrases claires, avec tous les détails nécessaires pour éviter un aller-retour inutile. 5) Une formule de politesse et ta signature complète. Relis-toi à voix haute pour chasser les fautes et les phrases trop longues. Envoie, puis patiente : un suivi poli est possible après une semaine sans réponse, en répondant dans le même fil de discussion. Note la réponse reçue dans ton carnet : chaque email envoyé t'apprend plus qu'une leçon de théorie."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : ton dossier de candidature numérique",
+          "content": "Projet final : assemble le kit de messagerie qui servira tes premières candidatures. Contenu du dossier, conservé soigneusement : 1) Ta présentation en trois phrases, prête à copier-coller dans un email : qui tu es, ce que tu sais faire, ce que tu cherches. 2) Ton modèle d'email de candidature : objet, formule d'appel, corps avec ta motivation en trois phrases, formule de politesse, signature. Les crochets marquent les zones à adapter à chaque envoi. 3) Ton modèle de relance polie après une semaine de silence, en trois phrases. 4) Ton modèle de remerciement après une réponse positive, en deux phrases. 5) Ta liste de vérification avant chaque envoi : bon destinataire, objet clair, aucune faute, pièce jointe présente si annoncée, taille raisonnable des fichiers. Teste ton kit : envoie deux emails réels de ta boîte professionnelle, une demande d'information et un remerciement. Si tu reçois deux réponses courtoises, ton kit fonctionne. Ce dossier, construit à quatorze ou seize ans, t'accompagnera jusqu'à tes premiers salaires : peu de tes camarades en auront un."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Pourquoi la ligne objet d'un email est-elle si importante ?",
+          "options": [
+            "C'est la plus longue partie du message",
+            "Elle décide si le destinataire ouvre le message vite, tard ou pas du tout",
+            "Elle contient le mot de passe",
+            "Elle est obligatoirement écrite en anglais"
+          ],
+          "correct_index": 1,
+          "explanation": "L'objet est la vitrine du message : court, précis et informatif, il augmente les chances d'être lu et bien traité. Un objet vague finit ignoré ou supprimé."
+        },
+        {
+          "question": "Que signifie le symbole arobase dans une adresse email ?",
+          "options": [
+            "Il sépare ton nom unique du domaine du service qui héberge ta boîte",
+            "Il indique le prix du message",
+            "Il prouve que l'email est urgent",
+            "Il chiffre le contenu du message"
+          ],
+          "correct_index": 0,
+          "explanation": "L'adresse email fonctionne comme une adresse postale : un nom unique avant l'arobase, le domaine du service après, comme le nom de la rue puis la ville."
+        },
+        {
+          "question": "Un email annonce que ton compte sera suspendu si tu ne cliques pas sur un lien dans l'heure. Que fais-tu ?",
+          "options": [
+            "Tu cliques immédiatement, c'est urgent",
+            "Tu vérifies l'expéditeur réel et tu passes par le site officiel sans cliquer sur le lien",
+            "Tu partages le message à tous tes contacts pour les prévenir",
+            "Tu réponds en donnant ton mot de passe pour régler le problème"
+          ],
+          "correct_index": 1,
+          "explanation": "L'urgence artificielle est la signature des fraudes : les vrais services ne menacent jamais en une heure. On vérifie la vraie adresse de l'expéditeur et on ouvre soi-même le site officiel, jamais via le lien du message."
+        },
+        {
+          "question": "Quelle formule d'appel convient à un email professionnel vers un inconnu ?",
+          "options": [
+            "Salut, ça va ?",
+            "Bonjour Madame ou Bonjour Monsieur suivi du nom si connu",
+            "Yo, checke ça vite",
+            "Aucune formule, on va direct au but"
+          ],
+          "correct_index": 1,
+          "explanation": "La formule d'appel instaure le respect dès la première ligne : Bonjour Madame ou Monsieur, complété du nom quand on le connaît, est le standard qui inspire confiance."
+        }
+      ]
+    },
+    {
+      "slug": "cloud-storage",
+      "title": "Le cloud et le stockage",
+      "description": "Tes photos, tes devoirs, tes musiques : où vivent-ils vraiment quand tu les mets dans le cloud ? Plonge dans les datacenters et apprends à organiser et protéger tes fichiers.",
+      "story": "Ton téléphone affiche : mémoire pleine. Panique : les photos de l'excursion, le devoir à rendre demain, la vidéo du cousin. Que fais-tu ? Tu supprimes ou tu envoies tout dans le cloud, cette chose invisible dont tout le monde parle. Mais au fait, c'est quoi, le cloud ? Où vont exactement tes fichiers ? Qui peut les lire ? Dans cette aventure, tu vas découvrir les coulisses des immenses entrepôts de données qui sauvegardent ta vie numérique, et apprendre à ranger tes fichiers comme un pro pour ne plus jamais rien perdre.",
+      "xp_reward": 100,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Le cloud n'est pas dans le ciel",
+          "content": "Première vérité à retenir : le cloud n'a rien de magique ni d'aérien. Quand tu enregistres une photo dans le cloud, elle voyage par Internet et atterrit sur des ordinateurs spécialisés appelés serveurs, rassemblés dans d'immenses bâtiments : les datacenters, ou centres de données. Un datacenter ressemble à un entrepôt géant rempli de racks, des armoires empilées de serveurs, qui tournent jour et nuit, climatisés et sécurisés. Ce que le cloud t'apporte, c'est un service : tu loues un bout de disque dur quelque part dans le monde, souvent sur plusieurs continents à la fois, avec des copies de sauvegarde. Si un serveur tombe en panne, une copie prend le relais : c'est pour cela que tes fichiers survivent aux pannes. Ce que le cloud ne fait pas, lui : il ne rend pas tes fichiers inaccessibles aux autres par magie. L'accès dépend des mots de passe et des réglages de partage. Deux règles d'or découlent de cette leçon. Règle un : un fichier existant seulement sur un seul appareil est un fichier en danger : un téléphone volé ou noyé l'emporte à jamais. La règle des trois : une copie locale, une copie dans le cloud, une copie ailleurs. Règle deux : avant de confier un fichier à un service, demande-toi qui peut le lire : le service est sérieux s'il propose la vérification en deux étapes et des partages contrôlés."
+        },
+        {
+          "section_type": "play",
+          "title": "Le jeu des trois copies",
+          "content": "Jouons au gardien de trésor. Chaque joueur dessine son trésor : cinq fichiers importants de sa vie, par exemple photos de famille, devoirs, musique enregistrée, vidéo du quartier, carnet de dessins. Sur des papiers, créez ensemble une pile d'événements malheureux, face cachée : le téléphone tombe dans l'eau, la carte mémoire grille, l'ordinateur est volé, le mot de passe du compte tombe dans une arnaque, le disque dur meurt, un effacement accidentel, le compte est piraté, le café se renverse sur le clavier. Chaque joueur répartit d'abord ses cinq fichiers : sur le téléphone seulement, dans le cloud, sur une clé USB, en double partout. Puis chacun pioche quatre événements et compte ses pertes : un fichier ne survit que s'il existait ailleurs que sur l'appareil touché. Le gagnant est celui qui perd le moins, mais le vrai gagnant est celui qui explique le mieux pourquoi la règle des trois copies fonctionne. Deuxième manche : ajoutez des cartes protection : vérification en deux étapes activée, mot de passe solide, partage désactivé. Les pertes baissent en flèche. Le jeu t'apprend ce que les adultes apprennent souvent en perdant leurs données."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : pèse et compare le stockage",
+          "content": "Expérience de mesurage : comprends ce que pèsent vraiment tes fichiers. Étape un : sur ton téléphone ou ordinateur, trouve les réglages de stockage et note combien d'espace occupent tes photos, tes vidéos, vos applications, vos messages. Étape deux : convertis les ordres de grandeur en objets du quotidien : une photo prise par un téléphone récent pèse environ deux à cinq mégaoctets, donc environ la moitié d'une chanson en moyenne qualité ; une minute de vidéo peut peser cent mégaoctets ou plus ; un devoir d'une page pèse à peine quelques dizaines de kilooctets, mille fois moins. Étape trois : calcule : combien de photos tiennent dans un espace libre restant ? Combien de vidéos ? Étape quatre : teste les services. Avec l'accord d'un adulte, crée un compte sur un service de stockage reconnu, dépose trois fichiers de tailles différentes et chronomètre le temps de téléversement. Fais pareil avec un fichier envoyé par messagerie : quelle limite de taille rencontre-tu ? Étape cinq : analyse l'usage de données : téléverser et télécharger consomment ta connexion, autant le savoir avant un forfait limité. Note tes conclusions en cinq chiffres : c'est en chiffres qu'on comprend vraiment le stockage."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis ton système de fichiers en ordre",
+          "content": "Construis maintenant une organisation durable de tes fichiers, sur ton téléphone et dans le cloud. Étape un : choisis une nomenclature, une façon unique de nommer : année-mois-jour puis sujet, par exemple 2026-03-14 expose-cacao. Le classement par date devient automatique et les fichiers se retrouvent même sans dossiers. Étape deux : crée une arborescence simple : quatre dossiers principaux seulement : école, personnel, projets, famille. Moins de dossiers, mais remplis avec discipline : l'excès de dossiers tue le rangement. Étape trois : trie tes fichiers existants : un quart d'heure par jour pendant une semaine suffit. Pendant le tri, applique la décision rapide : garder et ranger, mettre à la corbeille, ou archiver si le doute persiste. Étape quatre : mets en place ta sauvegarde : les dossiers importants synchronisés vers le cloud, et une copie supplémentaire sur clé USB ou disque dur pour les fichiers irremplaçables, avec la règle des trois. Étape cinq : protège l'accès : active la vérification en deux étapes sur ton compte de stockage, révoque les partages oubliés. Fais un test final : demande à un proche de te donner le nom d'un fichier ancien et retrouve-le en moins d'une minute. Si tu réussis, ton système est bon."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : l'antiquaire numérique de ta famille",
+          "content": "Ta mission : devenir le gardien de la mémoire de ta famille. Dans beaucoup de foyers, des trésors numériques dorment sur des téléphones anciens : des photos de grands-parents, des vidéos de baptêmes, des enregistrements de voix de parents disparus. Avec l'accord des adultes, lance une opération sauvegarde familiale. Étape un : inventorie les appareils de la maison : vieux téléphones dans les tiroirs, cartes mémoire, clés USB, ordinateur familial. Étape deux : propose à chacun de classer ses fichiers irremplaçables dans une arborescence familiale simple : famille, année, événement. Étape trois : organise un moment de téléversement : les fichiers choisis partent vers le cloud familial ou une clé dédiée, en double. Étape quatre : pour chaque fichier ancien, ajoute une note dans un document : qui est sur la photo, quand, où. Une photo sans histoire perd la moitié de sa valeur. Étape cinq : livre un mini rapport à la famille : nombre de fichiers sauvés, les trois plus précieux, et une recommandation de rangement pour la suite. Cette mission t'apporte plus que de l'XP : la gratitude d'une famille dont tu as protégé la mémoire, et une compétence d'organisation que le monde du travail paie cher."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : ton plan de continuité numérique personnel",
+          "content": "Projet final : rédige et applique ton plan de continuité numérique, le document qui décrit comment ta vie numérique résiste aux catastrophes. Un vrai plan tient sur une page et comporte cinq sections. 1) L'inventaire : liste tes appareils, tes comptes importants, tes fichiers irremplaçables. 2) Les copies : pour chaque catégorie de fichiers, où se trouvent les trois copies : appareil, cloud, support externe, avec les dates des dernières sauvegardes. 3) Les accès : où sont notés, en lieu sûr et hors ligne, les moyens de récupérer tes comptes : adresse de secours, codes de récupération de la vérification en deux étapes. Jamais dans une note synchronisée avec les mots de passe eux-mêmes. 4) Le pire scénario : que ferais-tu si ton téléphone principal disparaissait ce soir ? Décris la reprise étape par étape : bloquer le compte, changer les mots de passe, restaurer les fichiers. 5) Le calendrier : une date mensuelle de sauvegarde et une re-vérification trimestrielle des copies, notée quelque part où tu la verras. Passe le plan à l'épreuve : simule la perte d'un fichier et restaure-le depuis ta sauvegarde. Si tu récupères ton fichier en moins de dix minutes, ton plan est validé. Présente-le à un adulte : les adultes perdent leurs données bien plus souvent que les jeunes."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Où vivent concrètement tes fichiers quand tu les mets dans le cloud ?",
+          "options": [
+            "Dans des satellites en orbite",
+            "Sur des serveurs dans des bâtiments appelés datacenters",
+            "Dans ton téléphone, mais cachés",
+            "Dans l'air, sous forme de vapeur"
+          ],
+          "correct_index": 1,
+          "explanation": "Le cloud est un service de stockage sur des serveurs, des ordinateurs spécialisés rassemblés dans des datacenters sécurisés, avec des copies de sauvegarde pour résister aux pannes."
+        },
+        {
+          "question": "Qu'est-ce que la règle des trois copies ?",
+          "options": [
+            "Faire trois photos du même sujet",
+            "Garder un fichier en trois endroits différents : appareil, cloud, support externe",
+            "Télécharger un fichier trois fois",
+            "Créer trois comptes email"
+          ],
+          "correct_index": 1,
+          "explanation": "Un fichier sur un seul appareil est un fichier en danger : trois copies sur des supports différents protègent contre le vol, la panne et l'effacement accidentel."
+        },
+        {
+          "question": "Quelle est la meilleure façon de nommer un fichier pour le retrouver facilement ?",
+          "options": [
+            "photo_2385.jpg",
+            "doc_final_v2_sérieux.docx",
+            "2026-03-14 expose-cacao.odt",
+            "truc-important.pdf"
+          ],
+          "correct_index": 2,
+          "explanation": "La nomenclature date puis sujet, comme 2026-03-14 expose-cacao, classe automatiquement par ordre chronologique et décrit le contenu : on retrouve le fichier sans l'ouvrir."
+        },
+        {
+          "question": "Que t'apporte l'activation de la vérification en deux étapes sur ton compte de stockage ?",
+          "options": [
+            "Deux fois plus d'espace gratuit",
+            "Une protection : même si ton mot de passe est volé, un code sur ton téléphone bloque l'intrus",
+            "Un débit Internet plus rapide",
+            "Une sauvegarde automatique des contacts"
+          ],
+          "correct_index": 1,
+          "explanation": "La vérification en deux étapes exige un second code, souvent sur ton téléphone : un mot de passe volé ne suffit plus à ouvrir le compte. C'est la protection la plus efficace qui existe."
+        }
+      ]
+    },
+    {
+      "slug": "web-projects",
+      "title": "Crée ton premier site",
+      "description": "L'aventure finale du monde web : assemble tout ce que tu as appris, HTML, CSS, contenu, et publie ton premier vrai site en ligne, gratuit, visible depuis n'importe quel téléphone.",
+      "story": "Tu as appris la langue du web : tu sais comment Internet voyage, comment on structure une page, comment on lui donne du style, comment on écrit pour être lu. Il reste l'étape qui change tout : publier. Aujourd'hui, un site en ligne coûte zéro franc et trente minutes, visible depuis n'importe quel téléphone d'Abidjan à Zürich. Dans cette aventure finale, tu vas construire un site complet, page d'accueil, contenu, style, et le mettre en ligne pour de vrai. À la fin, tu auras une adresse à partager. Prêt à devenir publieur ?",
+      "xp_reward": 150,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Ce qu'il faut pour publier un site",
+          "content": "Un site en ligne, c'est trois choses réunies. Un : des fichiers. Ta page d'accueil, tes autres pages, ton fichier CSS, tes images : tout vit dans des fichiers comme ceux que tu sais déjà créer. Le point d'entrée porte toujours le même nom : index, avec l'extension html, car c'est la première page que les serveurs cherchent. Deux : un hébergeur. Un serveur connecté en permanence qui stocke tes fichiers et les sert aux visiteurs. Pour débuter, des services d'hébergement statique gratuits conviennent parfaitement : ils publient des sites de fichiers simples, exactement ce que tu sais faire. Trois : une adresse. L'hébergeur t'offre une adresse en sous-domaine, comme le-nom-de-ton-projet pointant vers le domaine de l'hébergeur. Plus tard, avec quelques milliers de francs par an, on achète un domaine personnel, mais ce n'est pas obligatoire pour commencer. Le chemin de publication est toujours le même : tu prépares tes fichiers dans un dossier, tu crées un compte chez l'hébergeur, tu glisses ton dossier dans l'interface de publication, et le site est en ligne. Comprends aussi la limite de ces hébergeurs simples : ils servent des sites statiques, des pages figées que le navigateur affiche. Les sites avec connexion utilisateur ou base de données demandent plus de techniques, que tu découvriras dans d'autres mondes. Pour faire ton premier site vitrine : c'est exactement ce qu'il te faut."
+        },
+        {
+          "section_type": "play",
+          "title": "L'atelier d'architecture en papier",
+          "content": "Jouons aux architectes de site, avant de toucher au code. Chaque joueur conçoit sur papier le plan d'un site pour un commanditaire tiré au sort : la fanfare du quartier, un vendeur de jus naturels, une équipe de football féminin, un club de lecture, une couturière, un réparateur de vélos. Contrainte : trois pages maximum, accueil, offres ou activités, contact. Sur votre feuille, dessinez le squelette de chaque page : le bloc titre en haut, le menu, les sections dans l'ordre, le pied de page. Pour chaque page, remplissez trois cadres : le message principal en une phrase, les trois informations que le visiteur doit retenir, l'action attendue du visiteur, comme appeler, venir, remplir un formulaire. Échangez ensuite les plans : chaque joueur critique le plan reçu avec la règle des trois secondes : un visiteur pressé comprend-il en trois secondes qui tu es, ce que tu proposes, comment te joindre ? Le plan qui échoue au test se corrige immédiatement, au crayon. Ce jeu t'apprend la règle d'or des vrais créateurs de sites : on dessine avant de coder, on corrige sur papier parce que l'encre numérique coûte plus cher à retoucher."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : publie une page test en dix minutes",
+          "content": "Expérience de lancement : publie une vraie page, toute simple, pour apprivoiser la mécanique. Étape un : crée un dossier mon-site sur ton ordinateur, ou dans un éditeur en ligne gratuit. Étape deux : dedans, crée le fichier index.html avec ta page la plus simple : un grand titre, deux paragraphes, une couleur de fond. Ta bibliothèque de styles de l'aventure CSS peut resservir telle quelle. Étape trois : avec l'accord d'un adulte, crée un compte sur un service d'hébergement statique reconnu et gratuit, celui que ton environnement autorise. Étape quatre : publie : la plupart des services offrent un bouton de dépôt de dossier ou un dépôt par versionnement que tu apprendras dans le monde coding. Étape cinq : ouvre l'adresse fournie sur ton propre téléphone, puis envoie-la à un ami loin de toi : il voit la même chose que toi. Fais ensuite le test du mode avion : la page reste affichée par le cache, mais recharge-la : elle a besoin du réseau pour revenir. Tu viens de comprendre par l'expérience la différence entre un fichier local et un site publié. Note ton adresse dans ton carnet : c'est ta première publication officielle sur le web mondial."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis ton site vitrine complet",
+          "content": "Construis maintenant ton vrai site vitrine, avec la méthode des professionnels en six étapes. 1) Choisis ton sujet réel : toi et ta passion, le club que tu fréquentes, l'activité d'un membre de ta famille avec son accord, un sujet ivoirien que tu veux documenter. 2) Prépare le contenu d'abord, dans un traitement de texte : le texte de chaque page, les photos libres de droits ou prises par toi avec accord, la liste des informations de contact, en évitant toute donnée personnelle sensible. 3) Crée l'architecture : trois fichiers html, accueil, activités, contact, un dossier pour les images, un fichier CSS partagé. 4) Assemble : recopie ton contenu dans les pages, applique ta bibliothèque de styles, vérifie chaque lien entre les pages. 5) Teste comme un visiteur hostile : sur ton téléphone, vérifie chaque page, chaque lien, chaque image, à la vitesse d'un visiteur pressé. Fais tester par un camarade qui ne connaissait pas le plan : où clique-t-il d'abord ? 6) Corrige, republie, et recommence le test. Ton site est terminé quand trois visiteurs différents trouvent l'information contact en moins de vingt secondes. Le secret des pros n'est pas le talent : c'est la répétition du cycle publier, tester, corriger."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : le client du quartier",
+          "content": "Ta mission : fais ce que font les vrais freelances. Trouve autour de toi une personne qui aurait besoin d'une vitrine simple : une couturière, un coiffeur, un moniteur de sport, une chorale, un vendeur du marché qui expédie par messagerie. Propose-lui un site vitrine gratuit : tu gagnes en expérience, il gagne en visibilité. Conduis l'entretien comme un pro, avec un carnet : 1) Fais parler le client : qu'est-ce qui fait que quelqu'un choisit son service plutôt qu'un autre ? 2) Collecte les informations clés : ce qu'il propose, ses horaires, sa zone, ses photos avec accord, son moyen de contact préféré, un prix de départ s'il accepte de l'afficher. 3) Montre-lui des exemples de styles sur des sites existants et note ses goûts : couleurs, ambiance. 4) Présente-lui ton plan de trois pages dessiné et fais-le valider avant de coder, avec la mention claire que le site restera gratuit et que les photos et textes seront utilisés avec son accord. 5) Construis le site sur la base validée, présente-le, corrige selon ses retours, publie. La mission réussie : le client partage lui-même l'adresse de son site à ses clients. Cette première référence vaut de l'or pour la suite : c'est ainsi que démarrent beaucoup de carrières du web en Afrique."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : ton portfolio web public",
+          "content": "Projet final du monde web : publie ton portfolio, la vitrine de tout ce que tu as accompli dans ces aventures. Ton portfolio réunit sur trois pages : 1) La page d'accueil : qui tu es en trois phrases, ta photo si tu veux, les aventures terminées, avec les XP cumulés et les badges obtenus, et trois productions dont tu es fier : ta fiche méthode de recherche, ta carte de visite stylée, ton guide du citoyen numérique. 2) La page projets : pour chaque production, une courte présentation : le contexte, ce que tu as fait, ce que tu en as appris, avec des captures d'écran ou photos, hébergées en images dans ton dossier. 3) La page contact : ton adresse email professionnelle créée dans l'aventure email, éventuellement un lien vers la page utile que tu as lancée, aucune donnée personnelle sensible. Style exigé : ta palette personnelle, une navigation claire entre les pages, une page qui s'affiche bien sur téléphone. Publie le tout sur ton hébergeur et vérifie l'adresse depuis le téléphone de trois personnes différentes. Ce portfolio est ton premier actif professionnel : il vivra, s'enrichira et servira tes candidatures. Tu es entré dans cette aventure comme un internaute : tu en sors publieur, auteur et créateur web. Le monde code t'attend pour la suite."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Comment s'appelle obligatoirement la première page que cherche un serveur web ?",
+          "options": [
+            "accueil.html",
+            "index.html",
+            "page1.html",
+            "start.html"
+          ],
+          "correct_index": 1,
+          "explanation": "Par convention universelle, les serveurs cherchent d'abord le fichier index.html : c'est le point d'entrée du site quand un visiteur arrive sans préciser de page."
+        },
+        {
+          "question": "Que fournit un hébergeur de sites statiques gratuits ?",
+          "options": [
+            "Un ordinateur à domicile",
+            "Un serveur connecté en permanence qui stocke et sert tes fichiers, avec une adresse",
+            "Une connexion Internet illimitée",
+            "Un logiciel de retouche photo"
+          ],
+          "correct_index": 1,
+          "explanation": "L'hébergeur stocke tes fichiers sur ses serveurs et les sert aux visiteurs à toute heure, et t'offre une adresse : tes pages deviennent accessibles partout dans le monde."
+        },
+        {
+          "question": "Quelle est la bonne méthode de travail d'un créateur de site ?",
+          "options": [
+            "Coder d'un bloc puis tout jeter si ça ne plaît pas",
+            "Dessiner le plan, faire valider, construire, tester, corriger, republier",
+            "Publier sans tester pour gagner du temps",
+            "Copier un site existant en entier"
+          ],
+          "correct_index": 1,
+          "explanation": "Les professionnels planifient sur papier, valident avec le client, construisent, testent comme un visiteur pressé, corrigent et republient : c'est le cycle qui produit des sites solides."
+        },
+        {
+          "question": "Pourquoi tester son site sur un téléphone et pas seulement sur ordinateur ?",
+          "options": [
+            "Pour économiser la batterie de l'ordinateur",
+            "Parce que la majorité des visiteurs africains arrivent par mobile, et une page qui s'affiche mal y perd tout son effet",
+            "Parce que les ordinateurs n'affichent pas le CSS",
+            "Pour télécharger le site plus vite"
+          ],
+          "correct_index": 1,
+          "explanation": "En Afrique, l'essentiel du trafic web est mobile : un site qui s'affiche mal sur téléphone perd la plupart de ses visiteurs. Le test mobile n'est pas optionnel, il est la norme."
+        }
+      ]
+    },
+    {
+      "slug": "digital-africa",
+      "title": "Le numérique en Afrique",
+      "description": "Mobile money, tontines digitales, startups d'Abidjan à Nairobi : découvre comment l'Afrique invente son propre web et pourquoi les plus grandes innovations naissent souvent ici.",
+      "story": "On entend parfois dire que l'Afrique est en retard sur le numérique. Celui qui dit ça n'a jamais vu une queue devant un kiosk Orange Money un jour de paie, ni une marchéreuse suivre ses ventes sur WhatsApp, ni un fermier recevoir des conseils agricoles par SMS. La vérité est plus étonnante : dans plusieurs domaines, l'Afrique a inventé des usages que le reste du monde nous envie. Dans cette aventure, tu vas explorer la révolution numérique africaine, du mobile money aux startups qui partent d'Abidjan pour conquérir le monde. Et tu découvriras la question la plus excitante : quelle part de cette histoire vas-tu écrire ?",
+      "xp_reward": 120,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "L'Afrique qui saute les étapes",
+          "content": "Pour comprendre le numérique africain, il faut comprendre une idée puissante : le saut de génération. Là où d'autres continents ont construit étape par étape : le fixe, puis le mobile simple, puis l'Internet mobile, une grande partie de l'Afrique est passée directement du peu de connexion à l'Internet mobile. Conséquence spectaculaire : le téléphone est devenu l'outil central de tout, banque, école, commerce, administration. L'exemple le plus célèbre est le mobile money : transférer de l'argent par téléphone, sans compte bancaire classique. Pionnier au Kenya avec un service devenu légendaire, ce modèle s'est répandu partout : au Sénégal et en Côte d'Ivoire, des services comme Wave ont fait tomber les frais de transfert, connectant des millions de personnes à l'économie numérique. Autres inventions africaines : la tontine digitale, qui déplace une tradition d'épargne collective séculaire dans les applications ; l'éducation par SMS pour les zones à connexion faible ; les places de marché sur WhatsApp et les réseaux sociaux, qui ont créé des dizaines de milliers de commerces sans boutique ; les drones médicaux au Rwanda qui livrent des médicaments de fortune ; les applications agricoles qui préviennent le fermier des maladies des cultures. La leçon à retenir : contrainte ne veut pas dire retard. Face aux infrastructures coûteuses, les innovateurs africains ont inventé des solutions que le monde entier étudie aujourd'hui."
+        },
+        {
+          "section_type": "play",
+          "title": "Le tour du continent des innovations",
+          "content": "Jouons au tour du continent. Prépare une carte de l'Afrique, sur papier ou affichée. Créez ensemble quinze cartes-innovations, une innovation par carte, avec sa description sur le dos : un service de mobile money, une place de marché en ligne, un service de livraison par moto, une application de tontine, une plateforme de cours en ligne, un service de télémédecine, une application agricole, un média numérique panafricain, une fintech de paiement marchand, une application de transport urbain, une plateforme de musique en streaming africaine, un service de crédit par téléphone, une application de gestion de boutique, un service de livraison de repas, une plateforme d'emploi. À chaque tour, un joueur pioche une carte, la lit à voix haute et la place sur le pays ou la région où il pense qu'elle a été créée, en justifiant son intuition : indice de marché, langue, infrastructures. Les autres votent : place correcte ou non. Chaque bonne intuition rapporte un point, chaque bonne justification rapporte un point. À la fin, discutez de l'observation clé : pourquoi tant d'innovations naissent-elles dans les villes où les problèmes sont les plus pressants ? Tu viens de faire, en jouant, le tour des écosystèmes numériques du continent."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : cartographie le numérique de ton quartier",
+          "content": "Expérience d'enquêteur : mesure toi-même le numérique de ton quartier. Choisis une zone que tu connais bien : ton quartier, un marché, une rue commerçante. Étape un : prépare ta grille d'observation : combien de commerces affichent un numéro mobile money ? Combien proposent un paiement par QR code ? Combien vendent via WhatsApp ? Combien affichent une page de réseau social ? Y a-t-il des kiosques de services numériques : recharges, photocopies, impressions ? Étape deux : compte sur un parcours de dix minutes et note chaque indice. Étape trois : interroge deux commerçants avec des questions simples : est-ce que le mobile money a changé tes ventes ? Combien de clients te contactent par messagerie ? Quel problème te résoudrait une application ? Étape quatre : analyse tes données : quel pourcentage des commerces observés est déjà numérique ? Quels métiers du numérique existent déjà dans la rue : recharge, réparation, impression, transport par application ? Étape cinq : rédige ta fiche quartier numérique : cinq lignes de faits observés, puis trois besoins non couverts que tu as repérés. Cette enquête est la matière première de tous les créateurs : avant d'inventer, on observe."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis ton carnet des modèles africains",
+          "content": "Construis ta collection de référence : un carnet des modèles africains qui réussissent, à compléter pendant des années. Pour chaque modèle, une fiche en cinq champs : 1) Le nom et le pays d'origine, éventuellement les fondateurs. 2) Le problème de départ : quel besoin concret cette innovation répondait-elle ? 3) La solution : en deux phrases, comment elle fonctionne et pourquoi elle a marché. 4) Le secret : la particularité qui explique son succès, comme l'usage du SMS sans Internet, la confiance communautaire, la simplicité pour tous. 5) L'idée à retenir : ce que toi tu peux en apprendre pour tes projets. Commence avec cinq modèles : un pionnier du mobile money est-africain, une fintech ivoirienne ou sénégalaise de transfert à frais réduits, une plateforme panafricaine de cours en ligne, une application agricole pour les petits exploitants, un service de logistique urbaine africain. Vérifie chaque fait sur plusieurs sources sérieuses, cite-les, et note la date de consultation. Ce carnet devient ta bibliothèque intime de solutions qui marchent sur le continent : quand tu chercheras une idée, tu ouvriras ce carnet avant tout autre."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : interviewe un innovant de ton entourage",
+          "content": "Ta mission : rencontrer une personne qui utilise le numérique d'une façon inventive autour de toi. Elle n'a peut-être jamais dit le mot startup, mais elle innove : la couturière qui vend par statut WhatsApp et livre par moto-taxi, le vendeur qui gère sa trésorerie sur deux applications, le jeune qui crée des flyers pour les commerces du marché, l'enseignant qui fabrique des vidéos de révision, la femme de ménage de garde qui tient une tontine par messagerie. Demande-lui une interview de quinze minutes, avec l'accord pour noter ou enregistrer. Tes six questions : 1) Comment as-tu commencé à utiliser le téléphone pour ton activité ? 2) Quel outil numérique ne pourrais-tu plus quitter, et pourquoi ? 3) Quelle est l'astuce que tu as inventée et que personne ne t'a apprise ? 4) Quel problème te coûte encore le plus de temps ou d'argent ? 5) Qu'est-ce qui t'aiderait le plus : plus de clients, plus simple, plus rapide ? 6) Si une application pouvait faire une chose pour toi demain, laquelle ? Rédige ensuite le portrait de cette personne en dix lignes, façon article : le contexte, l'astuce, le résultat. Tu découvriras que l'innovation africaine ne commence pas dans les bureaux : elle commence dans la rue, et tu viens d'apprendre à la repérer."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : ta contribution à l'histoire numérique du continent",
+          "content": "Projet final : identifie et prépare ta propre contribution à cette histoire en mouvement. Étape un : à partir de ton enquête de quartier et de tes interviews, choisis un problème réel que tu peux observer : la difficulté d'un commerce à se faire connaître, l'information agricole qui n'arrive pas, les révisions inaccessibles à certains, le gaspillage dans un marché, la file d'attente d'un service. Étape deux : formule ta solution sous la forme d'une page de projet : le problème en trois phrases factuelles, la solution proposée en trois phrases, la première version la plus simple possible, celle qu'on pourrait tester avec un simple téléphone. Étape trois : construis la maquette : dessine les trois écrans clés de ta solution, ou mieux, fais-en une page web avec tes compétences du monde web : un titre, le problème, la solution, un bouton de contact. Étape quatre : teste la maquette auprès de trois personnes concernées par le problème et note leurs trois premières réactions sans défendre ton idée. Étape cinq : écris le récit complet sur une page : le problème observé, la solution, les retours du test, la prochaine étape réaliste, et le nom que tu donnerais à ton projet. Ce document s'appelle un concept note : c'est la première pierre de toutes les startups. Le continent a besoin de jeunes capables de transformer une observation en projet : tu viens de le faire pour la première fois."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Que signifie le saut de génération dans le numérique africain ?",
+          "options": [
+            "Attendre la génération suivante pour se connecter",
+            "Passer directement à l'Internet mobile sans passer par les étapes intermédiaires des autres continents",
+            "Sauter les cours d'informatique",
+            "Utiliser uniquement des ordinateurs d'occasion"
+          ],
+          "correct_index": 1,
+          "explanation": "L'Afrique a adopté massivement l'Internet mobile sans passer par les longues étapes du fixe : le téléphone est devenu l'outil central de banque, commerce, école et administration."
+        },
+        {
+          "question": "Quel service le mobile money permet-il ?",
+          "options": [
+            "Regarder des matchs en direct",
+            "Envoyer et recevoir de l'argent par téléphone, sans compte bancaire classique",
+            "Appeler gratuitement à l'étranger",
+            "Réserver des billets d'avion"
+          ],
+          "correct_index": 1,
+          "explanation": "Le mobile money transforme le téléphone en portefeuille : transferts, paiements et épargne sans banque physique, une innovation africaine qui a connecté des millions de personnes à l'économie."
+        },
+        {
+          "question": "Pourquoi dit-on que contrainte ne veut pas dire retard ?",
+          "options": [
+            "Parce que les infrastructures africaines sont parfaites",
+            "Parce que face aux infrastructures coûteuses, les innovateurs africains ont inventé des solutions simples que le monde entier étudie",
+            "Parce que l'Afrique n'a pas besoin d'Internet",
+            "Parce que les contraintes ne concernent que les adultes"
+          ],
+          "correct_index": 1,
+          "explanation": "Les solutions nées des contraintes africaines : mobile money, tontines digitales, services par SMS, places de marché sur messageries, sont aujourd'hui étudiées et copiées partout dans le monde."
+        },
+        {
+          "question": "Quelle est la bonne première étape pour qui veut créer une solution utile ?",
+          "options": [
+            "Acheter un ordinateur puissant",
+            "Observer les besoins réels sur le terrain et interroger les personnes concernées",
+            "Copier une application américaine",
+            "Attendre d'avoir fini toutes ses études"
+          ],
+          "correct_index": 1,
+          "explanation": "Les innovations qui marchent partent toujours d'un besoin observé : l'enquête de terrain et les interviews précèdent le code et les idées reçues."
+        }
+      ]
+    },
+    {
+      "slug": "future-web",
+      "title": "Le web de demain",
+      "description": "Web intégré partout, IA dans chaque page, identité numérique décentralisée : plonge dans les grandes tendances qui façonneront le web de ta vie adulte, et prépare-toi à en profiter.",
+      "story": "Ton petit frère ouvrira peut-être des pages web en parlant à l'air, sans écran. Ton futur employeur embauchera des collègues numériques qui rédigent, calculent et codent. Des objets de ta maison auront chacun leur page web cachée. Pendant des années, tu as appris à vivre dans le web d'aujourd'hui ; il est temps de regarder ce qui arrive. Dans cette dernière aventure d'exploration du web, tu vas découvrir les forces qui transforment le web en ce moment même, apprendre à les reconnaître de toi-même, et surtout identifier le rôle que tu y joueras. Le futur n'arrive jamais tout seul : il est fabriqué par ceux qui s'y préparent.",
+      "xp_reward": 130,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Les grandes forces qui transforment le web",
+          "content": "Cinq forces redessinent le web sous tes yeux. Un : l'omniprésence. Le web quitte l'écran : il vit dans les montres, les voitures, les compteurs, les téléviseurs, et dans les objets connectés qui se multiplient dans les villes africaines, des capteurs agricoles aux systèmes de suivi de flottes de transport. Deux : l'intelligence. Les services web intègrent l'intelligence artificielle : recherche conversationnelle, réponses rédigées, contenus recommandés avec une précision troublante. Le web passe de l'endroit où l'on cherche à l'endroit qui répond. Trois : la voix et la conversation. Parler remplace taper, crucial pour les usagers peu alphabétisés : des services en langues locales africaines se développent. Quatre : la décentralisation. Des technologies permettent de stocker des données et de prouver des faits sans autorité unique, et l'identité numérique, la capacité de prouver qui tu es en ligne, devient un droit crucial : pense au débat sur l'identification numérique des populations, avec ses immenses promesses et ses sérieux risques. Cinq : les économies numériques. Le web devient une économie : créateurs rémunérés, compétences vendues en ligne, travail à distance. Un jeune d'Abidjan peut déjà servir des clients de trois continents depuis son téléphone. Conséquence de ces cinq forces : les compétences que tu construis aujourd'hui, comprendre les systèmes, vérifier l'information, créer du contenu, protéger ses données, deviennent chaque année plus précieuses, pas moins."
+        },
+        {
+          "section_type": "play",
+          "title": "Le bureau du futur 2040",
+          "content": "Jouons au bureau des scénarios. À deux joueurs ou plus, préparez dix cartes-tendances : objets connectés partout, assistants IA généralisés, recherche par conversation, identité numérique officielle, monnaies numériques de banques centrales, réalité virtuelle abordable, web en langues locales, travail à distance majoritaire, créateurs rémunérés par leurs communautés, santé suivie par capteurs. Chaque joueur compose son scénario 2040 : choisis quatre cartes et rédige l'histoire de ta journée en 2040 en dix phrases, en utilisant les quatre tendances tirées. Contrainte : chaque élément doit respecter une règle de vraisemblance, il existe déjà un embryon de cette technologie aujourd'hui, et une règle d'ancrage local : la journée se passe en Afrique, avec les réalités du continent, connexion, énergie, langues. Puis chaque joueur lit son scénario à voix haute, et les autres jouent les experts exigeants : chaque détail doit être défendu en citant l'embryon actuel. Un point par détail défendu avec succès. Le jeu t'apprend le réflexe des prospectivistes : imaginer le futur à partir de ce qui existe déjà, jamais en pure fantaisie. Les meilleurs scénarios du match méritent d'être affichés en classe : le futur commence toujours comme une histoire."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : teste le web conversationnel d'aujourd'hui",
+          "content": "Expérience de terrain : teste toi-même les germes du web de demain. Étape un : essaie un assistant conversationnel public et pose-lui trois questions : une question de fait précis, comme la population de Yamoussoukro ; une demande de résumé, comme explique-moi le mobile money en cinq phrases ; une question piège, comme qui a inventé la musique, pour observer s'il reconnaît ses limites. Note les trois réponses et ton verdict sur chacune : exact, approximatif, faux. Étape deux : cherche le même fait précis dans un moteur classique et compare les chemins : combien de clics pour la même information ? Étape trois : essaie la recherche vocale de ton téléphone : dicte la même question, puis une question en langue locale ou avec accent appuyé : observe la compréhension. Étape quatre : observe les objets connectés autour de toi : compte les appareils capables de se connecter dans ta maison, et interroge un adulte : lesquels n'existaient pas il y a dix ans ? Étape cinq : rédige tes conclusions en cinq phrases : ce qui fonctionne déjà, ce qui reste fragile, et l'usage qui t'a le plus impressionné. Cette expérience t'installe une posture précieuse : tester les technologies naissantes avec un œil critique, ni naïf, ni cynique."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis ton radar de veille",
+          "content": "Construis ton outil de veille : un radar personnel pour suivre l'évolution du web sans te perdre dans le bruit. Un bon radar tient en trois éléments. Élément un : tes sources. Choisis cinq sources fiables et variées : un média panafricain de tech sérieux, un média international, la newsletter ou chaîne d'un expert reconnu, le blog d'une entreprise technologique, et une source francophone générale. Note-les dans un document avec la raison de chaque choix. Élément deux : ta routine. Un créneau de veille de vingt minutes par semaine, calendrier à l'appui. Pendant ce créneau : parcours tes cinq sources, note dans ton radar les deux informations les plus importantes de la semaine, chacune en une phrase, avec la source et la date. Élément trois : tes catégories de tri : IA, cybersécurité, entrepreneuriat africain, éducation, réglementation. Chaque info notée reçoit une catégorie. Enrichis enfin ton radar d'une rubrique occasions : chaque information qui annonce une opportunité pour toi, comme un nouveau marché, une compétence demandée, un concours, reçoit une étoile. Utilise ce radar trois semaines et relis : quelles tendances reviennent ? Ton radar est la différence entre subir le futur et l'anticiper. Les adultes qui réussissent dans la tech font exactement cela, chaque semaine, toute leur vie."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : le débat des deux futurs",
+          "content": "Ta mission : organiser et arbitrer un mini-débat sur le futur du web, dans ta classe, ton club ou ta famille. Sujet : le web de 2040 nous rendra-t-il plus libres ou plus surveillés ? Préparation : dresse deux colonnes d'arguments avec des faits vérifiés. Colonne des opportunités : accès au savoir pour tous, langues locales enfin présentes en ligne, création rémunérée, santé et éducation à distance. Colonne des risques : surveillance de masse, dépendance aux quelques plateformes géantes, piratage des identités, fracture entre connectés et non-connectés. Règles du débat que tu fais respecter : chaque argument commence par un fait, pas par une opinion ; celui qui affirme cite sa source ; on attaque l'argument, jamais la personne ; chacun doit pouvoir défendre l'autre camp une fois, exercice puissant. À la fin, les participants votent : plus libres, plus surveillés, ou les deux à la fois, puis tu clôtures avec trois phrases de synthèse qui reconnaissent la complexité. Écris ensuite ton bilan de modérateur : ce qui t'a étonné, l'argument le plus solide de chaque camp, et ta position personnelle argumentée en cinq phrases. Organiser un débat est une compétence de leader : la voilà entraînée."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : ta lettre au web de 2040",
+          "content": "Projet final du monde web : rédige la lettre que tu enverras au web de 2040, c'est-à-dire à toi-même adulte. Contenu de la lettre, sur une page conservée précieusement, papier ou fichier : 1) Où j'en suis : ce que je sais faire aujourd'hui, mes compétences du monde web, honnêtement évaluées : structurer une page, styliser, chercher et vérifier, publier, protéger mes données. 2) Ce que je vois venir : les trois tendances du radar qui me concernent le plus, et pourquoi, avec un embryon actuel cité pour chacune. 3) Ce que je promets : trois engagements concrets pour les cinq prochaines années, par exemple : maîtriser un nouvel outil chaque trimestre, publier une création chaque année, apprendre à protéger mes données avant mes dix-huit ans. 4) Ce que je ne veux pas : les deux dérives que je refuse pour moi : subir sans comprendre, ou consommer sans créer. 5) Ma question ouverte : la grande interrogation que tu portes sur le web de demain. Scelle la lettre, datée et signée, avec l'adresse de ton portfolio en ligne. Fixe une date d'ouverture : à tes dix-huit ans, ou à la remise de ton premier diplôme. Le web de demain n'attendra pas : mais toi, tu seras prêt, avec cette preuve que tu as su, très tôt, regarder loin."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Que signifie l'omniprésence du web, l'une des grandes tendances actuelles ?",
+          "options": [
+            "Le web ne fonctionnera que sur ordinateur",
+            "Le web quitte l'écran et vit dans les objets : montres, voitures, compteurs, capteurs",
+            "Le web deviendra payant partout",
+            "Le web disparaîtra au profit de la télévision"
+          ],
+          "correct_index": 1,
+          "explanation": "Le web s'intègre dans tous les objets connectés : capteurs agricoles, véhicules, énergie, santé. L'écran devient une option parmi d'autres portes d'entrée."
+        },
+        {
+          "question": "Comment le web évolue-t-il avec l'intelligence artificielle ?",
+          "options": [
+            "Il empêche l'IA de fonctionner",
+            "Il passe de l'endroit où l'on cherche l'information à l'endroit qui répond directement",
+            "Il devient identique au web de 1995",
+            "Il supprime les moteurs de recherche pour tous"
+          ],
+          "correct_index": 1,
+          "explanation": "L'IA intégrée aux services web rédige des réponses, résume, recommande : la recherche conversationnelle remplace peu à peu la liste de liens, avec la vigilance critique qui s'impose."
+        },
+        {
+          "question": "Pourquoi la recherche vocale est-elle importante pour l'Afrique ?",
+          "options": [
+            "Elle consomme moins de données",
+            "Elle rend le web accessible aux personnes peu alphabétisées et aux langues locales",
+            "Elle est plus rapide que la 5G",
+            "Elle remplace l'école"
+          ],
+          "correct_index": 1,
+          "explanation": "Parler au lieu de taper ouvre le web à des millions de personnes peu alphabétisées, et les services en langues locales africaines se multiplient : une inclusion majeure."
+        },
+        {
+          "question": "Que t'apporte la construction d'un radar de veille personnel ?",
+          "options": [
+            "Un radar météo pour la connexion",
+            "Une routine et des sources fiables pour suivre les évolutions du web et repérer les opportunités, au lieu de subir le futur",
+            "Un logiciel de jeu en ligne",
+            "Une alarme pour limiter le temps d'écran"
+          ],
+          "correct_index": 1,
+          "explanation": "Un radar de veille, cinq sources fiables, une routine hebdomadaire, des catégories de tri, transforme le flot d'informations en avance stratégique : c'est la différence entre subir et anticiper."
+        }
+      ]
+    }
+  ]
+}
