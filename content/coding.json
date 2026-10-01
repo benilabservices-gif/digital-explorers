@@ -1,0 +1,1157 @@
+{
+  "world": "coding",
+  "adventures": [
+    {
+      "slug": "algo-logique",
+      "title": "Algorithmes et Logique",
+      "description": "Avant d'écrire du code, apprends à penser comme un programmeur : décomposer un problème, écrire un algorithme pas à pas, déboguer avec méthode. Zéro écran, zéro logiciel, juste ton cerveau.",
+      "story": "Le matin, au marché d'Adjamé, ta tante prépare l'attiéké-poisson sans y penser : elle vérifie le riz, allume le feu, surveille, ajuste, sert dans l'ordre. Sans le savoir, elle exécute un algorithme : une suite d'instructions précises, dans le bon ordre, pour obtenir un résultat garanti. C'est ça, la programmation : écrire des recettes si claires que même une machine, qui ne sait rien deviner, peut les suivre. Un ordinateur est rapide mais bête : il fait exactement ce qu'on lui dit, même si c'est une bêtise. Tout l'art du codeur, c'est de penser pour lui, en avance. Dans cette aventure, pas d'écran nécessaire : tu vas apprendre à décomposer, ordonner, répéter, tester et corriger, avec des papiers, des gobelets et ton raisonnement. Bienvenue dans la salle de sport de ta future carrière de développeur.",
+      "xp_reward": 100,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Qu'est-ce qu'un algorithme, vraiment ?",
+          "content": "Un algorithme, c'est une suite finie d'instructions précises, données dans le bon ordre, pour obtenir un résultat. La recette du attiéké est un algorithme : si tu suis les étapes exactement, tu obtiens le plat ; si tu inverses deux étapes, servir avant de cuire, catastrophe. Trois règles font un bon algorithme. Règle un, chaque instruction est simple et sans ambiguïté : ajoute une pincée de sel est trop vague pour une machine ; ajoute cinq grammes de sel est exécutable. Règle deux, l'ordre compte : certaines étapes doivent attendre que d'autres soient finies ; tu ne peux pas garnir le plat avant de l'avoir cuit. Règle trois, il doit s'arrêter : un algorithme infini, comme surveille le feu sans jamais arrêter de surveiller le feu, n'est pas une recette, c'est une prison. Les informaticiens décrivent presque tous les algorithmes avec seulement trois briques. La séquence : faire A puis B puis C. La condition : si le riz est trop sec, ajoute de l'eau, sinon continue — la machine choisit selon la situation. La boucle : répète la surveillance toutes les cinq minutes, jusqu'à ce que le riz soit cuit — la machine répète sans qu'on réécrive. Avec ces trois briques, on écrit tout : de la recette de cuisine aux applications mobiles en passant par les systèmes bancaires. Les instructions conditionnelles s'écrivent si, sinon si, sinon ; les boucles s'écrivent pour chaque, ou tant que. Dernière idée capitale : le même problème admet plusieurs algorithmes, mais certains sont bien plus rapides ; chercher un nom dans un annuaire page par page, ou couper le carnet en deux à chaque fois, éliminer la moitié à chaque étape, ne donne pas du tout le même nombre d'étapes — et c'est toute la différence entre un code lent et un code rapide."
+        },
+        {
+          "section_type": "play",
+          "title": "Le robot rigide : le jeu des instructions",
+          "content": "Jouons au robot rigide, le jeu culte de tous les codeurs débutants. Un joueur est le robot : il exécute TOUT au pied de la lettre, sans réfléchir, sans interpréter, sans gentillesse. Les autres sont les programmeurs : ils écrivent des instructions pour lui faire accomplir une mission dans la cour ou la salle : traverser la pièce, contourner une chaise, ramasser un gobelet, le poser sur une table, revenir au point de départ. Le défi : le robot ne comprend que des instructions très simples, en français, du style : avance de dix pas ; tourne à droite de quatre-vingt-dix degrés ; avance jusqu'au mur puis recule d'un pas ; baisse le bras ; ferme la main ; lève le bras ; pose ce que ta main tient sur la surface devant toi. Le robot applique strictement : si l'instruction est avance de dix pas et qu'un mur est à trois pas, le robot s'écrase contre le mur et le programme est déclaré planté, un bug. Déroulé : les programmeurs écrivent leur programme par écrit, en dix à quinze lignes, en utilisant des séquences, au moins une condition, si l'obstacle est devant, tourne à droite, et une boucle, répète jusqu'à atteindre la table ; puis ils le lisent au robot qui exécute en silence, sans question ; à chaque bug, on crie bug, on note l'instruction fautive, on corrige le programme par écrit, on recommence depuis le début. Variante difficile : le robot place un obstacle surprise, une chaise déplacée, au milieu de l'exécution, et le programme doit contenir des conditions pour survivre. Le gagnant est l'équipe qui a planté le moins de fois. La leçon du jeu, à formuler à la fin : le bug n'est presque jamais dans le robot, il est dans l'instruction ; le codeur apprend exactement en faisant planter son robot, encore et encore."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : papier, gobelets et tri",
+          "content": "Expérience hors écran : programme-toi toi-même en exécutant à la main un vrai algorithme d'informaticien, le tri par sélection, et compte tes efforts. Matériel : dix gobelets ou papiers pliés, numérotés en cachette de un à dix, mélangés face cachée, un espace de tableau de dix cases dessinées sur une feuille. Ta mission : remettre les dix papiers en ordre croissant. L'algorithme du tri par sélection : étape un, parcours toutes les cases pour trouver le plus petit numéro ; étape deux, échange-le avec la case un ; étape trois, reprends le parcours à partir de la case deux, trouve le plus petit restant, échange-le avec la case deux ; répète jusqu'à la case neuf. Exécute-le en comptant : à chaque comparaison de deux papiers, tire un trait sur une feuille de score ; à chaque échange, un trait dans une seconde colonne. Note le total : pour dix papiers, tu devrais trouver environ quarante-cinq comparaisons. Puis la question du chercheur : et si je doublais à vingt papiers ? Fais une estimation écrite AVANT d'essayer : est-ce que les comparaisons doublent, ou pire ? Essaie avec vingt papiers si tu en as le courage, ou déduis-le : le nombre de comparaisons grandit comme la moitié de n fois n, ce qui veut dire que quand la taille double, l'effort quadruple environ — c'est la notion de complexité, la première idée des professionnels. Rédige ta fiche d'expérience en trois parties : ce que j'ai exécuté ; mes comptages ; ma règle découverte, avec l'application : pourquoi une application qui trie mille contacts reste rapide, et pourquoi un algorithme mal choisi sur des millions de données fait planter les serveurs. Tu viens de toucher du doigt le métier réel des ingénieurs : pas seulement écrire ce qui marche, mais écrire ce qui reste rapide quand tout grandit."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis ton premier pseudo-code complet",
+          "content": "Construis le pseudo-code complet d'un vrai petit programme de ta vie : un distributeur de ticket de taxi, un compte à rebours de révisions, un calculateur de monnaie à rendre, un gestionnaire de file d'attente de la barrique du quartier. Le pseudo-code, c'est du français structuré qui prépare le vrai code : tu écris la logique sans te soucier de la syntaxe. Règles de formatage à respecter : une action par ligne ; les conditions notées SI ... ALORS ... SINON ; les boucles notées POUR CHAQUE ... ou TANT QUE ... ; les variables, des boîtes nommées, déclarées au début, une par idée, avec des noms clairs, solde du client, pas x ; l'indentation, quatre espaces à l'intérieur d'une condition ou d'une boucle. Exemple guidé, la monnaie à rendre : Variables : prix, montantRecu, reste, billetDix, billetCinq, pieceCent. Début : lire prix ; lire montantRecu ; reste prend la valeur montantRecu moins prix ; TANT QUE reste est supérieur ou égal à dix : billetDix augmente de un ; reste diminue de dix ; FIN TANT QUE ; TANT QUE reste est supérieur ou égal à cinq : billetCinq augmente de un ; reste diminue de cinq ; FIN TANT QUE ; afficher billetDix, billetCinq, reste. Fin. Maintenant ton tour : choisis ton programme, écris-le en une vingtaine de lignes maximum, puis passe-le par les trois tests de qualité. Test un, le parcours à la main : exécute ton pseudo-code sur papier avec des valeurs simples, prix sept cent, reçu mille ; note chaque variable à chaque étape. Test deux, les cas pièges : que se passe-t-il si le client ne donne pas assez ? Si le reste est exactement dix ? Si prix égale montantRecu ? Un bon programmeur écrit les cas pièges DANS le pseudo-code, avec des SI de garde au début. Test trois, le lecteur étranger : donne ton pseudo-code à un camarade sans explication ; s'il peut l'exécuter sans te poser de question, ton algorithme est clair — sinon, ce n'est pas lui le problème. Garde cette feuille : dans l'aventure Python, tu transformeras ce pseudo-code en vrai code exécutable."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : optimise la vraie vie",
+          "content": "Ta mission : prends un processus réel de ton quotidien et optimise-le comme une machine, pour gagner du temps à toute la famille. Choisis un processus répétitif avec des étapes claires : la préparation du dîner du soir ; la lessive du dimanche ; l'organisation de la sortie à l'école le matin ; la tournée de courses du marché ; l'accueil des invités du samedi. Déroulé en cinq temps. Temps un, l'observation : chronomètre le processus tel qu'il existe, étape par étape, sur trois occurrences ; note chaque durée : lave le riz dix minutes, coupe les légumes quinze minutes, chauffe l'huile cinq minutes. Temps deux, la modélisation : écris le pseudo-code du processus actuel, sans oublier les conditions, SI le gaz est fini, ALORS brancher la gazinière de secours, et les boucles, POUR CHAQUE assiette, servir. Temps trois, l'analyse : cherche les goulots d'étranglement, l'étape la plus lente qui bloque tout ; les attentes inutiles, du temps mort pendant que l'eau chauffe ; les tâches parallélisables, ce qui peut se faire en même temps, couper les légumes pendant que la sauce mijote. Temps quatre, l'optimisation version deux : réécris le pseudo-code optimisé en déplaçant, fusionnant ou parallélisant les étapes ; interdiction de tricher en sautant des étapes nécessaires : optimiser n'est pas bâcler. Temps cinq, le test réel : exécute la version deux au moins une fois en conditions réelles, chronomètre, et calcule le gain : temps avant, temps après, différence en minutes par semaine, par mois. Présente tes résultats en famille : tableau avant-après, pseudo-code version deux, gain calculé. Ton premier algorithme utile est livré, mesuré, adopté : c'est exactement le travail quotidien des ingénieurs, appliqué à la cuisine, à la cour ou au marché — et personne ne pourra t'enlever ça : tu penses désormais comme un programmeur."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : le jeu de Nim du quartier",
+          "content": "Projet final de logique : conçois, écris et fais tourner le jeu des allumettes, la version quartier du célèbre jeu de Nim, et deviens imbattable grâce à un algorithme. Les règles : au centre, vingt-et-un bâtonnets, allumettes éteintes, brindilles, cailloux ; à son tour, chaque joueur prend une, deux ou trois allumettes, au choix ; celui qui prend la DERNIÈRE allumette perd ; deux joueurs minimum, toi contre des volontaires. Étape un, l'exploration : joue cinq parties à l'instinct et note combien tu gagnes ; observe les fins de partie : avec combien d'allumettes restantes celui qui joue est-il condamné à perdre, quel que soit son choix ? Étape deux, la découverte de la stratégie : cherche par écrit les positions perdantes : une allumette restante, tu perds ; deux, tu en prends une, il prend la dernière ; trois, tu en prends deux ; quatre, tu en prends trois ; cinq, quel que soit ton choix, l'adversaire te ramène à quatre, trois ou deux, position gagnante pour lui... Continue : les positions perdantes sont celles où le reste de la division par quatre égale un. Étape trois, l'algorithme imbattable : écris en pseudo-code la stratégie : SI le nombre d'allumettes moins un est divisible par quatre, ALORS nous sommes en position perdante, jouer au hasard et attendre une erreur ; SINON prendre assez d'allumettes pour laisser à l'adversaire un multiple de quatre plus un. Étape quatre, la tournée du champion : affronte dix adversaires différents en appliquant strictement ton algorithme ; note chaque partie : position de départ, application correcte ou non, résultat ; interdiction de jouer au feeling : l'algorithme décide, toi tu exécutes. Étape cinq, le débriefing : as-tu gagné tes dix parties ? Si non, où as-tu mal appliqué l'algorithme ? Que se passe-t-il si l'adversaire connaît aussi la stratégie ? Étape six, la transmission : explique la stratégie à un enfant de moins de douze ans en cinq minutes, sans jargon, avec les bâtonnets comme support ; s'il rejoue correctement après ton explication, tu as compris ET su transmettre : les deux preuves de la vraie maîtrise. Tu viens de vivre le cycle complet du codeur : observer, modéliser, écrire, exécuter, corriger, transmettre."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Qu'est-ce qu'un algorithme ?",
+          "options": [
+            "Un ordinateur très puissant",
+            "Une suite finie d'instructions précises, dans un ordre donné, pour obtenir un résultat",
+            "Un langage de programmation",
+            "Une application mobile"
+          ],
+          "correct_index": 1,
+          "explanation": "Comme une recette de cuisine : des étapes simples, sans ambiguïté, dans le bon ordre, avec un début et une fin. La machine qui exécute ne devine rien, elle suit exactement."
+        },
+        {
+          "question": "Quelles sont les trois briques qui composent presque tous les algorithmes ?",
+          "options": [
+            "Écran, clavier, souris",
+            "La séquence, la condition, la boucle",
+            "Wifi, données, batterie",
+            "Copier, coller, enregistrer"
+          ],
+          "correct_index": 1,
+          "explanation": "Faire A puis B, séquence ; choisir selon la situation avec si, condition ; répéter avec tant que ou pour chaque, boucle : tout le logiciel mondial s'écrit avec ces trois briques."
+        },
+        {
+          "question": "Pourquoi le robot du jeu échoue-t-il contre un mur avec l'instruction avance de dix pas ?",
+          "options": [
+            "Parce qu'il est mal fabriqué",
+            "Parce que l'instruction ne prévoit pas la condition du mur : le bug est dans le programme, pas dans la machine",
+            "Parce que les murs sont trop solides",
+            "Parce qu'il manquait d'essence"
+          ],
+          "correct_index": 1,
+          "explanation": "La machine exécute exactement ce qu'on lui dit : si le programme ne teste pas l'obstacle, elle s'écrase. Le codeur apprend en faisant planter son robot : chaque bug révèle une instruction à corriger."
+        },
+        {
+          "question": "Que se passe-t-il pour un tri par sélection quand on double le nombre d'éléments ?",
+          "options": [
+            "Le travail double aussi",
+            "Le travail à faire quadruple environ : c'est la notion de complexité",
+            "Rien ne change",
+            "Le travail est divisé par deux"
+          ],
+          "correct_index": 1,
+          "explanation": "Les comparaisons grandissent comme la moitié de n fois n : passer de dix à vingt éléments fait passer d'environ quarante-cinq à cent quatre-vingt-dix comparaisons. C'est pourquoi le choix de l'algorithme décide si une application reste rapide."
+        },
+        {
+          "question": "À quoi sert le pseudo-code ?",
+          "options": [
+            "À décorer les cahiers",
+            "À écrire la logique d'un programme en français structuré, sans se soucier de la syntaxe, avant de coder pour de vrai",
+            "À remplacer les ordinateurs",
+            "À envoyer des messages secrets"
+          ],
+          "correct_index": 1,
+          "explanation": "Pseudo-code, si, tant que, variables claires : c'est le brouillon du code, qu'on teste à la main avec des valeurs et des cas pièges. Bien pensé avant, bien codé après."
+        }
+      ]
+    },
+    {
+      "slug": "html-css-firsts",
+      "title": "Premiers pas en HTML/CSS",
+      "description": "Écris ta première page web avec deux langages : HTML pour la structure, CSS pour le style. En une seule aventure, tu passes de curieux à créateur : ta page, ton navigateur, ta fierté.",
+      "story": "Toutes les pages que tu visites chaque jour, réseaux sociaux, actualités, boutique en ligne, sont faites des mêmes ingrédients invisibles : deux langages qui travaillent en équipe. Le HTML construit le squelette : titres, paragraphes, images, boutons. Le CSS habille : couleurs, tailles, positions, animations. Le navigateur de ton téléphone lit ces deux langages et dessine la page. La bonne nouvelle, la très bonne nouvelle : ce sont les langages les plus accessibles du web, tu peux écrire ta première page aujourd'hui, avec zéro installation et zéro franc, directement dans un simple éditeur de notes. Dans cette aventure, tu vas créer une vraie page web sur un sujet qui te tient à cœur, la voir naître dans ton navigateur, corriger tes premières erreurs comme un vrai développeur, et repartir avec une compétence que personne ne peut te reprendre.",
+      "xp_reward": 130,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "HTML : les briques d'une page",
+          "content": "Le HTML, pour hypertext markup language, n'est pas un langage de programmation : c'est un langage de balisage. Son travail : dire ce qu'est chaque morceau du contenu. Le principe tient en une règle : les balises s'ouvrent et se ferment, et enferment ce qu'elles décrivent. Une balise s'écrit entre crochets pointus : la balise p ouvre un paragraphe, la balise slash p le ferme. Le squelette minimal d'une page, à connaître par cœur : d'abord la balise doctype qui annonce au navigateur le standard utilisé ; puis la balise html qui enveloppe toute la page ; à l'intérieur, la balise head, la tête, qui contient les informations invisibles, dont la balise title, le nom de l'onglet ; puis la balise body, le corps, qui contient tout ce qui s'affiche. Les balises essentielles pour ta première page : h un pour le grand titre, et h deux, h trois pour les sous-titres ; p pour les paragraphes ; em pour mettre en valeur, strong pour l'important ; la balise a pour les liens, avec son attribut href qui indique la destination ; la balise img pour les images, avec ses attributs src, l'adresse du fichier, et alt, la description pour les personnes qui ne voient pas l'image ; ul et li pour les listes à puces ; button pour un bouton. Un attribut est une information ajoutée dans la balise d'ouverture : la balise a avec href égal guillemet adresse guillemet. Deux règles d'or du codeur : premièrement, toute balise ouverte doit être refermée, sauf exceptions rares comme img ; deuxièmement, l'imbrication doit être propre : si tu ouvres strong puis em, referme em avant strong — les balises s'emboîtent comme des gobelets, jamais comme des nœuds. Écris ce squelette dans un fichier nommé index point html et ouvre-le avec ton navigateur : ta première page est née. Elle est moche et c'est parfait : c'est le travail du CSS de l'habiller, et c'est la prochaine étape."
+        },
+        {
+          "section_type": "play",
+          "title": "Pictionary web : structure la page aveugle",
+          "content": "Jouons au pictionary web, le jeu où l'on découvre le HTML en le dessinant à l'aveugle. À deux joueurs ou deux équipes. Préparation : chaque équipe prépare en secret trois modèles de pages dessinés sur papier, au trait, sans texte réel : une page d'accueil de vendeur de jus, une page d'événement de quartier, une fiche d'un joueur de foot, une page de recette, un article d'actualité, un menu de maquis. Chaque dessin doit contenir : un titre, des sous-titres, au moins un paragraphe, une image représentée par un rectangle barré d'une croix, une liste, un bouton, un lien souligné. Déroulé d'un round : l'équipe A montre son dessin à l'équipe B pendant trente secondes, puis le cache. L'équipe B a cinq minutes pour écrire, sur papier, la structure HTML de la page : uniquement les balises dans l'ordre, sans contenu, du genre h un, p, ul, li, li, li, img, a, button. Points : deux points par balise correctement choisie et placée ; un point retiré par balise non refermée ou mal imbriquée ; un point bonus si l'équipe B ajoute les attributs nécessaires, href, src, alt. Puis inversion : l'équipe B montre, l'équipe A écrit. Variante championnat : troisième manche où l'on écrit les balises AVEC du contenu inventé sur un thème imposé en une minute, par exemple une page de présentation du club de danse du lycée. Débriefing final, le vrai gain du jeu : comparez vos structures : pourquoi deux équipes dessinent-elles la même page avec des structures différentes ? Le HTML n'impose pas une seule vérité, mais certaines structures sont plus claires à lire et plus robustes : apprendre à débattre d'une structure, c'est apprendre le vrai métier."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : ta première page dans le navigateur",
+          "content": "Expérience de premier décollage : crée ta première vraie page web et vis le cycle complet du développeur : écrire, enregistrer, rafraîchir, corriger. Matériel : n'importe quel téléphone ou ordinateur avec un éditeur de texte simple, l'application notes, un éditeur gratuit, un carnet, et un navigateur. Étape un, le fichier : crée un dossier nommé mon-site, puis un fichier nommé index point html ; le nom index est une convention universelle : c'est la page d'accueil. Étape deux, le squelette : écris la structure complète : doctype, html, head avec title, body ; dans le body, un titre h un avec le nom de ton projet, un paragraphe qui te présente, un titre h deux mes passions, une liste de trois li, et une image : pour commencer, utilise une image gratuite en ligne en copiant son adresse, ou décris-la simplement en attendant d'apprendre à héberger. Étape trois, le premier regard : ouvre le fichier avec le navigateur : choisis ouvrir avec, ou glisse le fichier dans le navigateur. Ta page s'affiche : savoure ce moment, c'est ta première fois. Étape quatre, le cycle magique : modifie une chose dans le fichier, un mot du titre ; enregistre ; rafraîchir le navigateur ; la page change. Ce cycle écrire-enregistrer-rafraîchir sera ta vie de développeur : chaque idée devient visible en dix secondes. Étape cinq, chasse au bug volontaire : maintenant, sabote ta page pour apprendre : supprime la fermeture d'un paragraphe, rafraîchis, observe ; oublie le chevron fermant d'une balise, observe ; écris du texte hors de la balise body, observe ; puis répare chaque sabotage et note ce que le navigateur fait face à chaque erreur : il ne plante presque jamais, il devine et affiche quand même — voilà pourquoi les erreurs HTML passent parfois inaperçues, et pourquoi il faut être rigoureux. Étape six, la fierté : montre ta page à une personne et demande-lui ce qu'elle voit : si elle lit et comprend sans ton aide, ta structure est bonne. Rédige trois phrases dans ton carnet : ce qui m'a étonné, ce qui m'a bloqué, ce que je veux ajouter la prochaine fois."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis ta page vitrine du club",
+          "content": "Construis ta première vraie page vitrine : une page complète qui présente un club, une équipe, un commerce ou une association de ton choix réel : le club de danse, l'équipe de foot du quartier, le kiosque de ta tante, la chorale du lycée. Cahier des charges : la page doit contenir six sections : un en-tête avec titre principal et un sous-titre accrocheur ; une section présentation : deux paragraphes ; une section activités : une liste à puces d'au moins cinq éléments ; une section galerie : trois images, gratuites ou descriptions, chacune avec sa balise alt bien remplie ; une section contact : un paragraphe avec un lien d'email fictif et un bouton fictif ; un pied de page : une ligne avec le nom de l'auteur et l'année. Méthode de travail professionnel, en trois passes. Passe un, le contenu d'abord : écris tous les textes dans ton carnet AVANT de coder : les codeurs débutants perdent la moitié de leur temps à inventer du texte entre deux balises. Passe deux, la structure : code toute la page HTML, section par section, du haut vers le bas ; rafraîchis le navigateur après CHAQUE section : jamais coder dix minutes sans regarder le résultat. Passe trois, la relecture qualité, avec ta grille de contrôle : chaque balise refermée ? Chaque image a son alt ? Le lien a un href ? L'imbrication propre, strong dans em, jamais croisé ? Les majuscules des balises cohérentes, en minuscules, la convention universelle ? Le fichier bien enregistré en point html ? Améliorations habillage rapide, avant même le vrai CSS : utilise dans ton head une balise style pour essayer trois réglages : une couleur de fond, la propriété background-color ; la couleur du titre principal, la propriété color ; l'alignement centré du pied de page, la propriété text-align. Trois lignes suffisent pour transformer l'aspect. Livraison : présente ta page à trois personnes et note leur première impression en un mot chacune : claire, triste, chargée, sérieuse — ces mots bruts sont exactement ce que les vrais web designers collectionnent pour améliorer. Ta page vitrine est ta première œuvre : garde le fichier précieusement, le monde web-design de ce parcours te servira à l'habiller en profondeur."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : CSS, l'habit qui change tout",
+          "content": "Ta mission : transforme ta page vitrine terne en page qui claque, avec les bases du CSS, et mesure la réaction du public. Le CSS, pour cascading style sheets, décrit l'apparence : sa syntaxe tient en une ligne à connaître : sélecteur, accolade ouvrante, propriété, deux points, valeur, point-virgule, accolade fermante. Le sélecteur désigne qui on habille : la balise p habille tous les paragraphes ; le point devant un nom, comme point vitrine, désigne une classe, une étiquette qu'on colle sur une balise précise via l'attribut class. Mission en six manœuvres. Manœuvre un, la feuille de style : crée un fichier style point css dans le même dossier, et relie-le dans le head avec la balise link rel stylesheet href style point css ; désormais, l'habit et le squelette vivent chacun dans leur fichier : c'est la règle professionnelle. Manœuvre deux, les couleurs : définis le fond de page, une couleur claire ou foncée selon l'ambiance voulue ; la couleur des titres ; la couleur des liens et leur soulignement. Manœuvre trois, les tailles : augmente le titre principal en taille de police ; aère les paragraphes avec la propriété line-height ; limite la largeur du texte avec max-width pour une lecture confortable sur téléphone. Manœuvre quatre, les boîtes : chaque élément est une boîte : joue avec la propriété padding, l'air à l'intérieur de la boîte, margin, l'air autour, et border, la bordure : encadre la section galerie, espace les sections entre elles. Manœuvre cinq, la classe vedette : crée une classe bouton-accueil, applique-la à ton bouton avec l'attribut class, et définis son fond, sa couleur de texte, ses arrondis avec border-radius, et son changement de fond au survol, le sélecteur deux-points hover — sur téléphone, le survol n'existe pas, mais garde-le pour l'avenir. Manœuvre six, l'audience-test : montre la page avant-après à trois personnes sans leur dire laquelle tu préfères ; note leurs réactions et leur verdict : quelle version choisiraient-elles pour présenter le club à un partenaire ? Règle d'honnêteté du CSS : pas d'ornements qui gênent la lecture ; chaque style doit servir la clarté, pas l'ego. Ton œil s'entraîne avec chaque page : c'est lui, pas le code, qui fera ta valeur de web designer."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : le mini-site trois pages de ton équipe",
+          "content": "Projet final : construis un mini-site de trois pages liées entre elles, la première vraie architecture web, sur le sujet de ton équipe : accueil, présentation des membres ou produits, contact. Étape un, l'architecture : crée trois fichiers : index point html, l'accueil ; membres point html, la présentation ; contact point html ; tous dans le même dossier, partageant le même fichier style point css : trois squelettes, un seul habit. Étape deux, la navigation commune : en haut de chaque page, crée une barre de navigation : une liste ul de trois liens a, vers index, membres et contact ; recopie cette barre à l'identique sur les trois pages : c'est la méthode des petits sites ; les grands sites la génèrent automatiquement, mais tu apprendras ça plus tard. Vérifie la règle d'or de la navigation : depuis n'importe quelle page, je peux atteindre les deux autres en un clic ; jamais de page cul-de-sac. Étape trois, le contenu différencié : accueil : titre fort, une accroche en une phrase, trois arguments en liste, un bouton vers la page contact ; membres : un titre, une carte par membre, chaque carte étant une div avec une classe membre, contenant nom en h trois, rôle en paragraphe, une phrase de présentation ; contact : titre, consignes, un formulaire simulé, la balise form avec un champ nom, un champ message, un bouton envoyer — le bouton n'enverra rien encore, mais la structure est prête pour la suite du parcours. Étape quatre, le CSS commun et les classes : style la navigation en barre horizontale : la propriété display inline sur les li ; les cartes membres en grille : display flex sur le conteneur avec flex-wrap pour passer en colonne sur petit écran ; mets en valeur la page courante dans la navigation avec la classe active. Étape cinq, la croisée des chemins, le vrai test de pro : demande à trois personnes de réaliser une mission précise sur ton site : trouver le rôle d'un membre précis, puis atteindre la page contact depuis la page membres ; observe sans dire un mot : s'ils hésitent, note où : la navigation n'est pas claire ; s'ils réussissent en moins de dix secondes, ton architecture est saine. Étape six, le bilan : liste ce que tu sais maintenant faire en HTML et CSS, les trois galères que tu as dépassées, et ta fierté du jour, en une phrase. Tu possèdes maintenant les fondations de TOUS les sites du monde : la suite du parcours, JavaScript, donnera vie à tes pages, et Git sauvegardera ta progression comme un pro."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quelle est la différence entre HTML et CSS ?",
+          "options": [
+            "HTML fait les calculs, CSS envoie les emails",
+            "HTML structure le contenu, titres, paragraphes, images ; CSS décrit l'apparence, couleurs, tailles, positions",
+            "HTML est payant, CSS est gratuit",
+            "Ce sont deux noms du même langage"
+          ],
+          "correct_index": 1,
+          "explanation": "Le HTML dit ce qu'est chaque morceau : c'est un titre, un paragraphe, une image. Le CSS dit à quoi il ressemble : rouge, grand, centré. Deux langages, deux responsabilités, une équipe."
+        },
+        {
+          "question": "Que signifie la règle les balises s'emboîtent comme des gobelets, jamais comme des nœuds ?",
+          "options": [
+            "Il faut ranger sa chambre avant de coder",
+            "L'imbrication doit être propre : la dernière balise ouverte est la première refermée, jamais de croisement",
+            "Les balises doivent être rondes",
+            "Il faut fermer les balises avec un nœud"
+          ],
+          "correct_index": 1,
+          "explanation": "Ouvrir strong puis em, refermer em puis strong : l'ordre de fermeture est l'inverse de l'ouverture. Croiser les balises crée des pages imprévisibles que les navigateurs devinent au hasard."
+        },
+        {
+          "question": "Pourquoi la balise img doit-elle toujours avoir un attribut alt rempli ?",
+          "options": [
+            "Pour que l'image soit plus jolie",
+            "Pour décrire l'image aux personnes qui ne la voient pas, et quand l'image ne charge pas",
+            "Parce que le navigateur refuse de charger sans alt",
+            "Pour payer moins cher l'hébergement"
+          ],
+          "correct_index": 1,
+          "explanation": "L'attribut alt est la voix de l'image : les lecteurs d'écran le lisent aux personnes malvoyantes, et il s'affiche quand l'image ne charge pas, connexion faible. Une image sans alt est une porte fermée."
+        },
+        {
+          "question": "À quoi sert le cycle écrire, enregistrer, rafraîchir ?",
+          "options": [
+            "À faire de la gymnastique",
+            "À voir chaque modification en dix secondes : c'est la boucle de travail permanente du développeur web",
+            "À consommer plus de forfait internet",
+            "À économiser la batterie"
+          ],
+          "correct_index": 1,
+          "explanation": "Modifier le fichier, sauvegarder, rafraîchir le navigateur : chaque idée devient visible immédiatement. Cette boucle courte est le cœur du quotidien web, elle rend le travail vivant et les bugs vite repérés."
+        },
+        {
+          "question": "Dans le CSS, que désigne le sélecteur point vitrine ?",
+          "options": [
+            "La fin de la feuille de style",
+            "Une classe nommée vitrine, collée sur les balises qui portent l'attribut class",
+            "Une page web nommée vitrine",
+            "Un point dans le texte"
+          ],
+          "correct_index": 1,
+          "explanation": "Le point désigne une classe : une étiquette réutilisable qu'on applique avec l'attribut class. Les habillages par balise, p, h un, s'appliquent à tous ; les classes ciblent précisément."
+        }
+      ]
+    },
+    {
+      "slug": "python-basics",
+      "title": "Introduction à Python",
+      "description": "Variables, conditions, boucles, fonctions : découvre le langage préféré des débutants et des data scientists, 100 % gratuit, sur ton téléphone ou en ligne. Ton premier vrai programme t'attend.",
+      "story": "Il y a un langage que les plus grandes entreprises du monde utilisent pour analyser leurs données, entraîner leurs intelligences artificielles, automatiser leurs tâches : Python. Et voici le paradoxe magnifique : c'est aussi LE langage des débutants, celui qu'on conseille en premier, parce qu'il se lit presque comme de l'anglais simplifié. Sa force : peu de symboles cabalistiques, des phrases courtes, des erreurs compréhensibles. Google, YouTube, Instagram, les applications météo et les banques : tous ont du Python quelque part dans leurs coulisses. Et toi, tu peux commencer aujourd'hui, sans installer quoi que ce soit : un navigateur suffit, grâce aux éditeurs en ligne gratuits. Dans cette aventure, tu transformes ton pseudo-code de l'aventure Algorithmes en vrai code exécutable, tu découvres les variables, les conditions, les boucles et les fonctions, et tu vis le moment magique de tout codeur : je tape, la machine obéit.",
+      "xp_reward": 150,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Python : ton premier programme, ligne par ligne",
+          "content": "Python se lit comme une liste d'instructions : chaque ligne est une action, exécutée de haut en bas. Les quatre fondations à connaître : les variables, les conditions, les boucles, les fonctions. Les variables : une variable est une boîte nommée qui garde une valeur ; on l'écrit avec le signe égal : age égale quinze ; prix égale sept cent ; la boîte age contient quinze. Tu peux changer le contenu plus loin : age égale age plus un, la boîte vaut maintenant seize ; et tu peux afficher avec la fonction print, entre parenthèses : print, ouvre la parenthèse, ton texte ou ta variable, ferme. Les conditions : la ligne si s'écrit if, suivie de la condition, deux points, puis le bloc indenté, quatre espaces ; le bloc ne s'exécute que si la condition est vraie ; le sinon s'écrit else, deux points, et son propre bloc indenté. Exemple : if solde est supérieur ou égal à prix, deux points, sur la ligne suivante indentée, print achat possible ; sinon, else, print il manque de l'argent. Les comparaisons s'écrivent : double signe égal pour tester l'égalité, supérieur, inférieur, inégal s'écrit point d'exclamation suivi du signe égal. Les boucles : deux familles ; la boucle for, pour chaque élément d'une liste, la liste s'écrit entre crochets, les éléments séparés par des virgules : for fruit in liste de fruits, deux points, bloc indenté ; et la boucle while, tant que : while compteur inférieur à dix, deux points, bloc qui se répète, en incrémentant le compteur à l'intérieur, sinon la boucle tourne à l'infini. Les fonctions : une fonction est une recette nommée et réutilisable : def saluer, parenthèses, deux points, bloc indenté qui fait le travail ; on l'appelle ensuite par son nom avec des parenthèses : saluer, parenthèses. Règle d'or de l'indentation : en Python, les quatre espaces ne décorent pas, ils font partie de la grammaire : ce qui est indenté après les deux points appartient au bloc ; oublie l'indentation et le programme refuse de démarrer avec une erreur IndentationError — c'est la faute classique de tous les débutants, tu viens d'être prévenu, tu la feras quand même une fois, comme tout le monde."
+        },
+        {
+          "section_type": "play",
+          "title": "Le terminal invisible : le jeu du programmeur silencieux",
+          "content": "Jouons au terminal invisible, le jeu où tu exécutes Python dans ta tête, comme une vraie machine. À deux joueurs ou en solo à voix haute. Préparation : le joueur programmeur écrit un programme Python de dix à quinze lignes, sur papier, en utilisant seulement ce que tu connais : variables, print, un if avec son else, une boucle for ou while, une petite fonction. Thème imposé au hasard, pioché dans un chapeau : un programme de caisse de kiosque, un compte à rebours de match, un calculateur de partage de taxi, un générateur de blagues du quartier, un carnet de notes de classe, un simulateur de forfait mobile. Déroulé : le programmeur lit son programme ligne par ligne à voix haute, mais SANS donner les résultats ; l'autre joueur, la machine, exécute mentalement et note sur papier l'état de chaque variable à chaque ligne, en silence, comme un terminal ; à chaque print, la machine annonce le résultat écrit à voix haute. Vérification : le programmeur, qui connaissait les résultats attendus, corrige ; en cas de désaccord, on redéroule la ligne fautive ensemble, au ralenti. Points : la machine gagne un point par résultat annoncé juste ; le programmeur gagne un point par piège que la machine n'a pas vu, une variable modifiée en cours de route, une boucle qui tourne un cran de plus que prévu. Variante diabolique : le programmeur introduit volontairement un bug subtil, un signe égal au lieu d'un double égal, une indentation oubliée ; la machine doit crier erreur à l'endroit exact où le programme planterait, et dire quel message d'erreur : IndentationError pour l'indentation, NameError pour une variable jamais déclarée, TypeError pour un mélange de textes et de nombres. Le gagnant au meilleur de trois programmes. Ce jeu est l'entraînement secret des vrais codeurs : lire du code et le faire tourner dans sa tête, ligne à ligne, s'appelle le débogage mental — et c'est LA compétence qui sépare celui qui tape au hasard de celui qui comprend."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : premier vrai programme en ligne",
+          "content": "Expérience de lancement : exécute ton premier programme Python pour de vrai, sans installer quoi que ce soit, et transforme ton pseudo-code de l'aventure Algorithmes en code exécutable. Étape un, l'environnement : avec l'accord d'un adulte, ouvre un éditeur Python en ligne gratuit, il en existe plusieurs très bons, cherche éditeur Python en ligne sur ton moteur de recherche ; les plus connus proposent un écran divisé : à gauche le code, à droite le résultat, avec un bouton exécuter ; alternative hors ligne : certains téléphones acceptent des applications Python gratuites, si l'éditeur en ligne consomme trop de forfait. Étape deux, le rite d'ouverture : tape exactement : print, ouvre la parenthèse, ton prénom entre guillemets, ferme la parenthèse ; exécute ; ton prénom s'affiche : tu viens de parler à une machine et elle t'a répondu. Étape trois, la reprise du pseudo-code : reprends ta feuille de monnaie à rendre ou de ton distributeur de l'aventure un ; traduis-la en Python, ligne à ligne : la lecture devient prix égale point, la fonction input qui lit une valeur tapée, avec int pour convertir le texte en nombre ; la condition SI devient if, deux points ; TANT QUE devient while, deux points ; l'indentation quatre espaces pour les blocs ; afficher reste print. Étape quatre, le test méthodique : exécute avec un cas simple, prix cent, reçu cinq cents ; puis un cas particulier, reçu exactement le prix ; puis un cas piège, reçu moins que le prix : que se passe-t-il ? Si le programme rend une monnaie négative absurde, c'est que ta condition de garde manque : ajoute un if au début. Étape cinq, la lecture des erreurs : quand le programme plante, ne panique pas : lis le message, il indique la ligne fautive et le type d'erreur ; note dans ton carnet chaque erreur rencontrée avec sa signification en une phrase : c'est ton dictionnaire personnel de débogage, il vaut de l'or. Étape six, la fierté mesurable : compte tes lignes de code exécutées : ce nombre est un vrai jalon — dans l'aventure Projets Python, tu passeras à plusieurs dizaines, et chaque ligne exécutée t'appartient à vie."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis ta calculatrice de gestion du carnet",
+          "content": "Construis ta calculatrice de gestion du carnet, un vrai petit programme utile pour ta classe : la moyenne pondérée et le rang des notes. Fonctionnalités attendues, cahier des charges : le programme demande les notes une par une jusqu'à ce que l'élève tape le mot fini ; il demande aussi le coefficient de chaque note ; à la fin, il affiche : la moyenne pondérée, la note la plus haute avec son coefficient, la note la plus basse, le nombre de notes, et un commentaire motivant selon la moyenne, avec des paliers : au-dessus de quatorze : excellent trimestre ; entre dix et quatorze : bonne base, continue ; entre huit et dix : il faut réviser sérieusement ; en dessous de huit : tourne-toi vers tes professeurs, on se relève ensemble. Méthode de construction guidée, en cinq passes. Passe un, le pseudo-code d'abord : écris la logique sur papier : variables notes, coefficients, somme pondérée, somme coefficients ; boucle tant que la saisie n'est pas fini : lire note, lire coefficient, ajouter aux sommes ; à la fin : moyenne égale somme pondérée divisée par somme coefficients. Passe deux, les briques de base : implémente d'abord la version minimale : deux notes codées en dur dans le programme, pas de saisie ; fais-la marcher avant d'ajouter la saisie : c'est la règle du petit pas, la plus importante de toutes. Passe trois, la saisie interactive : ajoute la boucle de saisie avec input et la sortie sur le mot fini ; testée avec trois notes, puis avec une seule, puis avec aucune : ton programme doit survivre à la division par zéro, si aucune note n'est entrée : garde-fou si la somme des coefficients égale zéro, afficher un message gentil et s'arrêter. Passe quatre, le maximum et le minimum : parcoure tes listes avec une boucle for en gardant la meilleure et la pire note rencontrées : pas de fonction magique pour l'instant, fais-le à la main, c'est l'entraînement. Passe cinq, la mise en forme et le test de terrain : soigne l'affichage, une ligne par information, avec des phrases complètes ; fais tester par trois camarades qui entrent leurs vraies notes ; compare les résultats avec leur calcul à la main : si les trois calculs concordent, ton programme est bon. Puis la retouche légère : transforme le calcul de moyenne en fonction calculerMoyenne qui prend les deux listes et renvoie le résultat ; appelle-la : une fonction, c'est un outil que tu pourras réutiliser chaque trimestre — et c'est le goût du vrai métier : construire des outils à soi."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : l'automate du quotidien",
+          "content": "Ta mission : identifie une tâche répétitive de calcul dans ta vie ou celle d'un proche, et construis le petit programme Python qui l'automatise vraiment, jusqu'à ce que quelqu'un l'utilise sans toi. Candidatures possibles : le partage de la facture entre colocataires ou la tontine du mois ; le calcul de ce que coûte réellement un forfait selon son usage ; le compteur de la barrique d'eau : litres consommés, reste, coût ; le calculateur de bénéfice du kiosque : achats, ventes, marges par produit ; le convertisseur des unités de la cuisine : tasses, grammes, marmites ; le calculateur de temps de trajet du grand frère taxi : distance, vitesse, prix. Déroulé de la mission. Étape un, l'observation : avant de coder, observe la tâche réelle : quels chiffres entrent, quels résultats sortent, quelles règles se cachent, le partage inclut-il les imprévus, le tarif change-t-il la nuit ? Note tout dans ton carnet : cahier des charges d'une page. Étape deux, la maquette sur papier : pseudo-code complet, avec les cas pièges : zéro, montants négatifs, virgules mal placées. Étape trois, la version un : programme Python en ligne, minimal mais juste : entre les chiffres, sort le résultat principal ; teste dix fois avec des valeurs réelles. Étape quatre, le test utilisateur : confie le programme à la personne concernée, sans expliquer plus de trente secondes ; observe : où hésite-t-elle ? Note chaque hésitation, ce sont des défauts de design. Étape cinq, la version deux : intègre les corrections, ajoute l'affichage clair et les messages d'erreur aimables, refuse les valeurs absurdes au lieu de planter. Étape six, l'adoption : la preuve finale : la personne réutilise-t-elle l'outil d'elle-même dans la semaine ? Si oui, mission accomplie : tu viens d'écrire du code qui change une vraie vie — c'est exactement la promesse du métier de développeur, et tu viens de la tenir à ton échelle. Rédige le bilan de mission : lignes écrites, bugs corrigés, temps gagné pour l'utilisateur, et ta phrase de fierté, datée."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : le quiz interactif du parcours scolaire",
+          "content": "Projet final : construis un quiz interactif complet en Python, sur le thème de ton choix, histoire de la Côte d'Ivoire, règles du foot, prévention des maladies, culture ivoirienne, révisions d'une matière — jouable par tes camarades, avec score, verdict et rejouabilité. Étape un, la structure de données : crée la liste des questions : chaque question est un petit paquet : l'énoncé, la bonne réponse, le nombre de points ; pour l'instant, fais simple : trois listes parallèles, énoncé, réponse, points, ou une liste de listes si tu te sens à l'aise ; range au moins dix questions. Étape deux, le moteur de jeu : la boucle for qui parcourt les questions une à une ; affiche l'énoncé ; lit la réponse du joueur avec input ; la compare avec la bonne réponse, sans tenir compte des majuscules : une astuce : mets les deux en minuscules avant de comparer ; ajoute les points si juste ; affiche un retour immédiat, juste ou faux avec la bonne réponse. Étape trois, le score et le verdict : à la fin, calcule le total et le pourcentage ; affiche un verdict par paliers, avec quatre catégories, de regarde tes leçons à champion du quartier ; affiche aussi le détail : tant de justes sur tant de questions. Étape quatre, la rejouabilité : propose rejouer en fin de partie : boucle while autour du jeu ; option mélange : mélange l'ordre des questions à chaque partie, en permuttant au hasard avec la fonction de bibliothèque random, à importer en tête de fichier avec la ligne import random ; cette ligne est ta première rencontre avec les bibliothèques, ces boîtes à outils que les codeurs du monde entier partagent. Étape cinq, les tests de robustesse : fais jouer trois camarades ; note chaque plantage : réponse vide, chiffres au lieu de lettres, accent manquant ; corrige chaque cas : ton quiz doit accueillir poliment les réponses imparfaites. Étape six, la présentation : organise une session de jeu en groupe : chacun joue, les scores s'affichent au tableau, le champion est proclamé ; collecte les retours : quelle question préfèrent-ils ? Laquelle est trop difficile ? Étape sept, l'héritage : range ton code proprement : commentaires d'une ligne avec le dièse expliquant chaque section, variables aux noms clairs ; montre ton code à un adulte qui code, s'il y en a un autour de toi, ou échange-le avec un camarade du parcours : lire le code des autres et faire lire le sien, c'est ainsi qu'on progresse vraiment. Ton quiz est un vrai logiciel : données, moteur, score, aléa, tests, utilisateurs — les mêmes organes qu'une application professionnelle, au format de poche."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "À quoi sert l'indentation, les quatre espaces en début de ligne, en Python ?",
+          "options": [
+            "À faire joli",
+            "Elle fait partie de la grammaire : elle définit ce qui appartient à un bloc if, else, while ou for",
+            "À économiser de l'encre",
+            "À décourager les débutants"
+          ],
+          "correct_index": 1,
+          "explanation": "En Python, l'indentation n'est pas décorative : tout ce qui est indenté après les deux points appartient au bloc. L'oublier provoque une IndentationError, la faute classique de tous les débutants."
+        },
+        {
+          "question": "Quelle différence entre un signe égal et un double signe égal ?",
+          "options": [
+            "Aucune, ce sont des synonymes",
+            "Le signe égal range une valeur dans une variable ; le double signe égal teste si deux valeurs sont égales",
+            "Le double égal sert uniquement en mathématiques",
+            "Le signe égal affiche du texte"
+          ],
+          "correct_index": 1,
+          "explanation": "age égale quinze range quinze dans la boîte age ; if age double-égal quinze teste si c'est vrai. Confondre les deux est le bug le plus fréquent du débutant : l'affectation au lieu de la comparaison."
+        },
+        {
+          "question": "Que fait la boucle while tant que compteur inférieur à dix, sans incrémenter le compteur à l'intérieur ?",
+          "options": [
+            "Elle s'arrête intelligemment",
+            "Elle tourne à l'infini : la boucle infinie classique, il faut toujours faire évoluer la condition à l'intérieur",
+            "Elle refuse de démarrer",
+            "Elle saute une itération sur deux"
+          ],
+          "correct_index": 1,
+          "explanation": "Si rien ne change la condition à l'intérieur du bloc, le tant que reste vrai pour toujours : c'est la boucle infinie. Règle : dans un while, au moins une ligne doit faire évoluer la condition, sinon le programme se fige."
+        },
+        {
+          "question": "Pourquoi commencer par la version minimale qui marche avant d'ajouter les fonctions ?",
+          "options": [
+            "Pour finir plus tôt",
+            "C'est la règle du petit pas : chaque brique testée avant la suivante, on sait toujours ce qui marche et d'où vient la panne",
+            "Parce que Python l'exige",
+            "Pour économiser la batterie"
+          ],
+          "correct_index": 1,
+          "explanation": "Coder dix fonctionnalités d'un coup rend les bugs introuvables : on ne sait plus ce qui a cassé. La règle du petit pas, une brique, un test, une brique, est la méthode de tous les développeurs professionnels."
+        },
+        {
+          "question": "Qu'est-ce qu'une fonction en Python ?",
+          "options": [
+            "Un écran de veille",
+            "Une recette nommée et réutilisable, définie avec def, qu'on appelle par son nom quand on en a besoin",
+            "Un message d'erreur",
+            "Une variable spéciale qui ne change jamais"
+          ],
+          "correct_index": 1,
+          "explanation": "def suivi du nom définit la recette ; l'appeler exécute son bloc. Les fonctions évitent la répétition et organisent le code en outils réutilisables : c'est la première brique de la qualité logicielle."
+        }
+      ]
+    },
+    {
+      "slug": "js-basics",
+      "title": "JavaScript : le langage du web",
+      "description": "HTML habille, CSS coiffe, JavaScript AGIT : boutons qui réagissent, compteurs, calculs, surprises. Découvre le seul langage que tous les navigateurs du monde parlent.",
+      "story": "Ta page web est belle : elle a un titre, des couleurs, des images. Mais elle est figée comme une affiche. Clique sur le bouton : rien. Appuie sur le lien : la page change, et c'est tout. Ce qui manque, c'est la vie : réagir, calculer, mémoriser, surprendre. Ce muscle s'appelle JavaScript, et il a une particularité unique au monde : c'est LE langage que tous les navigateurs parlent nativement — Chrome, Firefox, Safari, ton navigateur de téléphone : aucun autre langage ne peut se vanter de vivre directement dans chaque écran connecté de la planète. Chaque fois qu'un bouton réagit, qu'un score de jeu s'actualise, qu'un message s'envoie sans recharger la page : c'est JavaScript. Dans cette aventure, tu apprends à faire réagir tes pages : capter les clics, changer le contenu en direct, calculer en temps réel. Ton mini-site devient une machine.",
+      "xp_reward": 140,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "JavaScript : les trois pouvoirs du navigateur",
+          "content": "JavaScript donne trois pouvoirs à tes pages : capter, calculer, transformer. Une page web est un arbre : la grande boîte html contient des boîtes body, head, qui contiennent des boîtes div, p, boutons ; le navigateur range cet arbre dans ce qu'on appelle le DOM, pour document object model, le modèle de la page en mémoire. Premier pouvoir, capter : grâce au DOM, JavaScript peut surveiller les événements, le clic sur un bouton, la saisie dans un champ, le chargement de la page ; la formule magique pour capter un clic : trouve l'élément, puis attache-lui un écouteur : la méthode addEventListener, mot pour mot ajoute un écouteur, avec deux informations entre parenthèses : le type d'événement entre guillemets, click pour un clic, et la fonction à exécuter quand ça arrive. Deuxième pouvoir, calculer : JavaScript manipule les nombres, les textes, les listes, comme Python mais avec une autre syntaxe : les variables se déclarent avec let pour celles qui changent et const pour celles qui ne changent pas ; la comparaison d'égalité s'écrit triple signe égal, le double est toléré mais piégeux, le triple est la rigueur ; la fonction s'écrit function, nom, parenthèses, accolades ; la condition if, else if, else ; la boucle for classique avec trois clauses séparées par des points-virgules, et la boucle for of, proche du Python. Troisième pouvoir, transformer : modifier la page en direct : changer le contenu d'un élément avec sa propriété textContent ; changer son style avec style point suivi des propriétés CSS ; ajouter ou retirer une classe avec classList, add et remove, ce qui déclenche les styles CSS déjà écrits : c'est le duo gagnant JavaScript change les classes, CSS fait le spectacle. Où écrit-on tout ça ? Dans un fichier script point js relié à la page par la balise script avec l'attribut src, placé juste avant la fermeture du body : la page se construit d'abord, le script s'exécute ensuite. Règle d'or du test : ouvre la console du navigateur, dans le menu développeur, elle affiche les erreurs JavaScript — ton meilleur ami ; chaque erreur y est écrite avec sa ligne : apprends à la lire dès maintenant, c'est elle qui te dira toujours ce qui ne va pas."
+        },
+        {
+          "section_type": "play",
+          "title": "DOM en chair : le jeu du grand frère navigateur",
+          "content": "Jouons à DOM en chair : un joueur incarne le navigateur, les autres sont les scripts. Préparation : dessinez une page web sur une grande feuille : un titre, un champ de saisie nommé age, un bouton nommé verifier, un paragraphe nommé message, une liste nommée cadeaux avec trois éléments, et une case cachée nommée surprise, un élément invisible au départ. Chaque élément a une étiquette avec son identifiant, un nom précédé d'un dièse. Matériel secondaire : des cartes événements, au dos de chaque élément interagissable, une carte événement. Déroulé : les joueurs script écrivent, en français structuré, une action à faire subir à la page : par exemple : quand le bouton verifier est cliqué, lire la valeur du champ age ; si la valeur est plus grande ou égale à dix-huit, mettre dans message le texte accès autorisé ; sinon mettre accès refusé ; puis ajouter la classe visible à surprise. Le joueur navigateur exécute physiquement : il lit la carte événement du bouton quand un joueur script mime le clic ; il déplace les étiquettes de contenu, il retourne la case surprise quand elle reçoit la classe visible. Les variantes de difficulté : manche un, actions directes ; manche deux, avec boucles : pour chaque élément de la liste cadeaux, ajouter la classe prixAffiche ; manche trois, avec bug volontaire : le script demande l'élément dièse ageu, qui n'existe pas, et le navigateur doit réagir comme une vraie console : Erreur : impossible de lire les propriétés de l'élément inexistant, le scripteur apprend la faute la plus fréquente du web : un identifiant mal orthographié. Débriefing final : chacun écrit sa loi du DOM : par exemple, le script ne touche jamais la page directement, il demande au navigateur via les identifiants ; le navigateur n'exécute jamais rien de sa propre volonté ; et l'ordre compte : un script qui cherche un élément avant qu'il existe plante toujours. Trois manières de jouer à trois rôles, script, page, console — et une compréhension définitive de ce qui se passe vraiment quand tu cliques."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : bouton vivant et compteur de clics",
+          "content": "Expérience de réanimation : donne un premier cerveau à ta page, en trois défis croissants, avec l'accord d'un adulte si tu travailles en ligne. Défi un, le bouton qui parle : reprends ta page vitrine HTML de l'aventure deux, ou une page neuve minimale ; ajoute un bouton avec un identifiant : la balise button avec l'attribut id égal b1 ; crée le fichier script point js et relie-le avant la fin du body ; dans le script : trouve le bouton avec la méthode getElementById, entre parenthèses le nom b1 entre guillemets ; range-le dans une const nommée bouton ; attache-lui l'écouteur : bouton point addEventListener, clic, fonction : dans la fonction, affiche le texte cliqué dans la console du navigateur avec la commande console point log, le message entre guillemets ; teste : chaque clic laisse une trace dans la console : ta page t'entend. Défi deux, le compteur : ajoute au-dessus une const compteur égale zéro — piège : une const ne change pas, il faut let ; corrige ; dans la fonction du clic : incrément le compteur, compteur plus plus, puis change le texte du bouton : bouton point textContent égal, guillemet, cliqué, plus le compteur, guillemet fermé ; teste : le bouton compte tes clics, un, deux, trois : ta page mémorise. Défi trois, la condition de style : quand le compteur atteint dix, change la couleur de fond du bouton : dans la fonction, après l'incrément, un if : si compteur triple égal dix : bouton point style point background égal la nouvelle couleur entre guillemets, et change le texte en wow, dix clics ; teste jusqu'à dix. Journal d'expérience, à écrire après les trois défis : ce que j'ai appris de la console ; la différence entre let et const, racontée avec mes mots ; et le mini-moment de gloire : la première fois que la page a réagi à ton clic, décris-le en une phrase, tu t'en souviendras. Maintenant ta page n'est plus une affiche : c'est une machine qui écoute, compte et décide — il ne manque plus que des projets à la hauteur."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis la calculatrice de partage du groupe",
+          "content": "Construis une calculatrice de partage en ligne, 100 % navigateur : la page qui calcule ce que chacun doit payer après la sortie du groupe, la tontine, le cadeau commun, l'excursion de classe. Cahier des charges fonctionnel : trois champs de saisie : le montant total, le nombre de personnes, la part des absents payeurs déjà avancée, facultatif, zéro par défaut ; un bouton calculer ; une zone de résultat ; un bouton d'option arrondir au multiple de cinquante, pratique pour les espèces ; un message d'erreur en français clair si les valeurs sont absurdes : montant négatif, zéro personne, texte au lieu de nombre. Architecture en trois couches, la bonne habitude à prendre dès maintenant : couche HTML : la structure, les identifiants propres, un champ total, un champ personnes, un champ avance, le bouton calculer, la zone résultat ; couche CSS : l'habillage, déjà tes réflexes de l'aventure deux : champs alignés, bouton dominant, résultat en grand ; couche JavaScript : le cerveau, dans le script point js : une fonction lireNombres qui lit les trois champs et convertit avec la fonction Number, en vérifiant que ce sont bien des nombres avec la méthode Number point isInteger pour les personnes ; une fonction calculerPart qui prend le total, les personnes, l'avance, et renvoie le résultat, tous les calculs dedans, aucune phrase ; une fonction afficherResultat qui écrit le texte dans la zone résultat ; et l'écouteur du bouton calculer qui orchestre : lire, calculer, afficher, avec un bloc try et catch pour attraper proprement les erreurs et afficher un message aimable au lieu d'une page figée. Méthode de construction : couche par couche, test au fil de l'eau : HTML d'abord, la page s'affiche ; CSS ensuite, la page est belle ; JavaScript enfin, bouton par bouton, test après chaque fonction ; à la fin, les tests de robustesse en cinq essais : cas normal ; montant zéro ; personnes zéro ; avance supérieure au total ; texte tapé dans un champ : chaque cas doit donner soit un résultat juste, soit un message clair, jamais un silence ou un plantage. Livraison : fais tester par trois personnes avec un vrai cas du quartier : si l'une d'elles te dit c'est plus vite fait de tête, note-le avec humilité et réponds que le programme, lui, ne se trompe jamais de calcul quand la fatigue tombe — c'est exactement pour ça que les entreprises automatisent."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : la page à quiz qui note toute seule",
+          "content": "Ta mission : transforme tes connaissances en page interactive qui rend service : un quiz de révisions qui corrige tout seul, sur une matière que tu maîtrises, pour des élèves réels. Choisis ta matière et ton public : les tables de multiplication pour les petits, l'histoire ivoirienne pour ta classe, les verbes irréguliers d'anglais, les règles de la route pour les futurs motards du quartier, les bases de la santé. Fonctionnalités obligatoires : la page tire une question au hasard dans ta liste ; l'élève répond dans un champ ; au clic sur vérifier, la page compare, indique juste ou faux avec la bonne réponse ; le score se met à jour en direct ; au bout de dix questions, le verdict final avec paliers, le même goût du détail que ton quiz Python ; un bouton recommencer qui remet tout à zéro et relance. Contraintes de mission : question au hasard grâce à la fonction Math point random combinée avec Math point floor, la technique du tirage ; les questions dans un tableau JavaScript, entre crochets, chaque question étant un petit objet avec accolades : l'énoncé, la réponse, le commentaire ; jamais de rechargement de page : tout se passe en direct, c'est le propre du JavaScript ; le design école : sobre, lisible, couleurs douces, grand texte, un bouton bien visible — le public a entre huit et quinze ans. Test de terrain obligatoire : fais jouer au moins trois élèves réels, un par niveau : observe sans intervenir : où bloquent-ils ? Quelle question a fait hurler de joie ? Note tout. Livraison finale : présente la page au professeur de la matière ou au responsable du club, propose son utilisation pendant une révision collective ; recueille le verdict en une phrase. Le couronnement de la mission : si un seul élève révise avec ta page sans que tu sois là, tu as construit un outil pédagogique — la même chose, au même âge, que font les équipes des grandes plateformes éducatives, à leur échelle ; la tienne n'est pas plus petite, elle est réelle."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : la machine à dire bonjour de ton quartier",
+          "content": "Projet final : construis l'application complète générateur de bordées d'accueil, la machine à dire bonjour de ton quartier : une page qui génère des salutations complètes et personnalisées selon l'heure, la personne et le contexte, avec animation, historique et mode nuit. Fonctionnalités du cahier des charges : un champ pour le prénom de la personne à saluer ; un choix de contexte : aîné, camarade, enfant, client du kiosque, professeur ; la détection de l'heure réelle avec l'objet Date de JavaScript : la salutation change : bonjour avant midi, bon après-midi ensuite, bonsoir après dix-huit heures ; la génération d'une phrase complète : salutation adaptée au contexte, prénom, formule de politesse, question d'accroche adaptée, pour les aînés, une marque de respect différente de celle des camarades ; un bouton copier le message, pour coller dans un SMS ou un réseau social ; un historique des cinq dernières salutations générées, rangées dans un petit tableau ; le mode nuit : un bouton qui bascule les couleurs de la page en ajoutant et retirant une classe CSS nuit sur la grande boîte de la page — le duo JavaScript change les classes, CSS fait le spectacle. Étapes de construction, dans l'ordre : un, la structure HTML : les champs, les boutons, la zone résultat, la zone historique ; deux, le générateur : une fonction saluer qui prend le prénom et le contexte, consulte l'heure avec Date, choisit la salutation et la formule selon le contexte : utilise des objets JavaScript, des accolades qui mappent chaque contexte vers ses formules : c'est ta première structure de données élégante ; trois, l'affichage et la copie ; quatre, l'historique : une liste en mémoire, unshift pour ajouter en tête, slice pour ne garder que cinq ; cinq, le mode nuit avec classList toggle ; six, les finitions : l'animation d'apparition de la salutation avec la propriété CSS transition déclenchée par l'ajout d'une classe, une découverte : le JavaScript et le CSS collaborent aussi pour bouger la page. Les épreuves finales : teste les cinq contextes à des heures différentes, en changeant l'heure du système si tu codes sur un ordinateur, ou en trichant avec une heure simulée en variable ; fais générer une salutation à trois personnes réelles de générations différentes : si aucune ne fait la grimace, ton respect des usages est validé ; organise la démonstration : chaque utilisateur génère sa salutation et la reçoit copiée. Ta machine à dire bonjour est une vraie application complète : entrées, logique, données, historique, thème, animation, tests utilisateurs — exactement les organes d'un produit numérique professionnel, construits par toi, dans ton navigateur, pour zéro franc."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quelle particularité unique JavaScript a-t-il dans le monde ?",
+          "options": [
+            "C'est le langage le plus ancien",
+            "Tous les navigateurs du monde l'exécutent nativement : c'est le seul langage qui vit dans chaque écran web",
+            "Il ne fonctionne que la nuit",
+            "Il ne peut pas faire de calculs"
+          ],
+          "correct_index": 1,
+          "explanation": "HTML structure, CSS habille, mais seul JavaScript est compris et exécuté nativement par tous les navigateurs : chaque clic qui réagit sur le web, où que tu sois, c'est lui. C'est le monopole le plus précieux de l'informatique moderne."
+        },
+        {
+          "question": "Que permet le DOM, le document object model ?",
+          "options": [
+            "De jouer à des jeux vidéos",
+            "De capter les événements et de modifier la page en direct : contenu, styles, classes",
+            "De fabriquer des ordinateurs",
+            "D'effacer l'historique du navigateur"
+          ],
+          "correct_index": 1,
+          "explanation": "Le DOM est la page web rangée en arbre en mémoire : JavaScript le lit, le surveille, événements, et le modifie, texte, style, classes. C'est le pont entre ton code et ce que voit l'utilisateur."
+        },
+        {
+          "question": "Quelle est la bonne rigueur pour comparer deux valeurs en JavaScript ?",
+          "options": [
+            "Le simple signe égal",
+            "Le triple signe égal : il compare valeur et type, sans surprise",
+            "Le double point",
+            "Le signe plus"
+          ],
+          "correct_index": 1,
+          "explanation": "Le triple signe égal vérifie la valeur ET le type : le double signe égal, toléré, peut dire que zéro égale texte zéro et créer des bugs invisibles. Le réflexe professionnel est le triple."
+        },
+        {
+          "question": "Pourquoi la console du navigateur est-elle ton meilleur ami ?",
+          "options": [
+            "Elle joue de la musique",
+            "Elle affiche chaque erreur JavaScript avec sa ligne : c'est là que tu vois pourquoi ton code ne marche pas",
+            "Elle économise le forfait",
+            "Elle remplace le CSS"
+          ],
+          "correct_index": 1,
+          "explanation": "Quand rien ne se passe, la console dit tout : l'erreur, sa ligne, sa cause. Apprendre à la lire dès maintenant, et à y écrire avec console point log pour espionner ses variables, c'est apprendre à déboguer comme les professionnels."
+        },
+        {
+          "question": "Que signifie le duo JavaScript change les classes, CSS fait le spectacle ?",
+          "options": [
+            "Le JavaScript doit remplacer le CSS",
+            "Le JavaScript se contente d'ajouter ou retirer des classes CSS, et tous les effets visuels restent écrits en CSS",
+            "Le CSS ne sert plus à rien",
+            "Le CSS exécute les calculs"
+          ],
+          "correct_index": 1,
+          "explanation": "Le réflexe professionnel : JavaScript déclenche, avec classList add et remove, et le CSS contient les états visuels : le code reste clair, le design reste dans la feuille de style, chaque métier à sa place."
+        }
+      ]
+    },
+    {
+      "slug": "git-basics",
+      "title": "Git et le contrôle de version",
+      "description": "La machine à remonter le temps de ton code : historique complet, retour arrière garanti, travail à plusieurs sans écraser le travail des autres. Git est gratuit et sauve des vies de codeurs.",
+      "story": "Cauchemar classique du codeur sans méthode : final version, final version deux, final version VRAIMENT finale, mon site copie de secours ancien... et un jour, catastrophe : le fichier corrompu, la mauvaise version envoyée, trois heures de travail écrasées. Les développeurs du monde entier ont réglé ce problème une fois pour toutes avec Git, l'outil de contrôle de version : chaque étape de ton travail est enregistrée avec sa date, son auteur et sa description ; tu peux voir ce qui a changé entre deux étapes, revenir en arrière à tout moment, et travailler à plusieurs sans jamais écraser le travail de l'autre. Git est gratuit, installé sur tous les ordinateurs des développeurs, et c'est souvent LA compétence qui distingue le codeur amateur du codeur employable. Dans cette aventure, tu transformes ta façon de travailler : fini les copies de secours, place à la mémoire complète et rembobinable de ton code.",
+      "xp_reward": 120,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Git : l'horloger de ton code",
+          "content": "Git fonctionne avec trois zones, et les comprendre change tout. La zone de travail : ton dossier de fichiers, où tu modifies librement, comme toujours. Le commit : un instantané, une photographie complète de ton projet à un instant donné, accompagnée d'un message qui décrit ce qui a changé et pourquoi ; chaque commit reçoit un identifiant unique, et les commits s'enchaînent comme les perles d'un collier : chaque perle connaît sa précédente — c'est ça, l'historique. Le dépôt distant : une copie de ton collier de commits envoyée sur un serveur, GitHub ou GitLab, les plateformes gratuites où vivent presque tous les logiciels libres du monde ; le dépôt distant sert de sauvegarde et de point de rencontre pour le travail à plusieurs. Le vocabulaire à maîtriser : git init, transforme ton dossier en dépôt Git, une seule fois, à la naissance du projet ; git status, la question à poser à chaque instant : où en suis-je ? Il liste les fichiers modifiés ; git add, prépare les fichiers à être photographiés, on dit les mettre en scène, ou stage ; git commit moins m, suivie du message entre guillemets, prend la photographie ; git log, déroule l'historique, toutes les perles avec leurs messages ; git diff, montre mot à mot ce qui a changé depuis le dernier commit ; git push, envoie tes commits vers le dépôt distant ; git pull, rapatrie les commits des autres depuis le dépôt distant. La discipline professionnelle du message de commit : un message qui commence par un verbe à l'infinitif, court et précis — ajoute la navigation mobile, corrige le calcul de la moyenne, refonte de la page contact — jamais de trucs, divers, ou mise à jour : dans six mois, ton historique doit raconter l'histoire de ton projet à qui ne l'a pas vécue. La règle d'or du rythme : commit tôt, commit souvent : un commit par brique terminée, testée ; celui qui commit tous les mois finit toujours par tout perdre ou par créer des commits impossibles à décrire."
+        },
+        {
+          "section_type": "play",
+          "title": "Le collier de perles : le commit en jeu",
+          "content": "Jouons au collier de perles, le jeu où l'on incarne Git pour comprendre son mécanisme intime. À trois joueurs : le codeur, le dépôt, et Git. Matériel : une feuille de dessin du projet, le site du club par exemple ; des perles ou des boutons ou des papiers ronds ; des étiquettes messages de commit ; une ficelle. Déroulé : le codeur dessine et modifie la page sur la feuille au fil des manches : manche un, il dessine le titre ; manche deux, il ajoute deux paragraphes ; manche trois, il corrige une faute ; manche quatre, il ajoute le menu ; manche cinq, il panique tout le monde : il efface accidentellement le titre et deux paragraphes, grand drame. À chaque manche, le rituel Git : le codeur dit à voix haute le flux : status : que dit Git ? ; le joueur Git annonce les fichiers modifiés, dans notre jeu, les parties dessinées non encore figées ; add : le codeur désigne ce qu'il met en scène ; commit : Git enfile une perle sur la ficelle avec son étiquette, et note le numéro du commit ; l'étiquette doit être un vrai message, verbe à l'infinitif ; le joueur dépôt recopie l'état complet du dessin sur sa propre feuille à chaque push, un push par trois commits, disons. Le moment culte arrive à la manche cinq : le désastre du codeur ; le joueur Git consulte son collier : as-tu un commit avant le désastre ? Oui : les perles un à quatre ; le codeur peut alors demander le retour arrière : checkout : Git recopie l'état du commit quatre sur la feuille du codeur, le dessin renaît, le désastre n'est qu'un mauvais souvenir — c'est exactement ce que font les vrais développeurs plusieurs fois par semaine. Variante à quatre joueurs : ajoute le codeur B, qui travaille sur la même feuille à distance, sur la copie du dépôt : il pousse ses commits, le codeur A doit tirer avec pull avant de pousser les siens : le joueur Git simule le conflit, même ligne modifiée des deux côtés, et les deux codeurs négocient qui corrige quoi. Débriefing final : chacun formule ce que Git lui a révélé : la tranquillité du commit, la magie du retour arrière, la discipline du pull avant push."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Expérience : premier dépôt réel, première remontée temporelle",
+          "content": "Expérience fondatrice : crée ton premier vrai dépôt Git, commits à l'appui, et vis une vraie remontée dans le temps. Préparation : Git fonctionne sur ordinateur, souvent déjà installé — vérifie avec la commande git version dans un terminal ; si absent, un adulte peut l'installer gratuitement ; alternative complète en ligne : les plateformes d'hébergement de code offrent des éditeurs en ligne avec Git intégré, utilisables depuis un navigateur, avec l'accord d'un adulte. Étape un, la naissance : dans le dossier de ton mini-site, l'aventure deux et quatre, lance : git init ; le dossier est maintenant un dépôt ; vérifie avec git status : il liste tous tes fichiers comme non suivis. Étape deux, le premier commit : git add point, la commande la plus utilisée du monde, qui met en scène tout le dossier ; git commit moins m, guillemet, création du mini-site trois pages, guillemet ; vérifie avec git log : ta première perle est enfilée, note son identifiant, sept premiers caractères suffisent. Étape trois, le flux de travail : fais trois modifications volontaires, une par commit : ajoute une section au style, commit : ajoute les couleurs de la page contact ; corrige un texte, commit : corrige la faute de la page accueil ; ajoute un fichier, commit : ajoute la feuille de style des cartes ; après chaque commit, consulte git diff avant, git status, git log après : le flux devient un réflexe. Étape quatre, la remontée temporelle, le grand frisson : sabote volontairement ta page d'accueil, supprime des sections, dégrade le style, et commit même le sabotage, message : sabotage pédagogique ; puis regarde git log, repère l'identifiant du commit juste avant le sabotage ; lance le retour : git checkout suivi de l'identifiant : le dossier revient exactement à l'état d'avant le sabotage ; contemple : c'est la machine à remonter le temps, elle vient de te rendre ton travail. Retourne ensuite au présent avec git checkout suivi du nom de la branche, main par convention. Étape cinq, le dépôt distant : avec l'accord d'un adulte, crée un dépôt vide sur une plateforme d'hébergement gratuite, puis relie : git remote add origin, l'adresse ; git push ; ton code vit maintenant aussi sur le serveur, inaccessible aux pannes de ton ordinateur. Étape six, le journal de bord : écris dans ton carnet : mes six commits et leurs messages ; ce que j'ai ressenti au moment du checkout, en une phrase ; et ta règle personnelle de commit, que tu choisiras désormais, du genre : un commit par fonction terminée, jamais de message vague."
+        },
+        {
+          "section_type": "build",
+          "title": "Construis la méthode Git de tes projets",
+          "content": "Construis ta méthode Git personnelle, la charte de travail que tu suivras sur tous tes projets, en trois livrables. Livrable un, ta convention de messages de commit : écris ta règle en cinq lignes : le format, verbe à l'infinitif en minuscules, ou une autre convention si tu préfères, mais choisie et tenue ; la longueur maximale, cinquante caractères recommandés, les détails vont dans le corps du commit ; le contenu interdit : vague, divers, choses, mise à jour ; la fréquence : un commit par brique ; le corps facultatif : la ligne blanche puis le pourquoi du changement, quand le quoi ne suffit pas. Livrable deux, ta checklist de fin de session, le rituel du codeur qui s'arrête proprement : un : status pour voir l'état ; deux : add des fichiers terminés, jamais des fichiers à moitié cassés — le commit doit toujours représenter un état qui marche ; trois : commit avec le message soigné ; quatre : push vers le distant ; cinq : status de nouveau, le dossier doit être propre ; affiche cette checklist au-dessus de ton poste de travail. Livrable trois, le plan de sauvegarde : choisis ta stratégie de distant : une plateforme gratuite d'hébergement de code pour tes projets web, avec l'accord d'un adulte ; décide de ton rythme de push : au minimum une fois par session de travail ; et prévois la règle d'or anti-panique : si un changement tourne mal, ne jamais bidouiller dans la panique : status d'abord, log ensuite, checkout en dernier : Git a presque toujours une perle de secours. Puis l'épreuve de la méthode : applique ta charte complète sur un vrai projet : reprends ton quiz Python ou ta machine à dire bonjour : init, commits propres à chaque brique, messages selon ta convention, push final ; demande à un camarade de lire TON historique, git log, sans toi : peut-il raconter l'histoire de ton projet, ce que tu as fait d'abord, ensuite, ce que tu as corrigé ? Si oui, ta méthode est bonne : ton historique parle tout seul, c'est la signature d'un travail professionnel — et souviens-toi de cette statistique qui fait réfléchir : les recruteurs qui découvrent un jeune codeur consultent souvent son historique de commits avant son CV ; le tien vient de naître."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : l'historien de ta propre vie de codeur",
+          "content": "Ta mission : pendant deux semaines, applique la méthode Git à tous tes travaux numériques, même non codeurs, et deviens l'historien de ta propre progression. Le champ d'application, au choix ou en cumul : tes projets de code, bien sûr ; mais Git gère aussi les dossiers de textes, de révisions, d'exposés : tout ce qui change par étapes mérite un historique ; crée un dépôt mes-revisions pour tes fiches, un dépôt mes-projets pour tes codes. Déroulé de la mission, deux semaines de tenu : chaque session de travail : le rituel complet, status, add, commit soigné, push si distant ; chaque soir : deux minutes de journal : ce que j'ai commité aujourd'hui, la perle du jour ; chaque fin de semaine : la revue d'historique : git log de la semaine, relis tes messages : racontent-ils l'histoire ? Classe tes commits en deux catégories : les briques solides et les commits bâclés à éviter la semaine suivante. Trois défis à relever pendant la mission : défi un, la remontée utile : trouve une vraie occasion de retour en arrière, une modification qui dégrade, une inspiration qui tourne mal, et sauve-toi avec un checkout, raconte l'incident et le sauvetage dans ton journal ; défi deux, la branche d'essai, pour les plus avancés sur ordinateur : crée une branche d'expérimentation, git branch essai, git checkout essai, tente une évolution risquée de ton projet dessus, sans toucher à la version principale ; si l'essai réussit, fusionne, git merge essai ; s'il rate, supprime la branche d'un revers de manche : c'est ça, le luxe des branches : essayer sans jamais risquer ; défi trois, le travail partagé : initie un dépôt commun avec un camarade du parcours : chacun pousse ses commits, chacun tire ceux de l'autre, et vivez au moins un conflit, même artificiellement provoqué, pour apprendre à le résoudre ensemble : le conflit Git, bien géré, est une conversation, pas une bagarre. Le bilan de mission, à rédiger le dernier jour : nombre de commits, meilleure semaine, la remontée temporelle la plus utile, ce que la méthode a changé dans ta façon de travailler, en trois phrases ; et ta règle de vie de codeur, en une ligne, signée et datée : ceux qui écrivent leur méthode la tiennent ; les autres la perdent."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : le musée de tes débuts",
+          "content": "Projet final : construis le musée de tes débuts de codeur : un dépôt Git unique, nommé mon-parcours, qui rassemble et raconte TOUT ce que tu as construit dans ce monde coding, organisé pour être montré. Étape un, la collecte : rassemble tes œuvres : ta page vitrine, ton mini-site trois pages, tes programmes Python, ta calculatrice de partage, ton quiz, ta machine à dire bonjour ; pour chacun, un dossier nommé proprement, sans espaces ni accents, tirets et minuscules : page-vitrine, mini-site, quiz-python, calculatrice, machine-bonjour. Étape deux, l'archéologie : pour chaque projet, au lieu d'un unique commit, recrée l'histoire réelle en plusieurs commits : la première version minimale, puis les évolutions telles que tu les as vécues, avec les dates de ton carnet : tu reconstruis l'authenticité de ton apprentissage ; les messages de commit racontent : première page html brute ; ajout du css ; premier bouton réactif ; correction de la boucle infinie du quiz. Étape trois, la vitrine du musée : à la racine, un fichier accueil, nommé readme, avec l'extension point md, pour markdown, la convention universelle des dépôts : il contient : ton prénom ou pseudo, ton âge, ta ville ; l'annonce du parcours coding ; la liste des salles du musée, un projet par ligne, avec pour chacun : le nom, une phrase de description, la période de construction, la fierté principale ; l'invitation au visiteur : comment parcourir ; ta règle de vie de codeur, signée. Étape quatre, les cartes de salle : dans chaque dossier de projet, un petit readme qui raconte : le but du projet, comment le lancer, ce qui m'a le plus appris, le bug que je n'oublierai pas. Étape cinq, la cérémonie d'inauguration : pousse le tout sur ton dépôt distant ; organise la visite guidée : présente ton musée à trois personnes, ta famille, un camarade, un adulte qui s'y connaît si possible ; fais-leur lire ton historique git log et demander : peut-on voir le projet à son état d'il y a trois commits ? Réussis la démonstration du checkout en direct : c'est le tour de magie qui impressionne toujours. Étape six, l'héritage : ton musée est vivant : chaque projet futur rejoindra une nouvelle salle ; note-le dans ton readme à la racine, section à venir : ton dépôt est la première ligne de ton portfolio, la preuve datée, historisée, vérifiable que tu sais construire — et le plus beau : c'est toi qui as écrit son histoire, commit après commit."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Qu'est-ce qu'un commit ?",
+          "options": [
+            "Un message WhatsApp",
+            "Un instantané complet du projet à un instant donné, avec un identifiant et un message qui décrit les changements",
+            "Un bug du navigateur",
+            "Une mise à jour automatique du téléphone"
+          ],
+          "correct_index": 1,
+          "explanation": "Le commit photographie l'état du projet : les commits s'enchaînent comme des perles, formant l'historique rembobinable. C'est la mémoire de Git, et la tranquillité du codeur."
+        },
+        {
+          "question": "Que fait git checkout suivi de l'identifiant d'un ancien commit ?",
+          "options": [
+            "Il supprime le projet",
+            "Il ramène le dossier à l'état exact de ce commit : la machine à remonter le temps",
+            "Il envoie le code sur internet",
+            "Il change la couleur de la page"
+          ],
+          "correct_index": 1,
+          "explanation": "Git conserve chaque instantané : checkout recopie l'état d'une perle choisie dans ton dossier. Le désastre le plus total se défait en une commande : c'est la sécurité la plus précieuse du codeur."
+        },
+        {
+          "question": "Pourquoi la règle commit tôt, commit souvent ?",
+          "options": [
+            "Pour consommer du forfait",
+            "Parce que de petits commits fréquents décrivent précisément l'histoire et facilitent le retour arrière, là où les commits rares deviennent des blocs impossibles à décrire",
+            "Parce que Git refuse les gros projets",
+            "Pour que l'ordinateur chauffe moins"
+          ],
+          "correct_index": 1,
+          "explanation": "Un commit par brique terminée : chaque message est clair, chaque retour arrière est chirurgical. Le codeur qui commit tous les mois finit par tout perdre ou par écrire divers sur un bloc de trois semaines de travail."
+        },
+        {
+          "question": "Que faut-il faire avant de pousser ses commits quand on travaille à plusieurs ?",
+          "options": [
+            "Rien du tout",
+            "Tirer avec git pull les commits des autres d'abord, sinon le push est refusé ou crée des conflits",
+            "Supprimer le dépôt distant",
+            "Changer son mot de passe"
+          ],
+          "correct_index": 1,
+          "explanation": "Le distant avance avec les commits des autres : pull avant push, toujours. Le conflit qui apparaît quand deux personnes touchent la même ligne se résout en discutant : c'est une conversation, pas une bagarre."
+        },
+        {
+          "question": "À quoi sert un dépôt distant comme GitHub ou GitLab ?",
+          "options": [
+            "À ralentir l'ordinateur",
+            "Sauvegarde hors de l'ordinateur et point de rencontre du travail à plusieurs : presque tous les logiciels libres du monde y vivent",
+            "À afficher des publicités",
+            "À remplacer le HTML"
+          ],
+          "correct_index": 1,
+          "explanation": "Le distant double ton historique loin des pannes de ta machine, et permet le travail partagé : pull, push, branches, revues. C'est la place publique du code mondial, gratuite pour toi."
+        }
+      ]
+    },
+    {
+      "slug": "react-intro",
+      "title": "Introduction à React",
+      "description": "Découvre React, la bibliothèque JavaScript qui fait tourner WhatsApp Web et Instagram, et construis ta première interface interactive composant par composant.",
+      "story": "Tu as déjà remarqué comme WhatsApp Web réagit instantanément : un message arrive, l'écran bouge tout seul, sans jamais recharger la page. Derrière cette magie se cache React, l'outil le plus demandé du web. Aujourd'hui, tu entre dans la cour des grands : tu vas construire ta première interface interactive, brique par brique, comme les développeurs d'Abidjan aux startups les plus modernes.",
+      "xp_reward": 150,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Bienvenue dans le monde de React",
+          "content": "React est une bibliothèque JavaScript créée en 2013 par les ingénieurs de Facebook, aujourd'hui Meta. Une bibliothèque, c'est une boîte à outils déjà écrite par d'autres développeurs : tu l'utilises pour aller plus vite au lieu de tout réinventer. WhatsApp Web, Instagram, Netflix ou encore Airbnb utilisent React. Quand tu fais défiler une page et que tout bouge sans recharger, il y a de fortes chances que React soit derrière. L'idée centrale est simple : au lieu d'écrire des pages entières comme en HTML pur, tu construis des briques réutilisables appelées composants. Un composant, c'est un peu comme un plat au maquis : chaque plat a sa recette, et tu peux le commander autant de fois que tu veux sans réécrire la recette. Un composant CartePlat, une fois écrit, peut afficher cent plats différents. Pourquoi c'est puissant ? Parce que tu écris moins, tu réutilises plus, et ton code reste organisé même quand l'application grandit. Autre bon point : React s'utilise avec du simple JavaScript, donc tout ce que tu as appris dans l'aventure JavaScript te sert directement. Et pour tester React, nul besoin d'un ordinateur coûteux : un navigateur et un outil en ligne gratuit suffisent. Dans cette aventure, tu vas créer ton premier composant, passer des informations avec les props, mémoriser des données avec le state et afficher une liste dynamique. À la fin, tu auras construit une mini carte de profil interactive, comme une vraie application."
+        },
+        {
+          "section_type": "play",
+          "title": "Écris ton premier composant",
+          "content": "Un composant React, c'est une fonction JavaScript qui retourne ce qui doit s'afficher à l'écran. Voici comment on le décrit : tu écris le mot clé function, puis un nom qui commence par une majuscule, par exemple CartePlat, puis entre parenthèses rien ou des données reçues, et la fonction retourne le HTML que tu veux afficher. En React, on écrit le HTML directement à l'intérieur du JavaScript : ce mélange s'appelle du JSX. Par exemple, ta fonction CartePlat peut retourner une balise div qui contient une balise h deux avec le texte Attiéké poisson et une balise paragraphe avec le texte Deux mille francs CFA. Pour utiliser ton composant, tu l'écris ailleurs comme une balise : le mot CartePlat entre chevrons, comme si c'était une nouvelle balise inventée par toi. Le navigateur affiche alors ta carte. Règles importantes du JSX : ton retour doit être enveloppé dans une seule balise racine, par exemple une div qui contient tout ; toute balise doit être fermée, même celles qui n'ont pas de contenu comme la balise image ; et les noms de composants commencent toujours par une majuscule, sinon React ne les reconnaît pas. Fais le test mental : si tu écris deux fois la balise CartePlat, tu obtiens deux cartes identiques sans dupliquer ton code. C'est toute la magie de React : écrire une fois, afficher partout."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Les props : transmets des informations",
+          "content": "Un composant serait vite ennuyeux s'il affichait toujours la même chose. Les props, abréviation de propriétés, servent justement à transmettre des informations à un composant, exactement comme des arguments passés à une fonction. Reprenons CartePlat : quand tu utilises la balise CartePlat, tu peux lui passer nom et prix, par exemple nom égal Attiéké poisson et prix égal deux mille. Dans la définition de la fonction, tu reçois ces valeurs entre parenthèses, comme des paramètres. Pour les afficher dans le JSX, tu ouvres des accolades et tu y mets la variable : les accolades signifient insère ici du JavaScript. Entre accolades, tu peux mettre une variable, un calcul, même du texte assemblé. Résultat : le même composant affiche Attiéké poisson à deux mille francs ici, et Kedjenou à trois mille là-bas. C'est comme un flyer de maquis : le modèle est unique, seuls le nom du plat et le prix changent. Astuce de pro : les props sont en lecture seule. Un composant ne modifie jamais les props qu'il reçoit, il les affiche ou les transmet. Si une donnée doit changer toute seule, ce n'est plus le rôle des props mais celui du state, que tu découvres dans la prochaine leçon. En attendant, entraîne-toi : imagine un composant CarteAmi qui reçoit un prénom et une ville, et affiche un message de salutation personnalisé."
+        },
+        {
+          "section_type": "build",
+          "title": "Le state : une mémoire qui réagit",
+          "content": "Jusqu'ici tes composants affichent des informations figées. Mais une vraie application bouge : on clique, on ajoute, on compte. Pour cela, React propose le state, une donnée que le composant garde en mémoire et qui, quand elle change, met l'écran à jour automatiquement. Exemple concret : un compteur de likes sous une photo. On utilise la fonction use state fournie par React. On la décrit ainsi : elle prend la valeur de départ, par exemple zéro, et renvoie deux choses : la valeur actuelle du compteur, et une fonction spéciale qui sert à la changer. On écrit ces deux choses entre crochets, séparées par une virgule. Dans le JSX, tu affiches la valeur entre accolades. Sur le bouton, tu définis que lors d'un clic, la fonction de mise à jour est appelée avec la nouvelle valeur, c'est-à-dire l'ancienne valeur plus un. Résultat : à chaque clic, l'écran affiche un nombre de plus, sans recharger quoi que ce soit. C'est exactement le solde de ton compte mobile money : quand la donnée change, l'affichage change aussitôt. Règle d'or : ne modifie jamais la valeur du state directement, comme si c'était une variable normale. Passe toujours par la fonction de mise à jour, sinon React ne saura pas que quelque chose a changé et ton écran restera figé. Entraîne-toi mentalement : un bouton qui augmente le compteur, un autre qui le remet à zéro, et observe comment chaque clic rafraîchit l'affichage."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : la carte du maquis en liste",
+          "content": "Mission du jour : afficher la liste complète des plats d'un maquis sans copier-coller vingt composants. Pour transformer une liste de données en éléments affichés, React utilise la méthode map des tableaux JavaScript, celle que tu as déjà croisée dans l'aventure JavaScript. Le principe : tu ranges tes plats dans un tableau d'objets, chaque objet contenant par exemple nom et prix. Dans le JSX, tu ouvres des accolades, tu écris le nom du tableau, un point, map, et entre parenthèses une fonction courte qui, pour chaque plat, retourne le composant CartePlat avec les props tirées du plat. En une seule ligne, React affiche autant de cartes qu'il y a de plats. Ajoute un plat au tableau : une carte apparaît, sans toucher au reste. Mais il existe une règle d'or : chaque élément retourné par map doit recevoir une prop spéciale appelée key, une clé unique, souvent l'identifiant du plat. Pourquoi ? Parce que React garde une mémoire de la structure de l'écran, et la clé lui permet de savoir précisément quel élément a été ajouté, modifié ou supprimé. Sans clé, React devine, et des erreurs d'affichage apparaissent quand la liste change. Piège classique du débutant : oublier la clé et voir un avertissement dans la console du navigateur. Ta mission concrète : construis un tableau de cinq plats de ton maquis préféré, affiche-les avec map et une clé pour chacun, puis ajoute un sixième plat et observe la mise à jour automatique de l'écran."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : ta carte de profil interactive",
+          "content": "Projet final de l'aventure : une carte de profil interactive, comme sur un réseau social. Objectif : assembler tout ce que tu as appris : composants, props, state et map. Étape une : le composant CarteProfil, qui reçoit en props un prénom, un quartier et une liste de passions, et les affiche joliment. Étape deux : le composant BoutonSuivre, qui garde en state un nombre d'abonnés et un état suivi ou non suivi. Au clic, le state change : le texte du bouton passe de Suivre à Abonné et le compteur augmente de un. Étape trois : la liste des passions, affichée avec la méthode map, chaque passion avec sa clé unique. Étape quatre : l'assemblage dans un composant Application qui utilise CarteProfil une fois, avec tes propres informations. Pour coder sans installer quoi que ce soit, utilise CodeSandbox ou StackBlitz : ce sont des sites gratuits où tu écris du React directement dans le navigateur, parfait si tu travailles depuis un cybercafé ou un téléphone. Quand ta carte fonctionne, pousse plus loin : change les couleurs avec une classe et du CSS, ajoute une photo, crée un deuxième profil avec des props différentes. Défi bonus : un bouton like sur chaque passion qui compte ses clics, en combinant map et state. À la fin, tu détiens le cœur de React : la plupart des applications professionnelles ne sont rien d'autre que des composants, des props, du state et des listes. Bienvenue dans la cour des grands."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "En React, qu'est-ce qu'un composant ?",
+          "options": [
+            "Un fichier de style qui gère les couleurs",
+            "Une fonction JavaScript qui retourne ce qui doit s'afficher",
+            "Un serveur qui stocke les données",
+            "Une balise du HTML classique"
+          ],
+          "correct_index": 1,
+          "explanation": "Un composant est une fonction JavaScript, avec un nom en majuscule, qui retourne l'interface à afficher, souvent écrite en JSX."
+        },
+        {
+          "question": "À quoi servent les props dans un composant React ?",
+          "options": [
+            "À transmettre des informations au composant, comme des arguments à une fonction",
+            "À supprimer un composant de l'écran",
+            "À fermer automatiquement le navigateur",
+            "À changer la langue du site"
+          ],
+          "correct_index": 0,
+          "explanation": "Les props transportent les données vers le composant, qui les affiche ou les transmet. Elles sont en lecture seule."
+        },
+        {
+          "question": "Que se passe-t-il quand tu appelles la fonction de mise à jour d'un state ?",
+          "options": [
+            "Rien, il faut recharger la page entière",
+            "React met automatiquement l'écran à jour avec la nouvelle valeur",
+            "Le composant est supprimé de l'application",
+            "Le navigateur affiche une erreur"
+          ],
+          "correct_index": 1,
+          "explanation": "Le state est la mémoire du composant : dès qu'il change via sa fonction de mise à jour, React rafraîchit l'affichage concerné."
+        },
+        {
+          "question": "Pourquoi chaque élément d'une liste affichée avec map doit-il avoir une clé unique ?",
+          "options": [
+            "Pour décorer l'élément avec des couleurs",
+            "Pour que React identifie chaque élément lors des mises à jour",
+            "Pour trier la liste par ordre alphabétique",
+            "Pour sauvegarder la liste dans une base de données"
+          ],
+          "correct_index": 1,
+          "explanation": "La clé permet à React de savoir exactement quel élément a changé, été ajouté ou supprimé quand la liste évolue."
+        },
+        {
+          "question": "Quel outil gratuit permet de coder en React directement dans le navigateur ?",
+          "options": [
+            "Un lave-linge intelligent",
+            "CodeSandbox ou StackBlitz",
+            "Une clé USB",
+            "Un tableur"
+          ],
+          "correct_index": 1,
+          "explanation": "CodeSandbox et StackBlitz sont des éditeurs en ligne gratuits, parfaits pour apprendre React sans installer de logiciel."
+        }
+      ]
+    },
+    {
+      "slug": "python-projects",
+      "title": "Projets Python concrets",
+      "description": "Passe de la théorie à la pratique : construis quatre vrais programmes Python, du générateur de proverbes à l'assistant de tontine.",
+      "story": "Tu connais maintenant les bases de Python : variables, conditions, boucles et fonctions. Mais la vraie programmation s'apprend en construisant, pas en lisant. Dans cette aventure, tu vas écrire quatre petits programmes complets et utiles, pensés pour la vie de tous les jours à Abidjan, puis un projet final qui les réunit tous : ton premier vrai logiciel de gestion.",
+      "xp_reward": 160,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Pourquoi les projets forgent le développeur",
+          "content": "Lire du code, c'est bien. En écrire, c'est mieux. C'est en construisant de vrais petits programmes que ton cerveau transforme la théorie en réflexes. Un développeur qui a déjà construit dix petits projets résout en cinq minutes ce qu'un débutant qui n'a lu que des cours cherche pendant des heures. Voici la méthode qu'on applique ensemble : chaque projet répond à un besoin réel, se code en moins de cinquante lignes, et réutilise exactement ce que tu as appris : variables, conditions, boucles, fonctions, listes et dictionnaires. Premier réflexe avant de coder : définir ce que le programme doit faire, étape par étape, en français. C'est ce qu'on appelle l'algorithme, comme dans la première aventure du monde coding. Deuxième réflexe : coder petit morceau par petit morceau, en testant après chaque ajout avec la fonction print. Troisième réflexe : accepter les erreurs. Un message d'erreur n'est pas une punition, c'est un indice : Python indique presque toujours la ligne du problème et sa cause. Quatrième réflexe : nommer clairement tes variables, pour te relire comme si tu étais quelqu'un d'autre. Dans cette aventure, tu construis quatre projets de plus en plus ambitieux : un générateur de proverbes, un convertisseur de devises, un carnet de dépenses et un jeu de devinettes. Le projet final les dépasse tous : un assistant de tontine complet. Prépare ton éditeur, on code."
+        },
+        {
+          "section_type": "play",
+          "title": "Projet 1 : le générateur de proverbes",
+          "content": "Premier projet : un programme qui affiche un proverbe africain au hasard, pour inspirer ta journée. De quoi as-tu besoin ? D'une liste de proverbes et du module random qui choisit un élément au hasard. Voici la construction, décrite en mots. D'abord, tu importes le module random tout en haut du fichier avec le mot clé import. Ensuite, tu crées une liste appelée proverbes, avec des chaînes de caractères entre guillemets : par exemple, seul on va plus vite, ensemble on va plus loin, ou encore, tant que les lions n'auront pas leurs propres historiens, l'histoire de la chasse continuera de glorifier le chasseur. Puis tu demandes au module random sa fonction choice, à qui tu passes ta liste : elle renvoie un élément au hasard que tu stockes dans une variable. Enfin, tu affiches le résultat avec la fonction print. Améliorations possibles : demander à l'utilisateur s'il veut un nouveau proverbe avec la fonction input, et boucler avec while tant qu'il répond oui. Et pour pimenter : crée un dictionnaire qui associe chaque proverbe à sa signification, et affiche les deux, le proverbe puis son explication. Ce projet te fait réviser les listes, les chaînes, les boucles et le module random, tout en créant quelque chose que ta famille voudra utiliser chaque matin."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Projet 2 : le convertisseur de devises",
+          "content": "Deuxième projet : un convertisseur qui transforme des euros en francs CFA, ou l'inverse. Utile quand tu repères un prix sur un site étranger. Le taux est arrondi pour l'exercice : un euro vaut environ six cent cinquante-six francs CFA. Construction : tu demandes le montant à l'utilisateur avec la fonction input, qui renvoie toujours une chaîne de caractères. Piège classique : pour calculer, il faut convertir cette chaîne en nombre avec la fonction float, sinon Python colle les textes au lieu d'additionner. Ensuite, tu demandes le sens de la conversion : l'utilisateur tape un pour euros vers CFA, ou b pour l'inverse. Tu gères ce choix avec une condition if, elif, else. S'il choisit un, tu multiplies le montant par le taux ; sinon, tu divises. Puis tu affiches le résultat proprement avec la fonction print et l'arrondi de la fonction round à deux chiffres après la virgule. Améliorations : vérifier que le montant tapé est bien un nombre, sinon afficher un message clair ; ajouter le dollar américain comme troisième devise ; ou transformer le convertisseur en fonction, réutilisable autant de fois que tu veux. Ce projet révise input, les conversions de types, les conditions et les opérations. Détail important : la fonction input affiche le message placé entre ses parenthèses, profites-en pour poser une question claire à l'utilisateur, il te remerciera."
+        },
+        {
+          "section_type": "build",
+          "title": "Projet 3 : le carnet de dépenses",
+          "content": "Troisième projet : suivre tes dépenses de la semaine, comme un vrai budget de lycéen. Objectif : l'utilisateur ajoute des dépenses une par une, puis le programme affiche le total, la plus grosse dépense et la moyenne. Construction : tu crées une liste vide appelée depenses. Dans une boucle while, tu demandes à chaque tour un libellé et un montant ; si l'utilisateur tape le mot fini comme libellé, la boucle s'arrête avec break. Sinon, tu ajoutes à la liste un dictionnaire avec deux clés : libelle et montant, le montant converti en float. À la fin, trois calculs : le total avec la fonction sum appliquée à la liste des montants ; la plus grosse dépense avec la fonction max sur la même liste ; la moyenne en divisant le total par le nombre d'éléments, obtenu avec la fonction len. Attention au piège : si la liste est vide, la division par zéro plante le programme. Un bon développeur prévoit ce cas avec une condition : si la liste est vide, affiche un message disant qu'aucune dépense n'est enregistrée. Améliorations : transformer chaque calcul en fonction séparée, nommée clairement ; compter combien de fois l'utilisateur a dépensé pour le transport ; ou préparer un résumé en chaîne de caractères, prêt à copier dans un message WhatsApp. Ce projet est le plus proche de la vie réelle : gérer un budget, c'est exactement ce que font les applications de comptabilité utilisées par les entreprises."
+        },
+        {
+          "section_type": "mission",
+          "title": "Projet 4 : le jeu de devinettes",
+          "content": "Quatrième projet, le plus amusant : un jeu de devinettes en console. Le programme choisit un nombre secret entre un et cent, et le joueur doit le trouver en aussi peu d'essais que possible. Construction : commence par importer le module random et choisis le secret avec sa fonction randint, qui prend deux bornes : un et cent. Puis initialise deux variables : essais, un compteur qui démarre à zéro, et trouve, un booléen parti sur faux. La boucle while tourne tant que le joueur n'a pas trouvé. À chaque tour, tu demandes une proposition avec input, tu la convertis en entier avec la fonction int, tu augmentes le compteur de un, puis trois cas avec if, elif et else : si la proposition est plus petite que le secret, affiche c'est plus grand ; si elle est plus grande, affiche c'est plus petit ; sinon, passe trouve à vrai et félicite le joueur en affichant son nombre d'essais. Pour aller plus loin, ajoute une limite de sept essais : si le compteur atteint sept sans succès, le jeu s'arrête et révèle le nombre secret. Défi d'artiste : affiche un message différent selon la performance, bravo spectaculaire si le secret est trouvé du premier coup. Ce projet assemble boucles, conditions, variables, modules et gestion des entrées : exactement la trame de tous les jeux vidéo, en plus simple. Teste-le avec ton petit frère ou ta petite sœur, tu verras son sourire."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet final : l'assistant de tontine",
+          "content": "Projet final : un assistant de tontine, la fameuse caisse commune que les familles ivoiriennes animent chaque mois. Objectif : gérer les membres, enregistrer les cotisations et calculer qui reçoit la main ce mois-ci. Construction complète : d'abord une liste de dictionnaires, chaque dictionnaire représentant un membre avec les clés nom, quartier et cotisation. Ensuite une fonction ajouterMembre qui demande les informations avec input et ajoute un dictionnaire à la liste. Puis une fonction enregistrerCotisation qui demande le nom, cherche le membre dans une boucle for, et met à jour sa cotisation ; si le nom est inconnu, affiche un message clair. Ajoute aussi une fonction totalCaisse qui additionne toutes les cotisations avec une boucle, et une fonction prochainBeneficiaire qui suit l'ordre d'inscription et indique à qui revient la main. Enfin, une boucle principale propose un menu avec input : taper un pour ajouter un membre, deux pour enregistrer une cotisation, trois pour voir le total de la caisse, quatre pour le prochain bénéficiaire, et zéro pour quitter. Chaque choix appelle la fonction correspondante dans une condition if, elif, else. Ce menu en boucle, c'est la base de tous les logiciels de gestion : caisses, boutiques, stock de kiosque. Prends ton temps, fonction par fonction, en testant chaque morceau avec print. À la fin, tu possèdes un vrai programme d'environ soixante lignes, écrit de tes mains : ta première application utile de gestion."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Avant de coder un projet, quelle est la première étape recommandée ?",
+          "options": [
+            "Acheter un nouvel ordinateur",
+            "Définir en français ce que le programme doit faire, étape par étape",
+            "Choisir la couleur de l'interface",
+            "Supprimer les anciens fichiers"
+          ],
+          "correct_index": 1,
+          "explanation": "Décrire le comportement attendu en étapes claires, c'est écrire l'algorithme : la fondation de tout programme."
+        },
+        {
+          "question": "Que renvoie toujours la fonction input de Python ?",
+          "options": [
+            "Toujours une chaîne de caractères",
+            "Toujours un nombre entier",
+            "Toujours une liste",
+            "Un fichier texte"
+          ],
+          "correct_index": 0,
+          "explanation": "input renvoie toujours du texte : pour faire des calculs, il faut convertir le résultat avec int ou float."
+        },
+        {
+          "question": "Dans le jeu de devinettes, pourquoi convertir la proposition du joueur avec la fonction int ?",
+          "options": [
+            "Pour l'afficher en gras",
+            "Pour comparer des nombres entre eux et non des textes",
+            "Pour accélérer l'ordinateur",
+            "Pour traduire le jeu en anglais"
+          ],
+          "correct_index": 1,
+          "explanation": "Les comparaisons numériques exigent des nombres : sans int, la comparaison avec le secret ne fonctionne pas correctement."
+        },
+        {
+          "question": "Comment éviter une division par zéro dans le carnet de dépenses ?",
+          "options": [
+            "En éteignant l'ordinateur",
+            "En vérifiant que la liste n'est pas vide avant de calculer la moyenne",
+            "En supprimant la boucle while",
+            "En utilisant le module random"
+          ],
+          "correct_index": 1,
+          "explanation": "Un bon développeur anticipe les cas limites, comme une liste vide, avec une condition avant le calcul."
+        },
+        {
+          "question": "Dans l'assistant de tontine, à quoi sert la boucle du menu principal ?",
+          "options": [
+            "À refuser les nouveaux membres",
+            "À laisser l'utilisateur choisir une action jusqu'à ce qu'il quitte",
+            "À effacer l'écran",
+            "À trier les noms par ordre alphabétique"
+          ],
+          "correct_index": 1,
+          "explanation": "La boucle du menu affiche les choix en boucle et appelle la fonction correspondante jusqu'à ce que l'utilisateur tape le code de sortie."
+        }
+      ]
+    },
+    {
+      "slug": "web-design",
+      "title": "Design web et UX",
+      "description": "Apprends à concevoir des pages claires et agréables : ergonomie, couleurs, hiérarchie visuelle et maquettage d'une vraie page d'accueil.",
+      "story": "Un site peut être techniquement parfait et rater complètement sa cible : boutons introuvables, textes illisibles, couleurs qui fatiguent. Dans cette aventure, tu enfiles la casquette du designer : tu vas comprendre pourquoi certaines pages donnent envie de rester, et tu vas maquetter la page d'accueil de ton propre site, pensée pour les vrais utilisateurs d'Abidjan.",
+      "xp_reward": 130,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "UX et UI : deux métiers complémentaires",
+          "content": "Derrière chaque belle application se cachent deux disciplines différentes. L'UX, expérience utilisateur, répond à la question : est-ce que le site est facile et agréable à utiliser ? Trouve-t-on vite ce qu'on cherche ? L'UI, interface utilisateur, répond à une autre question : est-ce que le site est beau et cohérent ? Couleurs, boutons, typographie. Un exemple concret : sur une application de mobile money, l'UX décide qu'envoyer de l'argent demande trois étapes maximum, sinon l'utilisateur abandonne ; l'UI décide que le bouton de validation est bien visible et que le montant se tape sur un clavier adapté. Les deux travaillent ensemble : un site magnifique mais incompréhensible échoue, comme un site clair mais moche qui n'inspire pas confiance. Bonne nouvelle : tu n'as pas besoin de savoir dessiner pour bien concevoir. Le design web, c'est d'abord de la méthode : observer les utilisateurs, simplifier les parcours, hiérarchiser l'information. Les grands designers passent plus de temps à retirer des choses qu'à en ajouter. Dans cette aventure, tu apprends les fondamentaux qui transforment une page brute en page professionnelle : ergonomie, choix de couleurs, hiérarchie visuelle et maquettage. Et tu termines en maquettant toi-même la page d'accueil d'un site utile pour ton quartier."
+        },
+        {
+          "section_type": "play",
+          "title": "L'ergonomie : pense au trajet de l'utilisateur",
+          "content": "Un utilisateur qui arrive sur ton site a toujours un objectif : trouver un prix, lire une info, contacter quelqu'un. L'ergonomie, c'est l'art de rendre ce trajet le plus court possible. Trois questions à se poser en permanence. Un : l'utilisateur comprend-il en cinq secondes de quoi parle la page ? C'est le fameux test des cinq secondes : montre ta page à quelqu'un cinq secondes, cache-la, demande-lui ce que fait le site. S'il hésite, le message principal est raté. Deux : chaque action importante est-elle à moins de trois clics ? Si trouver le prix d'un plat demande cinq clics dans des menus confus, l'utilisateur retourne sur WhatsApp. Trois : les boutons disent-ils clairement ce qu'ils font ? Écrire Commander maintenant vaut mieux qu'un vague Valider. Autre principe clé : garde les habitudes des utilisateurs. Le logo en haut à gauche ramène à l'accueil, le panier en haut à droite, le menu en haut de l'écran. Ne réinvente pas ces repères : sur mobile, ils guident le pouce. Et souviens-toi que beaucoup d'utilisateurs naviguent avec un petit forfait internet : une page simple et légère est aussi un geste d'ergonomie. Exercice mental : prends le site de ton école ou une boutique en ligne que tu connais, et repère trois endroits où tu hésites. Chaque hésitation est un défaut d'ergonomie à corriger."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Choisis des couleurs qui travaillent",
+          "content": "Les couleurs ne décorent pas : elles communiquent. Trois règles pour bien les choisir. Règle un : limite-toi à une palette de trois couleurs principales. Une couleur dominante, environ soixante pour cent de la page, souvent un fond clair ; une couleur secondaire pour les titres et les blocs ; une couleur d'accent, vive et rare, réservée aux boutons d'action et aux liens importants. C'est cette rareté qui donne sa force à la couleur d'accent : si tout est orange, plus rien ne ressort. Règle deux : pense au contraste. Un texte gris clair sur fond blanc est élégant pour un designer mais illisible en plein soleil de Yamoussoukro sur un écran de téléphone rayé. Teste toujours tes textes sur leurs fonds : le texte principal doit être très lisible, sans effort. Règle trois : les couleurs portent des messages culturels. Le vert suggère la nature et la réussite, le bleu la confiance, le rouge l'alerte et l'urgence, le jaune l'énergie et la gaieté. Un bouton de suppression en vert perturbe ; une alerte en bleu passe inaperçue. Astuce de pro : inspires-toi des couleurs de la culture ivoirienne, orange et vert, mais avec parcimonie et contraste contrôlé. Exercice : ouvre un site que tu trouves beau et identifie sa palette : la dominante, la secondaire, l'accent. Tu découvriras que presque tous les sites élégants respectent la règle des trois couleurs."
+        },
+        {
+          "section_type": "build",
+          "title": "La hiérarchie visuelle : guide l'œil",
+          "content": "Sur une page, l'œil ne lit pas tout : il scanne. La hiérarchie visuelle, c'est l'art de faire scanner dans le bon ordre : d'abord le message principal, ensuite les sous-titres, enfin les détails. Trois outils pour la construire. La taille : le titre principal se voit de loin, les sous-titres sont plus petits, le texte courant encore plus. Si tout a la même taille, rien n'est important. Le poids : une police grasse attire plus l'œil qu'une fine ; c'est pour cela que les boutons utilisent souvent du gras. L'espace : plus un élément respire, plus il paraît important. Un titre collé à son paragraphe semble faire partie du paragraphe ; le même titre entouré d'espace devient un repère. Ajoute la couleur d'accent et la position : l'œil commence en haut à gauche, puis descend en zigzag. Place donc ce qui compte le plus dans cette trajectoire : le message principal et le bouton d'action en haut, les preuves et détails ensuite, en bas. Dernier outil, souvent négligé : la répétition. Utiliser exactement les mêmes couleurs, tailles et espacements pour tous les boutons rassure l'utilisateur et rend le site crédible. On appelle cela la cohérence. Un site où chaque page a un style différent ressemble à un marché improvisé. Exercice : dessine sur papier une page avec un titre, deux paragraphes et un bouton. Fais trois versions : sans hiérarchie, avec taille seule, avec taille et espace. Montre-les autour de toi : demandez à chacun où l'œil va en premier. Les réponses te surprendront."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : audite une page du quotidien",
+          "content": "Mission : joue au consultant en design. Choisis un site réel que toi ou ta famille utilisez souvent : une boutique en ligne locale, le site d'une école, celui d'une entreprise de la place. Puis passe-le au crible avec la grille d'audit que voici. Premier test, le message : en cinq secondes, un visiteur comprend-il ce que propose le site ? Écris ta réponse en une phrase. Deuxième test, le trajet : choisis une action clé, par exemple trouver le prix d'un produit ou un contact téléphonique, et compte les clics nécessaires. Plus de trois : problème d'ergonomie. Troisième test, la lisibilité : zoome sur ton téléphone en plein jour et essaie de lire le texte. Contraste suffisant ? Taille suffisante ? Quatrième test, la hiérarchie : où va ton œil en premier ? Est-ce l'information la plus importante ? Cinquième test, la cohérence : les boutons se ressemblent-ils d'une page à l'autre ? Enfin, note ce que la page fait bien : un bon audit commence par les points forts, car copier ce qui marche est la meilleure école. Rédige ton audit en cinq points forts et cinq points à améliorer, en une phrase chacun, comme un vrai consultant qui doit rester concret. Puis propose pour chaque défaut une correction simple. Cette mission t'apprend le réflexe du designer : ne jamais dire c'est moche, mais dire voilà pourquoi ça ne marche pas, et voilà comment l'améliorer. Garde ton audit : il sert d'inspiration pour ton projet."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : la maquette de ton site utile",
+          "content": "Projet final : maquetter la page d'accueil d'un site utile pour ton quartier. Idées : présenter les plats du maquis familial, afficher les horaires et tarifs d'un kiosque de réparation, lister les événements de ta commune, ou vendre les gâteaux de ta tante. Commence par répondre par écrit à quatre questions : qui est l'utilisateur, quel est son objectif principal, quelle est la phrase d'accroche, et quelle action doit-il accomplir en premier. Puis dessine la maquette mobile, à la main ou dans Canva, gratuit. Structure recommandée : en haut, le nom du site et son message principal, une phrase courte et forte ; juste en dessous, le bouton principal, comme Voir la carte ou Commander ; ensuite, trois blocs maximum présentant l'essentiel, par exemple plats populaires, prix, contact ; en bas, le pied de page avec téléphone et quartier. Applique tout ce que tu as appris : palette de trois couleurs avec un accent réservé aux boutons, hiérarchie claire avec un seul titre dominant, textes courts, espace généreux. Test des cinq secondes obligatoire : montre la maquette à trois personnes, cache-la, demande ce que fait le site. Si les trois répondent juste, bravo : ton design communique. Sinon, simplifie. Un design n'est jamais fini du premier coup : les professionnels itèrent, version après version. Ta maquette posée, tu pourras la construire en HTML et CSS dans un prochain projet : c'est ainsi que naissent les vrais sites."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quelle est la différence entre UX et UI ?",
+          "options": [
+            "UX concerne la facilité d'utilisation, UI concerne l'aspect visuel",
+            "UX est payant, UI est gratuit",
+            "UX concerne le serveur, UI concerne le navigateur",
+            "Il n'y en a aucune, c'est le même métier"
+          ],
+          "correct_index": 0,
+          "explanation": "L'UX rend le site facile et logique, l'UI le rend beau et cohérent. Les deux sont complémentaires."
+        },
+        {
+          "question": "Que vérifie le fameux test des cinq secondes ?",
+          "options": [
+            "La vitesse de chargement de la page",
+            "Si un visiteur comprend de quoi parle le site en cinq secondes",
+            "Le nombre de couleurs de la page",
+            "Le prix de l'hébergement"
+          ],
+          "correct_index": 1,
+          "explanation": "On montre la page cinq secondes, on la cache, on demande ce que fait le site. L'hésitation révèle un message principal raté."
+        },
+        {
+          "question": "À quoi sert la couleur d'accent dans une palette ?",
+          "options": [
+            "À remplir toute la page",
+            "À attirer l'œil sur les actions importantes, comme les boutons",
+            "À cacher les erreurs",
+            "À remplacer les photos"
+          ],
+          "correct_index": 1,
+          "explanation": "Rare et vive, la couleur d'accent met en valeur les boutons et liens clés. Si elle est partout, plus rien ne ressort."
+        },
+        {
+          "question": "Pourquoi un texte gris clair sur fond blanc pose-t-il problème ?",
+          "options": [
+            "Il consomme plus de batterie",
+            "Il manque de contraste et devient illisible, surtout au soleil sur mobile",
+            "Il ralentit le navigateur",
+            "Il empêche le référencement"
+          ],
+          "correct_index": 1,
+          "explanation": "Le contraste insuffisant rend la lecture pénible : sur un écran de téléphone en plein jour, le texte devient carrément invisible."
+        },
+        {
+          "question": "Quel outil de hiérarchie visuelle rend un élément plus important à l'œil ?",
+          "options": [
+            "L'espace qui l'entoure",
+            "Sa position en bas de page",
+            "Sa longueur",
+            "Son orthographe"
+          ],
+          "correct_index": 0,
+          "explanation": "Plus un élément respire, plus il paraît important. La taille et le gras complètent l'espace pour guider le scan visuel."
+        }
+      ]
+    },
+    {
+      "slug": "api-basics",
+      "title": "Les APIs expliquées",
+      "description": "Comprends enfin les APIs : comment les applications se parlent entre elles, du menu du restaurant au format JSON, et interroge une vraie API météo.",
+      "story": "Quand tu vérifies la météo, ton solde mobile money ou les résultats de foot, ton application ne contient pas ces informations : elle va les demander ailleurs, à une API. Chaque application que tu adores est en réalité une bande d'applications qui se parlent en coulisses. Prépare-toi à comprendre la conversation : après cette aventure, tu sauras décoder ce qui se passe derrière chaque écran de chargement.",
+      "xp_reward": 120,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Une API, c'est un serveur qui prend les commandes",
+          "content": "Imagine un maquis très organisé. Toi, client, tu ne rentres pas dans la cuisine : tu regardes le menu, tu passes commande au comptoir, et la cuisine te renvoie ton plat. Une API fonctionne exactement ainsi. API signifie interface de programmation d'application : c'est un service auquel une application envoie une demande précise, et qui répond avec exactement l'information demandée. Quand ton application météo affiche trente degrés à Abidjan, elle ne devine rien : elle envoie une demande à l'API d'un service météo, et celui-ci renvoie les données. Pourquoi ce système est-il génial ? Parce que chaque équipe se concentre sur son talent : le service météo entretient ses capteurs et ses calculs, l'application se concentre sur son écran. Ils n'ont même pas besoin de se connaître : l'API définit une fois pour toutes le menu, c'est-à-dire la liste des demandes possibles et le format des réponses. Ce menu s'appelle la documentation de l'API : c'est le document que lit tout développeur avant de commencer. Grâce aux APIs, une petite équipe peut construire une application en réutilisant des services puissants : cartes, paiements, météo, messages. C'est pour cela que les APIs sont le plombier et l'électricien du web : invisibles, mais partout. Dans cette aventure, tu apprends à passer commande, à lire les réponses, et même à construire ta première demande de données."
+        },
+        {
+          "section_type": "play",
+          "title": "Requêtes et réponses : le dialogue qui se répète",
+          "content": "Chaque conversation avec une API suit le même rituel en quatre temps. Temps un : ton application envoie une requête, c'est-à-dire un message qui dit trois choses : où frapper, l'adresse de l'API ; quoi faire, le type de la demande ; et parfois des détails, comme la ville dont tu veux la météo. Temps deux : l'API réfléchit, parfois en quelques millisecondes. Temps trois : l'API renvoie une réponse avec deux parties : un code de statut, qui résume comment s'est passée la demande, et le contenu, les données demandées. Temps quatre : ton application lit la réponse et met l'écran à jour. Les codes de statut se lisent comme des compte-rendus : le code deux cents signifie tout va bien, voici tes données ; le code quatre cent quatre, introuvable, signifie que l'adresse demandée n'existe pas ; le code quatre cent un signifie que tu n'es pas autorisé, il manque une identification ; le code cinq cents signifie que le serveur a un problème, réessaie plus tard. Tu as déjà croisé ces codes déguisés : l'écran d'erreur d'un site affiche souvent quatre cent quatre. Comprendre ce rituel t'évite des heures de confusion : quand une application plante, le développeur regarde d'abord quel code de statut l'API a renvoyé. C'est le premier réflexe de diagnostic, avant même de lire le contenu. Exercice mental : décris la requête et la réponse attendue pour obtenir le solde d'un compte mobile money."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Le JSON : la langue commune des applications",
+          "content": "Il reste un détail crucial : sous quelle forme l'API renvoie-t-elle ses données ? La réponse, presque toujours, c'est le JSON, un format de texte structuré que tous les langages comprennent. Le JSON ressemble furieusement au JavaScript que tu connais : des accolades délimitent un objet, à l'intérieur des paires clé et valeur, comme ville deux-points Abidjan, température deux-points trente. Les objets s'imbriquent et se rangent dans des listes avec des crochets : la météo du jour est un objet, les prévisions de la semaine une liste d'objets. Ce format a trois qualités : il est lisible par un humain, il est interprétable par tous les langages de programmation, et il est compact, donc rapide à envoyer, même avec un petit forfait internet. Exemple concret de réponse d'API météo, décrite en mots : un objet avec la clé ville de valeur Abidjan, la clé temperature de valeur trente, et la clé humidite de valeur quatre-vingts. Un programmeur JavaScript n'a rien à décoder : il reçoit déjà un objet utilisable, et accède aux valeurs par leurs clés avec le point. Même chose en Python, qui transforme le texte en dictionnaire. C'est toute l'élégance du JSON : les données voyagent comme du texte simple, et arrivent prêtes à l'emploi. Exercice : imagine la réponse JSON d'une API de résultats de foot : quelles clés placerais-tu pour un match ? Équipe à domicile, équipe extérieure, score, minute. Tu viens de concevoir ta première structure de données."
+        },
+        {
+          "section_type": "build",
+          "title": "Les clés API : ton badge d'accès personnel",
+          "content": "Toutes les APIs ne laissent pas entrer n'importe qui. La plupart exigent une clé API, une longue chaîne de caractères unique, qui joue le rôle de ton badge nominatif. La clé sert à trois choses : identifier qui fait la demande, compter l'usage, et refuser les indésirables. Quand tu t'inscris sur le site d'un fournisseur d'API, il te délivre une clé avec des limites d'usage, par exemple mille demandes gratuites par jour. Chaque demande part avec ta clé, et le fournisseur décompte. Règle de sécurité absolue : une clé API est un secret. Ne l'écris jamais dans un message WhatsApp, ne la publie jamais dans ton code envoyé sur un dépôt public, ne la prête jamais. Une clé volée, c'est quelqu'un qui consomme ton quota, voire qui fait des actions en ton nom. La bonne pratique des professionnels : ranger la clé dans une variable d'environnement, hors du code, et ne jamais copier le fichier qui la contient. Si une clé fuite, la plupart des fournisseurs permettent de la révoquer, c'est-à-dire de la rendre immédiatement invalide, et d'en générer une nouvelle. Autre notion utile : certaines informations ne doivent pas partir dans une requête. Une API météo demande une ville, pas ton nom. Le réflexe du développeur : envoyer le minimum de données nécessaires. Dans ce monde numérique, la donnée voyage vite, mais le badge perdu voyage plus vite encore. Garde ta clé comme ton code de recharge le plus précieux : personnelle, secrète, rechargeable."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : traque les APIs de ta journée",
+          "content": "Mission d'observation : pendant une journée entière, note chaque fois qu'une application de ton téléphone parle probablement à une API. Le matin : ton application météo interroge l'API du service météo national ou mondial. Le prix du trajet en ligne ? L'application demande l'itinéraire à une API de cartes et le tarif à une API du service de transport. À midi : tu consultes les réseaux sociaux ; chaque fil d'actualité est une cascade de demandes, une pour les publications, une pour les notifications, une pour les messages. L'après-midi : un paiement mobile money vérifie ton solde et confirme la transaction, deux échanges d'API au moins. Le soir : un match en direct affiche le score minute par minute : l'application interroge l'API sportive toutes les trente secondes. Pour chaque cas, note trois choses : l'application, l'information affichée, et l'API probable derrière. Puis classe tes observations en deux colonnes : les informations qui changent souvent, score, solde, météo, et celles qui changent rarement, le menu d'un restaurant par exemple. Tu comprendras pourquoi certaines applications rafraîchissent sans arrêt : elles refont des requêtes en permanence. Cette mission t'installe la vision système : derrière chaque écran, un dialogue requête réponse se joue en silence. Le développeur qui voit ce dialogue imagine des applications qui combinent plusieurs APIs : la météo plus la carte, le paiement plus le message de confirmation. Demain, ces idées seront les tiennes."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : interroge une vraie API météo",
+          "content": "Place à la pratique : tu vas interroger une vraie API, sans rien installer, grâce à un outil que tout développeur connaît : le navigateur. Beaucoup d'APIs publiques acceptent des demandes simples par adresse web : tu écris l'adresse de l'API avec les paramètres dans la barre d'adresse, et le navigateur affiche la réponse JSON brute. Trouve dans la documentation d'une API météo gratuite l'adresse de demande, appelée point d'accès, souvent le mot anglais endpoint, et repère comment passer le nom de ta ville, souvent après un point d'interrogation. Tape l'adresse complète avec Abidjan, et observe : la réponse JSON s'affiche, avec les clés température, humidité, description. Si la réponse est illisible en un bloc, sers-toi d'un formateur JSON en ligne gratuit pour l'indenter. Ensuite, trois défis progressifs. Défi un : repère dans le JSON la valeur de la température du jour et note son chemin exact, par exemple objet principal, clé actuelle, clé temperature. Défi deux : demande la météo d'une autre ville, par exemple Dakar ou Douala, en changeant le paramètre, et compare les réponses. Défi trois : rédige en une phrase, pour un ami, la météo du jour à partir du JSON, en français clair : tu viens de faire le travail que fait l'application météo. Pour aller plus loin, cherche une API gratuite sur les devises ou les blagues et recommence le rituel : documentation, point d'accès, paramètres, lecture du JSON. Ce rituel est universel : il est identique chez tous les fournisseurs d'API du monde."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Qu'est-ce qu'une API ?",
+          "options": [
+            "Un service auquel une application envoie des demandes et qui répond avec les données",
+            "Un écran d'affichage pour téléphones",
+            "Une sorte de batterie externe",
+            "Un langage de programmation"
+          ],
+          "correct_index": 0,
+          "explanation": "Une API prend des demandes précises et renvoie des données précises, comme un comptoir de maquis : on ne rentre pas dans la cuisine."
+        },
+        {
+          "question": "Que signifie un code de statut deux cents dans une réponse d'API ?",
+          "options": [
+            "Le serveur est en maintenance",
+            "La demande a réussi et les données sont fournies",
+            "L'adresse demandée n'existe pas",
+            "Ta clé API a expiré"
+          ],
+          "correct_index": 1,
+          "explanation": "Le code deux cents, deux cent un ou deux cent quatre signale le succès. Quatre cent quatre, c'est introuvable ; cinq cents, un souci côté serveur."
+        },
+        {
+          "question": "Pourquoi le format JSON est-il la langue commune des applications ?",
+          "options": [
+            "Il est lisible, compact et compréhensible par tous les langages de programmation",
+            "Il ne fonctionne que sur ordinateur",
+            "Il est obligé par la loi",
+            "Il traduit automatiquement les langues"
+          ],
+          "correct_index": 0,
+          "explanation": "Le JSON combine lisibilité humaine, compacité et interprétation universelle : idéal pour voyager sur les réseaux, même avec un petit forfait."
+        },
+        {
+          "question": "Comment traiter une clé API comme un professionnel ?",
+          "options": [
+            "La partager avec ses amis de classe",
+            "La garder secrète, hors du code, dans une variable d'environnement",
+            "L'afficher fièrement dans sa biographie",
+            "L'envoyer par message à chaque utilisation"
+          ],
+          "correct_index": 1,
+          "explanation": "Une clé API est un badge nominatif secret : on la range hors du code, on ne la publie jamais, et on la révoque immédiatement en cas de fuite."
+        },
+        {
+          "question": "Pourquoi une application de score en direct fait-elle des requêtes répétées ?",
+          "options": [
+            "Pour vider la batterie du téléphone",
+            "Parce que l'information change souvent et doit être rafraîchie sans arrêt",
+            "Parce que l'API refuse de répondre",
+            "Pour compter les utilisateurs"
+          ],
+          "correct_index": 1,
+          "explanation": "Les données qui changent souvent, comme un score, exigent des requêtes fréquentes pour que l'écran reste à jour, alors qu'un menu change rarement."
+        }
+      ]
+    },
+    {
+      "slug": "database-basics",
+      "title": "Les bases de données",
+      "description": "Découvre les bases de données : tables, lignes, colonnes, et apprends à poser les bonnes questions à tes données avec des requêtes simples.",
+      "story": "Chaque application que tu utilises, du mobile money au réseau social, manipule des milliers d'informations : comptes, soldes, messages, plats, commandes. Où sont-elles rangées ? Dans une base de données, le coffre-fort organisé du web. Dans cette aventure, tu apprends à structurer des données et à les interroger, la compétence qui sépare l'apprenti du développeur complet.",
+      "xp_reward": 140,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Pourquoi ranger les données dans une base",
+          "content": "Imagine la gérante d'un grand maquis qui note tout dans un seul cahier : commandes, fournisseurs, recettes, salaires, mélangés page après page. Le jour où elle cherche le prix de l'attiéké du mardi, elle retourne tout le cahier. C'est exactement le problème que résout une base de données. Une base de données, c'est un espace organisé pour ranger de grandes quantités d'informations, les retrouver vite, et les modifier sans tout casser. Pourquoi ne pas utiliser un simple fichier ? Trois raisons. La vitesse : une base retrouve une information parmi des millions en quelques millisecondes, grâce à des index, sortes de sommaires ultra rapides. La sécurité : une base contrôle qui a le droit de lire ou de modifier chaque information, avec des comptes et des permissions. La solidité : si un problème survient au milieu d'une écriture, la base sait annuler proprement l'opération et laisser les données cohérentes. Dernier avantage, décisif : plusieurs applications et plusieurs utilisateurs peuvent lire et écrire en même temps, sans s'écraser. Le type de base le plus répandu s'appelle base relationnelle : les données vivent dans des tables qui se relient entre elles. C'est ce modèle que tu explores dans cette aventure, car il équipe la quasi-totalité des entreprises, de la banque au kiosque de quartier. Et bonne nouvelle : la langue pour parler aux bases relationnelles s'apprend vite, et ressemble à une phrase que tu dirais naturellement en français."
+        },
+        {
+          "section_type": "play",
+          "title": "La table : une grille de lignes et de colonnes",
+          "content": "Une base relationnelle range ses données dans des tables, et une table ressemble à un tableau soigné : des colonnes verticales et des lignes horizontales. Prenons la table des plats d'un maquis. Chaque colonne représente une information précise, toujours la même pour tous : identifiant, nom du plat, catégorie, prix en francs CFA, disponible ou non. Chaque ligne, souvent appelée enregistrement, représente un plat concret : attiéké poisson, plat local, deux mille cinq cents, disponible. Deux règles d'or structurent une bonne table. Règle un : chaque ligne doit être unique et reconnaissable. Pour cela, chaque table possède une clé primaire, une colonne dont la valeur ne se répète jamais, souvent un identifiant numéro un, deux, trois, attribué automatiquement. Le nom d'un plat peut changer ; son identifiant, jamais. Règle deux : une information n'apparaît qu'à un seul endroit. Si le prix de l'attiéké change, on le modifie une fois dans la table des plats, pas dans dix cahiers différents. C'est le principe central des bases relationnelles : une table par sujet, une information à un seul endroit, des liens clairs entre les tables. Par exemple, la table des commandes ne recopie pas le nom du plat : elle note l'identifiant du plat, et le lien fait le reste. Ce voyage dans la structure t'apprend le réflexe fondamental du développeur : avant même d'écrire une ligne de code, il dessine ses tables au brouillon, colonnes, clés et liens. Exercice : dessine sur papier la table des élèves de ta classe, avec ses colonnes et sa clé primaire."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Interroge les données : la requête de lecture",
+          "content": "Ranger, c'est bien ; retrouver, c'est mieux. Pour parler aux bases relationnelles, on utilise une langue spécialisée, très répandue, dont le verbe préféré est lire. La requête la plus fréquente se décrit ainsi : lis les colonnes voulues dans la table indiquée. En mots clairs : donne-moi le nom et le prix, depuis la table des plats. La base répond en un clin d'œil, même si la table contient un million de lignes. Trois précisions qui font toute la différence. Précision un : on choisit les colonnes, donc on ne récupère que l'utile ; inutile de charger les photos de tous les plats pour afficher la carte. Précision deux : une étoile signifie toutes les colonnes, pratique pour explorer, mais à éviter en production : sur mobile, charger des colonnes inutiles gaspille le forfait internet de l'utilisateur. Précision trois : cette requête ne modifie jamais les données : elle lit, et c'est tout. C'est rassurant : un apprenti peut explorer sans risque. La même langue sert aussi à ajouter, modifier et supprimer, mais ces trois opérations sont plus puissantes, donc plus dangereuses : elles changent vraiment le contenu de la base. Les professionnels les réservent aux personnes autorisées, et c'est une excellente discipline à prendre dès maintenant : lis autant que tu veux, mais réfléchis deux fois avant d'écrire. Exercice mental : écris en français la requête qui listerait le prénom et la classe de tous les élèves de ton établissement, puis identifie les colonnes inutiles à ne pas demander, comme la photo de badge."
+        },
+        {
+          "section_type": "build",
+          "title": "Filtre et trie : pose les bonnes questions",
+          "content": "Lire toute une table, c'est comme recopier tout le cahier de la gérante : rarement utile. La force d'une base, c'est de répondre à des questions précises. Premier outil, le filtre : on ajoute à la requête une condition, décrite ainsi : lis ces colonnes dans cette table, là où la condition est vraie. Par exemple : donne-moi le nom et le prix des plats, là où la catégorie est plat local. Ou : les plats, là où le prix est inférieur ou égal à deux mille francs. La base ne renvoie que les lignes qui passent le test. Les conditions se combinent avec et, ou : disponible et prix inférieur à mille, exactement comme tu formules en français. Deuxième outil, le tri : on ajoute classe par, suivi de la colonne qui décide de l'ordre. Par exemple : les plats, classés par prix du plus grand au plus petit, pour afficher les plats chers en premier ; ou du plus petit au plus grand pour mettre en avant les bonnes affaires. Filtre et tri se combinent dans la même requête : les plats locaux, disponibles, classés par prix croissant. C'est ici que la base montre sa vraie puissance : avec un million de lignes, la réponse arrive en millisecondes, ce qu'aucun humain ne pourrait faire. Astuce de pro : commence toujours par tester la requête sans filtre pour vérifier la table, puis ajoute les conditions une à une : si le résultat devient vide, tu sais exactement quelle condition est en cause. Exercice : formule en français trois questions utiles pour la gérante d'un maquis, chacune avec un filtre et un tri. Exemple : quels plats locaux sont disponibles, classés du moins cher au plus cher ?"
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : conçois la base du maquis",
+          "content": "Mission de concepteur : dessine sur papier la base de données complète d'un maquis, avant même d'écrire la moindre requête. Procédons table par table. Table une, les plats : colonnes identifiant, nom, catégorie, prix, disponible ; clé primaire, l'identifiant. Table deux, les clients fidèles : identifiant, prénom, téléphone, quartier ; clé primaire, l'identifiant. Attention, réflexe du professionnel : pourquoi pas une table des clients pour un petit maquis ? Parce qu'une information mérite une table seulement si on gère plusieurs détails sur elle ; si le maquis note juste le numéro de téléphone sur la commande, pas besoin de table séparée. Apprends à te poser la question : ai-je vraiment besoin de cette table ? Table trois, les commandes : identifiant, date et heure, identifiant du client, statut, tel en préparation ou servie ; clé primaire, l'identifiant. Table quatre, le détail des commandes : identifiant, identifiant de la commande, identifiant du plat, quantité. Pourquoi cette quatrième table ? Parce qu'une commande contient plusieurs plats : on dit que la commande est reliée aux plats par une ligne d'intermédiaire. C'est le cœur du modèle relationnel : les liens se font par les identifiants, jamais en recopiant les informations. Vérifie ta conception avec trois questions : où est rangé le prix d'un plat, réponse dans la table des plats, une seule fois ; comment retrouve-t-on les plats d'une commande, réponse en suivant les identifiants ; que se passe-t-il si un plat change de nom, réponse rien à modifier ailleurs, le lien par identifiant reste valable. Ta mission aboutit à un dessin de quatre tables avec leurs liens : c'est exactement le document de travail des vrais développeurs, appelé modèle de données."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : la base de données de ton kiosque",
+          "content": "Projet final : concevoir et utiliser la base de données d'un petit commerce, le kiosque de quartier, un abonnement à un service de base gratuit suffit. D'abord, choisis ton commerce : kiosque de recharges et réparations, boutique de gâteaux, vidéoclub du quartier, ou librairie scolaire. Ensuite, dessine trois tables minimum, en t'inspirant de la mission : par exemple produits, ventes, et le détail des ventes. Définis les colonnes de chaque table et souligne les clés primaires. Puis remplis à la main, sur papier, chaque table avec cinq lignes réalistes : produits avec prix en francs CFA, ventes avec dates. Vient le moment des questions : écris en français cinq questions utiles au gérant, chacune formulée avec un filtre et un tri. Exemples : la liste des produits en rupture ; les ventes du samedi ; le produit le plus vendu ; les ventes supérieures à cinq mille francs ; les produits classés du plus cher au moins cher. Puis, si tu as accès à un outil de base de données, crée les tables et entre les lignes, en traduisant tes questions en requêtes de lecture avec filtres et tris. Sinon, l'exercice papier reste complet : ce qui compte, c'est la rigueur du raisonnement, colonnes, clés, liens, filtres, tris. Compare ta structure à celle d'un camarade : deux modèles différents peuvent tous deux être corrects, mais discutez des choix. Ce projet t'installe dans la peau du développeur back-end, celui qui construit l'arrière-boutique invisible et solide : la compétence la plus demandée du marché, à Abidjan comme partout dans le monde."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Quel est le rôle principal d'une base de données ?",
+          "options": [
+            "Afficher des vidéos",
+            "Ranger de grandes quantités d'informations et les retrouver vite et sûrement",
+            "Remplacer le clavier",
+            "Charger la batterie du téléphone"
+          ],
+          "correct_index": 1,
+          "explanation": "Une base de données organise les données pour les retrouver en millisecondes, contrôle les accès et garde les informations cohérentes."
+        },
+        {
+          "question": "Dans une table, à quoi sert la clé primaire ?",
+          "options": [
+            "À décorer la table",
+            "À identifier chaque ligne de façon unique, sans jamais se répéter",
+            "À compter les colonnes",
+            "À trier par ordre alphabétique"
+          ],
+          "correct_index": 1,
+          "explanation": "La clé primaire, souvent un identifiant numérique, rend chaque ligne unique et reconnaissable, même si les autres valeurs changent."
+        },
+        {
+          "question": "Pourquoi ne pas recopier le nom du plat dans la table des commandes ?",
+          "options": [
+            "Pour économiser du papier",
+            "Parce qu'une information vit à un seul endroit : la commande garde l'identifiant du plat, et le lien fait le reste",
+            "Parce que les noms de plats sont interdits",
+            "Pour ralentir les requêtes"
+          ],
+          "correct_index": 1,
+          "explanation": "C'est le principe relationnel : pas de recopie. Le lien passe par les identifiants, donc une modification du nom n'affecte qu'un seul endroit."
+        },
+        {
+          "question": "Que fait une requête de lecture sur une base de données ?",
+          "options": [
+            "Elle modifie les lignes",
+            "Elle lit les colonnes demandées, sans jamais changer les données",
+            "Elle supprime la table",
+            "Elle crée une nouvelle base"
+          ],
+          "correct_index": 1,
+          "explanation": "La requête de lecture explore sans risque : elle renvoie des lignes, mais n'ajoute, ne modifie et ne supprime rien."
+        },
+        {
+          "question": "À quoi sert le tri dans une requête ?",
+          "options": [
+            "À classer les résultats selon une colonne, par exemple du prix le moins cher au plus cher",
+            "À crypter les données",
+            "À supprimer les doublons de la table",
+            "À traduire les données en anglais"
+          ],
+          "correct_index": 0,
+          "explanation": "Le tri ordonne les résultats selon une colonne, croissante ou décroissante, et se combine avec les filtres pour répondre à des questions précises."
+        }
+      ]
+    },
+    {
+      "slug": "coding-africa",
+      "title": "Le coding en Afrique",
+      "description": "Explore la tech africaine en pleine ébullition : hubs, modèles inspirants, opportunités concrètes et ta feuille de route de développeur.",
+      "story": "Quand on parle de tech, on cite souvent la Silicon Valley. Mais depuis dix ans, une autre histoire s'écrit : celle de Lagos, Nairobi, Kigali, Dakar et Abidjan, où des milliers de jeunes développeurs bâtissent les applications qui changent le quotidien du continent. Cette aventure t'ouvre la carte de cette révolution, et surtout : elle te montre comment y prendre ta place.",
+      "xp_reward": 110,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "L'Afrique, nouvelle frontière de la tech",
+          "content": "Petit rappel de réalité : l'Afrique compte la population la plus jeune du monde, et une partie grandit avec un téléphone dans la main bien avant un ordinateur. Ce détail change tout : les usages numériques africains sont mobiles d'abord, inventifs, et souvent en avance sur le reste du monde. Le paiement par téléphone, pensé pour des gens sans banque classique, est devenu une référence mondiale. Résultat : les investisseurs du monde entier regardent désormais le continent comme le prochain grand marché numérique, et les applications conçues à Abidjan, Nairobi ou Lagos servent des millions d'utilisateurs. Ce qui fait la force de la tech africaine, c'est qu'elle résout des problèmes réels, visibles chaque jour : envoyer de l'argent à la famille au village, trouver un transport, vendre sa récolte sans intermédiaire, apprendre un métier depuis son quartier. Le développeur africain possède un avantage rare : il connaît les problèmes, donc il sait quoi construire. Bien sûr, des défis existent : accès à l'électricité et à internet, matériel parfois rare, financement fragile. Mais chaque défi est aussi une opportunité : qui dit problème dit application à créer. Et une génération entière s'y met : bootcamps, clubs informatiques dans les lycées, communautés en ligne, compétitions de code. Dans cette aventure, tu explores les lieux, les modèles et les portes d'entrée concrets de cette révolution, pour transformer ta curiosité en plan d'action, étape par étape, depuis ta propre ville."
+        },
+        {
+          "section_type": "play",
+          "title": "Visite guidée des hubs africains",
+          "content": "Fais le tour du continent, et repère les villes qui comptent. Lagos, au Nigeria, la vitrine la plus bruyante : géant démographique, startups de paiement et de transport devenues célèbres, et une culture de l'audace entrepreneuriale. Nairobi, au Kenya, la pionnière du mobile money : c'est là qu'est née la première grande réussite africaine du paiement mobile, aujourd'hui copiée partout dans le monde. Kigali, au Rwanda : petite ville devenue laboratoire numérique, avec une organisation qui impressionne les visiteurs du monde entier. Dakar, au Sénégal : moteur de la tech en Afrique de l'Ouest francophone, avec ses incubateurs et ses développeurs qui bossent pour des clients de trois continents. Accra, au Ghana : pont entre les mondes anglophone et francophone. Et Abidjan, ta ville : la Côte d'Ivoire compte parmi les économies les plus dynamiques de la région, avec un secteur numérique en pleine croissance, des espaces de coworking, des incubateurs publics et privés, et des entreprises qui recrutent des profils techniques. Ce qui se passe dans chaque hub, tu peux le transposer chez toi : rencontres tech, formations gratuites, hackathons, ces marathons de création où des équipes construisent un prototype en un week-end. Leçon à retenir de ce voyage : chaque hub a grandi grâce à des communautés, pas grâce à des miracles. Des gens se sont réunis régulièrement, ont partagé ce qu'ils savaient, et la scène a grossi. Rien ne t'empêche de participer à la croissance du hub d'Abidjan, ni même d'en créer un dans ton lycée."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Des modèles qui ont codé leur chemin",
+          "content": "Les modèles inspirent plus que les discours. Voici des trajectoires africaines dont tu peux te rapprocher, même si les noms évoluent vite et que le plus important reste la logique du parcours. Première trajectoire : l'autodidacte du quartier qui apprend sur son téléphone, enchaîne les tutoriels gratuits, construit des petits projets pour les commerces de son voisinage, et finit par vivre du freelance pour des clients de France, du Canada ou des États-Unis, en restant vivre à Abidjan. Deuxième trajectoire : l'étudiant en informatique qui complète sa formation universitaire par les communautés en ligne et les bootcamps, décroche un stage dans une entreprise locale, puis devient développeur dans une startup de paiement. Troisième trajectoire : la fondatrice qui identifie un problème vécu par les femmes de son quartier, comme la difficulté d'écouler les récoltes, apprend à coder sur le tas, et construit une application de mise en relation entre productrices et acheteurs. Quatrième trajectoire : le développeur senior qui, après des années à coder pour les autres, monte sa propre entreprise tech et forme la génération suivante. Reprends la logique de chaque parcours : un point de départ modeste, un apprentissage régulier, des projets concrets pour de vraies personnes, et des communautés fréquentées activement. Aucune de ces trajectoires ne commence par un don magique : toutes commencent par une première ligne de code, suivie de beaucoup d'autres. La bonne nouvelle : ton parcours a déjà commencé, puisque tu es là. La prochaine étape consiste à le structurer, et c'est l'objet des leçons qui suivent."
+        },
+        {
+          "section_type": "build",
+          "title": "Les opportunités concrètes du développeur",
+          "content": "Parlons opportunités réelles, sans exagération ni pessimisme. Premier débouché, l'emploi local : banques, compagnies d'assurance, opérateurs de téléphonie, entreprises de services, administrations et startups recrutent des développeurs web et mobile, des data analysts, des spécialistes en cybersécurité. La demande dépasse l'offre de profils qualifiés dans plusieurs pays africains, y compris en Côte d'Ivoire. Deuxième débouché, le freelance international : avec une connexion internet, un portfolio de quelques projets et de l'anglais technique de base, des milliers de développeurs africains travaillent pour des clients étrangers, gagnent en devises et restent chez eux. Les plateformes de freelance mettent en relation clients et développeurs du monde entier. Troisième débouché, l'entreprenariat : construire l'application qui manque à ta ville, même petite au début. Beaucoup de réussites africaines ont commencé par une solution très simple pour un problème très local. Quatrième débouché, souvent sous-estimé : former. Qui sait coder peut enseigner, animer des clubs, créer des chaînes de tutoriels en français, un besoin énorme sur le continent. Quels talents sont recherchés en priorité ? Développement web et mobile, gestion des données, bases de données, sécurité informatique, et surtout : la capacité à livrer des projets complets. Et ce qui compte autant que la technique : la fiabilité, communiquer clairement, respecter les délais, tenir au courant son client. Un développeur moyen fiable vaut mieux qu'un génie introuvable. Dernier point, le plus important : aucune de ces portes ne s'ouvre par la théorie. Elles s'ouvrent par des projets montrables, un portfolio, et des liens tissés dans les communautés. C'est exactement ce que tu prépares depuis le début de ce monde coding."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : repère ta communauté tech",
+          "content": "Aucun développeur ne grandit seul. Ta mission : identifier et fréquenter ta communauté tech, en commençant par une action cette semaine. Étape un : la recherche locale. Renseigne-toi sur les groupes d'étudiants en informatique, les espaces de coworking, les incubateurs et les clubs informatiques de ton quartier ou de ta ville. Demande autour de toi : professeurs, élèves plus grands, cyberscafés, pages des établissements. Étape deux : la recherche en ligne, gratuite et immédiate. Recherche les communautés de développeurs ivoiriens et francophones : groupes de discussion, forums de questions-réponses, chaînes de tutoriels en français, événements annoncés sur les réseaux professionnels. Inscris-toi à au moins deux groupes actifs et observe d'abord : comment les membres s'entraident, quelles questions reviennent, quels événements sont annoncés. Étape trois : la participation active. Passe de spectateur à membre : salue, pose une question précise, partage un tutoriel qui t'a aidé, réponds à quelqu'un si tu connais la réponse. Les communautés récompensent ceux qui donnent autant qu'ils reçoivent. Étape quatre : le premier contact humain. Repère un événement réel : atelier, meetup, hackathon, journée portes ouvertes, dans ta ville. Note la date et fais le déplacement, même timide : la première personne à qui tu diras bonjour sera probablement aussi stressée que toi. Tenue de mission : apporte ton cahier, note les noms et les conseils, pose une question à chaque rencontre. Compte rendu attendu : le nom des deux communautés que tu as rejointes, un événement repéré avec sa date, et la première question que tu as posée. Cette mission ne se termine jamais vraiment : les liens de communauté se tissent des années entières, et ce sont eux, autant que ton code, qui ouvriront tes premières opportunités."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : ta feuille de route de développeur",
+          "content": "Projet final de l'aventure : rédiger ta feuille de route personnelle de développeur, un document d'une page que tu reliras chaque mois. Première section, mon point de départ : ce que tu sais déjà faire après ces aventures, honnêtement. Par exemple : écrire une page HTML et CSS, écrire des programmes Python simples, utiliser JavaScript, comprendre Git, interroger une API, concevoir une petite base de données. Deuxième section, mon cap : choisis une direction pour les six prochains mois. Idées : devenir solide en web et construire trois sites complets, approfondir Python et la donnée, ou explorer le mobile. Choisis un seul cap : celui qui divise échoue, celui qui se concentre progresse. Troisième section, mes trois projets : liste trois projets concrets à construire, chacun utile à quelqu'un de réel. Exemples : le site vitrine du maquis familial, la fiche de suivi des dépenses de ta classe, la page d'accueil d'une association de ton quartier. Un projet utile motive dix fois plus qu'un exercice abstrait. Quatrième section, mes rituels : fixe un créneau de code réaliste, par exemple une heure trois fois par semaine, et un rituel d'apprentissage : un tutoriel par semaine, une question posée en communauté par semaine. Cinquième section, mes preuves : décide où tu montreras ton travail : un portfolio en ligne, un dépôt de code public, un profil professionnel. Les recruteurs ne lisent pas les intentions, ils regardent les preuves. Sixième section, mes relances mensuelles : une date par mois pour relire la feuille de route, cocher ce qui est fait, et ajuster sans culpabilité. Signe ce document et colle-le au mur, ou enregistre-le en note sur ton téléphone, là où tu le verras chaque jour. Les plans ne valent rien sans affichage : ce qui se voit se réalise."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Pourquoi la tech africaine est-elle souvent mobile d'abord ?",
+          "options": [
+            "Parce que les ordinateurs sont interdits",
+            "Parce qu'une grande partie de la population découvre internet via le téléphone, avant l'ordinateur",
+            "Parce que les téléphones sont plus beaux",
+            "Parce que le mobile coûte plus cher"
+          ],
+          "correct_index": 1,
+          "explanation": "En Afrique, le téléphone a précédé l'ordinateur dans les usages : les applications locales sont donc conçues mobiles d'abord, un avantage créatif."
+        },
+        {
+          "question": "Quel atout majeur possède le développeur africain selon cette aventure ?",
+          "options": [
+            "Il code plus vite que les autres",
+            "Il connaît les problèmes réels de son quotidien, donc il sait quoi construire",
+            "Il n'a besoin d'aucun apprentissage",
+            "Il travaille sans internet"
+          ],
+          "correct_index": 1,
+          "explanation": "La connaissance intime des problèmes locaux, paiements, transports, ventes, récoltes, guide vers des applications réellement utiles."
+        },
+        {
+          "question": "Qu'est-ce qu'un hackathon ?",
+          "options": [
+            "Une compétition de jeux vidéo",
+            "Un marathon de création où des équipes construisent un prototype en un temps limité, souvent un week-end",
+            "Un examen universitaire",
+            "Un concert de musique numérique"
+          ],
+          "correct_index": 1,
+          "explanation": "Le hackathon réunit des équipes pour prototyper en un temps limité : un excellent moyen de rencontrer la communauté tech de sa ville."
+        },
+        {
+          "question": "Parmi ces débouchés, lequel permet de gagner en devises tout en restant dans son pays ?",
+          "options": [
+            "Le freelance international via les plateformes en ligne",
+            "L'abonnement au téléphone",
+            "La revente de recharges",
+            "La maintenance des panneaux solaires"
+          ],
+          "correct_index": 0,
+          "explanation": "Avec un portfolio, une connexion et de l'anglais technique de base, beaucoup de développeurs africains servent des clients étrangers depuis chez eux."
+        },
+        {
+          "question": "Que contient une bonne feuille de route de développeur ?",
+          "options": [
+            "Un cap unique, des projets concrets, des rituels d'apprentissage et des preuves visibles",
+            "La liste de tous les langages existants",
+            "L'adresse des banques qui recrutent",
+            "Rien : il suffit d'improviser"
+          ],
+          "correct_index": 0,
+          "explanation": "Un cap à la fois, trois projets utiles à de vraies personnes, des créneaux réguliers et un portfolio : la recette des progrès durables."
+        }
+      ]
+    },
+    {
+      "slug": "final-project",
+      "title": "Projet de programmation final",
+      "description": "L'aventure de synthèse : cadre, découpe, construis, teste et livre ton premier vrai projet web complet, du cahier des charges à la présentation finale.",
+      "story": "Voici l'aventure que tu attends depuis le début du monde coding : le grand projet. Seul, comme un vrai développeur, tu vas mener une application de bout en bout : cadrer le besoin, découper le travail, construire avec HTML, CSS et JavaScript, traquer les bugs, versionner ton avancée et présenter le résultat devant public. Ce que tu vas vivre ici, c'est le quotidien réel du métier. Sors ton cahier : la synthèse commence.",
+      "xp_reward": 200,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Le grand défi : un projet complet, de bout en bout",
+          "content": "Jusqu'ici, chaque aventure t'a fait pratiquer une compétence : le HTML, le Python, JavaScript, Git, les APIs, les bases de données. Le moment est venu de tout relier. Ton défi final : construire une petite application web complète, utile à quelqu'un de réel, et la mener jusqu'à la présentation. Trois règles rendent ce projet formateur. Règle un : la petitesse est une qualité. Un projet petit mais fini vaut infiniment mieux qu'un projet ambitieux abandonné à soixante pour cent. Vise quelque chose de livrable en une dizaine de séances de travail. Règle deux : un utilisateur réel. Ta mère qui vend des gâteaux, ton cousin qui gère un kiosque, ton club de lycée, ta chorale : quelqu'un doit pouvoir dire merci, et surtout formuler des besoins concrets. Règle trois : la totalité du cycle. Pas seulement coder : cadrer, concevoir, construire, tester, versionner, présenter. C'est cette chaîne complète qui fait de toi un développeur, et non un exécutant de tutoriels. Idées de projets à ta portée, avec tes acquis : une carte de menus pour un maquis, avec plats du jour et prix ; un carnet de recettes de quartier ; un petit formulaire d'inscription pour les membres d'un club, avec liste affichée ; une page de vœux interactive pour les fêtes de fin d'année ; un quiz culturel sur la Côte d'Ivoire. Chaque idée se construit avec les mêmes briques : structure en HTML, style en CSS, interactivité en JavaScript, données rangées proprement. Choisis ton projet maintenant, note-le, et passe à la phase de cadrage : un projet sans cadrage est un projet qui dérive."
+        },
+        {
+          "section_type": "play",
+          "title": "Cadrer le projet : le cahier des charges",
+          "content": "Avant toute ligne de code, écris le cahier des charges de ton projet : une page qui décrit précisément ce que tu vas construire, pour qui, et pourquoi. C'est le contrat que tu passes avec ton utilisateur, et avec toi-même. Structure ton cahier en cinq parties. Partie un, le problème : une phrase qui décrit le besoin. Exemple : la gérante du maquis n'a pas de carte en ligne, et les clients appellent tout le temps pour demander les prix. Partie deux, l'utilisateur : qui utilisera l'application, sur quel appareil. Réponse probable : un téléphone, d'où une conception mobile d'abord. Partie trois, les fonctionnalités : liste courte, au pluriel interdit. Trois fonctionnalités maximum : afficher les plats par catégorie, montrer les prix en francs CFA, indiquer les plats disponibles du jour. Tout le reste est hors périmètre, et tu l'écris noir sur blanc dans une section nommée non inclus. Partie quatre, les contenus : quelles informations l'application doit afficher, et d'où viennent-elles. Le plus simple pour un premier projet : des données rangées dans ton code JavaScript, comme un tableau de plats, facile à modifier. Partie cinq, le critère de réussite : une phrase testable. Exemple : ma tante peut trouver le prix du kedjenou en moins de dix secondes depuis son téléphone. Astuce de pro : fais valider le cahier des charges par l'utilisateur concerné avant de coder. Deux minutes de discussion maintenant t'évitent des heures de refaire plus tard. Et garde le cahier court : une page. Les cahiers de dix pages ne sont jamais relus."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Découper le travail : le plan d'étapes",
+          "content": "Un projet qui semble énorme devient gérable dès qu'on le découpe. Les professionnels découpent leurs projets en étapes livrables : à la fin de chaque étape, quelque chose marche, même imparfait. Voici le découpage recommandé pour ton projet, dans l'ordre. Étape un, la maquette : dessine à main levée l'écran principal et ses deux ou trois variantes. Dix minutes suffisent, et tu sauras où tu vas. Étape deux, la structure : construis la page en HTML pur, avec de vrais textes, sans aucun style. La page est moche mais complète : tous les contenus s'affichent. Étape trois, le style : applique le CSS, en suivant tes acquis du design : palette de trois couleurs, hiérarchie claire, boutons visibles. La page devient présentable sur téléphone. Étape quatre, l'interactivité : ajoute le JavaScript, une fonctionnalité à la fois : d'abord l'affichage des plats depuis le tableau de données avec la méthode map, puis le filtre par catégorie, puis la gestion du disponible ou épuisé. Étape cinq, la finition : textes relus, prix vérifiés, essais sur un vrai téléphone. Étape six, la livraison : versionner avec Git, préparer la présentation. Deux règles font vivre ce plan. Règle de la marche visible : ne passe à l'étape suivante que lorsque la précédente fonctionne, même grossièrement. Règle du retour arrière : garde chaque étape dans un commit Git, comme tu l'as appris : si tu casses tout, tu reviens en arrière sereinement. Écris ce plan à la suite de ton cahier des charges, avec une case à cocher par étape : cocher tes avancées devient ton carburant."
+        },
+        {
+          "section_type": "build",
+          "title": "Assemble toutes tes briques techniques",
+          "content": "Place à la construction : voici comment tes acquis s'emboîtent dans un même projet. La structure d'abord : ton fichier HTML contient l'ossature, avec ses sections : en-tête avec le nom du maquis, zone principale où s'afficheront les plats, pied de page avec le contact. Le style ensuite : ton fichier CSS habille l'ossature : disposition en colonne pour le téléphone, cartes pour chaque plat, couleur d'accent pour les boutons. L'interactivité enfin : ton fichier JavaScript prend le relais. C'est lui qui range les données : un tableau d'objets, chaque objet un plat avec son nom, sa catégorie, son prix, son statut. C'est lui qui affiche : une fonction qui parcourt le tableau avec la méthode map et remplit la zone principale de cartes générées. C'est lui qui réagit : quand l'utilisateur appuie sur un bouton de catégorie, la fonction de filtre n'affiche que les plats correspondants ; quand la gérante change un statut dans le tableau, l'écran reflète le changement au rechargement. Ce trio HTML, CSS, JavaScript suit une règle de pro : chaque langue son rôle. Le HTML porte le contenu, le CSS porte l'apparence, le JavaScript porte le comportement. Mélanger les trois partout donne du code spaghetti impossible à corriger. Astuce pour l'erreur la plus fréquente : si rien ne réagit quand tu appuies sur un bouton, vérifie trois choses dans l'ordre : le script est-il chargé, l'écouteur d'événement est-il bien attaché à l'élément, la fonction appelée contient-elle une faute dans son nom ? Et n'oublie pas le réflexe de Git : un commit par étape qui marche, avec un message clair. À ce stade, tu n'écris plus des lignes isolées : tu orchestres un système complet, et c'est exactement le métier."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : tester comme un professionnel",
+          "content": "Une application qui marche chez toi peut planter chez ta cousine : la mission du jour est de tester, systématiquement, comme un professionnel. Premier test, le parcours de l'utilisateur : prends le rôle de l'utilisateur réel et parcours l'application du début à la fin, en notant chaque friction : un texte peu clair, un bouton trop petit pour le pouce, un prix mal aligné. Note tout, sans corriger tout de suite : d'abord la liste complète, ensuite les corrections. Deuxième test, les cas limites : essaie de faire mal faire à l'application. Que se passe-t-il si aucune catégorie ne contient de plats ? Si le tableau de données est vide ? Si un nom de plat contient un accent ou une apostrophe ? Les cas limites révèlent les vraies faiblesses, toujours. Troisième test, le multi-appareil : essaie sur un grand écran, puis sur un téléphone, puis sur un autre téléphone. Le site tient-il la route partout ? Quatrième test, le test extérieur : confie l'application à deux personnes qui n'ont pas travaillé dessus, avec une consigne simple : trouve le prix d'un plat et dis-moi ce que tu en penses. Observe-les sans intervenir, et retiens leurs hésitations : chaque hésitation est un défaut à corriger. Cinquième test, la relecture : relis tes textes à voix haute : les fautes d'orthographe décrédibilisent une application plus vite qu'un bouton mal placé. Trie ensuite ta liste de problèmes en deux colonnes : bloquant, qui empêche l'utilisation, et gênant, qui gêne sans bloquer. Corrige d'abord tous les blocages, puis ce que tu peux des gênes. Chaque correction importante mérite un commit. Un dernier état d'esprit : un bug n'est pas une honte, c'est une information. Le professionnel n'est pas celui qui ne fait jamais d'erreurs : c'est celui qui les traque méthodiquement."
+        },
+        {
+          "section_type": "project",
+          "title": "Livrer et présenter : la dernière ligne droite",
+          "content": "Un projet fini cache reste un projet invisible : dernière étape du cycle, la livraison et la présentation. Trois livrables attendus. Livrable un : le code propre et versionné. Dernier commit avec un message clair ; relecture des noms de fichiers ; arborescence propre : les images dans leur dossier, les scripts ensemble. Un code rangé inspire confiance à quiconque le reprendra, y compris toi dans six mois. Livrable deux : la démonstration. Prépare une présentation de trois minutes, chronométrée, avec un plan simple : le problème, une phrase ; la solution, une démonstration en direct sur l'application, pas des captures d'écran si possible ; les choix techniques, deux phrases pour l'utilisateur curieux ; les limites et les suites possibles, une phrase honnête. Entraîne-toi à voix haute deux fois : la première sera laborieuse, la deuxième sera fluide, c'est normal. Livrable trois : le retour. Présente à ton utilisateur réel, puis à un public : ta famille, ta classe, ta communauté tech. Collecte trois retours concrets et note-les : que l'on a aimé, ce qui manque, ce qui surprend. Rien de plus formateur qu'un retour réel. Et voici la bonne nouvelle : les suites ne manquent pas. Ton projet peut grandir : ajouter un formulaire de commande, connecter une vraie base de données, publier le site en ligne sur un hébergement gratuit, utiliser les APIs découvertes dans une autre aventure. Chaque suite devient un prochain projet. Termine cette aventure par un geste symbolique : écris en bas de ton cahier de charges la date de livraison, et signe. Tu viens de boucler ton premier cycle complet de développement. Le monde coding t'a donné les briques ; désormais, tu construis. Que construiseras-tu ensuite ?"
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Pourquoi viser un petit projet plutôt qu'un projet ambitieux ?",
+          "options": [
+            "Parce que les petits projets sont plus jolis",
+            "Parce qu'un projet petit mais terminé vaut mieux qu'un projet ambitieux abandonné en route",
+            "Parce que les grands projets sont interdits",
+            "Pour dépenser moins de forfait internet"
+          ],
+          "correct_index": 1,
+          "explanation": "La règle d'or du premier projet : viser le livrable. Finir un projet complet enseigne le cycle réel, abandonner un géant n'enseigne que la frustration."
+        },
+        {
+          "question": "Que contient le cahier des charges d'un projet ?",
+          "options": [
+            "Le code source complet",
+            "Le problème, l'utilisateur, les fonctionnalités, les contenus et le critère de réussite",
+            "La liste de tous les langages de programmation",
+            "Uniquement le budget"
+          ],
+          "correct_index": 1,
+          "explanation": "Une page suffit : problème en une phrase, utilisateur ciblé, trois fonctionnalités maximum, sources des contenus, et un critère de réussite testable."
+        },
+        {
+          "question": "Dans le trio HTML, CSS, JavaScript, quel est le rôle du JavaScript ?",
+          "options": [
+            "Porter le contenu de la page",
+            "Porter l'apparence de la page",
+            "Porter le comportement : affichage dynamique des données, réactions aux clics",
+            "Remplacer les deux autres"
+          ],
+          "correct_index": 2,
+          "explanation": "Chaque langue son rôle : HTML pour le contenu, CSS pour l'apparence, JavaScript pour le comportement et les données dynamiques."
+        },
+        {
+          "question": "Pourquoi faire un commit Git à chaque étape qui marche ?",
+          "options": [
+            "Pour économiser la batterie",
+            "Pour garder un point de retour en arrière si une étape casse le projet",
+            "Parce que Git refuse les gros fichiers",
+            "Pour impressionner les recruteurs uniquement"
+          ],
+          "correct_index": 1,
+          "explanation": "Chaque commit est une photographie saine du projet : en cas de casse, on revient à l'étape précédente sereinement, sans perdre le travail accompli."
+        },
+        {
+          "question": "Que révèlent les tests de cas limites sur une application ?",
+          "options": [
+            "La couleur des boutons",
+            "Les vraies faiblesses : liste vide, texte manquant, catégorie sans plats",
+            "La vitesse du téléphone",
+            "Le prix de l'hébergement"
+          ],
+          "correct_index": 1,
+          "explanation": "Chercher à faire mal tourner l'application, avec des données vides ou inattendues, expose les faiblesses que le parcours idéal ne montre jamais."
+        }
+      ]
+    }
+  ]
+}
