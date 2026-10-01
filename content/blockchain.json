@@ -1,0 +1,1157 @@
+{
+  "world": "blockchain",
+  "adventures": [
+    {
+      "slug": "blockchain-simple",
+      "title": "La blockchain expliquée simplement",
+      "description": "Comprends enfin la blockchain : le grand cahier partagé, inviolable et sans chef, qui fait tourner le Bitcoin et bien plus.",
+      "story": "Quand tu envoies de l'argent par mobile money, c'est l'entreprise qui tient le cahier des comptes : elle vérifie, elle enregistre, elle peut se tromper ou être attaquée. La blockchain propose l'inverse : un cahier partagé entre des milliers d'ordinateurs, où personne ne commande seul et où rien ne s'efface. Comment est-ce possible ? C'est ce que tu vas comprendre, brique par brique, avec des exemples de ton quotidien.",
+      "xp_reward": 120,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Le grand cahier partagé",
+          "content": "Commençons par une image simple : la blockchain, c'est un immense cahier de comptes, copié en même temps chez des milliers de personnes partout dans le monde. Chaque fois que quelqu'un y inscrit quelque chose, par exemple Alice envoie dix unités à Kouassi, l'inscription est recopiée chez tout le monde. Résultat : personne ne peut effacer une ligne, car il faudrait effacer la même ligne chez tous les détenteurs du cahier en même temps, chose pratiquement impossible. Compare avec le monde habituel : ton carnet d'ordre à la banque n'existe qu'à la banque ; si la banque brûle ou se fait pirater, ton carnet est en danger. La blockchain supprime ce point unique de défaillance. Deuxième différence majeure : pas de chef. Personne ne peut décider seul d'annuler une transaction ou de modifier les règles : le système avance grâce à un accord collectif entre les participants, appelé consensus. Troisième caractéristique : l'historique est public. N'importe qui peut vérifier les inscriptions du cahier, sans forcément connaître l'identité des personnes : les comptes sont des codes, pas des noms. Ce trio, cahier distribué, consensus, historique vérifiable, explique pourquoi tant d'ingénieurs s'enthousiasment pour cette technologie. Attention tout de suite à une chose : une blockchain ne règle pas tous les problèmes, elle en résout certains, en crée d'autres, et son monde regorge d'arnaques. Cette aventure te donne les fondations techniques pour comprendre et garder ton esprit critique : le but est que personne ne puisse te raconter n'importe quoi sur ce mot magique."
+        },
+        {
+          "section_type": "play",
+          "title": "Le bloc et la chaîne : l'assemblage",
+          "content": "Le mot blockchain se décompose tout seul : des blocs, enchaînés. Un bloc, c'est une page du cahier : il regroupe une série d'inscriptions, les transactions, puis il se referme pour toujours. Comment une page se referme-t-elle ? Grâce à un procédé remarquable appelé l'empreinte numérique. Une empreinte, c'est un code unique calculé à partir du contenu du bloc : change une virgule dans une transaction, et l'empreinte devient complètement différente. C'est comme un sceau impossible à contrefaire. Et voici le génial : chaque nouveau bloc contient l'empreinte du bloc précédent. Les pages sont donc cousues entre elles : la page dix scelle la page neuf, qui scellait la page huit, et ainsi de suite jusqu'à la première page. Vérifions pourquoi c'est solide. Imagine un malhonnête qui veut modifier une transaction dans la page trois. En la changeant, l'empreinte de la page trois change. Mais la page quatre contenait l'ancienne empreinte : l'incohérence saute aux yeux de tout le réseau. Pour cacher sa fraude, le malhonnête devrait recalculer les empreintes de toutes les pages suivantes, plus vite que tout le réseau n'en crée de nouvelles : une course perdue d'avance quand des milliers de machines honnêtes participent. Voilà ce que signifie la fameuse expression blockchain inviolable : ce n'est pas de la magie, c'est de la couture mathématique. Fais le test mental du cahier d'école : si chaque page portait le résumé exact de la précédente, un camarade pourrait-il changer une vieille note sans que ça se voie ? Non, et c'est exactement le principe."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Le consensus : écrire sans chef",
+          "content": "Reste une question redoutable : si personne ne commande, qui a le droit d'écrire la page suivante ? La réponse tient en un mot : un concours, répété en permanence. Les volontaires, souvent appelés validateurs, mettent leurs ordinateurs au service du réseau et jouent à un jeu mathématique : chercher le résultat d'un calcul très coûteux, basé sur les transactions en attente. Le premier qui trouve annonce sa solution ; tous les autres vérifient, la vérification étant infiniment plus rapide que la recherche ; si la page est correcte, tout le monde l'ajoute à son cahier, et le jeu recommence pour la page suivante. Ce mécanisme de preuve de travail récompense le gagnant, ce qui motive la participation, mais surtout : il rend la triche économiquement absurde. Pour espérer tromper le réseau, il faudrait contrôler la majorité de la puissance de calcul mondiale impliquée, dépense colossale pour un gain douteux, puisque la triche détruirait la confiance et donc la valeur du système lui-même. Il existe d'autres familles de consensus : la preuve d'enjeu, où le droit d'écrire dépend de la quantité que l'on garantit et qu'on peut perdre si l'on triche, mécanisme moins gourmand en électricité. Retiens l'essentiel : l'astuce de la blockchain n'est pas d'empêcher les erreurs ou les malveillances, mais de rendre la fraude détectable et plus coûteuse que l'honnêteté. Note aussi les limites, car un esprit critique doit les connaître : ces concours consomment parfois beaucoup d'énergie, le nombre de transactions par seconde reste modeste sur les grandes chaînes, et le système ne dit rien de la véracité du monde réel : si on inscrit une information fausse dans le cahier, la blockchain la conserve aussi fidèlement qu'une information vraie."
+        },
+        {
+          "section_type": "build",
+          "title": "Ce que la blockchain rend possible",
+          "content": "Maintenant que tu comprends la mécanique, voyons ce qu'on en construit concrètement. Premier usage, historique : les monnaies numériques, dont le Bitcoin est le pionnier, permettent de transférer de la valeur entre deux personnes sans intermédiaire financier. Second usage : les contrats intelligents, que tu exploreras dans une aventure entière : des programmes qui s'exécutent automatiquement sur la blockchain, sans que personne puisse les arrêter ni les modifier. Troisième usage, très prometteur pour l'Afrique : la traçabilité. Suivre un cacao du producteur ivoirien jusqu'au chocolat européen, enregistrer chaque étape de façon inviolable, pour lutter contre les fraudes et mieux rémunérer les producteurs. Des projets réels testent ce principe sur le cacao, le café, les minerais. Quatrième usage : les diplômes et certificats inviolables. Des établissements inscrivent les diplômes sur blockchain : l'employeur vérifie l'authenticité en quelques secondes, plus besoin de courir après des attestations, et les faux diplômes deviennent détectables. Cinquième usage : l'identité numérique. Des systèmes permettent de prouver qui tu es ou que tu possèdes un titre foncier, sans dépendre d'un guichet unique. Sixième usage en plein essor : les mécanismes de financement collectif transparents, où chaque don est traçable. Garde pourtant ton esprit critique : pour chacun de ces usages, la blockchain n'est pas toujours la meilleure solution. Une base de données classique suffit souvent, et s'avère plus rapide et moins coûteuse. La question du professionnel : ai-je réellement besoin d'un cahier inviolable sans chef ? Si un acteur de confiance central suffit, la blockchain est un marteau pour écraser une mouche. Savoir le dire, c'est déjà être plus malin que bien des vendeurs de rêve."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : explique-la à ta famille",
+          "content": "La vraie maîtrise d'une notion, c'est de savoir l'expliquer simplement. Ta mission : expliquer la blockchain à trois personnes de ton entourage, d'âges différents, et mesurer ta réussite. Protocole. Choisis tes trois personnes : par exemple un parent, un camarade de classe, et une personne âgée de ta cour. Interdiction formelle d'utiliser les mots techniques sans les traduire : pas de consensus, d'empreinte ou de distributed, sans explication immédiate en bon français. Utilise plutôt des images : le cahier copié chez tout le monde ; la page scellée par un sceau mathématique ; le concours de calcul pour le droit d'écrire ; la couture des pages par les empreintes. Pour chaque personne, raconte l'histoire en deux minutes maximum, puis pose une seule question de vérification : selon toi, pourquoi est-il si difficile de tricher dans ce système ? Trois issues possibles. Si la personne répond juste, note sa formulation : elle est probablement meilleure que la tienne, garde-la. Si elle hésite, repère l'image qui a coincé et remplace-la. Si elle décroche avant la fin, ton récit était trop long ou trop abstrait : coupe. Second test de la mission : la question piège. Demande à chaque personne : la blockchain peut-elle empêcher quelqu'un d'écrire un mensonge dans le cahier ? La bonne réponse est non : la blockchain garantit que ce qui est écrit ne peut plus être changé, pas que c'était vrai au départ. Si tu sais expliquer cette nuance à voix haute, tu as tout compris. Compte rendu de mission : note pour chaque personne l'image qui a marché, la longueur idéale de ton récit, et les deux questions qu'on t'a posées. Ce carnet te servira toute la vie : vulgariser est la compétence la plus rentable du technicien."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : ta blockchain papier",
+          "content": "Projet final : construire une vraie blockchain, sur papier, avec tes mains, pour voir fonctionner chaque mécanisme de l'intérieur. Matériel : des feuilles, un crayon, et trois volontaires, des camarades ou des frères et sœurs. Étape un : les cahiers. Chaque volontaire tient une feuille identique, son cahier, avec la même page blanche numérotée un. Étape deux : les transactions. Chacun écrit sur un bout de papier trois ou quatre transferts fictifs du style Alice donne cinq unités à Yao, et vous les échangez pour que tout le monde en connaisse quelques-unes. Étape trois : le sceau. Pour chaque page, calculez une empreinte simplifiée : concaténez la première lettre de chaque transaction, le numéro de la page, et comptez les lettres du total : le nombre obtenu fait office d'empreinte, simple mais régulier. Étape quatre : la couture. Sur la page deux, chaque volontaire recopie d'abord l'empreinte de la page un, puis ses transactions, puis calcule la nouvelle empreinte de la page deux. Vos trois cahiers doivent rester identiques : comparez à chaque tour. Étape cinq : l'attaque. Un volontaire joue le fraudeur : il modifie secrètement une transaction de sa page un, puis recopie l'ancienne empreinte sur sa page deux. Les deux autres comparent les cahiers : l'incohérence éclate immédiatement, car l'empreinte calculée sur la vraie page un ne colle plus. Étape six : l'écriture. Débriefe chaque étape en reliant au vrai mécanisme : nos pages sont des blocs, nos empreintes sont des fonctions de hachage simplifiées, notre comparaison est le consensus, notre fraudeur démasqué illustre l'inviolabilité. Tu comprendras la blockchain mieux que la plupart des adultes qui en parlent à la télévision : toi, tu en as construit une."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Comment définir simplement une blockchain ?",
+          "options": [
+            "Un cahier de comptes partagé entre des milliers d'ordinateurs, sans chef unique",
+            "Un ordinateur très puissant caché en Suisse",
+            "Une application de messagerie sécurisée",
+            "Une banque en ligne moderne"
+          ],
+          "correct_index": 0,
+          "explanation": "La blockchain est un registre distribué : copié partout, mis à jour collectivement, et sans autorité centrale capable de modifier l'historique seule."
+        },
+        {
+          "question": "Pourquoi modifier une vieille transaction est-il quasi impossible ?",
+          "options": [
+            "Parce que les ordinateurs sont éteints la nuit",
+            "Parce que chaque bloc scelle le précédent via son empreinte : changer un bloc casse toute la chaîne",
+            "Parce que la police surveille le réseau",
+            "Parce que les transactions sont chiffrées à l'écriture"
+          ],
+          "correct_index": 1,
+          "explanation": "Chaque bloc contient l'empreinte du précédent : modifier un vieux bloc change son empreinte et rend visibles toutes les suites incohérentes."
+        },
+        {
+          "question": "Que garantit l'empreinte numérique d'un bloc ?",
+          "options": [
+            "Que le bloc est écrit en français",
+            "Qu'une modification même minime du contenu change complètement l'empreinte, rendant la fraude détectable",
+            "Que le bloc voyage vite sur internet",
+            "Que le bloc est le plus long du réseau"
+          ],
+          "correct_index": 1,
+          "explanation": "L'empreinte est un sceau mathématique : une virgule modifiée produit une empreinte totalement différente, ce qui expose immédiatement toute altération."
+        },
+        {
+          "question": "À quoi sert le mécanisme de consensus d'une blockchain ?",
+          "options": [
+            "À élire un président du réseau",
+            "À choisir collectivement et loyalement qui écrit le bloc suivant, sans chef",
+            "À traduire les messages des utilisateurs",
+            "À augmenter le prix des transactions"
+          ],
+          "correct_index": 1,
+          "explanation": "Le consensus organise le concours d'écriture : le gagnant propose le bloc, tous vérifient, tous l'adoptent. Personne ne commande seul."
+        },
+        {
+          "question": "La blockchain peut-elle empêcher d'inscrire une information fausse ?",
+          "options": [
+            "Oui, elle vérifie chaque information",
+            "Non : elle garantit que l'inscription ne change plus, pas qu'elle était vraie",
+            "Oui, si l'information vient d'un smartphone",
+            "Non, elle efface les erreurs automatiquement"
+          ],
+          "correct_index": 1,
+          "explanation": "Nuance clé : la blockchain est inviolable, pas infaillible sur le fond. Un mensonge y est conservé aussi fidèlement qu'une vérité."
+        }
+      ]
+    },
+    {
+      "slug": "crypto-basics",
+      "title": "Crypto-monnaies : les bases",
+      "description": "Comprends techniquement les crypto-monnaies : adresses, transactions, clés et volatilité, sans jamais tomber dans le piège des promesses de gain.",
+      "story": "On t'a sûrement déjà dit que les cryptos rendent riches, ou qu'elles sont une arnaque. Les deux affirmations sont fausses : une crypto-monnaie est une technologie, avec ses règles, ses forces et ses dangers réels. Ici, tu apprends comment ça marche vraiment : adresses, transactions, clés privées, volatilité. Et tu repartiras avec ce que peu de gens possèdent : un radar à arnaques et un réflexe de prudence.",
+      "xp_reward": 130,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Une crypto, c'est quoi exactement ?",
+          "content": "Une crypto-monnaie, c'est une unité de valeur entièrement numérique, enregistrée sur une blockchain, et qui appartient à celui qui détient une clé secrète. Décomposons. Premièrement, numérique : une crypto n'existe nulle part sous forme physique, pas de pièces, pas de billets, uniquement des inscriptions dans le grand cahier partagé découvert dans l'aventure précédente. Deuxièmement, inscriptions : dire que tu possèdes des unités d'une crypto signifie que le cahier public contient des transactions qui pointent vers ton adresse. Ta richesse, c'est une suite d'écritures inviolables. Troisièmement, la clé : ton pouvoir de dépenser est protégé par une clé privée, un code secret que toi seul dois connaître. La garder secrète est ta seule et unique responsabilité : il n'y a pas de service client à appeler si tu la perds ou si on te la vole. Le Bitcoin, créé en 2009 par un mystérieux Satoshi Nakamoto, est la première crypto : son cahier tourne depuis sans interruption, et il a inspiré des milliers d'autres projets. Parmi eux, des monnaies de paiement, des plateformes de contrats intelligents comme Ethereum, et des jetons stables, adossés à des devises classiques pour limiter les variations. Point capital de positionnement : cette aventure est un cours de technologie, pas de finance. Aucune ligne ici ne te dira quoi acheter, quand, ni combien : ce serait dangereux, et hors sujet. Ce que tu vas acquérir, c'est bien plus précieux : la compréhension des mécanismes et du vocabulaire, pour comprendre les débats, repérer les arnaques, et décider plus tard, en connaissance de cause et selon les règles de ton pays, si ce monde t'intéresse."
+        },
+        {
+          "section_type": "play",
+          "title": "Adresses, transactions et confirmations",
+          "content": "Voyons la mécanique d'un transfert de crypto, étape par étape, sans jargon non expliqué. Chaque utilisateur possède une adresse : une longue suite de lettres et de chiffres, comme un numéro de compte, mais générée par ses propres outils et visible par tous. Envoyer des unités à quelqu'un, c'est signer une transaction : un message indiquant l'adresse de départ, l'adresse d'arrivée, la quantité, et une signature numérique produite avec ta clé privée. La signature prouve que c'est bien le détenteur de la clé qui autorise la dépense, sans révéler la clé elle-même : c'est le même genre de ruse mathématique que l'empreinte du bloc, une preuve sans divulgation. La transaction part ensuite dans le réseau : les ordinateurs du monde entier la vérifient, à la recherche de deux choses uniquement : la signature est-elle valide, et l'expéditeur possède-t-il réellement ces unités d'après le cahier ? Si tout est correct, la transaction attend d'être rangée dans un bloc. Au moment de l'inclusion, elle est dite confirmée : inscrite une première fois, puis de plus en plus profondément enfouie à mesure que de nouveaux blocs s'empilent au-dessus. Une règle d'usage répandue : attendre plusieurs confirmations avant de considérer un paiement reçu comme définitif. Deux précisions utiles. Les frais : chaque transaction paie une petite rémunération aux validateurs ; plus le réseau est chargé, plus les frais montent : la transaction reste alors en attente plus longtemps. La quantité de chiffres : le Bitcoin se divise en cent millions de parties nommées satoshis, ce qui permet d'envoyer des montants minuscules. Exercice mental : énumère les différences avec un transfert mobile money, notamment le rôle du numéro de téléphone et le service client, qui existent d'un côté et pas de l'autre."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Pourquoi la valeur bouge autant",
+          "content": "Comprendre la volatilité, c'est comprendre ce qui rend ce monde passionnant à étudier et hasardeux à traverser. Le prix d'une crypto sur un marché d'échange résulte de l'offre et de la demande : ce que les vendeurs demandent, ce que les acheteurs acceptent de payer. Ce qui rend ces prix particulièrement mouvants ? La taille des marchés : bien plus petits que ceux des grandes devises, donc chaque gros ordre déplace le prix. L'absence de valeur d'ancrage évidente : une action représente une part d'une entreprise avec ses usines et ses ventes ; une devise reflète une économie entière ; pour une crypto, l'estimation dépend des croyances des participants, qui peuvent basculer vite. Les émotions : la peur et l'avidité amplifiées par les réseaux sociaux, où une rumeur peut déplacer des fortunes en une nuit. L'histoire récente de ce marché est une succession de hausses spectaculaires suivies de chutes brutales : des actifs ont perdu la moitié, les trois quarts, parfois davantage de leur valeur en quelques mois. Ce n'est pas un accident rare : c'est une caractéristique structurelle, que tout acheteur adulte sérieux connaît et respecte. D'où la position de cette leçon, claire et sans détour : à ton âge, tu n'as rien à acheter. Ta mission, c'est de comprendre, pas de spéculer. Et si un adulte te propose d'investir ton argent ou le sien via toi, c'est un signal d'alarme majeur : refuse et parles-en à un adulte de confiance. La seule richesse que cette aventure t'encourage à accumuler : du savoir et des compétences. Elle ne perd jamais sa valeur, elle ne peut pas t'être volée par un bug de marché, et elle ne dépend d'aucune mode."
+        },
+        {
+          "section_type": "build",
+          "title": "Le paysage : Bitcoin, Ethereum, stablecoins",
+          "content": "Cartographions les grandes familles, pour lire les actualités sans être perdu. Le Bitcoin, la pionnière : conçue comme réserve de valeur numérique et réseau de paiement sans intermédiaire, volontairement simple et conservatrice dans ses évolutions. Sa fonction première dans beaucoup de pays africains : transférer de la valeur entre personnes, y compris vers l'international, parfois plus vite et moins cher que les circuits classiques, selon les corridors. Ethereum, la deuxième plateforme la plus connue : au-delà de sa monnaie, baptisée éther, c'est un ordinateur mondial programmable, sur lequel tournent les contrats intelligents que tu découvriras dans une autre aventure : prêts, marchés, jeux, certificats. Les stablecoins, des jetons conçus pour valoir en permanence une devise classique, souvent le dollar : leur intérêt technique est de circuler sur blockchain en gardant un prix stable ; ils servent beaucoup aux transferts internationaux, et leur solidité dépend entièrement de la qualité des réserves de l'émetteur, ce qui a déjà fait l'objet de véritables effondrements dans le passé. Les milliers d'altcoins, projets de toutes tailles et qualités : quelques-uns innovent sincèrement, beaucoup imitent, et un nombre effarant ne servent qu'à enrichir leurs créateurs. Les chaînes africaines et émergentes : des projets étudient des usages de paiement local, de traçabilité agricole et de titres fonciers. Comment lire ce paysage sans te faire manipuler ? Trois questions réflexes. Quel problème concret ce projet résout-il, et pour qui ? Qui sont les équipes, quel est l'historique du projet ? Où est le code, la documentation, la communauté technique ? Un projet sérieux répond frontalement ; un projet de fumée répond avec des promesses de gains, des montants de rendements garantis et des compte à rebours urgents : fuis ces trois signaux, ils ne trompent presque jamais."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : démonte les idées reçues",
+          "content": "Mission d'esprit critique : face aux affirmations ci-dessous, teste-les dans ton entourage, puis démonte-les avec les connaissances techniques que tu possèdes maintenant. Affirmation une : tout le monde s'enrichit avec les cryptos. Démontage : les prix montent et descendent ; beaucoup d'acheteurs précipités ont perdu des sommes importantes ; les gagnants des hausses médiatisées sont invisiblement payés par les perdants des chutes ; si la richesse était garantie, personne n'aurait besoin de te la vendre avec tant d'insistance. Affirmation deux : c'est de l'argent pour criminels. Démontage : le cahier public rend les mouvements traçables par tout le monde, parfois davantage que les circuits classiques ; la technologie est neutre, comme le mobile money, et la question est celle des usages, encadrés par des lois qui existent et s'appliquent. Affirmation trois : la crypto remplace les banques demain matin. Démontage : le nombre de transactions par seconde, les frais en période de pointe, et la responsabilité de la clé privée rendent le remplacement complet improbable à court terme ; la cohabitation et les ponts entre les deux mondes sont plus réalistes. Affirmation quatre : si une technologie est solide, tous les projets qui l'utilisent sont honnêtes. Démontage : c'est confondre la technologie et ses vendeurs ; une chaîne inviolable ne rend pas inviolables les hommes d'affaires. Protocole : récolte ces affirmations auprès de trois personnes, écoute leur argumentaire sans les interrompre, note leurs mots exacts ; puis présente, pour chacune, ton démontage technique en trois phrases maximum. Ton livrable : un petit carnet de quatre idées reçues et de quatre démontages, que tu pourras ressortir en famille, à table, avec des arguments d'expert. La clairvoyance technique, voilà la vraie monnaie de ce monde."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : ton guide de prudence familiale",
+          "content": "Projet final de l'aventure : rédiger, mettre en page et diffuser un guide de prudence sur les crypto-monnaies, destiné aux adultes de ton entourage, sous forme d'une page claire, prête à être partagée sur WhatsApp. Étape un : le titre et le ton : ce guide n'est ni pour ni contre les cryptos : il est pour la prudence, et il le dit d'emblée. Étape deux : le cœur technique, trois encadrés courts. Un : ce qu'est une crypto, trois phrases avec le cahier partagé et la clé privée. Deux : les deux erreurs irréversibles : révéler sa clé privée, parfois appelée phrase secrète, à quiconque, même à un prétendu service client ; et envoyer ses unités vers une adresse erronée, sans retour possible. Trois : les cinq signaux d'arnaque : rendement garanti, urgence et compte à rebours, recrutement d'amis rémunéré, demandes de paiement en crypto par un inconnu au téléphone, et faux support technique qui appelle le premier. Étape trois : la règle d'or, mise en exergue : personne de sérieux ne demande jamais ta clé privée, jamais, sous aucun prétexte ; si quelqu'un la demande, c'est un voleur, sans exception. Étape quatre : les réflexes en cas de doute : couper la conversation, ne jamais payer pour recevoir, parler de l'offre à un proche avant toute décision, vérifier auprès de sources officielles. Étape cinq : la mise en forme : une page, police lisible, sections titrées, zéro jargon non traduit, et un dernier rappel : en cas de doute, ne rien faire est une décision. Étape six : la diffusion contrôlée : fais relire ton guide par un adulte de confiance, puis partage-le à deux personnes seulement, et demande-leur de le transmettre à leur tour. Ton succès se mesurera à une seule chose : le jour où quelqu'un de ton entourage échappera à une arnaque grâce à une phrase de ton guide, tu auras gagné bien plus que tous les rendements garantis du monde : tu auras protégé les tiens."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Que signifie concrètement posséder des unités d'une crypto ?",
+          "options": [
+            "Garder des pièces dans un coffre",
+            "Détenir la clé privée qui permet de dépenser des inscriptions enregistrées sur la blockchain",
+            "Recevoir un document papier signé",
+            "Avoir un compte dans la banque du Bitcoin"
+          ],
+          "correct_index": 1,
+          "explanation": "La possession, c'est la clé privée : elle seule autorise les dépenses. Perdre la clé revient à perdre l'accès ; la révéler, à tout risquer."
+        },
+        {
+          "question": "Que prouve la signature numérique d'une transaction ?",
+          "options": [
+            "Que l'expéditeur est riche",
+            "Que le détenteur de la clé privée autorise cette dépense, sans révéler la clé",
+            "Que la transaction voyagera vite",
+            "Que le destinataire est honnête"
+          ],
+          "correct_index": 1,
+          "explanation": "La signature apporte la preuve mathématique de l'autorisation, sans jamais exposer le secret : le réseau vérifie, puis range la transaction dans un bloc."
+        },
+        {
+          "question": "Pourquoi les prix des cryptos sont-ils très volatils ?",
+          "options": [
+            "Parce que les ordinateurs changent de vitesse",
+            "Marchés de petite taille, absence d'ancrage de valeur évident et émotions amplifiées par les réseaux",
+            "Parce que les banques fixes les prix chaque matin",
+            "Parce qu'il n'y a qu'un seul acheteur au monde"
+          ],
+          "correct_index": 1,
+          "explanation": "Offre et demande sur des marchés étroits, avec des croyances instables et des vagues de peur ou d'avidité : les chutes de moitié et plus ont déjà marqué l'histoire du secteur."
+        },
+        {
+          "question": "Quel est le rôle technique d'un stablecoin ?",
+          "options": [
+            "Doubler l'argent automatiquement",
+            "Circuler sur blockchain en visant un prix stable, souvent adossé à une devise classique",
+            "Remplacer le mobile money",
+            "Miner des bitcoins plus vite"
+          ],
+          "correct_index": 1,
+          "explanation": "Un stablecoin vise la stabilité en s'appuyant sur des réserves : sa solidité dépend de ces réserves, et certaines ont déjà failli."
+        },
+        {
+          "question": "Lequel de ces signaux annonce presque sûrement une arnaque ?",
+          "options": [
+            "Un projet publie sa documentation technique",
+            "Un rendement garanti, une urgence et un compte à rebours",
+            "Une communauté pose des questions techniques",
+            "Un code visible et vérifiable"
+          ],
+          "correct_index": 1,
+          "explanation": "Rendement garanti, urgence pressante et promesses agressives : ce trio ne trompe presque jamais. Personne ne garantit de gains réels, et surtout pas en urgence."
+        }
+      ]
+    },
+    {
+      "slug": "nft-explained",
+      "title": "Les NFTs expliqués",
+      "description": "Comprends les NFT : le certificat de propriété numérique, ce qu'il prouve réellement, ses usages sérieux et ses dérives, sans se laisser vendre du rêve.",
+      "story": "Une image de singe vendue des millions, un tweet vendu comme un tableau, des collections qui s'effondrent : les NFT ont fait beaucoup parler, en bien et en mal. Derrière la fièvre médiatique se cache un objet technique fascinant : le premier système qui permet de prouver la propriété d'un fichier numérique. Dans cette aventure, tu décortiques les NFT sans filtre : ce qu'ils sont vraiment, ce qu'ils ne sont pas, et comment les voir lucidement.",
+      "xp_reward": 120,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "NFT : le certificat numérique",
+          "content": "NFT signifie jeton non fongible, et le mot clé est fongible. Un bien fongible est interchangeable : chaque pièce de cinq cents francs vaut exactement chaque autre pièce de cinq cents francs ; chaque sac de riz d'une même qualité vaut chaque autre sac. Un bien non fongible est unique : ta carte d'identité, ta place de concert numéro vingt-trois, l'original d'un tableau : les copies ne valent pas l'original. Un NFT applique cette unicité au monde numérique grâce à la blockchain : c'est un jeton, une inscription dans le grand cahier partagé, qui désigne précisément un objet, souvent une image, et désigne son détenteur. En clair : un NFT est un certificat de propriété enregistré de façon inviolable, avec votre nom cryptographique dessus, et l'horodatage exact de la prise de possession. Le parallèle utile : un acte de propriété foncière, mais pour un bien numérique. Nuance immédiate, et elle change tout : le certificat n'est pas l'objet. Posséder le NFT d'une image ne t'interdit pas, à autrui, de copier l'image : n'importe qui peut enregistrer l'image du fameux singe sur son téléphone. Ce que possède le détenteur du NFT, c'est l'inscription certifiée dans le cahier, l'original authentifié, comme posséder l'original d'un tableau n'empêche pas les posters d'exister. Toute la valeur d'un NFT réside donc dans ce que la communauté accorde à ce certificat : pour un art original, c'est la reconnaissance de l'authenticité ; pour un usage de billetterie, c'est l'accès à un événement ; pour un simple effet de mode, cela peut s'effondrer. Dans cette aventure, tu apprends à distinguer les usages sérieux des bulles spéculatives, avec les outils techniques pour défendre ton analyse."
+        },
+        {
+          "section_type": "play",
+          "title": "Comment un NFT se crée et s'échange",
+          "content": "Voyons la chaîne de vie d'un NFT, étape par étape, avec les vrais mécanismes. Étape un : le créateur prépare son bien numérique : une image, une musique, une vidéo, parfois un simple texte. Étape deux : la griffe, souvent appelée mint par l'anglais frappé : le créateur inscrit sur la blockchain une nouvelle fiche, qui contient trois éléments : un identifiant unique, le nom et la description de l'œuvre, et surtout un lien vers le fichier. Point technique capital : la blockchain, volontairement légère, ne stocke pas l'image entière ; elle stocke l'adresse de l'image, souvent sur un système de stockage distribué conçu pour résister aux pannes. La robustesse du NFT dépend donc aussi de la robustesse de ce stockage externe : un créateur négligent peut laisser son lien mourir. Étape trois : la propriété. La fiche indique l'adresse blockchain du détenteur actuel, et l'historique complet des détenteurs successifs, consultable par tous : on dit que la provenance est publique, comme le pedigree d'une œuvre d'art. Étape quatre : la revente. Le détenteur signe une transaction qui transfère la fiche vers l'adresse de l'acheteur ; le cahier se met à jour ; le nouvel historique s'allonge d'un maillon. Les reventes peuvent inclure des redevances : le créateur peut programmer qu'il reçoive automatiquement un petit pourcentage à chaque revente, un avantage réel pour les artistes, difficile à obtenir dans les circuits classiques. Étape cinq : la vérification. N'importe qui peut contrôler, en quelques clics sur un site public d'exploration de la blockchain, qui détient la fiche numéro tant, depuis quand, et pour quel prix elle a changé de main. Fais le test mental du billet de concert : liste ce qu'un NFT de billetterie automatiserait mieux qu'un billet papier : l'authenticité vérifiable, la revente traçable, la redevance automatique vers l'organisateur."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Usages sérieux et dérives",
+          "content": "Séparons le bon grain de l'ivraie, avec des critères objectifs. Usages sérieux, où le certificat numérique résout un vrai problème. L'art numérique : les créateurs peuvent vendre des originaux authentifiés, avec des redevances automatiques à chaque revente, un vrai gain pour les artistes d'Afrique francophone, qui vendent à des collectionneurs du monde entier sans galerie intermédiaire. La billetterie et les accès : un billet infalsifiable, revendable de façon traçable, qui rend les faux billets détectables. Les certificats scolaires et professionnels : des diplômes inviolables, vérifiables par un employeur en quelques secondes, un usage testé par de vrais établissements dans le monde. La traçabilité de luxe et artisanale : prouver l'authenticité d'un pagne précieux, d'une sculpture, d'un lot de cacao, contre les contrefaçons. Le jeu vidéo : posséder réellement ses objets numériques, pouvoir les revendre, au lieu qu'ils soient bloqués dans le jeu. Dérives à repérer, elles, sans détour. La frappe à la chaîne de collections sans intérêt, avec des prix gonflés par la rareté artificielle et le battage. Le blanchiment de valeur par va-et-vient d'actifs surévalués entre complices. Les promesses de gains rapides : le collectionnisme de spéculation pure, où l'on n'achète plus une œuvre mais un billet de loterie. Les vols de comptes et les faux sites de place de marché qui aspirent les clés privées des utilisateurs pressés. Le critère du professionnel pour juger un projet de NFT : que certifie-t-il, et cette certification a-t-elle une valeur hors de la spéculation ? Si la réponse est solide, par exemple un diplôme vérifiable, l'usage tient. Si la réponse est l'espoir de revendre plus cher, tu regardes une bulle, et les bulles éclatent toujours."
+        },
+        {
+          "section_type": "build",
+          "title": "La place de marché : lire une fiche NFT",
+          "content": "Apprenons à lire une fiche de NFT comme un professionnel, sans acheter quoi que ce soit : l'observation seule est une école complète. Rendons-nous sur une place de marché publique, depuis un simple navigateur. Premier réflexe : identifier la collection. Une collection sérieuse indique son créateur, ses réseaux officiels, sa politique de redevances, et le nombre total de jetons, appelé offre maximale. Compare ce nombre aux détenteurs : une collection de dix mille jetons détenus par trois cents personnes est très concentrée : quelques comptes peuvent faire bouger tous les prix, signal de manipulation possible. Deuxième réflexe : vérifier la provenance sur la blockchain elle-même. Chaque collection possède une adresse de contrat, visible sur la fiche : c'est l'adresse de la fabrique des jetons. En copiant cette adresse dans un explorateur public de blockchain, tu vois l'historique brut : dates de création, transferts, prix réels des échanges. C'est ici que le marketing s'arrête : les chiffres réels remplacent les promesses. Troisième réflexe : l'historique des prix. Les places de marché affichent le prix le plus bas de la collection, appelé le plancher, et les derniers échanges. Regarde la tendance sur plusieurs mois, pas sur trois jours : les collections qui ne vivent que d'un sursaut promotionnel montrent ensuite un désert d'échanges. Quatrième réflexe : les droits réels attachés. La fiche précise-t-elle si le détenteur peut utiliser l'image commercialement, ou seulement la détenir ? Deux NFT de la même image peuvent porter des droits très différents. Cinquième réflexe, le plus important : te poser la question de l'usage. Si demain personne ne voulait plus revendre ces jetons, que resterait-il de valeur ? Si la réponse est rien, tu regardes de la spéculation pure : observe, apprends, et garde tes économies loin."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : l'enquête de provenance",
+          "content": "Mission d'enquêteur : mener une vraie recherche de provenance sur une collection de NFT au choix, et rédiger une fiche d'analyse d'une page, sans rien acheter. Protocole en six étapes. Étape un : choisis une collection publique, repérée dans les médias ou proposée par ta communauté. Étape deux : relève l'adresse du contrat de la collection sur sa fiche de vente, et vérifie-la dans un explorateur public de blockchain. Étape trois : documente trois faits bruts, horodatés : date de création du contrat, nombre de jetons émis, nombre de détenteurs distincts. Étape quatre : analyse la concentration : si une poignée d'adresses détient la majorité des jetons, note-le comme risque de manipulation des prix. Étape cinq : analyse la liquidité : combien d'échanges véritables par mois, et à quels prix ? Distingue les échanges réels des va-et-vient suspects entre adresses liées, reconnaissables à leurs montants ronds et leurs allers-retours symétriques. Étape six : rédige ta fiche d'analyse : quatre sections : ce que certifie la collection ; usages réels ou spéculatifs ; risques identifiés, concentration, liquidité, stockage des fichiers ; et ton verdict argumenté, en trois phrases. La règle de la mission : chaque affirmation de ta fiche doit citer son fait brut vérifiable sur la blockchain, jamais une impression de forum. Ce dossier t'apprend la méthode que les analystes sérieux appliquent à tous les actifs : partir des faits enregistrés, remonter aux sources, se méfier des narratifs. La prochaine fois qu'un cousin t'annoncera une collection en or, tu ne répondras pas au feeling : tu sortiras ta méthode d'enquête, et il saura que tu n'es pas le bon pigeon."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : ta collection papier certifiée",
+          "content": "Projet final : créer de tes mains une mini collection de NFT, sans blockchain et sans argent, pour maîtriser chaque mécanisme par la pratique. Matériel : des feuilles, un stylo, deux ou trois volontaires de ta cour ou de ta classe. Étape un : la création. Dessine six cartes de collection sur le thème que tu veux : les plats du maquis, les célébrités ivoiriennes, les masques de la région, les transports d'Abidjan. Numérote chaque carte : c'est son identifiant unique. Étape deux : la fiche de certification. Pour chaque carte, rédige une fiche : identifiant, titre, description, nom du créateur, date de frappe. C'est le contenu de ton NFT. Étape trois : le cahier public. Prends un cahier : c'est ta blockchain de classe. Chaque frappe y est inscrite : le certificat numéro tel, désignant la carte numéro tel, détenu par tel participant, à telle date. Étape quatre : les échanges. Les détenteurs peuvent céder leurs cartes : chaque cession s'inscrit dans le cahier avec l'ancien et le nouveau détenteur, et le prix fictif en bonpoints. Étape cinq : la redevance du créateur. Toute revente reverse automatiquement deux bonpoints au créateur de la carte : inscrits-le dans le cahier. Observe l'effet : le créateur gagne même quand ses cartes circulent : c'est l'avantage des redevances programmées. Étape six : les épreuves de force. Test un : la contrefaçon. Un volontaire fabrique une copie d'une carte et prétend détenir l'original : le cahier tranche immédiatement, un seul certificat existe. Test deux : l'attaque. Le volontaire modifie une ligne du cahier pour s'attribuer une carte : les autres détenteurs comparent leurs souvenirs des inscriptions et démasquent la triche : c'est le consensus. Débriefe chaque test en reliant au monde réel. À la fin, ton expérience de la certification numérique dépassera celle de beaucoup d'adultes : toi, tu as fait tourner un système complet sur une table de cour."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Que signifie le fongible dans NFT, jeton non fongible ?",
+          "options": [
+            "Que le jeton est comestible",
+            "Que le bien est interchangeable : non fongible signifie unique, non remplaçable par un autre",
+            "Que le jeton est payant",
+            "Que le jeton expire chaque année"
+          ],
+          "correct_index": 1,
+          "explanation": "Fongible signifie interchangeable, comme des pièces identiques. Non fongible signifie unique : chaque NFT désigne un bien précis, avec son certificat propre."
+        },
+        {
+          "question": "Que stocke réellement une blockchain pour un NFT d'image ?",
+          "options": [
+            "L'image entière, en haute qualité",
+            "L'identifiant, les informations et le lien vers le fichier, souvent stocké ailleurs",
+            "Uniquement le nom du créateur",
+            "La carte bancaire de l'acheteur"
+          ],
+          "correct_index": 1,
+          "explanation": "La blockchain reste légère : elle certifie et pointe. Le fichier vit sur un stockage externe, dont la solidité conditionne la durabilité du NFT."
+        },
+        {
+          "question": "Posséder le NFT d'une image empêche-t-il les autres de la copier ?",
+          "options": [
+            "Oui, l'image devient techniquement incopiable",
+            "Non : n'importe qui peut copier le fichier ; le NFT certifie la détention de l'original enregistré",
+            "Oui, si l'image est petite",
+            "Non, sauf si le créateur l'interdit par e-mail"
+          ],
+          "correct_index": 1,
+          "explanation": "Nuance clé : le certificat n'est pas l'objet. Le détenteur possède l'inscription authentique, pas un contrôle technique sur toutes les copies du fichier."
+        },
+        {
+          "question": "Quel est l'avantage réel des redevances programmées pour un artiste ?",
+          "options": [
+            "Elles versent au créateur un pourcentage à chaque revente, automatiquement et pour toujours",
+            "Elles augmentent le prix des pinceaux",
+            "Elles offrent une galerie gratuite",
+            "Elles bloquent les copies de l'œuvre"
+          ],
+          "correct_index": 0,
+          "explanation": "L'inscription peut programmer un reversement automatique au créateur à chaque revente : un mécanisme que les circuits d'art classiques peinent à garantir."
+        },
+        {
+          "question": "Quel signal révèle un risque de manipulation des prix sur une collection ?",
+          "options": [
+            "Le contrat est documenté",
+            "Une poignée d'adresses détient la majorité des jetons de la collection",
+            "La collection compte peu de détenteurs inconnus",
+            "Les fichiers sont bien stockés"
+          ],
+          "correct_index": 1,
+          "explanation": "Une forte concentration des détenteurs permet à quelques comptes de monter des prix entre eux : la vérification sur la blockchain révèle ce risque."
+        }
+      ]
+    },
+    {
+      "slug": "defi-intro",
+      "title": "DeFi : finance décentralisée",
+      "description": "Explore la finance décentralisée : prêts, échanges et garanties automatisés par des contrats, avec leurs promesses réelles et leurs risques sérieux.",
+      "story": "Emprunter sans banque, échanger sans guichet, épargner sans intermédiaire : la DeFi automatise la finance en remplaçant les institutions par des programmes. Fascinant sur le plan technique, hasardeux sur le plan pratique : dans cette aventure, tu ouvres le capot des services financiers décentralisés, pour comprendre leurs mécanismes réels, leurs forces et surtout leurs risques, avec une règle : ici on apprend, on ne risque rien.",
+      "xp_reward": 140,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "La finance sans guichet",
+          "content": "DeFi signifie finance décentralisée : des services financiers reconstruits sur blockchain, où les programmes remplacent les institutions. Prenons une image : dans la finance classique, quand tu empruntes, il y a un employé, un dossier, un guichet, une institution qui décide. En DeFi, il y a un programme, appelé protocole, qui applique les mêmes règles à tout le monde, sans jugement, sans horaires, sans guichet. Les services de base : échanger un actif numérique contre un autre, comme au marché, mais par programme interposé ; prêter et emprunter, avec des garanties automatisées ; placer des actifs dans des mécanismes qui génèrent un rendement, un peu comme un compte d'épargne, mais géré par du code. Trois différences fondamentales avec la finance classique. Un : pas d'intermédiaire : tu interagis directement avec le programme, personne ne peut refuser ton dossier. Deux : tout est public : les règles du programme sont écrites dans le code, visible et vérifiable ; les volumes gérés aussi. Trois : la responsabilité bascule entièrement vers toi : pas de service client, pas de réclamation possible, pas de garantie d'État : si le programme a un défaut ou si tu fais une erreur d'adresse, personne ne te rembourse. La DeFi a déjà connu des épisodes retentissants de piratage de programmes, d'effondrement de mécanismes fragiles et de pertes totales pour des utilisateurs. C'est précisément pourquoi cette aventure est pensée comme un cours de compréhension, en aucun cas comme une invitation : à ton âge, tu ne risques rien, tu apprends tout, pour savoir un jour lire ce monde, en professionnel lucide et prudent."
+        },
+        {
+          "section_type": "play",
+          "title": "L'échange automatisé : le marché sans vendeur",
+          "content": "Le service le plus emblématique de la DeFi : échanger un actif contre un autre, sans trouver d'acheteur ni de vendeur. Comment ? Grâce à une invention remarquable, le marché automatisé. Principe : au lieu d'apparier acheteurs et vendeurs, un programme détient une réserve de deux actifs, disons l'actif A et l'actif B, fournie par des apporteurs de liquidité, des personnes qui déposent leurs deux actifs dans la réserve commune, contre une participation aux frais générés. Quand tu veux échanger, le programme te rend des unités de B, calculées selon une formule simple basée sur les quantités disponibles : plus la réserve de B est abondante, plus ton échange a d'impact faible ; plus elle est vide, plus le prix devient punitif : c'est l'économie de la rareté qui te joue ce tour. Cette mécanique accomplit des prouesses : un marché ouvert jour et nuit, sans intermédiaire, disponible depuis un téléphone, avec des frais partagés entre les apporteurs de liquidité, incités à alimenter le marché. Elle a aussi des limites bien réelles : les frais montent pour les gros échanges ; la formule peut être désavantagée lors de mouvements brutaux de prix, au profit de joueurs plus rapides ; et surtout, le programme lui-même peut contenir un défaut exploité par des pirates : l'histoire de la DeFi compte des dizaines de réserves vidées en une nuit. Retiens la logique de l'apporteur de liquidité : il gagne des fractions de frais, mais il porte le risque de la réserve ; aucun rendement dans ce monde ne tombe du ciel, chacun rémunère un risque ou un service. Cette phrase, garde-la comme boussole permanente pour tous tes cours de finance, décentralisée ou pas."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Prêts et garanties : le collatéral",
+          "content": "Deuxième service emblématique : emprunter, sans banque. La mécanique s'appelle le prêt sur garantie, et elle est rudimentaire de franchise. Pour emprunter, tu déposes d'abord un dépôt de garantie, appelé collatéral : des actifs numériques d'une valeur supérieure à ce que tu empruntes. Le programme prête alors une autre somme, et tu récupères ta garantie quand tu rembourses, avec les intérêts. Tant que le prêt court, le programme surveille sans relâche le rapport entre ta garantie et ta dette. Si la valeur de ta garantie tombe trop bas, parce que les prix ont bougé, le programme vend automatiquement une partie de ta garantie pour se rembourser : c'est la liquidation, exécutée sans avertissement, sans discussion, par du code. Pourquoi cette exigence de sur-garantie ? Parce que le programme ne connaît ni ton visage, ni ton bulletin de salaire, ni ta parole : la garantie est sa seule assurance. Point culturel à connaître : ce mécanisme s'inspire du microcrédit inversé et des tontines, où la confiance s'appuie sur des engagements tangibles plutôt que sur des dossiers ; il ouvre théoriquement l'accès au crédit à des personnes sans compte bancaire classique, une promesse séduisante pour le continent. Mais regarde la face sombre : si les prix chutent vite, ta garantie fond, la liquidation s'exécute au pire moment, et tu perds de quoi rembourser : c'est arrivé à des milliers d'utilisateurs lors des chutes de marché. Et le risque du programme s'ajoute au risque des prix : un défaut dans le code de liquidation, et c'est la garantie entière qui disparaît. Leçon d'ingénierie financière à retenir : tout rendement de prêt rémunère un risque réel ; toute absence de dossier est compensée par une exigence de garantie ; et toute automatisation applique aussi, sans pitié, ce qui a été mal réglé."
+        },
+        {
+          "section_type": "build",
+          "title": "Les risques : ta liste de contrôle de sécurité",
+          "content": "Puisqu'on ne comprend vraiment un système qu'en connaissant ses points de rupture, voici la cartographie des risques de la DeFi, classée par origine. Risque de programme : le code public peut contenir des failles ; des équipes de spécialistes, appelées auditeurs, relisent les programmes avant leur lancement, mais des failles passent entre les mailles : des protocoles réputés ont été vidés malgré des audits. Ce qui réduit ce risque : plusieurs audits par des cabinets indépendants, du temps de fonctionnement sans incident, un code simple et lisible, une couverture partielle en cas de piratage. Risque d'actif sous-jacent : si la mécanique repose sur un jeton dont le prix s'effondre ou dont l'émetteur s'avère malhonnête, toute la tour s'écroule : la DeFi empile parfois plusieurs briques douteuses les unes sur les autres : ce sont les imbrications de protocoles. Risque de liquidité : dans les moments de panique, les frais d'échange explosent, les mécanismes se grippent, et sortir de sa position coûte très cher. Risque humain, le plus fréquent de tous : erreur d'adresse, signature d'une transaction piège, clé privée exposée, appât du rendement irréaliste : la grande majorité des pertes individuelles vient de là, pas des pirates. Face à cette carte, la liste de contrôle de sécurité, à connaître par cœur pour toi et les tiens : vérifier toujours l'adresse exacte du site, lettre par lettre, car les clones trompeurs pullulent ; ne jamais signer une transaction sans comprendre ce qu'elle autorise ; refuser tout rendement garanti élevé, qui est toujours un leurre ou une chaîne de Ponzi ; ne jamais engager une somme dont on ne peut pas accepter la perte totale ; et se méfier du premier venu qui offre son aide non sollicitée. Garde cette grille : elle servira à ta famille bien au-delà de la DeFi, car ses pièges sont ceux de toute la finance en ligne."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : audite les promesses de la DeFi",
+          "content": "Mission d'auditeur : apprendre à évaluer un protocole DeFi sur des critères objectifs, sans jamais y engager le moindre argent. Protocole de mission en cinq étapes. Étape une : la sélection. Choisis un protocole DeFi connu, présenté dans un article, une vidéo ou un forum, peu importe sa réputation, bonne ou mauvaise : ton but est la méthode, pas le verdict attendu. Étape deux : le document fondateur. Cherche sa documentation technique : un protocole sérieux publie ses règles, sa formule d'échange ou de prêt, ses mécanismes de garantie, et l'adresse vérifiable de ses programmes. Si tu ne trouves aucune documentation, note-le : premier signal rouge. Étape trois : les audits. Cherche les rapports d'audit indépendants : qui a relu le code, quand, et ce que les auditeurs ont exigé comme corrections. Un protocole sans aucun audit mérite la méfiance ; un protocole audité reste perfectible, mais prouve une démarche sérieuse. Étape quatre : l'historique public. Sur un explorateur de blockchain, observe la durée de fonctionnement, les volumes récents, les incidents passés : piratages, interruptions, litiges. Étape cinq : la grille de notation. Note de zéro à trois chaque critère : documentation, audits, historique, transparence de l'équipe, simplicité du mécanisme, et réalisme des rendements annoncés. Puis rédige ta conclusion en trois formats : une phrase pour un enfant, un paragraphe pour un adulte pressé, une page pour un lecteur sérieux. Compare ton audit avec celui d'un camarade sur le même protocole : vos écarts de notation vous apprendront autant l'un que l'autre. Ce que tu viens de faire porte un nom dans le métier : l'analyse de risque, la compétence financière la plus demandée au monde, et la plus rare."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : ta banque de cour en papier",
+          "content": "Projet final : faire tourner une banque DeFi simplifiée, en papier et en bonpoints, pour comprendre chaque mécanisme en le vivant. Recrute trois volontaires : un gérant de réserve, un emprunteur, un apporteur de liquidité. Matériel : un cahier de comptes, des billets de papier, des jetons de garantie, style cauris, et des règles écrites au tableau. Mécanisme un : la réserve. L'apporteur dépose dix billets et dix cauris dans la réserve commune ; le gérant inscrit les dépôts dans le cahier, et l'apporteur reçoit une part de réserve, qui lui donnera droit aux frais. Mécanisme deux : l'échange. Un visiteur veut échanger trois billets contre des cauris ; le gérant applique la formule du marché automatisé : il prélève une commission d'un pour cent, partagée avec l'apporteur. Joue dix échanges et observe la balance des frais revenant à l'apporteur. Mécanisme trois : le prêt sur garantie. L'emprunteur dépose six cauris de garantie et reçoit quatre billets de prêt ; le gérant surveille le ratio, selon les cours affichés au tableau, que tu fais varier à chaque tour de jeu. Mécanisme quatre : la liquidation. Annonce une chute des cauris : le ratio de l'emprunteur casse le seuil ; le gérant exécute la liquidation sans discussion, en vendant la garantie, et note l'opération au cahier. Fais vivre à ton emprunteur la frustration d'une liquidation à contretemps : c'est le cœur pédagogique du jeu. Mécanisme cinq : le comité de sécurité. Rédige avec tes joueurs les trois règles qui auraient évité les pertes de la partie : fixer un seuil plus prudent, limiter les sommes engagées, vérifier chaque inscription. Débriefe en reliant chaque mécanisme au monde réel : la réserve, c'est le marché automatisé ; le ratio, c'est le collatéral ; la vente forcée, c'est la liquidation ; tes trois règles, c'est exactement le travail des ingénieurs de risque."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Que remplace principalement un protocole DeFi ?",
+          "options": [
+            "Les professeurs de mathématiques",
+            "Les intermédiaires financiers : des programmes appliquent des règles connues à l'avance",
+            "Les marchés de légumes",
+            "Les réseaux sociaux"
+          ],
+          "correct_index": 1,
+          "explanation": "La DeFi remplace guichets et dossiers par des programmes : mêmes règles pour tous, sans horaires ni jugement, mais aussi sans recours en cas d'erreur."
+        },
+        {
+          "question": "Comment fonctionne un marché automatisé d'échange ?",
+          "options": [
+            "Il apparie acheteurs et vendeurs entre eux",
+            "Un programme détient une réserve des deux actifs et calcule les échanges selon les quantités disponibles",
+            "Il envoie un SMS au banquier",
+            "Il attend la nuit pour changer les prix"
+          ],
+          "correct_index": 1,
+          "explanation": "Pas de confrontation entre acheteur et vendeur : la réserve commune et sa formule de prix font le marché, et les frais rémunèrent les apporteurs de liquidité."
+        },
+        {
+          "question": "Pourquoi un prêt DeFi exige-t-il une garantie supérieure au montant emprunté ?",
+          "options": [
+            "Pour décorer la blockchain",
+            "Parce que le programme ne connaît pas l'emprunteur : la garantie est sa seule assurance, vendue automatiquement si elle tombe trop bas",
+            "Parce que la loi l'interdit autrement",
+            "Pour faire des économies de papier"
+          ],
+          "correct_index": 1,
+          "explanation": "Sans dossier ni visage, la sur-garantie protège le programme : si sa valeur casse le seuil, la liquidation s'exécute automatiquement, sans avertissement."
+        },
+        {
+          "question": "Que se passe-t-il lors d'une liquidation en DeFi ?",
+          "options": [
+            "Le programme vend automatiquement la garantie pour se rembourser, quand sa valeur passe sous le seuil",
+            "Un banquier appelle pour négocier",
+            "Le prêt est pardonné",
+            "L'emprunteur reçoit un bonus"
+          ],
+          "correct_index": 0,
+          "explanation": "La liquidation est l'exécution automatique et sans pitié du code : souvent au pire moment pour l'emprunteur, elle peut dépasser le montant de sa dette."
+        },
+        {
+          "question": "Quel est le risque le plus fréquent de perte individuelle en DeFi ?",
+          "options": [
+            "La foudre sur les serveurs",
+            "L'erreur humaine : mauvaise adresse, transaction piège signée, clé exposée, appât du rendement irréaliste",
+            "La pluie sur la blockchain",
+            "Le changement de fuseau horaire"
+          ],
+          "correct_index": 1,
+          "explanation": "La grande majorité des pertes individuelles vient d'erreurs humaines et d'appâts, avant même les failles de code : d'où la liste de contrôle de sécurité à connaître par cœur."
+        }
+      ]
+    },
+    {
+      "slug": "smart-contracts",
+      "title": "Smart Contracts",
+      "description": "Découvre les contrats intelligents : des programmes autonomes sur blockchain qui exécutent les accords automatiquement, sans juge ni gendarme.",
+      "story": "Imagine un pari avec ton cousin sur le match des Éléphants : d'habitude, il faut un arbitre de confiance pour garder l'argent et trancher à la fin. Un contrat intelligent supprime l'arbitre : c'est un programme qui garde les sommes et exécute l'accord tout seul, exactement comme écrit, sans favoritisme possible. Dans cette aventure, tu apprends à écrire la logique de ces programmes dans ta tête, et à repérer pourquoi le code est devenu le nouveau contrat.",
+      "xp_reward": 130,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Le contrat qui s'exécute tout seul",
+          "content": "Un contrat classique, papier, a un défaut de taille : il ne fait rien tout seul. Il a besoin que des humains le lisent, l'interprètent, l'appliquent, et parfois le respectent malgré eux, avec l'aide d'un juge, lent et coûteux. Un contrat intelligent, lui, est un programme déposé sur une blockchain, et il fait exactement ce qui est écrit : recevoir, mémoriser, vérifier, exécuter. Reprenons le pari du match. Toi et ton cousin envoyez chacun vos dix mille francs de mise vers le contrat : le programme les garde. À la fin du match, n'importe qui peut lui transmettre le résultat, mais le programme n'accepte que si la source du résultat est celle convenue à l'avance, par exemple le compte officiel de la fédération. Le programme vérifie, puis envoie automatiquement les vingt mille francs au gagnant. Personne ne peut annuler, personne ne peut tergiverser, personne ne peut fuir avec la caisse. Trois propriétés rendent ce résultat possible. La transparence : le code du contrat est public, tout le monde peut le lire avant d'envoyer sa mise, donc personne ne découvre les règles après avoir joué. L'automaticité : l'exécution ne dépend d'aucune bonne volonté, seulement des conditions programmées. L'inviolabilité : une fois déployé, le contrat ne peut plus être modifié, ce qui est sa force, et parfois son piège, car un contrat intelligent contient aussi les bugs de son code, sans possibilité de correction discrète. Ce trio explique l'expression souvent entendue : le code est le contrat. Dans cette aventure, tu apprends à lire la logique de ces programmes, à en imaginer la logique toi-même, et à comprendre pourquoi cette invention ouvre des portes fascinantes, à condition d'en connaître les angles."
+        },
+        {
+          "section_type": "play",
+          "title": "Anatomie d'un contrat intelligent",
+          "content": "Ouvrons le capot d'un contrat intelligent typique, en décrivant sa structure comme pour un programme que tu écrirais. Un contrat commence par ses variables, la mémoire du contrat : par exemple la liste des participants, la date limite de participation, le montant de la mise, et l'adresse du bénéficiaire. Ces valeurs vivent sur la blockchain, ce qui signifie qu'elles sont publiques, inviolables, et lisibles par tous. Vient ensuite la partie la plus importante : les règles de garde, appelées conditions d'accès. Un contrat bien écrit commence par vérifier qui agit et dans quel état se trouve le contrat : est-ce bien un participant enregistré qui appelle cette fonction ? sommes-nous avant la date limite ? le contrat a-t-il déjà été payé ? Sans ces vérifications, n'importe qui pourrait appeler n'importe quoi : la sécurité d'un contrat tient d'abord à ses contrôles d'entrée. Puis les fonctions, les actions possibles : rejoindre le pari, soumettre un résultat, réclamer le gain. Chaque fonction suit la même logique qu'un algorithme : vérifier les conditions, mettre à jour les variables, déclencher l'effet, par exemple le transfert des fonds. Enfin, les événements, les traces officielles : le contrat émet des annonces, enregistrées sur la blockchain, du style un participant a rejoint, le résultat a été soumis, le gain a été versé. Ces annonces permettent à tous, humains comme programmes, de suivre l'activité du contrat sans lire sa mémoire interne. Exercice mental : écris sur papier, en français, les variables et les fonctions d'un contrat de vente de billets de spectacle : variables, prix, quantité restante, liste des détenteurs ; fonctions, acheter, rembourser, vérifier un billet ; conditions d'accès, les billets restants, le prix exact envoyé. Ce plan s'appelle spécifier un contrat, la première étape du métier de développeur blockchain, avant même la moindre ligne de code."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Quand le code rencontre la réalité",
+          "content": "Les contrats intelligents sont rigoureux, et cette rigueur produit des situations enseignantes. Première situation : la conformité littérale. Un contrat exécute ce qui est écrit, pas ce qui était voulu. Si le contrat dit verser le gain au premier qui soumet un résultat, sans préciser la source, il versera à celui qui soumet le premier, même un résultat faux : le contrat n'a pas de jugement, il a des instructions. La leçon : la qualité d'un contrat intelligent se joue dans sa spécification, avant le code. Deuxième situation : le bug figé. Un contrat déployé ne se modifie plus ; si le code contient une faille, elle est publique, définitive, et convoitée : l'histoire de la blockchain compte des contrats vidés de plusieurs millions par une simple ligne mal protégée. Les développeurs sérieux adoptent des pratiques de parade : faire relire le code par des auditeurs indépendants, déployer d'abord une version limitée avec des sommes modestes, prévoir des mécanismes de mise à jour ou d'urgence, quitte à réintroduire une dose de confiance, ce qui est un choix d'ingénierie à assumer. Troisième situation : l'oracle, la frontière du monde réel. Un contrat vit sur la blockchain, mais le résultat du match, le prix du cacao ou la pluie tombée à Bouaké vivent dehors : il faut donc des porte-parole, appelés oracles, chargés d'apporter ces faits au contrat. D'où la grande question de la DeFi et des contrats : en qui peut-on faire confiance pour rapporter la réalité ? Des systèmes tentent d'y répondre avec plusieurs sources indépendantes, des mises en jeu perdues en cas de mensonge, des vérifications croisées : la confiance ne disparaît pas, elle se déplace. Retiens la formule du professionnel : un contrat intelligent garantit l'exécution fidèle de la règle, jamais la vérité de ce qu'on lui rapporte, ni la sagesse de la règle elle-même."
+        },
+        {
+          "section_type": "build",
+          "title": "Des usages concrets, du pari au foncier",
+          "content": "Passons en revue les applications réelles des contrats intelligents, en commençant par les plus simples à imaginer. La cagnotte conditionnelle : un contrat collecte des fonds pour un projet de quartier, et ne les libère que si la somme visée est atteinte avant la date limite ; sinon, chaque donateur est remboursé automatiquement, sans comité ni trésorier. Ce mécanisme, appelé financement conditionnel, règle une vraie douleur des cotisations communes : la crainte que la caisse ne disparaisse si le projet avorte. La loterie transparente : l'algorithme du tirage est public, la cagnotte est visible, les gains sont versés automatiquement : l'improbité devient quasi impossible. La réputation inviolable : un prestataire de services accumule des évaluations enregistrées une à une, sans possibilité de suppression sélective : les faux avis deviennent plus difficiles à organiser. L'escrow, le tiers séquestre : pour une transaction entre un acheteur et un vendeur qui ne se connaissent pas, le contrat garde la somme et ne la libère qu'à la confirmation de livraison, l'équivalent programmé du vendeur de confiance du marché. Les micro-paiements à l'usage : un cycle de location partagé, où chaque minute d'usage déclenche un paiement infime, impossible à gérer par un employé, trivial pour un contrat. La gestion foncière et documentaire : des projets, notamment africains, enregistrent titres et actes notariés avec horodatage inviolable, pour lutter contre les doubles ventes de terrains, un fléau réel : le contrat ne remplace pas l'État, il lui fournit un cahier inaltérable. Pour chaque usage, applique ta grille d'analyse : quel problème réel ? quelle confiance remplacée ? quel coût de transaction évité ? Et souviens-toi de la question du professionnel : une base de données classique avec un gestionnaire honnête suffirait-elle ? Si oui, le contrat intelligent est un luxe ; si la confiance est le problème central, il devient une solution."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : spécifie ton premier contrat",
+          "content": "Mission de concepteur : rédiger la spécification complète d'un contrat intelligent, sans écrire de code, en français structuré. Choisis un cas utile à ton quotidien : la cagnotte de la tontine numérique, la billeterie du match de quartier, la vente de places pour la sortie de classe, ou le prêt de matériel du club informatique. Ta spécification comportera cinq rubriques, comme les documents réels des équipes blockchain. Rubrique un, les rôles : qui interagit avec le contrat ? Par exemple : l'organisateur, les participants, un vérificateur. Décris ce que chacun a le droit de faire, et surtout ce qu'il n'a pas le droit de faire. Rubrique deux, les variables : quelles informations le contrat mémorise ? Solde, liste des participants, date limite, seuil de réussite. Nomme chacune précisément. Rubrique trois, les fonctions : les actions possibles, chacune décrite en quatre temps : qui peut l'appeler, quelles conditions doivent être vraies, quelles variables changent, quels effets externes se produisent, comme un versement. Rubrique quatre, les cas limites : que se passe-t-il si personne ne participe ? si un même participant paie deux fois ? si la date limite tombe un jour de coupure d'électricité généralisée ? si un versement échoue ? Traite chaque cas explicitement : les cas limites sont là où les contrats réels se brisent. Rubrique cinq, le tableau de bord : quelles informations le contrat rend publiques à chaque étape, pour que chacun vérifie sans demander à personne. Livrable : une page structurée. Puis fais faire à ta spécification son premier audit : montre-la à un camarade et demande-lui de la casser en imaginant trois façons de tricher : s'il en trouve une que ta spécification n'interdit pas, tu viens d'apprendre ce que les auditeurs appellent un vecteur d'attaque, et tu l'enrayeras avant le code. Bienvenue dans l'ingénierie des contrats."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : le contrat du match en papier",
+          "content": "Projet final : faire vivre un contrat intelligent complet, joué sur papier par des humains qui jouent le rôle du code, avec la discipline de fer des machines. Contexte : un pari sur un match, avec une cagnotte de bonpoints, trois joueurs et un fournisseur de résultats. Étape un : la rédaction. Écris noir sur blanc le contrat du pari, en style contractuel : chaque participant envoie cinq bonpoints avant la date limite ; le fournisseur de résultats, désigné à l'avance, est le seul à pouvoir soumettre un résultat ; dès qu'un résultat valide est soumis, la cagnotte entière part au camp gagnant ; aucune annulation, aucune exception. Étape deux : le déploiement. Nomme un joueur-machine, dont le seul rôle est d'appliquer le texte, lettre par lettre, sans intelligence et sans pitié : il ne répond jamais au feeling, il ne modifie jamais une virgule. Étape trois : la vie du contrat. Les parieurs déposent leurs mises, le joueur-machine les refuse après la date limite, fût-ce une seconde, car le texte dit avant la date limite. Le fournisseur soumet le résultat ; le joueur-machine vérifie l'identité du soumetteur et verse la cagnotte, sans commentaire. Étape quatre : les tentatives de corruption. Chaque joueur tente une tricherie : payer en retard, soumettre un faux résultat soi-même, supplier le joueur-machine de faire une exception, réclamer un remboursement. Note chaque refus et la règle exacte qui l'a fondé. Étape cinq : l'accident. Change le scénario : le fournisseur de résultats soumet un résultat faux. Le joueur-machine verse quand même : le contrat n'a pas de jugement. Étape six : le débriefe d'ingénieur. Comment aurait-on pu empêcher l'accident ? Plusieurs fournisseurs avec mise en jeu ? Un vote des participants ? Un délai de contestation ? Chaque proposition s'appelle une amélioration de conception, et c'est ainsi que progressent les vrais contrats : par des incidents simulés, des audits, des versions. Ton pari de bonpoints t'aura appris le métier."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Qu'est-ce qu'un contrat intelligent ?",
+          "options": [
+            "Un contrat papier signé par un avocat",
+            "Un programme sur blockchain qui exécute automatiquement les règles écrites, sans intermédiaire",
+            "Une promesse verbale entre amis",
+            "Un document Word protégé par mot de passe"
+          ],
+          "correct_index": 1,
+          "explanation": "Le contrat intelligent reçoit, vérifie et exécute : le code est le contrat, public, automatique et inviolable une fois déployé."
+        },
+        {
+          "question": "Que signifie l'expression le code est le contrat ?",
+          "options": [
+            "Que les développeurs gagnent toujours les procès",
+            "Que le contrat exécute exactement ce qui est écrit, pas ce qui était voulu ou espéré",
+            "Que le code est illisible",
+            "Que la blockchain écrit les contrats toute seule"
+          ],
+          "correct_index": 1,
+          "explanation": "La conformité est littérale : un oubli dans le code devient une règle, et une faille reste publique et définitive. D'où l'importance de la spécification."
+        },
+        {
+          "question": "Pourquoi les conditions d'accès sont-elles capitales dans un contrat ?",
+          "options": [
+            "Pour le décorer",
+            "Parce qu'elles vérifient qui agit et dans quel état : sans elles, n'importe qui pourrait appeler n'importe quelle fonction",
+            "Pour économiser du papier",
+            "Pour traduire le contrat"
+          ],
+          "correct_index": 1,
+          "explanation": "La sécurité tient aux contrôles d'entrée : chaque fonction commence par vérifier l'identité de l'appelant et les conditions de l'état, avant tout effet."
+        },
+        {
+          "question": "Qu'est-ce qu'un oracle dans l'écosystème des contrats ?",
+          "options": [
+            "Un vieil ordinateur magique",
+            "Un service chargé d'apporter au contrat des faits du monde réel, comme un résultat de match",
+            "Une base de données secrète",
+            "Un type de blockchain"
+          ],
+          "correct_index": 1,
+          "explanation": "Le contrat vit sur la blockchain, la réalité vit dehors : les oracles rapportent les faits, et la confiance se déplace sur la fiabilité de ces sources."
+        },
+        {
+          "question": "Quel usage un contrat intelligent résout-il avec la cagnotte conditionnelle ?",
+          "options": [
+            "La disparition des fonds si le projet échoue : le contrat rembourse automatiquement",
+            "Le choix du menu du maquis",
+            "La météo du week-end",
+            "Les notes de classe"
+          ],
+          "correct_index": 0,
+          "explanation": "Le financement conditionnel : la somme n'est libérée que si l'objectif est atteint avant la date limite, sinon remboursement automatique de chacun."
+        }
+      ]
+    },
+    {
+      "slug": "web3-games",
+      "title": "Web3 Gaming",
+      "description": "Découvre les jeux Web3 : objets réellement possédés, économies de jeu transparentes et vraies questions de design, entre promesses et pièges.",
+      "story": "Dans un jeu classique, tes objets, tes armures, tes pièces accumulées pendant des mois appartiennent... à l'éditeur du jeu : ferme le serveur, tout disparaît. Les jeux Web3 changent la règle : ici, tes objets sont à toi, enregistrés sur une blockchain, prouvables et revendables. Des joueurs philippins ont un jour vécu de leur jeu, avant que la bulle n'éclate. Dans cette aventure, tu explores ce monde fascinant, ses promesses réelles, et ses pièges bien réels aussi.",
+      "xp_reward": 120,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Posséder vraiment ses objets de jeu",
+          "content": "Commençons par le problème que les jeux Web3 veulent résoudre. Dans un jeu classique, tout ce que tu gagnes vit sur les serveurs de l'éditeur : il peut fermer le jeu demain, interdire la revente, ou bannir un compte, et tes centaines d'heures s'évaporent sans recours. On dit que tes objets sont détenus par l'éditeur, pas par toi. Les jeux Web3 déplacent cette frontière : les objets, personnages, terrains ou jetons de jeu sont enregistrés sur une blockchain, dans ton portefeuille, sous ta seule clé. Trois conséquences. Première : la propriété vérifiable : ton épée légendaire existe dans un registre public, avec ton adresse dessus, et personne ne peut l'effacer, même si l'éditeur ferme. Deuxième : la transférabilité : tu peux donner, échanger ou revendre tes objets à d'autres joueurs, y compris entre jeux différents, si les deux jeux reconnaissent le même standard d'objets, comme les jeux qui partagent la même prise électrique. Troisième : la transparence des règles : les probabilités de tirage, les quantités d'objets créés, les mécanismes économiques sont souvent publiés dans le code, vérifiables par tous, au lieu de dormir dans des serveurs opaques. Ce raisonnement a inspiré des expériences marquantes, dont le fameux jeu des créatures, qui a fait vivre des joueurs dans plusieurs pays d'Asie, avant que son économie ne s'effondre, une histoire que tu exploreras plus loin. Car le propre de ce monde est justement d'unir deux traditions : le game design, l'art de rendre un jeu amusant, et l'économie de jeu, la science de rendre un monde crédible et durable. Quand les deux s'équilibrent, naissent des mondes fascinants ; quand l'argent écrase le plaisir, naissent des usines à jetons qui s'effondrent. Ton rôle dans cette aventure : comprendre les deux, en tant que joueur lucide et futur concepteur."
+        },
+        {
+          "section_type": "play",
+          "title": "L'économie d'un jeu Web3 : la boucle des jetons",
+          "content": "Un jeu Web3 fonctionne comme une petite économie de pays, avec ses entrées, ses sorties, et sa banque centrale, qui est ici un programme. Décortiquons la boucle typique. Les entrées : les joueurs gagnent des jetons en jouant : récompenses de quêtes, victoires, participations. Ces jetons ont un usage interne : améliorer un personnage, participer à un tournoi, fabriquer des objets. Les sorties : certains jetons quittent le jeu, échangés sur des marchés extérieurs contre d'autres actifs numériques, ou brûlés, c'est-à-dire détruits volontairement pour limiter l'offre. Les régulations : comme une banque centrale règle sa masse monétaire, le jeu règle ses quantités : taux de gain ajustables, coûts d'amélioration, mécanismes de destruction. Où est le piège ? Dans le mot durable. Si le jeu distribue plus de jetons qu'il n'en détruit, la valeur s'effondre par l'offre excessive : c'est l'inflation, exactement comme au village quand trop de billets chassent trop peu de marchandises. Les joueurs avisés surveillent donc une donnée clé : l'équilibre entre jetons créés et jetons détruits chaque jour. Seconde donnée : le flux des nouveaux joueurs : une économie de jeu sans nouveaux entrants ressemble à une tontine sans nouveaux cotisants : elle tient tant que la confiance tient, puis s'effondre d'un coup. Les grands effondrements du secteur viennent tous de là : des gains annoncés mirobolants, alimentés par l'arrivée massive de nouveaux joueurs, jusqu'au jour où les nouveaux manquent, où les plus anciens vendent, et où la spirale descendante emporte tout. Leçon de conception à retenir : un jeu vit du plaisir, l'économie soutient le plaisir ; dès que l'économie devient le but, le jeu devient une entreprise fragile, et le joueur un salarié non déclaré de sa propre illusion. Cette phrase distingue les bons jeux des usines à spéculation : retiens-la, elle vaut de l'or."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Jouer pour gagner : la bulle et l'éclat",
+          "content": "L'histoire du jeu pour gagner mérite d'être étudiée comme une leçon d'économie en conditions réelles. Le contexte : des jeux où les joueurs gagnent des jetons revendables, sont devenus massivement populaires dans plusieurs pays d'Asie du Sud-Est, attirés par des revenus parfois supérieurs au salaire local, dans des régions durement frappées par les confinements. La montée : les revenus attiraient les joueurs, les joueurs faisaient monter la demande de jetons, la demande faisait monter les prix, les prix attiraient les investisseurs, qui achetaient les jetons et les objets, et tout le monde gagnait, en apparence. Certains joueurs louaient leurs équipes de personnages à d'autres, un modèle économique parallèle s'installait, des villages entiers jouaient. L'éclat : la spirale montante exigeait des nouveaux arrivants en nombre toujours croissant ; dès qu'ils ont manqué, les vendeurs ont dépassé les acheteurs, les prix ont chuté, les gains ont fondu, les joueurs restés sont repartis travailler ailleurs, laissant des objets sans valeur et des dettes d'achat de personnages, pour certains. Les enseignements, à garder pour la vie : un revenu dépendant d'un flux de nouveaux entrants s'appelle une bulle, et les bulles rémunèrent tôt, paupérisent tard ; un jeu dont l'attrait principal est le gain n'est plus un jeu, c'est un travail précaire sans contrat ni protection ; et la blockchain, qui rend les objets inviolables, ne rend pas leur valeur éternelle : la valeur, elle, vit dans la demande, qui vit dans le plaisir, qui ne se programme pas facilement. Ce segment t'offre un filtre de lucidité permanent : chaque fois qu'un jeu, une application ou une opportunité te promet de l'argent pour participer, pose-toi la question du flux : d'où vient l'argent versé ? Si la réponse est des nouveaux arrivants, tu regardes une pyramide à retardement, quelle que soit la technologie qui l'habille."
+        },
+        {
+          "section_type": "build",
+          "title": "Derrière l'écran : le métier de concepteur Web3",
+          "content": "Changeons de côté de l'écran : que fait un concepteur de jeu Web3, et pourquoi son métier est passionnant ? Un jeu Web3 assemble quatre couches. La couche jeu, classique : le gameplay, les niveaux, l'équilibrage, l'histoire ; sans cette couche solide, aucun jeton ne sauvera le projet. La couche économie : les jetons, leurs usages internes, leurs sorties, leurs destructions, dessinés comme une plomberie de flux, où chaque robinet et chaque évier se calcule : trop de robinets ouverts, l'inflation noie la valeur. La couche blockchain : les contrats qui gèrent les objets, les ventes, les propriétés, écrits avec la rigueur des contrats intelligents, car un bug coûte ici des économies entières. La couche communauté : les joueurs propriétaires attendent d'être écoutés, votent parfois sur les orientations, participent aux tournois : la gouvernance devient une composante du jeu. Les métiers qui se recrutent autour de ces couches : concepteur de gameplay, économiste de jeu, développeur de contrats, responsable communauté, artiste numérique, analyste de données de joueurs. Deux compétences rares valent leur pesant de café : savoir équilibrer une économie de jeu, talent partagé entre la comptabilité et la psychologie ; et savoir concevoir des mécanismes que les joueurs ne peuvent pas exploiter sans y perdre, car chaque économie de jeu attire ses exploiteurs, ses fermes de comptes automatisées, ses revendeurs, une faune que le concepteur doit anticiper. Pour toi qui aimes peut-être les jeux, cette industrie offre une porte d'entrée concrète : tester des jeux, rédiger des retours d'expérience, apprendre à modéliser une économie simple sur papier, participer aux tests publics de jeux en développement. Beaucoup de concepteurs d'aujourd'hui ont commencé par écrire des critiques de jeux sur des forums : le regard lucide du joueur devient la matière première du créateur."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : l'analyse d'un jeu Web3",
+          "content": "Mission d'analyste : évaluer un jeu Web3 comme un professionnel, avec une grille de lecture en cinq axes, sans jamais engager d'argent. Étape un : choisis un jeu Web3 public, discuté dans les médias ou présent dans ta communauté. Étape deux : identifie le plaisir central. En une phrase : qu'est-ce qui rend ce jeu amusant, indépendamment de l'argent ? Si tu n'y arrives pas, note-le : c'est le signal du danger, un jeu sans plaisir n'est qu'une file d'attente devant un distributeur. Étape trois : cartographie l'économie. Repère les jetons : comment s'en gagne-t-il ? à quoi servent-ils dans le jeu ? par quels canaux sortent-ils ? la documentation publie-t-elle les quantités créées et détruites ? Étape quatre : évalue la durabilité. D'où vient l'argent des récompenses versées aux joueurs ? de la vente aux nouveaux arrivants, ou d'usages réels dans le jeu ? Recherche la courbe du nombre de joueurs actifs sur plusieurs mois : une courbe descendante avec des récompenses constantes annonce l'épuisement. Étape cinq : les protections. Le jeu affiche-t-il des limites d'âge ? des avertissements sur les risques financiers ? des règles claires sur les fermetures de comptes ? Rédige ensuite ta fiche d'analyse d'une page : plaisir central, boucle économique, durabilité, protections, verdict argumenté. Puis confronte ta fiche à l'opinion publique : lis les avis des joueurs sur les forums, et note où les joueurs lucides et ton analyse convergent, et où les avis enthousiastes ressemblent davantage à de la promotion qu'à du vécu. Cette mission t'apprend la démarche de l'analyste de jeux, un métier réel, employé par les éditeurs avant, pendant et après le lancement de chaque jeu."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : conçois ton jeu Web3 sur papier",
+          "content": "Projet final : concevoir ton propre jeu Web3, sur papier, économie comprise, et le tester avec de vrais joueurs, sans technologie. Étape un, le cœur du jeu : choisis un univers qui te ressemble : la chasse au trésor dans les quartiers d'Abidjan, la gestion d'un maquis, la course de woro-woro, la culture du cacao saison par saison. Définis le plaisir central en une phrase : le joueur s'amuse parce que... Étape deux, la boucle de jeu : décris un tour de jeu complet en cinq actions : le joueur fait ceci, gagne cela, améliore cela, affronte cela, décide de cela. La boucle doit être amusante à lire : si elle ennuie sur le papier, elle ennuiera à l'écran. Étape trois, l'économie : dessine deux jetons, les pièces de jeu, gagnées en jouant, et les sceaux rares, trouvés dans les exploits, avec trois usages internes pour les pièces et deux pour les sceaux ; fixe un mécanisme de destruction : chaque amélioration brûle des pièces ; et surtout, définis ce que les jetons ne font pas : pas d'achat de victoire, pas d'avantage écrasant, sinon l'équilibre meurt. Étape quatre, la couche propriété : décris trois objets de collection, les cartes de héros du quartier, avec ce que la blockchain enregistrerait : identifiant, propriétaire, historique. Étape cinq, le test : organise une partie de papier avec trois camarades : tu joues le meneur, ils jouent avec de vraies feuilles de compte, gagnant et brûlant des pièces dessinées. Observe : où s'ennuient-ils ? où veulent-ils tricher ? quelle règle ont-ils mal comprise ? Étape six, l'itération : corrige une seule chose par test, et rejoue. Ce cycle, concevoir, tester, observer, corriger, s'appelle l'itération de conception, et c'est exactement ainsi que naissent les jeux réels, blockchain ou pas. La différence : toi, tu commences par le plaisir, et l'économie suit. C'est l'ordre qui fait les bons jeux ; l'ordre inverse fait les bulles."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Que change la propriété blockchain des objets dans un jeu Web3 ?",
+          "options": [
+            "Les objets deviennent incassables dans le jeu",
+            "Les objets sont enregistrés dans ton portefeuille, inviolables et transférables, même si l'éditeur ferme",
+            "Le jeu devient gratuit",
+            "Les graphismes s'améliorent"
+          ],
+          "correct_index": 1,
+          "explanation": "La propriété quitte les serveurs de l'éditeur pour ton registre personnel : vérifiable, cessible, indestructible par l'éditeur, quelle que soit la valeur qu'y met le marché."
+        },
+        {
+          "question": "Qu'est-ce que le mécanisme de brûlage de jetons dans une économie de jeu ?",
+          "options": [
+            "Une punition des tricheurs",
+            "La destruction volontaire de jetons pour réduire l'offre et soutenir la valeur",
+            "Un bug de la blockchain",
+            "L'achat de nouveaux serveurs"
+          ],
+          "correct_index": 1,
+          "explanation": "Brûler des jetons, c'est vider la baignoire pendant que les robinets coulent : un équilibre entre création et destruction conditionne la santé de l'économie."
+        },
+        {
+          "question": "Pourquoi les jeux jouer pour gagner ont-ils connu des effondrements ?",
+          "options": [
+            "À cause des coupures d'électricité",
+            "Leurs revenus dépendaient du flux des nouveaux joueurs : quand les nouveaux ont manqué, la spirale s'est inversée",
+            "Les blockchains ont été piratées",
+            "Les joueurs ont arrêté de manger"
+          ],
+          "correct_index": 1,
+          "explanation": "Les récompenses payées par les arrivants nouveaux, c'est le schéma de la bulle : tôt cela monte, tard cela retombe, et les derniers arrivés paient la note."
+        },
+        {
+          "question": "Quel signe révèle qu'un jeu Web3 n'est qu'une usine à spéculation ?",
+          "options": [
+            "Sa documentation publie les quantités de jetons",
+            "Impossible de décrire son plaisir central en une phrase, hors de l'argent gagné",
+            "Il organise des tournois",
+            "Ses graphismes sont simples"
+          ],
+          "correct_index": 1,
+          "explanation": "Sans plaisir central, le jeu n'est qu'une file d'attente devant un distributeur : la boucle ne vit que d'espoir de gain, et s'effondre avec lui."
+        },
+        {
+          "question": "Quel est l'ordre de conception recommandé pour un bon jeu ?",
+          "options": [
+            "D'abord l'économie de jetons, ensuite le jeu",
+            "D'abord le plaisir, l'économie soutient ensuite",
+            "D'abord la blockchain, ensuite tout le reste",
+            "D'abord la publicité, ensuite le jeu"
+          ],
+          "correct_index": 1,
+          "explanation": "L'économie doit soutenir le plaisir, pas le remplacer : l'ordre inverse fabrique des bulles, comme l'histoire du secteur l'a montré."
+        }
+      ]
+    },
+    {
+      "slug": "african-blockchain",
+      "title": "Blockchain en Afrique",
+      "description": "Explore les usages africains de la blockchain : paiements transfrontaliers, traçabilité du cacao, titres fonciers et identité, sans raccourcis ni miracles.",
+      "story": "L'Afrique n'attend pas la permission pour innover : elle a inventé le mobile money avant le monde entier. Aujourd'hui, une nouvelle vague explore ce que la blockchain peut apporter : envoyer de l'argent à l'étranger sans frais assassins, tracer le cacao jusqu'au chocolat, protéger les terres des doubles ventes. Dans cette aventure, tu passes en revue les projets réels, leurs réussites, leurs difficultés honnêtes, et tu découvres les compétences que ce secteur recherche déjà.",
+      "xp_reward": 110,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Pourquoi l'Afrique expérimente si vite",
+          "content": "L'Afrique possède un profil unique pour les innovations financières, et comprendre ce profil explique l'engouement pour la blockchain. Premier facteur : l'histoire du mobile money. Le continent a prouvé au monde qu'on peut déployer des services financiers par le téléphone, sans agences bancaires, et ce précédent a formé des millions d'usagers prêts à tester de nouvelles solutions. Deuxième facteur : les besoins concrets énormes. Selon les études, une part importante de la population adulte reste hors du système bancaire classique ; les envois de fonds depuis la diaspora coûtent des frais parmi les plus élevés du monde, chaque année, des sommes colossales partent en commissions au lieu d'arriver aux familles ; les documents, du diplôme au titre foncier, circulent dans des circuits où l'authentification reste pénible. Chacun de ces besoins est une cible potentielle pour un registre inviolable et bon marché. Troisième facteur : la jeunesse. La population la plus jeune du monde adopte vite, discute en ligne, et une génération d'ingénieurs africains se forme massivement aux technologies web. Quatrième facteur, plus discret mais décisif : la pression concurrentielle. Les startups du continent ne copient pas les modèles occidentaux : elles repartent des problèmes locaux, ce qui explique que certaines solutions africaines intéressent aujourd'hui les pays du Nord. La blockchain entre dans ce paysage comme un outil parmi d'autres : ni solution miracle, ni mode vide. Ce que cette aventure t'offre : une lecture lucide des projets réels africains, sans triomphalisme de brochure, sans pessimisme de salon : les faits, les réussites, les échecs, et les compétences que tu peux déjà commencer à construire pour participer à cette vague."
+        },
+        {
+          "section_type": "play",
+          "title": "Les transferts transfrontaliers : le cas d'usage numéro un",
+          "content": "Le cas d'usage le plus concret de la blockchain en Afrique : les transferts d'argent transfrontaliers. Le problème est documenté : la diaspora africaine envoie chaque année des milliards vers le continent, et les circuits classiques prélèvent des commissions qui peuvent dévorer une part importante des sommes, surtout sur les petits montants, précisément ceux des familles. Les délais varient de quelques heures à plusieurs jours ; les formalités exigent parfois des déplacements et des documents. La réponse par la blockchain suit un raisonnement simple : de l'argent sous forme numérique voyage sur internet en minutes, à des coûts réduits, sans guichet. En pratique, trois modèles coexistent. Modèle un : le couloir direct crypto : l'expéditeur achète un actif numérique, l'envoie au destinataire, qui le convertit dans sa devise locale ; rapide, mais exige de la part des deux bouts une familiarité technique et une plateforme de conversion fiable. Modèle deux : les services assemblés : des entreprises s'occupent de la partie blockchain en coulisse, et vendent aux usagers une application simple d'envoi, en francs CFA, dont l'usager ne voit même pas la blockchain : c'est souvent le modèle qui marche le mieux, car l'usager veut envoyer de l'argent, pas apprendre la technologie. Modèle trois : les stablecoins comme rail : la somme voyage sous forme de jeton stable adossé au dollar, pour éviter les variations de prix pendant le trajet. Les résultats réels sont contrastés : sur certains couloirs, les coûts ont nettement baissé et les délais fondus ; ailleurs, la réglementation, le manque de points de retrait en espèces, ou la méfiance freinent l'adoption. Leçon d'ingénierie sociale à retenir : la technologie la plus brillante ne gagne que si elle se plie à l'habitude de l'usager, et l'usager africain a prouvé avec le mobile money qu'il adopte vite le simple, jamais le compliqué. Les projets qui réussissent cachent la blockchain dans une expérience familière."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Traçabilité : du cacao au consommateur",
+          "content": "Deuxième front africain de la blockchain : la traçabilité des produits, avec un cas emblématique, le cacao de Côte d'Ivoire, premier producteur mondial. Le problème : la filière cacao compte des millions de producteurs, des coopératives, des collecteurs, des exportateurs, et une opacité persistante sur l'origine exacte des fèves et sur la répartition des marges. Conséquences possibles : la difficulté de renseigner les acheteurs finaux sur l'origine durable des fèves, la prime de qualité difficile à reverser aux producteurs méritants, et la contrebande de lots douteux dans les circuits. La réponse étudiée : à chaque étape, du panier du producteur au conteneur d'exportation, une inscription horodatée sur un registre inviolable : identifiant du lot, localisation, poids, certifications, et le mouvement des paiements associés via mobile money. Le consommateur européen peut, en théorie, scanner un code et remonter jusqu'à la coopérative ; le producteur peut voir ses livraisons reconnues et sa prime tracée. Ce qui fonctionne : la traçabilité se déploye réellement dans plusieurs filières du continent, cacao, café, minerais comme le cobalt et le coltan, avec des appuis des grandes entreprises acheteuses, motivées par les réglementations européennes sur les produits importés. Ce qui bute : la fiabilité de la première inscription, dite du premier maillon : si le collecteur déclare de faux poids à la source, la blockchain conserve le mensonge avec la même fidélité qu'une vérité, tu connais cette nuance depuis la première aventure du monde ; la connectivité rurale, avec des zones à couverture discontinue ; le coût des équipements et de la formation ; et l'appropriation par les coopératives, qui doivent percevoir un bénéfice concret à changer leurs habitudes. Leçon de projet : la blockchain ne remplace pas l'organisation humaine, elle l'outille : les projets qui réussissent investissent autant dans la formation des acteurs que dans la technologie, et commencent par un périmètre réaliste, une coopérative, un bassin, une filière pilote."
+        },
+        {
+          "section_type": "build",
+          "title": "Titres fonciers, identité et diplômes",
+          "content": "Troisième front : les documents officiels, avec trois usages africains en développement. Les titres fonciers : le fléau des doubles ventes, un même terrain vendu à deux acheteurs par un vendeur peu scrupuleux, provient de registres papiers difficilement interrogeables et parfois altérables. Des projets, au Ghana, en Afrique de l'Est, et à l'étude en Côte d'Ivoire, inscrivent les mutations foncières sur des registres numériques inviolables, horodatés, consultables : l'objectif n'est pas de remplacer l'État, mais de fournir à ses services un cahier que ni l'humidité, ni les rongeurs, ni les pressions locales ne peuvent altérer. Les conditions de réussite sont strictes : reconnaissance juridique des inscriptions par l'autorité en charge, procédure unique de première inscription rigoureuse, et accompagnement des communautés, car le foncier est un sujet social brûlant avant d'être un sujet technique. L'identité numérique : des systèmes de vérification d'identité s'appuient sur des registres inviolables pour permettre à des personnes non bancarisées d'accéder à des services, en associant l'authentification à des mécanismes respectant la vie privée ; la clé du succès : l'interopérabilité avec les systèmes étatiques existants, comme la carte nationale d'identité, plutôt que la concurrence contre eux. Les diplômes et attestations : des universités africaines inscrivent des diplômes vérifiables en quelques secondes, pour lutter contre les faux CV, un fléau concret des recrutements ; un employeur vérifie en ligne, sans appeler l'établissement ni attendre des semaines. Ce triptyque foncier, identité, diplômes partage la même promesse : réduire le coût de la preuve. La preuve de propriété, la preuve d'identité, la preuve de compétence, trois cauchemars administratifs africains bien connus, deviennent des vérifications instantanées. Et pour toi, une perspective de carrière : ces projets cherchent des profils locaux qui comprennent à la fois la technologie, les institutions et le terrain, un triptyque rare que ton parcours, technologique et ancré localement, peut précisément construire."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : étudie un projet africain réel",
+          "content": "Mission d'enquête : étudier un projet blockchain africain réel, avec la grille de lecture de l'analyste, et présenter tes conclusions. Étape un : la sélection. Repère un projet africain blockchain, dans les médias spécialisés, les incubateurs, ou les événements tech de ta ville : transferts, traçabilité agricole, foncier, diplômes, tout domaine convient. Étape deux : les cinq questions de la grille. Premier : le problème, quelle douleur précise le projet vise-t-il, et pour qui ? Deuxième : la mécanique, comment utilise-t-il la blockchain, et une base de données classique suffirait-elle ? Cette question, tu sais désormais la poser en professionnel. Troisième : les acteurs, qui finance, qui régule, qui sont les partenaires locaux, et la communauté visée a-t-elle été associée à la conception ? Quatrième : la traction, le projet sert-il réellement des usagers, avec des chiffres publics, ou reste-t-il au stade pilote récurrent, le piège classique des projets qui pilote éternellement ? Cinquième : la viabilité, le modèle économique tient-il sans subvention permanente ? Étape trois : la recherche documentaire. Cherche les sources variées : site du projet, articles de presse, réseaux professionnels, publications des partenaires ; croise toujours au moins trois sources, et repère qui parle avec des chiffres et qui parle avec des slogans. Étape quatre : le compte rendu. Rédige une fiche d'une page : problème, mécanique, acteurs, traction, viabilité, et ton verdict argumenté en trois phrases : prometteur, prématuré, ou trompeur, avec les faits qui justifient ton verdict. Étape cinq : la présentation. Partage ta fiche dans ta communauté tech, ou devant ta classe : défendre une analyse devant un public forme comme rien d'autre. Les projets africains blockchain ont besoin de mille regards lucides : celui qui sait décrypter les promesses distingue les startups qui construisent de celles qui racontent, et cette compétence, personne ne peut te la prendre."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : ta solution blockchain pour ton quartier",
+          "content": "Projet final : concevoir, sur papier, une solution blockchain pour un problème réel de ton quartier, comme un vrai porteur de projet avant sa première réunion. Étape un : le terrain. Choisis un problème que tu connais de première main : la méfiance autour de la tontine du quartier quand un trésorier déménage ; les faux reçus dans la location de chaises et sonos des fêtes ; la difficulté de prouver un diplôme de formation professionnelle obtenu au quartier ; les pertes de colis dans l'envoi de marchandises entre villes. Un seul problème, précis, vécu. Étape deux : le diagnostic. Décris le problème en une page : qui souffre, quelles tentatives de solution existent déjà, pourquoi elles butent. Toute solution sérieuse commence par un diagnostic honnête. Étape trois : l'arbitrage blockchain. Applique ta grille : la défiance entre acteurs inconnus est-elle le cœur du problème ? alors un registre partagé peut aider ; le problème est-il plutôt le coût, la logistique, ou l'information ? alors la blockchain n'apporte rien, et ton document doit le dire : savoir écarter la blockchain est une preuve de lucidité, pas un échec. Étape quatre : la conception. Si la blockchain s'impose, spécifie : qu'est-ce qui s'inscrit sur le registre ? qui inscrit ? qui vérifie ? comment l'usager de base interagit-il, sans le voir ? Et décris l'expérience de l'usager en trois étapes simples, comme il en aurait l'habitude avec le mobile money. Étape cinq : la feuille de route réaliste. Périmètre pilote : une seule tontine, un seul loueur, une seule filière. Partenaires indispensables : l'autorité locale, l'association, l'opérateur technique. Coûts, formation des acteurs, indicateurs de réussite à trois mois. Étape six : la présentation défensive. Présente ta solution à trois personnes, dont une qui s'y connaît un peu, et note chaque objection sans te défendre : ensuite, classe les objections en trois colonnes, à traiter maintenant, à traiter plus tard, hors de portée : c'est le tableau de bord de tout porteur de projet réel. Ta solution papier, si elle est solide, tu pourras la garder pour un hackathon, un concours de projets, ou même un jour, ta première entreprise : tout commence par une page et un problème vrai."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Pourquoi les transferts transfrontaliers sont-ils le premier cas d'usage de la blockchain en Afrique ?",
+          "options": [
+            "Parce que les Africains aiment les technologies compliquées",
+            "Parce que les frais des circuits classiques dévorent une part importante des sommes envoyées, surtout les petites",
+            "Parce que les banques ont fermé",
+            "Parce que la blockchain est obligatoire pour voyager"
+          ],
+          "correct_index": 1,
+          "explanation": "Les commissions des canaux traditionnels, particulièrement lourdes sur les petits montants, motivent des rails numériques moins coûteux et plus rapides pour les envois de la diaspora."
+        },
+        {
+          "question": "Quel modèle de transfert blockchain fonctionne le mieux auprès du grand public ?",
+          "options": [
+            "Celui où l'usager doit apprendre toute la technologie",
+            "Celui où la blockchain est cachée dans une application simple et familière",
+            "Celui qui exige trois comptes différents",
+            "Celui qui n'envoie que la nuit"
+          ],
+          "correct_index": 1,
+          "explanation": "L'usager veut envoyer de l'argent, pas apprendre la blockchain : les services qui assemblent la technologie en coulisse et vendent une expérience simple gagnent l'adoption."
+        },
+        {
+          "question": "Quelle est la principale limite de la traçabilité blockchain du cacao ?",
+          "options": [
+            "La blockchain refuse les produits agricoles",
+            "La fiabilité de la première inscription : un mensonge saisi à la source est conservé tel quel",
+            "Les consommateurs détestent le cacao",
+            "Les téléphones ne fonctionnent pas dans les campagnes du tout"
+          ],
+          "correct_index": 1,
+          "explanation": "Le registre inviolable conserve fidèlement le vrai comme le faux : la rigueur du premier maillon, la déclaration à la source, conditionne toute la chaîne de confiance."
+        },
+        {
+          "question": "Que vise l'usage blockchain des titres fonciers ?",
+          "options": [
+            "À supprimer l'État",
+            "À fournir aux services fonciers un registre inviolable contre les doubles ventes et les altérations",
+            "À vendre les terrains plus vite",
+            "À augmenter les impôts"
+          ],
+          "correct_index": 1,
+          "explanation": "L'objectif est un cahier horodaté et inaltérable des mutations, reconnu juridiquement, pour rendre les doubles ventes détectables et les vérifications instantanées."
+        },
+        {
+          "question": "Comment démontrer sa lucidité dans un projet blockchain de quartier ?",
+          "options": [
+            "En mettant de la blockchain partout",
+            "En écartant la blockchain quand le problème ne relève pas de la défiance entre inconnus",
+            "En promettant des gains rapides",
+            "En achetant le matériel le plus cher"
+          ],
+          "correct_index": 1,
+          "explanation": "La blockchain outille la défiance entre acteurs qui ne se connaissent pas : quand le problème est ailleurs, coût, logistique, information, l'écarter lucidement est une preuve de compétence."
+        }
+      ]
+    },
+    {
+      "slug": "wallet-security",
+      "title": "Sécurité des wallets",
+      "description": "Apprends à protéger un portefeuille numérique comme un pro : clés privées, phrases secrètes, portefeuilles chauds et froids, et le protocole anti-arnaque complet.",
+      "story": "Un portefeuille numérique, c'est un trésor sans serrure physique : ta clé privée en est l'unique clé, et si elle tombe entre de mauvaises mains, aucun service client, aucun banquier, aucun gendarme ne peut annuler la transaction. D'où cette vérité : dans le monde blockchain, la sécurité n'est pas une option, c'est la compétence fondamentale. Dans cette aventure, tu apprends tout : comment fonctionnent les portefeuilles, comment on les vole, et surtout, comment on les rend quasi inviolables.",
+      "xp_reward": 140,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Ton portefeuille, ta seule banque",
+          "content": "Un portefeuille numérique, souvent appelé wallet par l'anglais, n'a rien d'un sac : c'est un outil qui garde tes clés. Précisons le vocabulaire, car tout le reste en dépend. Ta clé privée, c'est le secret ultime : un code que toi seul dois connaître, et qui prouve que tu es le propriétaire des fonds associés à ton adresse. Ta clé publique et ton adresse, c'est la même information sous deux formes : à donner pour recevoir, visible par tous, inoffensive. Ta phrase secrète, souvent appelée phrase de récupération, c'est la forme humaine de ta clé privée : une suite de douze ou vingt-quatre mots simples, dans un ordre précis, qui régénère ta clé privée partout où tu la saisis. Retiens la règle des trois niveaux : l'adresse, à partager ; la clé privée et la phrase secrète, à ne jamais partager avec personne, jamais, ni famille, ni ami, ni prétendu service client. Pourquoi cette sévérité ? Parce que la transaction signée avec ta clé est irréversible : il n'y a ni opposition de carte, ni réclamation, ni assurance : celui qui signe avec ta clé est, aux yeux de la blockchain, toi. Deuxième conséquence : ton portefeuille, c'est aussi ta responsabilité d'adulte avant l'heure : le garder, c'est comme garder les clés de la maison, sauf que la maison, ici, se vide entièrement en une signature. Troisième conséquence, positive celle-là : bien protégé, un portefeuille est d'une robustesse remarquable : pas de banque à faire faillir, pas de carte à cloner, pas de guichet à braquer : la sécurité repose sur des mathématiques et ta discipline. Cette aventure t'installe justement cette discipline, réflexe après réflexe, pour toi, et pour accompagner les adultes de ton entourage."
+        },
+        {
+          "section_type": "play",
+          "title": "Chaud, froid : les deux familles de portefeuilles",
+          "content": "Tous les portefeuilles ne protègent pas pareil : la première distinction à maîtriser est celle du chaud et du froid. Le portefeuille chaud : une application sur téléphone ou ordinateur, connectée à internet, pratique pour envoyer et recevoir au quotidien. Sa faiblesse suit sa force : la clé privée vit sur un appareil connecté, donc exposé aux virus, aux faux logiciels, aux écrans espions : un téléphone infecté peut lire la clé et vider le portefeuille sans violence. On ne garde dans un chaud que le nécessaire de tous les jours, comme l'argent de poche du jour de marché. Le portefeuille froid : la clé privée vit hors ligne, sur un appareil dédié, souvent une petite carte électronique verrouillée, ou même sur papier dans un coffre, ce qu'on appelle le portefeuille papier. Pour signer une transaction, l'appareil cold exige une pression physique du doigt : un pirate à des milliers de kilomètres peut bien infecter ton ordinateur, sans l'appareil entre ses mains, il ne peut rien signer. Le froid, c'est le coffre du foyer : on y garde l'essentiel, et on n'y touche que rarement. La bonne architecture, celle des utilisateurs avertis, combine les deux : un chaud modeste pour les usages courants, et un froid pour le reste, avec des séparations strictes. Trois règles transversales complètent le tableau. Règle de provenance : ne télécharge un portefeuille que depuis le site officiel, vérifié, jamais depuis un lien reçu par message. Règle de petits montants : tout nouveau portefeuille, toute nouvelle pratique se teste d'abord avec une somme minuscule, que l'on envoie, puis que l'on récupère, avant d'engager quoi que ce soit de sérieux. Règle de double contrôle : toute adresse de destination se vérifie caractère par caractère, et le premier envoi vers un nouveau destinataire reste modeste. Ces trois réflexes valent d'ailleurs pour tous les portefeuilles du monde, chauds comme froids."
+        },
+        {
+          "section_type": "experiment",
+          "title": "La phrase secrète : le trésor en douze mots",
+          "content": "Zoom sur l'objet le plus sensible de l'écosystème : ta phrase secrète. Douze ou vingt-quatre mots, choisis dans un dictionnaire standard par ton portefeuille, au moment de sa création : leur ordre exact régénère ta clé privée, et donc l'accès à tout ton portefeuille. Comprends bien le mécanisme : la phrase ne se stocke nulle part en ligne ; elle n'est montrée qu'une fois, à la création ; celui qui la possède recrée ta clé sur n'importe quel portefeuille du monde, sans mot de passe, sans code, sans question : il est toi. Comment la protéger ? Les bonnes pratiques, apprises des malheurs des autres. Un, l'écrire à la main, au stylo sur papier, jamais en photo, jamais dans une note de téléphone, jamais dans un courriel, jamais dans un message : tout support numérique connecté est une fuite en sursis. Deux, garder le papier hors de toute vue : pas de photo, pas de lecture à voix haute devant d'autres, pas de mots écrits au dos d'un document que l'on montre. Trois, préférer deux copies en deux lieux sûrs différents, contre le feu et la perte, éventuellement en deux morceaux séparés pour les plus prudents. Quatre, réfléchir à la succession : les adultes avisés informent une personne de confiance de l'existence du coffre, sinon leurs héritiers ne retrouveront jamais l'accès. Et maintenant, les attaques qui ciblent la phrase, à reconnaître absolument : le faux service client qui appelle ou écrit pour vérifier votre phrase ; le faux site de portefeuille qui demande de saisir la phrase pour restaurer un compte soi-disant bloqué ; le faux employé d'une société connue qui propose de la taper pour vous ; l'appareil de portefeuille trafiqué, reçu d'un inconnu avec une feuille de phrase déjà préremplie : c'est le piège complet, tendu d'avance. Toute demande de phrase est une attaque, à cent pour cent, sans exception : c'est la phrase que tu répéteras aux adultes de ta famille, et elle vaut son poids en café."
+        },
+        {
+          "section_type": "build",
+          "title": "La panoplie des attaques : savoir pour reconnaître",
+          "content": "Cartographions les attaques réelles contre les portefeuilles, pour que chacune te soit familière avant de la rencontrer. Le hameçonnage, le plus fréquent : un message urgent, par courriel, SMS ou messagerie, imitant une entreprise connue, vous conduisant vers un site jumeau qui aspire identifiants et phrase ; la parade : ne jamais suivre un lien reçu, toujours taper soi-même l'adresse officielle, et se méfier de toute urgence. Le faux support : les escrocs épluchent les réseaux publics, écrivent aux utilisateurs qui posent une question, se prétendent du service d'assistance, et exigent la phrase ou un accès à distance ; la parade : aucun service sérieux ne répond en privé aux messages publics, ni ne demande de phrase. La drague de la connexion : sur les sites de finance décentralisée, une demande de connexion malveillante n'est pas un vol en soi : elle attend que vous signiez ; la parade : lire toute demande de signature, refuser les demandes incompréhensibles, ne jamais signer à la va-vite, et vérifier le site avant de connecter son portefeuille. Le logiciel espion : applications truquées, claviers modifiés, extensions de navigateur pirates : la parade : installations minimales, sources officielles, appareils propres. L'attaque physique et sociale : un proche, un technicien, un admirateur qui obtient un accès momentané à l'appareil déverrouillé ; la parade : verrouillage systématique, et séparation entre l'appareil du quotidien et celui des affaires sérieuses. Le piège à dessin, le plus retors : une transaction modifiée à votre insu, souvent un contrat qui se donne le droit de vider le portefeuille à tout moment ; la parade : la règle du portefeuille dédié : toute interaction avec un service inconnu se fait depuis un portefeuille jetable, contenant le strict nécessaire. La synthèse de cette panoplie : la quasi-totalité des vols repose sur l'ingénierie sociale, la manipulation des personnes, plus que sur la casse des mathématiques. Ta clé ne se craque pas, elle se fait raconter : d'où la dernière ligne de défense, toi, formé et méfiant au bon endroit."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : le protocole de sécurité familiale",
+          "content": "Mission de sécurité : bâtir et faire vivre le protocole de sécurité des portefeuilles pour ton entourage, car les adultes sont les cibles les plus visées. Étape un : l'audit des habitudes. Interroge discrètement, sans exposer qui que ce soit, les habitudes numériques de ta famille : qui utilise des applications financières ? qui clique sur les liens des messages ? qui utiliserait le même mot de passe partout ? dresse un état des lieux sans jugement. Étape deux : la rédaction du protocole. Une page, en langage clair, affichée et partagée, avec les dix règles d'or : ne jamais partager sa phrase secrète ; ne jamais suivre un lien reçu ; taper soi-même les adresses des sites ; vérifier chaque adresse de destinataire ; ne jamais signer ce qu'on ne comprend pas ; tester à blanc tout nouveau service ; garder l'essentiel hors ligne ; verrouiller ses appareils ; se méfier de l'aide non sollicitée ; et en cas de doute, ne rien faire, puis demander à un dépanneur de confiance. Étape trois : la répétition. Un protocole non répété ne sert à rien : organise une séance familiale de dix minutes, raconte les attaques réelles comme des histoires, fais réciter les règles à voix haute, et invente un signal familial, un mot convenu, pour toute demande d'argent urgent par téléphone. Étape quatre : le test de résistance. Avec l'accord des adultes, simule une tentative d'arnaque bénigne : un message fictif demandant une information sensible, envoyé par un complice : comptez qui y répond et qui résiste, puis débriefez sans moquerie, en félicitant les vigilants et en corrigeant les réflexes défaillants. Étape cinq : le suivi. Le protocole se relit chaque trimestre, comme on vérifie les extincteurs : les attaques évoluent, les règles s'ajustent. Cette mission n'a rien d'un exercice scolaire : dans plusieurs familles, une seule règle bien ancrée a évité des pertes équivalant à des années d'économies : ton protocole peut être ce mur."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : le coffre-fort de cour",
+          "content": "Projet final : construire et faire vivre un coffre-fort de documents familial, selon les principes du froid et de la séparation, exercice complet sans aucun actif réel. Étape un : le contenu. Avec les adultes, listez les documents précieux de la famille : actes, diplômes, titres, photos irremplaçables, mots de passe des comptes importants écrits en clair, et pour les familles qui en détiennent, la mention de l'existence d'un portefeuille numérique et de sa phrase, sans inscrire la phrase en clair sur la même feuille. Étape deux : le triple exemplaire. Chaque document critique existe en trois versions : une originale rangée au coffre, une copie numérique chiffrée sur deux supports distincts, une copie de travail à disposition courante. C'est la règle du trois-deux-un que suivent les professionnels : trois copies, deux supports différents, une hors du domicile. Étape trois : la séparation. Répartissez les lieux : le domicile pour la copie courante, un parent de confiance pour la première copie, un coffre bancaire ou une boîte scellée chez un second tiers pour la troisième ; notez les lieux dans un petit carnet que gardent deux personnes différentes. Étape quatre : la restauration, le test qui révèle tout : prélevez un document au hasard et chronométrez le temps de récupération : si la famille met un jour à retrouver un acte de naissance, le système rate son but ; simplifiez jusqu'à ce que chaque document se récupère en moins de dix minutes. Étape cinq : la succession. Rédigez la lettre d'accès : où sont les choses, qui détient quoi, que faire si un titulaire disparaît ; une page, reluée par tous, datée. Étape six : la maintenance trimestrielle : un quart d'heure, trois fois par an, pour ajouter les nouveaux documents, retirer l'obsolète, et vérifier les copies. Ce projet transfère au monde réel les principes du portefeuille froid : séparation, hors ligne, redondance, test de restauration, succession ; et il rend à ta famille un service que peu de familles ont : la certitude de retrouver l'essentiel, quoi qu'il arrive."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Que faut-il ne jamais partager avec quiconque ?",
+          "options": [
+            "Ton adresse publique de portefeuille",
+            "Ta clé privée et ta phrase secrète de récupération",
+            "Le nom de ton opérateur téléphonique",
+            "Ta couleur préférée"
+          ],
+          "correct_index": 1,
+          "explanation": "L'adresse se partage pour recevoir ; la clé privée et la phrase secrète ne se partagent jamais : celui qui les possède est, aux yeux de la blockchain, toi."
+        },
+        {
+          "question": "Quelle est la différence entre un portefeuille chaud et un portefeuille froid ?",
+          "options": [
+            "Le chaud est rouge, le froid est bleu",
+            "Le chaud reste connecté à internet, pratique mais exposé ; le froid garde la clé hors ligne, comme un coffre",
+            "Le chaud coûte plus cher",
+            "Le froid ne peut rien envoyer, jamais"
+          ],
+          "correct_index": 1,
+          "explanation": "Chaud : connecté, pour le quotidien, avec l'essentiel limité. Froid : hors ligne, parfois sur appareil dédié à bouton, pour l'essentiel des avoirs."
+        },
+        {
+          "question": "Comment conserver correctement sa phrase secrète de récupération ?",
+          "options": [
+            "En photo sur le téléphone, pour ne pas l'oublier",
+            "Écrite à la main sur papier, gardée hors de vue, en plusieurs exemplaires sûrs",
+            "Envoyée à soi-même par courriel",
+            "Publiée sur les réseaux, avec un mot-dièse"
+          ],
+          "correct_index": 1,
+          "explanation": "Papier, stylo, discrétion, plusieurs lieux : tout support numérique connecté est une fuite en sursis, et toute demande de phrase est une attaque, à cent pour cent."
+        },
+        {
+          "question": "Comment réagir face à un prétendu service client qui demande de l'aide à distance ?",
+          "options": [
+            "On accepte, c'est le service client",
+            "On refuse tout, on coupe la conversation, et on contacte soi-même le service par un canal officiel",
+            "On donne la phrase pour aller plus vite",
+            "On partage son écran et on attend"
+          ],
+          "correct_index": 1,
+          "explanation": "Aucun service sérieux ne répond en privé aux messages publics ni ne demande une phrase : la règle est de couper, puis de vérifier par soi-même via le canal officiel."
+        },
+        {
+          "question": "Que dit la règle du trois-deux-un des sauvegardes ?",
+          "options": [
+            "Trois mots de passe, deux téléphones, un seul compte",
+            "Trois copies des données critiques, sur deux types de supports, dont une hors du domicile",
+            "Trois jours de délai, deux essais, une seule question",
+            "Trois portefeuilles, deux blockchains, une clé"
+          ],
+          "correct_index": 1,
+          "explanation": "La règle professionnelle de robustesse : trois copies pour la redondance, deux supports contre la panne commune, un lieu externe contre l'incendie et le vol."
+        }
+      ]
+    },
+    {
+      "slug": "dao-intro",
+      "title": "Les DAO",
+      "description": "Découvre les organisations autonomes décentralisées : des associations gouvernées par le code, où chaque membre vote selon des règles transparentes.",
+      "story": "Imagine une association où le règlement s'applique tout seul : les cotisations sont versées au programme, les votes sont comptés par le code, les décisions s'exécutent automatiquement, et personne, pas même le président, ne peut détourner la caisse. C'est une organisation autonome décentralisée, le moyen qu'ont trouvé les communautés blockchain pour s'organiser sans chef. Dans cette aventure, tu explores ces organisations vivantes, leurs mécanismes, leurs forces, et leurs crises.",
+      "xp_reward": 130,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Une association sans président tout-puissant",
+          "content": "DAO signifie organisation autonome décentralisée. Décomposons les trois mots, car chacun porte une révolution. Organisation : un groupe d'humains poursuivant un but commun, comme toute association, du club de foot au syndicat. Autonome : les règles de l'organisation vivent dans des programmes, des contrats intelligents découverts dans une autre aventure, qui appliquent les décisions sans intervention humaine : les cotisations tombent, les votes se comptent, les fonds se débloquent, tout seul. Décentralisée : aucun siège, aucun bureau du président, aucun compte bancaire unique : la caisse vit sur la blockchain, inviolable, et le pouvoir se répartit entre les membres selon des règles publiques. Compare avec l'association classique : son trésorier peut fuir avec la caisse, son règlement peut être réinterprété par un comité, ses archives peuvent brûler. La DAO répond à chacun de ces risques : la caisse ne peut pas fuir, car seul le vote autorise les dépenses ; le règlement ne peut pas être réinterprété, car il s'exécute mot pour mot ; les archives ne brûlent pas, car elles sont publiques et inviolables. Les DAO existantes poursuivent des buts variés : financer des logiciels libres, gérer des fonds d'investissement collectifs, organiser des communautés de créateurs, acheter ensemble des biens, même des œuvres d'art ou des terrains. La leçon centrale de cette aventure : une DAO n'est pas magique, c'est une association dont on a automatisé les règles ; et comme toute association, elle hérite des questions humaines éternelles : qui décide, comment se prévient la prise en main par quelques-uns, comment se motive la participation, comment tranche-t-on quand les membres se disputent. La blockchain change l'outillage, pas la nature des humains qui l'utilisent : garder cette phrase en tête, et tu comprendras tout ce qui suit."
+        },
+        {
+          "section_type": "play",
+          "title": "Le mécanisme de gouvernance : voter avec des jetons",
+          "content": "Entrons dans la mécanique. Comment décide une DAO ? Le plus souvent, par un vote pondéré par des jetons de gouvernance : des unités numériques que les membres détiennent, et qui donnent des droits de vote. Le fonctionnement type suit un parcours en quatre temps. Temps un, la proposition : un membre rédige une proposition : financer tel projet, changer telle règle, embaucher tel prestataire. La proposition décrit précisément l'action et son coût, et s'enregistre publiquement. Temps deux, le débat : les membres discutent, par écrit, sur les forums publics : les arguments restent consultables, ce qui change des réunions où les décisions se prennent dans les couloirs. Temps trois, le vote : chaque membre exprime son choix, et son poids dépend de ses jetons : un membre avec dix jetons pèse dix voix ; certains systèmes plafonnent les gros détenteurs pour éviter la prise en main. Temps quatre, l'exécution : si le seuil requis est atteint, par exemple une majorité des voix exprimées, le contrat exécute automatiquement la décision : les fonds partent, la règle change, sans qu'on ait besoin de faire confiance à un trésorier. La force saute aux yeux : impossible de voter deux fois, impossible de perdre les bulletins, impossible d'exécuter une décision non votée. Et les limites sautent aussi : la participation est souvent faible, car voter demande de la vigilance, comme pour les associations ; les gros détenteurs pèsent lourd, et une coalition peut voter contre l'intérêt général ; et les votes se bornent aux options proposées : une DAO ne remplace pas le débat créatif qui imagine de nouvelles options. Exercice mental : transcris les règles de la tontine de ta famille en règles de DAO : qui aurait quel pouvoir de vote, quels seuils, quelles propositions automatisables ? Tu découvriras vite quelles règles humaines résistent à l'automatisation."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Les trésors partagés et leurs drames",
+          "content": "La partie la plus fascinante des DAO : la caisse commune, appelée trésor. Un trésor de DAO, ce sont des fonds détenus par un contrat, que seul un vote peut débloquer : imaginez une caisse d'association que ni le président, ni le trésorier, ni même un tribunal ne peut forcer. Cette inviolabilité a produit des moments historiques. Le plus fameux : une DAO de financement collectif, parmi les premières, qui avait réuni l'équivalent de dizaines de millions de dollars, s'est fait vider par un attaquant qui avait repéré une faille dans son code de remboursement ; la communauté a dû faire l'impensable : modifier l'histoire de la blockchain elle-même pour récupérer les fonds, une crise qui a durablement divisé le monde crypto. Les leçons tirées, devenues des standards : un trésor de DAO se protège par des délais, des plafonds par opération, des votes à plusieurs étapes, des audits sérieux du code. D'autres drames plus discrets, tout aussi instructifs : des DAO achètent des biens symboliques à des prix exorbitants, puis se disputent la garde du bien ; des trésors dorment parce que les membres ne votent jamais, et la caisse devient un musée ; des minorités actives votent des dépenses à leur avantage pendant que la majorité dort : c'est la tyrannie de la minorité active. Face à ces drames, les DAO matures ont développé des rôles et des contrepoids : des comités élus avec des mandats courts, des budgets plafonnés par période, des votes à participation minimale pour les grosses décisions, des périodes de rétractation pendant lesquelles une décision votée peut encore être contestée. Retiens la synthèse : un trésor inviolable protège des voleurs, pas des mauvaises décisions votées ; la seule vraie protection d'une caisse collective reste la vigilance de ses membres, blockchain ou pas : une leçon que ta grande-mère connaît depuis toujours sur les tontines."
+        },
+        {
+          "section_type": "build",
+          "title": "Les métiers et compétences des DAO",
+          "content": "Les DAO ont engendré une nouvelle économie du travail : des équipes réparties sur plusieurs continents, payées en jetons, sans employeur unique. Découvre les rôles réels qui se recrutent dans cet écosystème. Le rédacteur de propositions : celui qui traduit une idée en proposition votable, chiffrée, claire : un métier d'écriture précise, qui ressemble à la rédaction de cahiers des charges. Le délégué ou représentant : certains membres délèguent leurs votes à des personnes de confiance qui étudient les dossiers : un métier de confiance politique à temps partiel, rémunéré par la réputation. Le contributeur technique : développeurs, designers, rédacteurs, recrutés par votes, payés à la tâche ou à la période : les DAO fonctionnent comme des freelances coordonnés. L'analyste de trésor : celui qui surveille les dépenses, établit les budgets, alerte sur les dérives : un rôle de contrôleur de gestion de communauté. Le médiateur : celui qui gère les conflits, anime les débats, reformule les désaccords : dans des organisations sans chef, la diplomatie devient une compétence technique. Les compétences qui font la différence dans ce monde : savoir rédiger clairement, car tout se discute par écrit ; savoir chiffrer une proposition, car un vote porte sur des montants ; savoir gérer son temps en autonome, car aucun chef ne supervise ton travail ; et l'anglais technique de base, car beaucoup de DAO travaillent en anglais, même si des DAO francophones existent. Pour toi, la porte d'entrée est plus proche qu'il n'y paraît : plusieurs DAO recrutent des débutants pour des micro-missions, des traductions, des tests d'applications, des synthèses de débats ; les plus jeunes contributeurs démontrent leur sérieux par ces petites tâches avant de recevoir des responsabilités. Un portfolio de contributions à des projets collectifs, même modestes, vaut aujourd'hui autant qu'un diplôme dans ces communautés : c'est le travail visible qui fait la réputation."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : observe une DAO vivante",
+          "content": "Mission d'observation : étudier une DAO réelle en activité, depuis ses documents publics, et rédiger son portrait de gouvernance. Étape une : la sélection. Choisis une DAO documentée publiquement : certaines organisations de logiciels libres, de protocoles financiers ou de communautés de créateurs publient tout leur fonctionnement. Étape deux : la collecte des faits bruts. Repère : le nombre approximatif de détenteurs de jetons de gouvernance ; le montant public du trésor ; le nombre de propositions votées ces derniers mois, et leur taux de participation ; les rôles officiels décrits dans la documentation. Étape trois : l'analyse des règles. Réponds par écrit : comment devient-on membre ? quel poids ont les gros détenteurs ? existe-t-il des plafonds, des délais, des étapes multiples pour les grosses dépenses ? qui peut soumettre une proposition ? comment sont payés les contributeurs ? Étape quatre : l'analyse des dynamiques humaines, la partie la plus riche : regarde les trois dernières propositions rejetées, et lis les débats : pourquoi le groupe a-t-il dit non ? observe qui parle le plus : quelques personnes ou beaucoup ? les décisions se préparent-elles en public ou semblent-elles cousues d'avance ? Étape cinq : le portrait. Rédige une page : la mécanique de cette DAO, ses forces, ses fragilités, et ta question ouverte, la chose que tu n'as pas comprise ou qui te semble contradictoire. Puis compare ton portrait avec celui d'un camarade qui aura étudié une autre DAO : échangez vos analyses, et notez les convergences : les mêmes forces et fragilités se retrouvent-elles partout ? Cette mission t'apprend le regard de l'analyste d'organisations, un regard qui servira dans toutes tes associations futures, blockchain ou pas, car les questions de gouvernance sont les mêmes sous tous les cieux."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : monte la DAO de ta classe",
+          "content": "Projet final : fonder une mini-DAO pour un projet réel de ta classe ou de ton club, en papier et en règles, et la faire vivre un mois. Étape un, la constitution. Rédige la constitution de ta DAO sur une page : le but, par exemple financer et gérer le matériel du club informatique ; les membres, et le jeton, appelons-le le clubcoin, distribué équitablement à l'inscription, un par membre, pour éviter la domination ; la caisse, alimentée par des cotisations modestes en bonpoints ; les règles de vote : une proposition s'écrit, s'affiche trois jours, se vote à main levée pondérée par les clubcoins, et passe à la majorité. Étape deux, la transparence. Tiens un registre public : chaque cotisation, chaque proposition, chaque vote, chaque dépense s'inscrit au tableau, horodaté et signé : ce tableau, c'est votre blockchain de classe. Étape trois, les rôles. Nomme un gardien du registre, qui ne décide rien mais qui inscrit tout ; un compteur de voix, renouvelable chaque semaine ; et explicitement, interdiction de cumuler les deux rôles avec le droit de proposer : la séparation des pouvoirs s'apprend ici. Étape quatre, la vie. Soumets trois propositions réelles ce mois : acheter un câble, organiser une sortie, créer un tarif de prêt ; débats-les, vote-les, exécute-les en respectant les règles à la lettre, même quand c'est lent, car la lenteur protège. Étape cinq, la crise organisée. Simule l'épreuve : un membre propose de voter une dépense qui n'arrange que lui ; un petit groupe tente de voter vite fait, sans délai d'affichage ; observe comment vos règles résistent, et améliore la constitution en conséquence, par un vote, bien sûr. Étape six, le bilan. À la fin du mois, rédige le bilan : participation aux votes, taux d'acceptation, litiges, et la question finale à discuter en groupe : notre mini-DAO a-t-elle rendu le club plus juste, plus lourd, ou les deux ? Les réponses de ta classe vaudront tous les traités de science politique."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Que signifie le A de DAO, autonome ?",
+          "options": [
+            "Que l'organisation roule en voiture",
+            "Que ses règles s'exécutent par des programmes, sans intervention humaine pour les appliquer",
+            "Que les membres sont des robots",
+            "Que l'organisation ne dépense jamais"
+          ],
+          "correct_index": 1,
+          "explanation": "Autonome signifie que les décisions votées s'exécutent par le code : cotisations, votes, déblocages de fonds s'appliquent seuls, mot pour mot."
+        },
+        {
+          "question": "Comment se prennent le plus souvent les décisions dans une DAO ?",
+          "options": [
+            "Par le vote pondéré par des jetons de gouvernance détenus par les membres",
+            "Par le président seul",
+            "Par tirage au sort quotidien",
+            "Par le plus ancien membre"
+          ],
+          "correct_index": 0,
+          "explanation": "Le poids de vote suit les jetons détenus, parfois plafonnés : la proposition s'affiche, se débat publiquement, se vote, puis le code exécute."
+        },
+        {
+          "question": "Que protège réellement un trésor de DAO inviolable ?",
+          "options": [
+            "Les membres contre toutes leurs erreurs",
+            "Les fonds contre les vols et les pressions, mais pas contre les mauvaises décisions votées",
+            "Le trésor contre les votes",
+            "La DAO contre le débat"
+          ],
+          "correct_index": 1,
+          "explanation": "L'inviolabilité arrête les voleurs et les pressions extérieures, mais une décision votée à tort s'exécute quand même : seule la vigilance des membres protège de ça."
+        },
+        {
+          "question": "Quel rôle humain devient central dans une organisation sans chef ?",
+          "options": [
+            "Le gardien du registre",
+            "Le médiateur qui anime les débats et gère les conflits",
+            "Le secrétaire général",
+            "Le comptable en chef"
+          ],
+          "correct_index": 1,
+          "explanation": "Sans président pour trancher, la qualité des débats fait la qualité des décisions : la médiation et l'animation deviennent des compétences techniques centrales."
+        },
+        {
+          "question": "Pourquoi distribuer les jetons de gouvernance équitablement à la création d'une mini-DAO ?",
+          "options": [
+            "Pour que tout le monde ait le même poids et éviter la domination par quelques-uns",
+            "Pour économiser des jetons",
+            "Parce que c'est plus joli",
+            "Pour empêcher les votes"
+          ],
+          "correct_index": 0,
+          "explanation": "Une distribution équitable protège contre la prise en main par une coalition : la concentration des voix est le premier risque des systèmes de vote pondéré."
+        }
+      ]
+    },
+    {
+      "slug": "tokenomics",
+      "title": "Tokenomics",
+      "description": "Décrypte l'économie d'un jeton : offre, distribution, utilité et mécanismes de destruction, pour lire les projets comme un analyste, pas comme un acheteur pressé.",
+      "story": "Pourquoi un jeton vaut-il quelque chose ? Pourquoi certains s'effondrent-ils en quelques mois quand d'autres traversent les années ? Une grande partie de la réponse tient dans un mot : la tokenomics, l'économie du jeton, c'est-à-dire les règles qui décident combien il en existe, qui les détient, et à quoi ils servent. Ici, tu apprends à décortiquer ces règles comme un économiste : sans acheter, sans promettre, juste avec un crayon et des questions.",
+      "xp_reward": 120,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "L'économie d'un jeton, pourquoi c'est décisif",
+          "content": "La tokenomics, contraction de jeton et économie, désigne l'ensemble des règles économiques d'un jeton : sa fabrication, sa distribution, ses usages, sa destruction. Un parallèle t'aidera : une monnaie nationale a son économie, gérée par la banque centrale : combien de billets circulent, à quel rythme on en imprime, qui les reçoit en premier, ce qui les rend nécessaires. Un jeton de blockchain fonctionne pareil, à ceci près que ses règles sont écrites dans du code public : tout le monde peut les lire, les calculer, les critiquer. Pourquoi cette science est-elle décisive ? Parce que la valeur d'un jeton suit la confrontation entre deux forces : l'offre, combien il en existe et combien il en arrive ; et la demande, combien de gens veulent le détenir et pourquoi. Là où l'analyse devient concrète : une tokenomics mal conçue peut condamner un projet sérieux, et une tokenomics astucieuse peut masquer un projet vide. Les questions de base que pose tout analyste : combien de jetons existeront au maximum ? à quel rythme en crée-t-on de nouveaux ? qui a reçu les premiers jetons, et à quelles conditions ? à quoi sert concrètement le jeton dans son écosystème ? existe-t-il un mécanisme de destruction qui compense la création ? Ce sont ces questions, et leurs pièges, que cette aventure t'apprend à manier. Positionnement clair, comme toujours dans ce monde : ici, on analyse, on ne spécule pas ; à ton âge, ton capital, c'est ta capacité à comprendre, et personne ne peut t'en faire perdre la valeur."
+        },
+        {
+          "section_type": "play",
+          "title": "L'offre : compter les jetons",
+          "content": "Premier pilier : l'offre, l'art de compter les jetons. Trois notions à distinguer soigneusement. L'offre maximale : la quantité totale qui existera un jour, inscrite dans le code ; le Bitcoin, par exemple, plafonne son émission à vingt et un millions d'unités, et une majorité de la communauté y voit une rareté programmée, comparable à l'or. L'offre en circulation : la quantité disponible aujourd'hui, souvent bien plus petite que le maximum, car des parts restent verrouillées pour des équipes, des investisseurs ou des réserves qui se débloquent selon un calendrier. L'inflation : le rythme de création des nouveaux jetons, mesuré en pourcentage par an ; le Bitcoin réduit de moitié sa récompense de création tous les quatre ans environ, un événement célèbre, si bien que son émission ralentit avec le temps. Autre levier d'offre : la destruction de jetons, souvent appelée brûlage : un programme retire définitivement des jetons de la circulation, en les envoyant vers une adresse inaccessible ; certains projets brûlent une part de leurs frais pour compenser leur émission. Réflexe d'analyste numéro un : toujours comparer les chiffres entre eux, jamais isolément. Un projet qui annonce vingt millions de jetons paraît rare ; si son calendrier de déblocage libère des centaines de millions de jetons dans dix-huit mois, la rareté annoncée n'est qu'un mirage temporaire. Réflexe numéro deux : se méfier des mots et croire les courbes : à quoi sert une offre maximale si le code peut être modifié par un vote qui l'augmente ? Lis toujours qui a le pouvoir de changer les règles, c'est la question la plus rentable de toutes."
+        },
+        {
+          "section_type": "experiment",
+          "title": "La distribution : qui a eu les premiers jetons",
+          "content": "Deuxième pilier, souvent plus révélateur que le premier : la distribution initiale. À la naissance d'un projet, les jetons se répartissent entre des groupes : l'équipe fondatrice, les investisseurs précoces, la fondation, et la communauté, par des distributions publiques, des récompenses d'usage ou des programmes de fidélité. Les projets sérieux publient ce tableau, souvent en camembert : c'est le camembert de la création, et tu vas apprendre à le lire comme un détective. Trois signaux à scruter. Premier signal : la part de la communauté : si les fondateurs et les investisseurs détiennent la majorité, le public n'a été invité qu'à porter la valeur des premiers arrivés ; les projets qui durent distribuent généralement une part significative à leurs utilisateurs. Deuxième signal : le calendrier de déblocage : des jetons attribués à l'équipe mais libérés sur quatre ans avec des paliers progressifs rassurent, car les fondateurs restent motivés à long terme ; des déblocages massifs à six mois sonnent comme un compte à rebours : de grands effondrements ont coïncidé avec ces échéances, quand les premiers détenteurs vendent en masse. Troisième signal : la concentration visible sur la blockchain : quelques adresses anonymes détiennent-elles des parts énormes ? Ces baleines peuvent, en vendant, faire chuter le prix pour tous les petits détenteurs. Exercice de calcul, crayon en main : un projet de dix millions de jetons en circulation voit se débloquer dans trois mois des parts qui multiplient l'offre par deux ; que peut-on en prévoir sur les prix, toutes choses égales par ailleurs ? Réponse : une pression à la baisse mécanique, sauf afflux équivalent de nouveaux acheteurs : c'est de l'arithmétique, pas de la magie. Ce calcul, tu sauras désormais le faire pour tout projet, avant d'écouter les enthousiastes."
+        },
+        {
+          "section_type": "build",
+          "title": "L'utilité : à quoi sert réellement le jeton",
+          "content": "Troisième pilier, le plus déterminant à long terme : l'utilité. Un jeton ne vaut durablement que si le détenir sert à quelque chose, et les utilités se classent en familles. L'utilité de paiement : le jeton paie les frais du réseau, comme l'essence d'un moteur ; c'est l'utilité la plus directe, adossée à l'usage réel du réseau. L'utilité de gouvernance : le jeton donne des droits de vote sur l'évolution du projet, comme des actions avec droit de vote ; sa valeur dépend alors de la valeur du projet lui-même et de la sincérité de sa gouvernance. L'utilité de garantie : détenir et bloquer des jetons pour sécuriser le réseau, contre une récompense, le mécanisme d'enjeu que tu connais déjà ; l'offre bloquée réduit la quantité en circulation. L'utilité d'accès : le jeton ouvre des services, comme un abonnement : rejoindre une communauté, utiliser une plateforme, réserver un service. L'utilité d'incitation : le jeton récompense les contributeurs du projet, développeurs, créateurs, ambassadeurs : il fonctionne comme un salaire à valeur variable. L'analyse sérieuse pose une question impitoyable : que se passerait-il si le jeton disparaissait ? Si le projet continue sans dommage, l'utilité était cosmétique : un jeton collé sur un projet pour lever des fonds. Si le réseau s'arrête net, l'utilité est réelle : le jeton est le cœur du mécanisme. Ce test, appelé le test de nécessité, élimine la moitié des projets en dix secondes de réflexion. Dernière mise en garde de la leçon : méfie-toi des utilités à rendement garanti, du style détenir le jeton rapporte vingt pour cent par mois : un rendement supérieur aux réalités économiques normales se paie toujours quelque part, par les nouveaux arrivants, par une inflation cachée, ou par la disparition programmée du mécanisme : tu sais déjà reconnaître une pyramide déguisée, la tokenomics ne fait qu'habiller certaines d'entre elles."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : la grille d'analyse tokenomics",
+          "content": "Mission d'analyste : appliquer une grille complète de tokenomics à un projet public de ton choix, et produire une fiche de dix lignes, chiffres à l'appui. Étape un : la collecte. Rends-toi sur la documentation du projet, souvent appelée le livre blanc ou la page tokenomics : repère le camembert de distribution, le calendrier de déblocage, les mécanismes de création et de destruction, et les utilités annoncées. Étape deux : les six questions de la grille. Un : quelle est l'offre maximale, et qui peut la changer ? Deux : quelle est l'offre en circulation aujourd'hui, et son rythme de croissance annuel ? Trois : quel pourcentage part à l'équipe et aux investisseurs, et selon quel calendrier de déblocage ? Quatre : quelles utilités réelles, et que vaut le projet sans son jeton, le test de nécessité ? Cinq : existe-t-il une destruction qui compense la création, et chiffrée comment ? Six : les règles de gouvernance permettent-elles de modifier l'offre ou la distribution sans préavis ? Étape trois : les calculs. Avec ton crayon : rapport entre circulation et maximum ; pression de déblocage à six mois, en pourcentage de l'offre courante ; part de la communauté dans la distribution initiale. Trois chiffres, trois lignes, qui disent plus que dix pages de promotion. Étape quatre : la fiche. Dix lignes maximum : trois chiffres, trois forces, trois faiblesses, une conclusion argumentée. Étape cinq : la confrontation. Présente ta fiche dans ta communauté tech ou à ta classe, et accueille les objections en notant celles qui te manquaient : chaque objection non anticipée est une question à ajouter à ta grille personnelle. En répétant cette mission sur deux ou trois projets, tu construiras ton réflexe d'économiste : celui qui, devant un discours enthousiaste, demande d'abord à voir les chiffres et le calendrier, et les interprète froidement. Ce réflexe-là, appliqué aux jetons aujourd'hui, te servira demain devant n'importe quel discours économique : les schémas des séducteurs financiers changent d'habit, rarement de squelette."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : la tokenomics de ton clubcoin",
+          "content": "Projet final : concevoir la tokenomics complète du clubcoin, la monnaie de ton club ou de ta classe déjà rencontrée dans l'aventure des DAO, et la faire tourner en simulation d'un mois. Étape un : les fondamentaux. Fixe par écrit : l'offre maximale, par exemple mille clubcoins, jamais dépassable ; la distribution initiale : cinquante pour cent aux membres à parts égales, vingt pour cent en réserve gérée par votes, quinze pour cent de récompenses de contribution, dix pour cent en trésor d'activités, cinq pour cent à l'équipe d'organisation, déblocable sur un an de présence active. Justifie chaque chiffre en une phrase : c'est l'exercice réel des concepteurs. Étape deux : l'utilité. Choisis trois utilités concrètes : le clubcoin paie la location du matériel du club ; il donne un droit de vote pondéré, plafonné pour éviter la domination ; il récompense les contributions, selon un barème public. Passe le test de nécessité : sans clubcoin, le club peut-il fonctionner ? Si oui entièrement, rediscute le design : une utilité artificielle révèle un défaut de conception. Étape trois : la création et la destruction. Fixe une émission modeste, par exemple cinq nouveaux clubcoins par mois pour les récompenses, et une destruction : chaque location de matériel brûle un clubcoin, retiré à jamais de la circulation. Calcule l'équilibre sur un an : la destruction compense-t-elle l'émission ? Étape quatre : la simulation. Fais tourner la monnaie un mois en papier : inscriptions au registre, locations, récompenses, brûlages, en horodatant tout ; à la fin, calcule l'offre en circulation effective. Étape cinq : la crise. Simule l'épreuve classique : un membre entreprenant accumule des clubcoins et tente de faire voter une dépense à son avantage ; observe comment tes plafonds de vote et ta réserve gérée résistent, et corrige les règles par la procédure prévue. Étape six : le bilan de concepteur. Rédige la page de conception finale : les règles, leurs justifications, les deux incidents de simulation et leurs corrections. Tu viens d'accomplir, en papier, le travail complet d'un économiste de jetons : concevoir, simuler, subir la réalité, corriger. La prochaine fois qu'une tokenomics prometteuse croisera ton chemin, tu sauras ce que ces mots coûtent à écrire, et à tenir."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Que désigne la tokenomics d'un projet ?",
+          "options": [
+            "Le logo du jeton",
+            "L'ensemble des règles économiques : création, distribution, utilité et destruction des jetons",
+            "Le prix du jeton sur les marchés",
+            "Le nombre d'employés du projet"
+          ],
+          "correct_index": 1,
+          "explanation": "La tokenomics est le code économique du jeton : qui le fabrique, qui le reçoit, à quoi il sert, comment il disparaît : lisible, calculable, critiquable."
+        },
+        {
+          "question": "Pourquoi comparer l'offre maximale et l'offre en circulation ?",
+          "options": [
+            "Pour connaître la couleur des jetons",
+            "Parce que des déblocages futurs peuvent augmenter fortement l'offre disponible et peser sur les prix",
+            "Parce que les deux nombres doivent toujours être égaux",
+            "Pour savoir si le projet est africain"
+          ],
+          "correct_index": 1,
+          "explanation": "L'écart entre circulation et maximum révèle les déblocages à venir : un calendrier massif agit comme une pression mécanique, arithmétiquement prévisible."
+        },
+        {
+          "question": "Que révèle le camembert de distribution initiale d'un jeton ?",
+          "options": [
+            "Les goûts culinaires des fondateurs",
+            "La répartition entre équipe, investisseurs et communauté, et donc les intérêts en présence",
+            "Le nombre de pages du livre blanc",
+            "La vitesse de la blockchain"
+          ],
+          "correct_index": 1,
+          "explanation": "Qui détient les premiers jetons détient les premiers intérêts : des parts majoritaires aux fondateurs et investisseurs changent les dynamiques de vente et de gouvernance."
+        },
+        {
+          "question": "Qu'est-ce que le brûlage de jetons ?",
+          "options": [
+            "La punition des tricheurs",
+            "L'envoi définitif de jetons vers une adresse inaccessible, pour réduire l'offre",
+            "Une coupure d'électricité",
+            "La conversion en billets papier"
+          ],
+          "correct_index": 1,
+          "explanation": "Brûler, c'est détruire des jetons à jamais : un levier d'offre qui, bien calibré, compense l'émission et soutient la rareté revendiquée."
+        },
+        {
+          "question": "Que dit le test de nécessité appliqué à un jeton ?",
+          "options": [
+            "Que le jeton doit être jetable",
+            "Que si le projet fonctionne sans dommage sans son jeton, l'utilité du jeton est douteuse",
+            "Que tout projet doit avoir un jeton",
+            "Que le jeton doit être gratuit"
+          ],
+          "correct_index": 1,
+          "explanation": "Le test impitoyable : retire mentalement le jeton ; si le réseau continue, le jeton était décoratif ; s'il s'arrête, le jeton est le cœur du mécanisme."
+        }
+      ]
+    },
+    {
+      "slug": "layer2",
+      "title": "Layer 2 Solutions",
+      "description": "Comprends pourquoi les blockchains débordent et comment les secondes couches les soulagent : rollups, canaux, frais réduits et leurs compromis techniques.",
+      "story": "Un samedi de marché à Adjamé, au plus fort de la journée : chaque transaction du monde entier passerait par un seul guichet, avec une file qui s'allonge et des frais qui montent. C'est le problème des grandes blockchains : trop de monde, pas assez de place dans chaque bloc. Les solutions de seconde couche, les layer 2, ouvrent des guichets parallèles qui comptent vite à l'extérieur, puis scellent le résumé à l'intérieur. Dans cette aventure, tu comprends cette architecture, la plus importante du web3 moderne.",
+      "xp_reward": 130,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Le problème de l'échelle : le guichet unique",
+          "content": "Pourquoi les blockchains sont-elles parfois lentes et chères ? La réponse tient dans un choix de conception fondamental. Rappelons le fonctionnement : chaque transaction, chaque échange, chaque inscription attend d'être rangée dans un bloc ; chaque bloc est vérifié par des milliers de machines ; et l'espace de chaque bloc est volontairement limité, pour que ces machines ordinaires puissent toutes suivre et vérifier. Cette limitation, c'est le prix de la décentralisation : une blockchain que des ordinateurs modestes peuvent faire tourner, partout dans le monde, ne peut pas traiter autant de transactions qu'un serveur unique optimisé. Fais le calcul de situation : si le réseau peut traiter une quinzaine de transactions par seconde, et que des millions de personnes veulent agir en même temps, une file d'attente se forme, exactement devant un guichet unique. Or, une file a une conséquence implacable : ceux qui veulent passer vite surenchèrent. Les frais, qui servent à prioriser les transactions, montent : aux heures de pointe, une simple transaction peut coûter l'équivalent de plusieurs repas, ce qui disqualifie les petits montants et les usages quotidiens. C'est le trilemme bien connu des concepteurs : décentralisation, sécurité, et vitesse, trois qualités dont chaque blockchain doit choisir lesquelles maximiser, au détriment de la troisième. Le monde a cherché des solutions ; la plus influente s'appelle la seconde couche, et elle repose sur une idée à la fois simple et géniale que tu vas explorer : ne pas faire entrer chaque transaction dans le guichet unique, mais seulement des résumés scellés. Bienvenue dans l'architecture à deux niveaux qui porte déjà une large part du web3 d'aujourd'hui."
+        },
+        {
+          "section_type": "play",
+          "title": "L'idée des secondes couches : compter à côté",
+          "content": "L'idée centrale des solutions de seconde couche : déplacer le travail, pas la confiance. Décomposons avec une image précise. Imagine la blockchain principale comme le registre officiel d'un notaire : inviolable, mais lent, et facturant chaque page. Imagine une seconde couche comme un cahier de brouillon surveillé : à côté, les parties effectuent leurs échanges rapidement, presque gratuitement, en notant tout dans le brouillon ; périodiquement, un résumé du cahier, appuyé par une preuve mathématique, est déposé au registre officiel. Résultat : des centaines d'échanges n'occupent qu'une ligne du registre du notaire, et pourtant, la sécurité du notaire couvre l'ensemble : c'est cela, la seconde couche. Trois familles techniques réalisent cette idée, à connaître par leur logique. Les canaux de paiement : deux personnes qui s'échangent souvent, un vendeur de jus et son livreur par exemple, ouvrent un canal en déposant une garantie sur la chaîne principale ; ensuite, ils s'échangent des mises à jour signées entre eux, en direct, sans blockchain, aussi vite qu'un message ; à la clôture, seul le solde final retourne sur la chaîne. Les transactions à sommaire compact, souvent appelées rollups : des milliers de transactions sont traitées à l'extérieur, puis un sommaire compressé, accompagné de preuves permettant à quiconque de vérifier leur exactitude, s'inscrit sur la chaîne principale : les mathématiques vérifient en bloc ce que chaque nœud n'a pas calculé un par un. Les chaînes validatrices : des chaînes séparées qui vérifient mutuellement leurs blocs avec la chaîne principale, un modèle plus rapide, mais qui répartit différemment la confiance. Ce que tu dois retenir : toutes ces familles poursuivent le même but, décharger le guichet, en gardant le registre officiel pour les arbitrages et la sécurité ; leurs différences tiennent dans la manière de prouver que le brouillon est honnête."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Les rollups : le brouillon prouvé par les maths",
+          "content": "Zoom sur la famille reine des secondes couches : les rollups, car ils portent la promesse la plus forte : la vitesse du dehors, la sécurité du dedans. Le fonctionnement, décrit pas à pas. Première phase, l'accumulation : les utilisateurs envoient leurs transactions à un opérateur de rollup, ou à un réseau d'opérateurs, qui les exécute hors de la chaîne principale, dans son brouillon. Deuxième phase, le regroupement : l'opérateur compacte ces centaines de transactions en un paquet, et calcule deux choses : le nouvel état, c'est-à-dire l'image finale des soldes et des contrats, et une preuve, un objet mathématique qui certifie que les règles ont été respectées, transaction par transaction. Troisième phase, le dépôt : l'opérateur inscrit sur la chaîne principale le paquet compacté, la preuve, et le nouvel état. Quatrième phase, la vérification : un contrat intelligent posé sur la chaîne principale vérifie la preuve : si elle est valide, le nouvel état est adopté ; si elle est invalide, le paquet est rejeté. Voici la prouesse : la chaîne principale n'a pas rejoué les centaines de transactions ; elle a vérifié une preuve courte qui les garantit toutes. Deux grandes écoles de preuve se disputent le marché, retiens leur logique : la première publie toutes les données des transactions sur la chaîne principale, ce qui permet à quiconque de rejouer et de contester : sécurité maximale par la transparence, coût un peu plus lourd ; la seconde publie uniquement la preuve mathématique de validité : plus léger et plus rapide, mais qui demande de faire confiance à la solidité des cryptographes. Les deux écoles réduisent les frais dans des proportions spectaculaires : là où une transaction sur la chaîne principale peut coûter des dollars, la même sur rollup se compte en centimes. Et c'est précisément pourquoi cette architecture compte pour l'Afrique : les micro-paiements, les transferts de petites sommes, les usages quotidiens redeviennent économiquement possibles."
+        },
+        {
+          "section_type": "build",
+          "title": "Les ponts et les dangers de la circulation",
+          "content": "Reste un maillon sensible dans l'architecture à deux niveaux : le passage entre les couches, appelé pont. Un pont relie la chaîne principale et une seconde couche : il verrouille tes actifs d'un côté et crée leur représentation de l'autre, que tu peux utiliser à grande vitesse ; et quand tu reviens, il te restitue les originaux. Ce mécanisme a une conséquence redoutable : à un instant donné, des fortunes considérables dorment dans les coffres des ponts, sous forme d'actifs verrouillés qui attendent leurs propriétaires. Les pirates l'ont compris : les plus grands vols de l'histoire du secteur n'ont pas attaqué les blockchains elles-mêmes, mais leurs ponts, en exploitant des défauts dans les contrats de verrouillage : des centaines de millions envolés en une nuit, plusieurs fois. D'où la question que tout usager lucide apprend à poser : de quel type de pont s'agit-il ? Les ponts les plus solides sont natifs, c'est-à-dire construits par la chaîne principale elle-même, avec ses propres garanties de sécurité. Les ponts indépendants, plus pratiques pour relier des mondes différents, ajoutent leur propre couche de confiance, avec leurs validateurs, leurs signatures, leurs clés : chaque couche ajoutée est une surface d'attaque supplémentaire. Les règles de prudence de circulation, valables pour tout usager : vérifier la nature du pont avant de l'emprunter ; ne transférer que ce qu'on est prêt à voir en transit ; tester d'abord avec un petit montant, réflexe que tu connais ; et se rappeler que les ponts récents, même brillants, n'ont pas d'historique : l'ancienneté, dans ce monde, est une preuve de survie. Leçon d'architecture générale, qui dépasse la blockchain : dans tout système, les frontières entre sous-systèmes sont les points fragiles ; les ingénieurs passent plus de temps à sécuriser les jonctions qu'à renforcer les pièces. Retiens cette loi, elle s'applique aux ponts de blockchains comme aux habits que tu portes : les coutures lâchent avant le tissu."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : le comparatif des frais",
+          "content": "Mission d'économie appliquée : comparer les frais réels de la chaîne principale et des secondes couches, et construire ton tableau de bord. Étape un : la préparation. Munis-toi de trois sources : un explorateur public de la chaîne principale, qui affiche les frais moyens actuels des transactions ; les sites publics des principaux réseaux de seconde couche, qui publient leurs frais ; et un convertisseur de devises, pour traduire en francs CFA. Étape deux : la collecte. Note, pour un jour donné : le frais moyen d'un simple transfert sur la chaîne principale ; le même sur deux secondes couches différentes ; et le frais moyen d'un échange de jetons, souvent plus coûteux qu'un transfert. Étape trois : la conversion. Traduis chaque chiffre en francs CFA, et surtout en équivalents du quotidien : ce frais vaut combien de trajets de woro-woro ? combien de sachets d'eau ? combien de plats de maquis ? Ces équivalents rendent les chiffres parlants, et tu les retiendras mieux que des décimales. Étape quatre : l'analyse. Réponds par écrit : à partir de quel montant la chaîne principale devient-elle économiquement raisonnable ? quels usages les secondes couches rendent-elles possibles que la chaîne principale interdit de fait, par exemple les micro-paiements ? les écarts se maintiennent-ils aux heures de pointe ? Étape cinq : le suivi dans le temps. Refais la mesure une semaine plus tard, aux mêmes heures : les frais varient avec l'affluence, et un bon tableau de bord s'appuie sur des tendances, pas sur des instantanés. Livrable : un tableau comparatif d'une page, avec tes équivalents du quotidien et tes trois conclusions argumentées. Ce tableau fera de toi la personne la mieux informée de ta famille sur les vrais coûts de ces technologies : une expertise qui s'acquiert en une heure de calcul, et qui impressionnera plus d'un adulte pressé de discourir sur le sujet."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet : ton réseau à deux couches en papier",
+          "content": "Projet final : construire et faire tourner un réseau à deux couches complet, en papier, pour comprendre l'architecture en la vivant. Participants : quatre joueurs minimum : un notaire, qui tient le registre officiel ; un opérateur de brouillon ; et deux usagers, Aminata et Boubacar. Étape un : la chaîne principale. Le notaire tient un cahier sacré : chaque page accepte exactement six lignes, pas une de plus, et chaque ligne coûte dix bonpoints de frais. Ce carcan volontaire, c'est la limitation des blocs. Étape deux : l'ouverture. Chaque usager dépose cent bonpoints au notaire, qui les inscrit au registre : leurs fonds vivent désormais sur la chaîne principale. Étape trois : le brouillon. L'opérateur ouvre son cahier de rollup : les usagers lui transmettent leurs transactions, il les exécute au fur et à mesure, en une seconde chacune, sans frais pour la version papier, ou un bonpoint symbolique. Étape quatre : la journée de marché. Fais vivre vingt transactions entre les deux usagers sur le brouillon : achats, ventes, remboursements, tout y passe, à grande vitesse, pendant que le notaire, lui, reste assis. Étape cinq : le dépôt du sommaire. En fin de journée, l'opérateur compte son brouillon, calcule les soldes finaux, les écrit en résumé, et présente ce sommaire au notaire avec la liste des vingt transactions. Le notaire vérifie, constate la cohérence, inscrit une seule ligne de résumé, encaisse dix bonpoints, et met à jour les soldes officiels. Compte ensemble : vingt transactions auraient coûté deux cents bonpoints sur la chaîne ; elles en ont coûté dix, au total, en passant par le brouillon. Étape six : la contestation. Boubacar prétend que l'opérateur a triché : la parade du système, c'est que le brouillon est public et vérifiable : rejouez ensemble les vingt lignes, tranchez le litige avec le sommaire, et si l'opérateur a vraiment triché, rejouez avec la règle des preuves. Débriefe : chaque rôle illustre une pièce réelle : le notaire, la chaîne principale ; l'opérateur, le rollup ; le carcan des six lignes, la limitation des blocs ; le sommaire vérifié, la preuve mathématique. Ton réseau de papier fonctionne comme ceux qui portent des milliards : même architecture, autre échelle."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Pourquoi les blockchains limitent-elles la taille de leurs blocs ?",
+          "options": [
+            "Pour économiser du papier",
+            "Pour que des machines ordinaires partout dans le monde puissent toutes vérifier le registre",
+            "Parce que internet est lent",
+            "Pour faire payer plus de frais"
+          ],
+          "correct_index": 1,
+          "explanation": "Des blocs modestes gardent le réseau vérifiable par tous, donc décentralisé : la limite est le prix de la décentralisation, pas une panne technique."
+        },
+        {
+          "question": "Que fait principalement une solution de seconde couche ?",
+          "options": [
+            "Elle remplace la blockchain principale",
+            "Elle traite les transactions à l'extérieur, puis scelle des résumés vérifiés sur la chaîne principale",
+            "Elle efface les frais pour toujours",
+            "Elle imprime plus de jetons"
+          ],
+          "correct_index": 1,
+          "explanation": "La seconde couche déplace le travail, pas la confiance : le brouillon vit dehors, les résumés et preuves s'inscrivent dedans, sous la sécurité du notaire."
+        },
+        {
+          "question": "Que garantit la preuve mathématique d'un rollup ?",
+          "options": [
+            "Que l'opérateur est riche",
+            "Que le paquet de transactions respecte les règles, sans rejouer chaque transaction",
+            "Que les frais augmenteront",
+            "Que la chaîne principale disparaîtra"
+          ],
+          "correct_index": 1,
+          "explanation": "La preuve compacte certifie la validité de tout le paquet : la chaîne vérifie un objet court au lieu de recalculer des milliers d'opérations, sans perdre la garantie."
+        },
+        {
+          "question": "Pourquoi les ponts sont-ils des cibles privilégiées des pirates ?",
+          "options": [
+            "Parce qu'ils sont jolis",
+            "Parce qu'ils verrouillent d'immenses fortunes en attente, derrière des contrats parfois défaillants",
+            "Parce qu'ils sont lents",
+            "Parce qu'ils n'ont pas de mots de passe"
+          ],
+          "correct_index": 1,
+          "explanation": "Les coffres des ponts concentrent les actifs verrouillés : les plus grands vols du secteur ont visé leurs contrats de verrouillage, pas les blockchains elles-mêmes."
+        },
+        {
+          "question": "Quel usage les secondes couches rendent-elles économiquement possible ?",
+          "options": [
+            "Les micro-paiements quotidiens, grâce à des frais réduits à quelques centimes",
+            "Les voyages spatiaux",
+            "L'impression de billets",
+            "La location de satellites"
+          ],
+          "correct_index": 0,
+          "explanation": "Des frais divisés par cent rendent enfin rentables les petits montants : transferts quotidiens, micro-paiements, usages que la chaîne principale interdit de fait."
+        }
+      ]
+    },
+    {
+      "slug": "web3-project",
+      "title": "Projet Web3 final",
+      "description": "Aventure de synthèse : conçois ton premier projet Web3 complet, du cahier des charges à la spécification de contrat, en passant par la gouvernance et la sécurité.",
+      "story": "Onze aventures, onze outils dans ta sacoche : les blocs et les chaînes, les wallets et leurs clés, les contrats intelligents, les NFT, les DAO, la tokenomics et les secondes couches. Aujourd'hui, tu ne vas plus apprendre des pièces séparées : tu vas les assembler. Ton défi final : concevoir, sur papier, un petit projet Web3 complet pour ton quartier, depuis l'idée jusqu'aux règles de sécurité. Aucun code réel, aucune promesse de gain : un cahier des charges, des choix techniques argumentés, et un prototype jouable en papier. C'est l'aventure qui transforme tout ce que tu as appris en compétence de concepteur.",
+      "xp_reward": 150,
+      "lessons": [
+        {
+          "section_type": "discover",
+          "title": "Le cahier des charges : partir d'un vrai problème",
+          "content": "Tout projet, Web3 ou non, commence par une question de terrain : quel problème concret résous-tu, et pour qui ? La plus grande erreur des débutants est de choisir la technologie d'abord, et le problème ensuite. Fais l'inverse. Parcours ta journée de quartier, et note les frictions : la tontine du marché qui tient ses comptes dans un cahier que personne ne peut vérifier à distance ; les tickets papier du pressoir que l'on falsifie ; la cotisation du club informatique dont le trésorier doit rendre des comptes chaque semaine. Chacun de ces problèmes partage une signature commune : plusieurs parties qui doivent se faire confiance autour d'un registre, sans autorité centrale disponible. Cette signature, tu la reconnais maintenant, c'est exactement le terrain de la blockchain. Ton cahier des charges, à remplir par écrit, suit cinq questions. Un : le problème. Décris-le en une phrase précise : qui souffre de quoi, à quelle fréquence, pour quel coût. Deux : les utilisateurs. Nomme tes trois profils, avec leurs niveaux techniques : une commerçante au marché, un trésorier, une jeune élève ; leurs contraintes d'appareil, souvent un simple smartphone ; leur accès à internet, parfois intermittent. Trois : l'apport du Web3. Quelle pièce de ta sacoche résout quoi : un registre partagé ? Un contrat automatique ? Un vote vérifiable ? Si aucune pièce n'apporte de réponse nette, dis-le honnêtement et garde un simple cahier : tous les problèmes n'ont pas besoin de blockchain, et le savoir est une compétence. Quatre : les risques. Énumère-les : perte de clés, frais, compréhension des utilisateurs, réglementation locale. Cinq : le critère de réussite. Une phrase mesurable : au bout d'un mois, si les membres du club peuvent vérifier la cotisation sans demander au trésorier, le projet réussit. Ce cahier des charges, soigne-le : c'est la fondation de tout le reste."
+        },
+        {
+          "section_type": "play",
+          "title": "Choisir la bonne pièce : le matching technologie-problème",
+          "content": "Ta sacoche contient onze outils ; le cœur du métier de concepteur, c'est le matching : faire correspondre le bon outil au bon problème, ni plus, ni moins. Reprenons les pièces une à une, avec leur emploi idéal. Le registre partagé, la blockchain simple : parfait quand plusieurs parties doivent voir le même historique inaltérable, comme les cotisations d'une tontine ou les ventes d'un pressoir. Le contrat intelligent : parfait quand des règles automatiques doivent s'appliquer sans intermédiaire, comme verser la part du vendeur dès la vente scellée, ou libérer la caution d'un prêt au terme convenu. Le NFT : parfait pour prouver la propriété d'un objet unique, un billet d'événement, une œuvre, une carte de membre ; inadapté pour des choses interchangeables, comme des unités d'argent. La DAO : parfaite quand un groupe doit décider ensemble, voter des dépenses, approuver des règles, sans chef. La tokenomics : le plan d'approvisionnement d'un jeton utile, à ne dessiner qu'avec prudence et à des fins d'usage, jamais de spéculation. La seconde couche : le bon choix quand les petits montants fréquents dominent, car les frais doivent rester dérisoires. Le wallet : l'interface entre l'utilisateur et tout le reste, à choisir simple et sécurisé. À l'inverse, apprends le contre-emploi, l'anti-modèle : utiliser une blockchain là où une base de données classique suffit, une situation d'unique propriétaire sans besoin de confiance partagée ; utiliser un jeton là où un simple système de points suffit ; utiliser un vote sur chaîne là où un groupe de cinq amis décide très bien autour d'un thé. Exerce-toi : prends trois problèmes de ta liste de terrain, et pour chacun, écris en une phrase quelle pièce tu emploierais, et surtout laquelle tu écartes, avec la raison. Ce discernement, la capacité à dire non à la technologie inutile, est la marque des concepteurs sérieux, et elle impressionne davantage que n'importe quel jargon."
+        },
+        {
+          "section_type": "experiment",
+          "title": "Spécifier un contrat intelligent sans code",
+          "content": "Maintenant, plonge au cœur technique : la spécification de ton contrat intelligent, c'est-à-dire sa description complète en langage courant, avant toute ligne de code. Les vraies équipes rédigent toujours cette spécification d'abord ; le code n'est que sa traduction. Prenons un exemple fil rouge : le contrat de cagnotte du club informatique, une cagnotte transparente où les cotisations s'accumulent, où le trésorier ne peut pas toucher seul aux fonds, et où chaque dépense est votée. La spécification se rédige en cinq blocs. Bloc un, les états : ce que le contrat retient. Pour chaque membre : son identité, sa cotisation versée ; pour la cagnotte : son solde total ; pour chaque dépense proposée : son montant, sa raison, ses votes pour et contre. Bloc deux, les règles d'évolution : ce que le contrat fait. Quand un membre verse sa cotisation, son compteur augmente et le solde total aussi ; rien d'autre ne peut augmenter un solde : règle absolue. Bloc trois, les actions externes : ce que les humains peuvent demander. Verser une cotisation ; proposer une dépense avec un montant plafonné ; voter pour ou contre ; exécuter une dépense approuvée. Bloc quatre, les gardes-fous : ce que le contrat refuse, la partie la plus importante. Refuser toute dépense non approuvée par la majorité ; refuser qu'une même personne vote deux fois ; refuser toute modification du contrat par son créateur après déploiement ; refuser les montants au-dessus du plafond, même approuvés. Bloc cinq, les événements notés : ce que le contrat annonce publiquement à chaque action, pour que tout membre puisse suivre. Exercice : rédige ces cinq blocs pour ton propre projet, puis passe-le à l'épreuve du méchant : imagine trois attaques qu'un membre malhonnête tenterait, et vérifie que tes gardes-fous les bloquent chacun. Un contrat bien spécifié, c'est un contrat où le méchant a déjà perdu avant de commencer."
+        },
+        {
+          "section_type": "build",
+          "title": "Gouvernance et sécurité : les deux piliers du sérieux",
+          "content": "Un projet Web3 bien spécifié doit encore répondre à deux questions qui décident de sa survie : qui décide, et comment se protège-t-on ? Premier pilier : la gouvernance, en empruntant à la sagesse des DAO. Écris tes règles de gouvernance en quatre points. Un : la proposition. Qui peut en faire : tout membre, ou seulement ceux qui ont cotisé au moins un mois ? Deux : le vote. Comment vote-t-on : à main levée sur papier pour le prototype, chaque voix comptant une fois, avec vérification publique des listes. Trois : le quorum. Quel minimum de participation pour qu'une décision soit valide : fixe-le assez haut pour éviter la tyrannie de la minorité active, cette leçon que tu connais des DAO. Quatre : les délais. Combien de temps entre la proposition et le vote, entre le vote et l'exécution : des délais courts pour l'urgence, mais jamais zéro, car un délai est une protection contre la précipitation. Second pilier : la sécurité, en empruntant aux aventures wallets et ponts. Dresse ta checklist de sécurité projet, avec les réflexes que tu as déjà acquis. Les clés : jamais partagées, jamais photographiées, écrites à la main et rangées ; pour le prototype, des jetons de jeu, pas de vraies valeurs. Les montants : tester d'abord petit, toujours, sans exception. Les permissions : le principe du moindre pouvoir, chaque rôle ne peut faire que ce qui est écrit ; personne, pas même le créateur, ne détient un passe-droits. Les mises à jour : les règles changent par vote, jamais en secret. Les sauvegardes : le registre papier est doublé, chaque membre garde une copie des soldes. Et l'humilité technique, la règle d'or : tout ce qui n'a pas été testé est considéré cassé ; tout ce qui a été testé est considéré à re-tester. Les projets qui durent ne sont pas ceux qui n'ont jamais eu d'incident : ce sont ceux qui avaient déjà écrit, avant l'incident, ce qu'ils feraient après."
+        },
+        {
+          "section_type": "mission",
+          "title": "Mission : le pitch de ton projet",
+          "content": "Mission de communication : présenter ton projet en trois minutes, à la manière d'un concours de jeunes créateurs. Ce format est standard dans l'écosystème des startups africaines, et il forge ta clarté. Prépare un pitch en cinq temps. Temps un, le problème, trente secondes : raconte-le par une histoire courte et vraie, sans jargon : chaque semaine, le trésorier recopie les cotisations à la main, et deux membres contestent déjà les comptes. Temps deux, la solution, trente secondes : une phrase simple : un registre partagé que chacun peut vérifier, et un contrat qui bloque les dépenses non votées. Évite absolument le jargon dans ces deux temps : pas de distribution, pas de couche, pas de finance décentralisée : des mots de quartier. Temps trois, la démonstration, soixante secondes : montre ton prototype papier : voici le cahier du club, voici la carte de membre, voici comment on vote, voici ce que le contrat refuse : fais vivre la scène en manipulant les objets, une démonstration vaut dix discours. Temps quatre, la prudence, trente secondes : surprends ton public en annonçant toi-même les limites : voici nos risques, voici ce que nous ne ferons pas, voici comment nous protégerons les débutants : cette lucidité est la marque des projets crédibles, elle rassure plus qu'elle n'inquiète. Temps cinq, l'appel, trente secondes : ce que tu demandes : cinq membres pour tester le prototype pendant un mois. Puis entraîne-toi : chronomètre-toi, enregistre-toi sur ton téléphone, réécoute, raccourcis. Présente devant ta famille, puis devant ton club. Livrable : ta fiche pitch d'une page, tes objets de démonstration, et une présentation réalisée devant au moins trois personnes, avec leurs trois questions notées par écrit : les questions du public sont le meilleur radar des zones floues de ton projet."
+        },
+        {
+          "section_type": "project",
+          "title": "Projet final : la simulation du club, prototype jouable",
+          "content": "Projet de synthèse : construire et jouer la simulation complète de ton projet, en papier, avec quatre personnes minimum. Contexte fil rouge : le club informatique du quartier veut remplacer son cahier de trésorerie par un registre partagé et un contrat de cagnotte. Matériel : un cahier registre, des fiches membres, des billets de jeu, des jetons de vote, et la carte du contrat, où sont écrits les gardes-fous en grosses lettres. Déroulé en six scènes. Scène un, l'assemblée fondatrice : les membres lisent la carte du contrat à voix haute, signent la charte du club, et élisent un gardien du registre, qui ne fait qu'écrire, jamais décider. Scène deux, les cotisations : chaque membre verse ses billets de jeu et voit la ligne s'inscrire au registre, avec date et montant : n'importe qui peut recopier le registre chez soi, c'est la réplication. Scène trois, l'attaque du trésorier : le trésorier tente une dépense sans vote : la carte du contrat le refuse, le gardien l'annonce à tous : débriez ce moment, c'est le cœur du système. Scène quatre, la proposition et le vote : un membre propose d'acheter un clavier neuf pour le club, avec montant et raison ; le vote se déroule à jetons, chaque membre une voix, les pour et contre affichés ; le quorum est atteint, la dépense est approuvée. Scène cinq, l'exécution et l'inscription : la dépense est payée en billets de jeu, la ligne s'inscrit au registre, et le solde est recalculé devant tous. Scène six, le comité de sécurité : passe la checklist : clés protégées, permissions minimales, petits montants d'abord, délais respectés. Puis échangez les rôles et rejouez, avec une variante : un membre tente de voter deux fois ; le registre est perdu, un membre le restaure depuis sa copie ; une proposition dépasse le plafond. À chaque variante, la carte du contrat doit triompher : sinon, corrigez vos gardes-fous, c'est le vrai travail des concepteurs. Débriefe final : ce que ton prototype a prouvé, ce qu'il ne prouve pas, et ce que tu construirais ensuite. Tu viens de faire tourner, en papier, tout ce que tu as appris en douze aventures : un registre, un contrat, un vote, des gardes-fous, et une communauté qui n'a plus besoin de se faire confiance à l'aveugle. C'est cela, le Web3 compris jusqu'au bout : pas une machine à enrichir, mais un outil d'organisation honnête, entre personnes qui veulent bien faire ensemble."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Par quoi commence tout projet Web3 bien conçu ?",
+          "options": [
+            "Par l'achat d'un ordinateur puissant",
+            "Par un vrai problème de terrain et un cahier des charges",
+            "Par le choix de la blockchain la plus rapide",
+            "Par la création d'un jeton"
+          ],
+          "correct_index": 1,
+          "explanation": "On choisit le problème d'abord, la technologie ensuite : tous les problèmes n'ont pas besoin de blockchain, et le savoir est une compétence de concepteur."
+        },
+        {
+          "question": "Dans la spécification d'un contrat intelligent, que sont les gardes-fous ?",
+          "options": [
+            "Les personnes qui surveillent le contrat",
+            "Les règles de refus : ce que le contrat interdit, comme une dépense non votée ou un double vote",
+            "Les frais de fonctionnement",
+            "Le nom du contrat"
+          ],
+          "correct_index": 1,
+          "explanation": "Les gardes-fous sont la partie la plus importante de la spécification : tout ce que le contrat refuse absolument, même à son créateur."
+        },
+        {
+          "question": "Pour prouver la propriété d'un billet d'événement unique, quelle pièce employer ?",
+          "options": [
+            "Un NFT, conçu pour les objets uniques",
+            "Une DAO",
+            "Un contrat de cagnotte",
+            "Une seconde couche"
+          ],
+          "correct_index": 0,
+          "explanation": "Le NFT est l'outil des objets uniques et identifiables : billets, œuvres, cartes de membre ; les choses interchangeables, comme l'argent, n'en ont pas besoin."
+        },
+        {
+          "question": "Pourquoi un délai entre le vote et l'exécution est-il une protection ?",
+          "options": [
+            "Pour que les membres aient le temps de changer d'avis",
+            "Parce que les délais protègent contre la précipitation et laissent vérifier les décisions",
+            "Pour que le trésorier puisse refuser",
+            "Pour augmenter les frais"
+          ],
+          "correct_index": 1,
+          "explanation": "Un délai minimal empêche les décisions prises dans la précipitation, donne le temps de vérifier, et protège la communauté contre les coups de force."
+        },
+        {
+          "question": "Que doit montrer un bon prototype de projet Web3 en papier ?",
+          "options": [
+            "Un registre consultable par tous, un contrat aux gardes-fous testés, un vote vérifiable et des rôles limités",
+            "Une promesse de gains rapides",
+            "Un logo et un nom accrocheurs",
+            "La liste des blockchains existantes"
+          ],
+          "correct_index": 0,
+          "explanation": "Le prototype prouve l'essentiel : transparence du registre, refus automatiques des abus, votes vérifiables et moindre pouvoir pour chaque rôle ; le reste est habillage."
+        }
+      ]
+    }
+  ]
+}
