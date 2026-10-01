@@ -2,6 +2,7 @@
 // Le contenu est lisible par anon (RLS) — utilisable côté client ou serveur.
 
 import type { SupabaseClient } from '@supabase/supabase-js';
+import { isWorldReady } from '@/data/content';
 import { activePlanCode, PLAN_LIMITS, type BadgeLike, type PlanCode, type PlanLimits } from './game';
 
 export interface AdventureSummary {
@@ -138,7 +139,9 @@ export async function fetchChallenges(supabase: SupabaseClient): Promise<Challen
     worldSlug: c.world_slug,
     xpReward: c.xp_reward,
     badgeSlug: c.badge_slug,
-  }));
+  }))
+    // MVP : écarter les défis qui pointent vers un monde pas encore publié.
+    .filter((c) => !c.worldSlug || isWorldReady(c.worldSlug));
 }
 
 export interface PlanInfo {

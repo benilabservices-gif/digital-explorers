@@ -2,6 +2,7 @@
 // le client ne fait que soumettre ses réponses au quiz.
 
 import { createClient } from '@/lib/supabase/server';
+import { isWorldReady } from '@/data/content';
 import {
   PLAN_LIMITS,
   activePlanCode,
@@ -62,6 +63,12 @@ export async function POST(request: Request) {
     return Response.json({ error: 'adventure_not_found' }, { status: 404 });
   }
   const worldId = world.id;
+
+  // MVP : un monde dont le contenu n'est pas encore importé n'est pas jouable
+  // (les stubs n'ont ni leçons réelles ni quiz — pas d'XP à distribuer).
+  if (!isWorldReady(world.slug)) {
+    return Response.json({ error: 'world_not_ready' }, { status: 403 });
+  }
 
   // ----- Questions du quiz (scoring serveur) -----
   const { data: questions } = await supabase

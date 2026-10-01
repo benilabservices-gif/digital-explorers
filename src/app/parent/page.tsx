@@ -7,6 +7,7 @@ import Nav from '@/components/Nav';
 import { createClient } from '@/lib/supabase/client';
 import { fetchChildrenWithProgress, findActiveChild, type ChildData } from '@/lib/children';
 import { fetchBadges, fetchWorldsWithAdventures, type WorldWithAdventures } from '@/lib/content-queries';
+import { isWorldReady } from '@/data/content';
 import { getActiveChildId, setActiveChildId as persistActiveChildId } from '@/lib/active-child';
 import { weeklyStats, type BadgeLike } from '@/lib/game';
 
@@ -51,7 +52,8 @@ export default function ParentPage() {
   if (!auth) return null;
 
   const activeChild = findActiveChild(children, activeChildId);
-  const totalAdventures = worlds.reduce((sum, w) => sum + w.adventures.length, 0);
+  // MVP : seuls les mondes « prêts » (contenu importé) comptent dans le total.
+  const totalAdventures = worlds.reduce((sum, w) => sum + (isWorldReady(w.slug) ? w.adventures.length : 0), 0);
   const totalXP = children.reduce((sum, c) => sum + c.xp, 0);
   const totalAdvs = children.reduce((sum, c) => sum + c.completedAdventureSlugs.length, 0);
   const totalBadges = children.reduce((sum, c) => sum + c.badgeSlugs.length, 0);

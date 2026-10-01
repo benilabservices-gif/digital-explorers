@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowRight, Star, Shield, Users, Rocket } from "lucide-react";
-import { WORLDS } from "@/data/content";
+import { WORLDS, isWorldReady } from "@/data/content";
 import Nav from "@/components/Nav";
 
 const CHARACTERS = [
@@ -144,19 +144,27 @@ export default function HomePage() {
             <button onClick={goToAuth} className="px-4 py-2 text-sm border border-white/10 rounded-full text-gray-300 hover:bg-white/5 hover:text-white transition-all hidden sm:flex items-center gap-1">Commencer <ArrowRight className="w-3.5 h-3.5" /></button>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            {WORLDS.map(world => (
-              <div key={world.id} onClick={goToAuth} className="group cursor-pointer bg-[#111827] border border-white/5 rounded-2xl p-5 hover:border-violet-500/30 transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
-                <div className={`w-full h-32 rounded-xl bg-gradient-to-br ${world.gradient} flex items-center justify-center text-5xl mb-5 group-hover:scale-105 transition-transform duration-300`}>{world.icon}</div>
-                <h3 className="font-display font-bold text-lg mb-2 group-hover:text-violet-300 transition-colors">{world.name}</h3>
-                <p className="text-sm text-gray-400 line-clamp-2 mb-4 flex-1">{world.description}</p>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-500">{world.adventures?.length || 0} aventures</span>
-                  <span className={`px-3 py-1 rounded-full ${world.phase==="explorer"?"bg-blue-500/15 text-blue-300":world.phase==="creator"?"bg-emerald-500/15 text-emerald-300":"bg-orange-500/15 text-orange-300"}`}>
-                    {world.phase==="explorer"?"🌍 Explorer":world.phase==="creator"?"🛠️ Créer":"🚀 Construire"}
-                  </span>
+            {WORLDS.map(world => {
+              const ready = isWorldReady(world.slug);
+              return (
+                <div key={world.id} onClick={goToAuth} className={`group cursor-pointer bg-[#111827] border border-white/5 rounded-2xl p-5 hover:border-violet-500/30 transition-all duration-300 hover:-translate-y-1 h-full flex flex-col ${ready ? '' : 'opacity-60'}`}>
+                  <div className={`relative w-full h-32 rounded-xl bg-gradient-to-br ${world.gradient} flex items-center justify-center text-5xl mb-5 group-hover:scale-105 transition-transform duration-300 ${ready ? '' : 'grayscale'}`}>
+                    {world.icon}
+                    {!ready && (
+                      <span className="absolute top-2 right-2 px-2.5 py-1 rounded-full bg-black/50 border border-white/10 text-[11px] text-gray-300">🔒 Bientôt</span>
+                    )}
+                  </div>
+                  <h3 className="font-display font-bold text-lg mb-2 group-hover:text-violet-300 transition-colors">{world.name}</h3>
+                  <p className="text-sm text-gray-400 line-clamp-2 mb-4 flex-1">{world.description}</p>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-gray-500">{world.adventures?.length || 0} aventures</span>
+                    <span className={`px-3 py-1 rounded-full ${world.phase==="explorer"?"bg-blue-500/15 text-blue-300":world.phase==="creator"?"bg-emerald-500/15 text-emerald-300":"bg-orange-500/15 text-orange-300"}`}>
+                      {world.phase==="explorer"?"🌍 Explorer":world.phase==="creator"?"🛠️ Créer":"🚀 Construire"}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
           <div className="mt-8 text-center sm:hidden"><button onClick={goToAuth} className="px-6 py-3 border border-white/10 rounded-full text-gray-300 hover:bg-white/5 transition-all">Voir tous les mondes →</button></div>
         </div>

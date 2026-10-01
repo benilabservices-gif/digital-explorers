@@ -155,5 +155,7 @@ test('login → enfant → aventure → complétion', async ({ page }) => {
     .catch(() => {});
   await expect(page.getByText(`Bonjour ${childName} !`)).toBeVisible();
   await expect(page.getByText(`${XP_REWARD} XP`).first()).toBeVisible();
-  await expect(page.getByText('1/84 aventures')).toBeVisible();
+  // MVP : total = 60 aventures (5 mondes prêts × 12) — cyber-hero et
+  // innovation-entrepreneurship sont grisés jusqu'à l'import de leur contenu.
+  await expect(page.getByText('1/60 aventures')).toBeVisible();
 });

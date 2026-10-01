@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { WORLDS } from '@/data/content';
+import { WORLDS, isWorldReady } from '@/data/content';
 import { createClient } from '@/lib/supabase/client';
 import { Lock, Sparkles } from 'lucide-react';
 import Nav from '@/components/Nav';
@@ -67,19 +67,37 @@ export default function WorldsPage() {
       <section className="py-8 px-6 pb-24">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {WORLDS.map(world => (
-              <Link key={world.id} href={`/worlds/${world.slug}`} className="group relative p-6 rounded-2xl bg-[#111827] border border-white/5 hover:border-violet-500/30 transition-all hover:-translate-y-1">
-                <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${world.gradient} flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform`}>{world.icon}</div>
-                <h2 className="text-lg font-bold mb-2">{world.name}</h2>
-                <p className="text-sm text-gray-400 mb-4 line-clamp-2">{world.description}</p>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-500">{world.adventures?.length || 0} aventures</span>
-                  <span className={`px-3 py-1 rounded-full ${world.phase==='explorer'?'bg-blue-500/10 text-blue-400':world.phase==='creator'?'bg-emerald-500/10 text-emerald-400':'bg-orange-500/10 text-orange-400'}`}>
-                    {world.phase==='explorer'?'Explorer':world.phase==='creator'?'Créer':'Construire'}
-                  </span>
-                </div>
-              </Link>
-            ))}
+            {WORLDS.map(world => {
+              const ready = isWorldReady(world.slug);
+              const inner = (
+                <>
+                  <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${world.gradient} flex items-center justify-center text-3xl mb-4 ${ready ? 'group-hover:scale-110 transition-transform' : ''}`}>{world.icon}</div>
+                  <h2 className="text-lg font-bold mb-2">{world.name}</h2>
+                  <p className="text-sm text-gray-400 mb-4 line-clamp-2">{world.description}</p>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-gray-500">{world.adventures?.length || 0} aventures</span>
+                    <span className={`px-3 py-1 rounded-full ${world.phase==='explorer'?'bg-blue-500/10 text-blue-400':world.phase==='creator'?'bg-emerald-500/10 text-emerald-400':'bg-orange-500/10 text-orange-400'}`}>
+                      {world.phase==='explorer'?'Explorer':world.phase==='creator'?'Créer':'Construire'}
+                    </span>
+                  </div>
+                </>
+              );
+              if (!ready) {
+                return (
+                  <div key={world.id} aria-disabled className="relative p-6 rounded-2xl bg-[#111827] border border-white/5 opacity-50 grayscale cursor-not-allowed select-none">
+                    <div className="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 border border-white/10 text-xs text-gray-300">
+                      <Lock className="w-3 h-3" /> Bientôt disponible
+                    </div>
+                    {inner}
+                  </div>
+                );
+              }
+              return (
+                <Link key={world.id} href={`/worlds/${world.slug}`} className="group relative p-6 rounded-2xl bg-[#111827] border border-white/5 hover:border-violet-500/30 transition-all hover:-translate-y-1">
+                  {inner}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

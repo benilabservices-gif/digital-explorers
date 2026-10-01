@@ -78,6 +78,26 @@ function makeAdventure(slug: string, title: string, desc: string, story: string,
   return { id: `a_${slug}_${Date.now()}`, slug, title, description: desc, story, xp_reward: xp, lessons };
 }
 
+// ---------------------------------------------------------------------------
+// Disponibilité MVP — mondes dont le contenu pédagogique complet (leçons +
+// quiz) est réellement importé en base. Les autres mondes restent visibles
+// mais grisés / non jouables (« Bientôt disponible »).
+// Mettre à jour cette liste au fil des imports de contenu.
+// ---------------------------------------------------------------------------
+
+export const READY_WORLDS: readonly WorldSlug[] = [
+  'web-digital',
+  'artificial-intelligence',
+  'coding',
+  'blockchain',
+  'digital-creator',
+];
+
+/** Un monde est-il jouable (contenu complet importé en base) ? */
+export function isWorldReady(slug: string): boolean {
+  return (READY_WORLDS as readonly string[]).includes(slug);
+}
+
 export const WORLDS: World[] = [
   {
     id: 'web-digital', slug: 'web-digital', name: 'Web & Digital', icon: '🌐',

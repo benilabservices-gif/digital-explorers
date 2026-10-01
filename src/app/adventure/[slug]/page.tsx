@@ -2,8 +2,9 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Shield, CheckCircle, XCircle, Star, Trophy, ArrowRight, Sparkles, BookOpen, Play, Target, Lightbulb, Zap, Crown, Rocket, FlaskConical, Hammer } from 'lucide-react';
+import { ArrowLeft, Shield, CheckCircle, XCircle, Star, Trophy, ArrowRight, Sparkles, BookOpen, Play, Target, Lightbulb, Zap, Crown, Rocket, FlaskConical, Hammer, Lock } from 'lucide-react';
 import Nav from '@/components/Nav';
+import { isWorldReady } from '@/data/content';
 import AICoach from '@/components/AICoach';
 import { createClient } from '@/lib/supabase/client';
 import { fetchChildrenWithProgress, findActiveChild, type ChildData } from '@/lib/children';
@@ -118,6 +119,8 @@ export default function AdventureSlugPage({ params }: { params: Promise<{ slug: 
   // Quiz et leçons sont chargés par adventure_id une fois l'aventure connue.
   useEffect(() => {
     if (!adventure) return;
+    // Monde non prêt : pas de contenu à charger (stubs en base).
+    if (!isWorldReady(adventure.world.slug)) return;
     const supabase = createClient();
     (async () => {
       const { data: adv } = await supabase
@@ -180,6 +183,24 @@ export default function AdventureSlugPage({ params }: { params: Promise<{ slug: 
     return (
       <div className="min-h-screen bg-[#060810] text-white flex items-center justify-center">
         <div className="text-center"><h1 className="text-2xl font-bold mb-2">Aventure non trouvée</h1><Link href="/dashboard" className="text-violet-400 hover:underline">Retour au dashboard</Link></div>
+      </div>
+    );
+  }
+
+  // Monde encore en cours de rédaction : la version enrichie arrive bientôt.
+  if (!isWorldReady(adventure.world.slug)) {
+    return (
+      <div className="min-h-screen bg-[#060810] text-white">
+        <Nav />
+        <div className="pt-32 px-6 flex items-center justify-center">
+          <div className="text-center max-w-md">
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-amber-500/20 to-orange-500/20 border border-amber-500/30 flex items-center justify-center mx-auto mb-6"><Lock className="w-10 h-10 text-amber-400" /></div>
+            <h1 className="font-display text-3xl font-bold mb-3">{adventure.world.icon} {adventure.title}</h1>
+            <p className="text-gray-400 mb-2">Cette aventure fait partie du monde {adventure.world.name}, qui arrive bientôt.</p>
+            <p className="text-gray-500 text-sm mb-8">Le contenu est encore en cours de rédaction. Explore les mondes déjà disponibles en attendant !</p>
+            <Link href="/worlds"><button className="px-8 py-3 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-full font-semibold hover:opacity-90">Voir les mondes disponibles</button></Link>
+          </div>
+        </div>
       </div>
     );
   }

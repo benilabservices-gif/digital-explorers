@@ -7,6 +7,7 @@ import Nav from '@/components/Nav';
 import { createClient } from '@/lib/supabase/client';
 import { fetchChildrenWithProgress, findActiveChild, type ChildData } from '@/lib/children';
 import { fetchBadges, fetchWorldsWithAdventures, type WorldWithAdventures } from '@/lib/content-queries';
+import { isWorldReady } from '@/data/content';
 import { getActiveChildId } from '@/lib/active-child';
 import { getLevelTitle, type BadgeLike } from '@/lib/game';
 
@@ -101,10 +102,11 @@ export default function PortfolioPage() {
                 // chaque monde culmine à ~1 500 XP (12 aventures)
                 const pct = Math.min(100, Math.round((xp / 1500) * 100));
                 const currentLevel = xp >= 1000 ? 'master' : xp >= 500 ? 'apply' : xp > 0 ? 'practice' : 'discover';
+                const ready = isWorldReady(world.slug);
                 return (
-                  <div key={world.id} className="bg-[#0f172a] rounded-xl p-4 text-center">
+                  <div key={world.id} className={`bg-[#0f172a] rounded-xl p-4 text-center ${ready ? '' : 'opacity-40 grayscale'}`}>
                     <div className="text-lg font-bold text-violet-300 mb-1">{world.icon} {world.name}</div>
-                    <div className="text-xs text-gray-500 capitalize">{currentLevel} • {xp} XP</div>
+                    <div className="text-xs text-gray-500 capitalize">{ready ? `${currentLevel} • ${xp} XP` : 'Bientôt disponible'}</div>
                     <div className="mt-2 h-1.5 bg-white/10 rounded-full overflow-hidden">
                       <div className="h-full bg-gradient-to-r from-violet-500 to-purple-500 rounded-full" style={{ width: `${pct}%` }} />
                     </div>

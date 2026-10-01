@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { TrendingUp, Award, FolderOpen, Zap, Crown, Rocket, LogOut, Plus, UserPlus, Gift, Sparkles, Target, Calendar, Trophy, GitBranch, ChevronRight } from 'lucide-react';
 import { SKILL_TREE } from '@/data/challenges';
+import { isWorldReady } from '@/data/content';
 import Nav from '@/components/Nav';
 import AICoach from '@/components/AICoach';
 import { createClient } from '@/lib/supabase/client';
@@ -83,7 +84,8 @@ export default function DashboardPage() {
   }
 
   const child = findActiveChild(children, activeChildId);
-  const totalAdventures = worlds.reduce((sum, w) => sum + w.adventures.length, 0);
+  // MVP : seuls les mondes « prêts » (contenu importé) comptent dans le total.
+  const totalAdventures = worlds.reduce((sum, w) => sum + (isWorldReady(w.slug) ? w.adventures.length : 0), 0);
 
   // Défis : rotation déterministe par date depuis la table challenges.
   const dailies = challenges.filter(c => c.type === 'daily');
@@ -116,6 +118,7 @@ export default function DashboardPage() {
   const nextAct = (() => {
     if (!child) return null;
     for (const world of worlds) {
+      if (!isWorldReady(world.slug)) continue;
       const unfinished = world.adventures.filter(adv => !child.completedAdventureSlugs.includes(adv.slug));
       if (unfinished.length > 0) return { world, adventure: unfinished[0] };
     }
@@ -259,21 +262,22 @@ export default function DashboardPage() {
                   <h2 className="font-display text-xl font-bold mb-4 flex items-center gap-2"><TrendingUp className="w-5 h-5 text-violet-400" /> Progression par monde</h2>
                   <div className="space-y-3">
                     {worlds.map(world => {
+                      const ready = isWorldReady(world.slug);
                       const total = world.adventures.length;
                       const done = world.adventures.filter(av => child.completedAdventureSlugs.includes(av.slug)).length;
                       const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-                      const locked = child.xp < 100 && world.phase !== 'explorer';
+                      const locked = !ready || (child.xp < 100 && world.phase !== 'explorer');
                       return (
-                        <div key={world.id} className={`bg-[#0f172a] rounded-xl p-4 border ${locked ? 'border-white/5 opacity-50' : 'border-white/5 hover:border-violet-500/30'} transition-colors`}>
+                        <div key={world.id} className={`bg-[#0f172a] rounded-xl p-4 border ${locked ? 'border-white/5 opacity-50' : 'border-white/5 hover:border-violet-500/30'} ${!ready ? 'grayscale' : ''} transition-colors`}>
                           <div className="flex items-center gap-4 mb-3">
                             <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${world.gradient} flex items-center justify-center text-lg flex-shrink-0`}>{world.icon}</div>
                             <div className="flex-1">
                               <div className="font-bold text-sm">{world.name}</div>
-                              <div className="text-xs text-gray-400">{done}/{total} aventures{locked ? ' 🔒' : ''}</div>
+                              <div className="text-xs text-gray-400">{ready ? `${done}/${total} aventures${locked ? ' 🔒' : ''}` : 'Bientôt disponible 🔒'}</div>
                             </div>
                             <div className="text-right">
-                              <div className="text-sm font-medium text-violet-400">{pct}%</div>
-                              {!locked && done < total && (
+                              <div className="text-sm font-medium text-violet-400">{ready ? `${pct}%` : '—'}</div>
+                              {ready && !locked && done < total && (
                                 <Link href={`/adventure/${world.adventures.find(a => !child.completedAdventureSlugs.includes(a.slug))?.slug}`} className="text-xs text-gray-500 hover:text-white">Continuer →</Link>
                               )}
                             </div>
@@ -402,7 +406,7 @@ export default function DashboardPage() {
               <div>
                 <h2 className="font-display text-xl font-bold mb-4">🎯 Continuer l&apos;aventure</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {worlds.flatMap(world =>
+                  {worlds.filter(world => isWorldReady(world.slug)).flatMap(world =>
                     world.adventures.filter(adv => !child.completedAdventureSlugs.includes(adv.slug)).slice(0, 2).map(adv => (
                       <Link key={`${world.slug}-${adv.slug}`} href={`/adventure/${adv.slug}`} className="flex items-center gap-4 p-4 rounded-xl bg-[#111827] border border-white/5 hover:border-violet-500/30 transition-all group">
                         <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${world.gradient} flex items-center justify-center text-2xl flex-shrink-0`}>{world.icon}</div>
