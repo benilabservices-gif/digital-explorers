@@ -14,6 +14,7 @@
     "import:content": "node scripts/import-content.mjs",
     "validate:content": "node scripts/validate-content.mjs",
     "smoke:content": "node scripts/smoke-content.mjs",
+    "flow:check": "node scripts/flow-check.mjs",
     "test": "vitest run",
     "test:watch": "vitest"
   },

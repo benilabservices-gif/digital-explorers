@@ -233,6 +233,36 @@ body {
   transition: width 0.8s ease;
 }
 
+/* ─── Thème par monde (variables injectées par WorldThemeProvider) ───
+   Repli violet si aucune variable n'est fournie. */
+.world-accent {
+  color: var(--world-accent, var(--color-violet-light));
+}
+.world-bg-soft {
+  background-color: var(--world-accent-soft, rgba(139, 92, 246, 0.12));
+}
+.world-border {
+  border-color: var(--world-accent, var(--color-violet));
+}
+.world-glow {
+  box-shadow: 0 0 30px var(--world-glow, rgba(139, 92, 246, 0.35));
+}
+.world-bg-glow {
+  background-image: var(--world-bg-glow, none);
+}
+.world-progress-fill {
+  background: linear-gradient(90deg, var(--world-accent, var(--color-violet)), color-mix(in srgb, var(--world-accent, var(--color-violet)) 55%, white));
+}
+/* Carte teintée par le monde au survol (variables posées en style inline) */
+.world-card {
+  border: 1px solid var(--color-border);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.world-card:hover {
+  border-color: var(--world-accent, var(--color-violet));
+  box-shadow: 0 8px 40px var(--world-glow, rgba(139, 92, 246, 0.12));
+}
+
 /* Badge rarity glow */
 .badge-common   { box-shadow: 0 0 8px rgba(148,163,184,0.2); }
 .badge-rare     { box-shadow: 0 0 12px rgba(59,130,246,0.3); }

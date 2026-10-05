@@ -1,10 +1,18 @@
 'use client';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import type { CSSProperties } from 'react';
 import { WORLDS, isWorldReady } from '@/data/content';
+import { getWorldTheme } from '@/data/world-themes';
 import { createClient } from '@/lib/supabase/client';
 import { Lock, Sparkles } from 'lucide-react';
 import Nav from '@/components/Nav';
+
+/** Variables CSS du monde posées sur chaque carte pour le survol teinté. */
+function worldCardStyle(slug: string): CSSProperties {
+  const t = getWorldTheme(slug);
+  return { '--world-accent': t.accent, '--world-glow': t.glow } as CSSProperties;
+}
 
 export default function WorldsPage() {
   const [auth, setAuth] = useState(false);
@@ -84,7 +92,7 @@ export default function WorldsPage() {
               );
               if (!ready) {
                 return (
-                  <div key={world.id} aria-disabled className="relative p-6 rounded-2xl bg-[#111827] border border-white/5 opacity-50 grayscale cursor-not-allowed select-none">
+                  <div key={world.id} aria-disabled style={worldCardStyle(world.slug)} className="world-card relative p-6 rounded-2xl bg-[#111827] opacity-50 grayscale cursor-not-allowed select-none">
                     <div className="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 border border-white/10 text-xs text-gray-300">
                       <Lock className="w-3 h-3" /> Bientôt disponible
                     </div>
@@ -93,7 +101,7 @@ export default function WorldsPage() {
                 );
               }
               return (
-                <Link key={world.id} href={`/worlds/${world.slug}`} className="group relative p-6 rounded-2xl bg-[#111827] border border-white/5 hover:border-violet-500/30 transition-all hover:-translate-y-1">
+                <Link key={world.id} href={`/worlds/${world.slug}`} style={worldCardStyle(world.slug)} className="world-card group relative p-6 rounded-2xl bg-[#111827] hover:-translate-y-1">
                   {inner}
                 </Link>
               );

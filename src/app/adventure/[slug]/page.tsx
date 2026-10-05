@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, Shield, CheckCircle, XCircle, Star, Trophy, ArrowRight, Sparkles, BookOpen, Play, Target, Lightbulb, Zap, Crown, Rocket, FlaskConical, Hammer, Lock } from 'lucide-react';
 import Nav from '@/components/Nav';
 import { isWorldReady } from '@/data/content';
+import WorldThemeProvider from '@/components/world/WorldThemeProvider';
+import WorldBackdrop from '@/components/world/WorldBackdrop';
 import AICoach from '@/components/AICoach';
 import { createClient } from '@/lib/supabase/client';
 import { fetchChildrenWithProgress, findActiveChild, type ChildData } from '@/lib/children';
@@ -261,9 +263,12 @@ export default function AdventureSlugPage({ params }: { params: Promise<{ slug: 
   const meta = sec ? SECTION_ICONS[sec.section_type] : undefined;
 
   return (
-    <div className="min-h-screen bg-[#060810] text-white pb-32">
+    <WorldThemeProvider slug={adventure.world.slug} className="relative min-h-screen bg-[#060810] text-white pb-32 overflow-hidden">
+      {/* Halos de fond + particules du monde */}
+      <div className="absolute inset-0 world-bg-glow" aria-hidden="true" />
+      <WorldBackdrop slug={adventure.world.slug} density={30} />
       <Nav />
-      <div className="pt-24 px-6 max-w-3xl mx-auto">
+      <div className="relative pt-24 px-6 max-w-3xl mx-auto">
         {/* Progress */}
         <div className="mb-6">
           <div className="flex items-center justify-between text-sm text-gray-400 mb-2">
@@ -271,7 +276,7 @@ export default function AdventureSlugPage({ params }: { params: Promise<{ slug: 
             <span>{Math.min(currentStep + 1, totalSteps)}/{totalSteps}</span>
           </div>
           <div className="h-2 bg-[#1e293b] rounded-full overflow-hidden">
-            <div className="h-full bg-gradient-to-r from-violet-500 to-purple-500 rounded-full transition-all" style={{ width: `${(Math.min(currentStep + 1, totalSteps) / Math.max(totalSteps, 1)) * 100}%` }} />
+            <div className="h-full world-progress-fill rounded-full transition-all" style={{ width: `${(Math.min(currentStep + 1, totalSteps) / Math.max(totalSteps, 1)) * 100}%` }} />
           </div>
         </div>
 
@@ -374,7 +379,7 @@ export default function AdventureSlugPage({ params }: { params: Promise<{ slug: 
           <div className="bg-[#111827] border border-white/5 rounded-xl p-6 mb-6 min-h-[200px]">
             {onQuizStep ? (
               <div>
-                <div className="flex items-center gap-2 mb-4"><Sparkles className="w-5 h-5 text-violet-400" /><span className="font-bold text-violet-300">Quiz</span></div>
+                <div className="flex items-center gap-2 mb-4"><Sparkles className="w-5 h-5 world-accent" /><span className="font-bold world-accent">Quiz</span></div>
                 {quiz.map((q, qi) => (
                   <div key={qi} className="mb-6">
                     <p className="font-semibold mb-3">{qi + 1}. {q.question}</p>
@@ -411,7 +416,7 @@ export default function AdventureSlugPage({ params }: { params: Promise<{ slug: 
               <>
                 <div className="flex items-center gap-2 mb-3">
                   {meta?.icon}
-                  <span className="text-sm text-violet-400 font-medium uppercase tracking-wider">{meta?.label ?? sec.section_type}</span>
+                  <span className="text-sm world-accent font-medium uppercase tracking-wider">{meta?.label ?? sec.section_type}</span>
                 </div>
                 <h2 className="font-bold text-lg mb-3">{sec.title}</h2>
                 <p className="text-gray-300 leading-relaxed whitespace-pre-line">{sec.content}</p>
@@ -455,6 +460,6 @@ export default function AdventureSlugPage({ params }: { params: Promise<{ slug: 
         )}
       </div>
       <AICoach worldName={adventure.world.name} adventureTitle={adventure.title} />
-    </div>
+    </WorldThemeProvider>
   );
 }
