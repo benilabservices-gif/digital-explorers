@@ -15,6 +15,7 @@ import QuizStep from '@/components/adventure/QuizStep';
 import RewardOverlay, { type RewardResult } from '@/components/adventure/RewardOverlay';
 import SfxToggle from '@/components/rewards/SfxToggle';
 import StoryOpening from '@/components/adventure/StoryOpening';
+import StoryIntro from '@/components/adventure/StoryIntro';
 import { parseLesson } from '@/lib/lesson-parser';
 import { getWorldTheme } from '@/data/world-themes';
 import { getInteractive } from '@/data/interactives';
@@ -73,6 +74,8 @@ export default function AdventureSlugPage({ params }: { params: Promise<{ slug: 
   const [result, setResult] = useState<RewardResult | null>(null);
   const [planLimit, setPlanLimit] = useState<PlanLimit | null>(null);
   const [alreadyDone, setAlreadyDone] = useState(false);
+  // Ouverture cinématique (Phase 5) : passée → on entre dans l'aventure.
+  const [introDone, setIntroDone] = useState(false);
 
   // Blocs parsés de la section courante (Phase 2 — lecteur immersif).
   const blocks = useMemo(() => {
@@ -320,6 +323,16 @@ export default function AdventureSlugPage({ params }: { params: Promise<{ slug: 
             </div>
           </div>
         </div>
+
+        {/* Ouverture cinématique (Phase 5) : plein écran au démarrage,
+            « Passer » pour entrer — le panneau inline reste ensuite à l'étape 0. */}
+        {currentStep === 0 && adventure.story && child && !introDone && (
+          <StoryIntro
+            guide={theme.guide}
+            story={adventure.story}
+            onDone={() => setIntroDone(true)}
+          />
+        )}
 
         {/* Ouverture narrative : le guide raconte l'histoire de l'aventure */}
         {currentStep === 0 && adventure.story && (

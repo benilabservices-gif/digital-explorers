@@ -5,6 +5,7 @@ import { getWorldTheme } from '@/data/world-themes';
 import Nav from '@/components/Nav';
 import WorldThemeProvider from '@/components/world/WorldThemeProvider';
 import WorldBackdrop from '@/components/world/WorldBackdrop';
+import WorldMap from '@/components/world/WorldMap';
 
 export function generateStaticParams() {
   return WORLDS.map(w => ({ slug: w.slug }));
@@ -60,7 +61,21 @@ export default async function WorldSlugPage({ params }: { params: Promise<{ slug
             </div>
           )}
 
-          <h2 className="text-xl font-bold mb-4 flex items-center gap-2"><Sparkles className="w-5 h-5 world-accent" /> Aventures</h2>
+          {/* Carte interactive du monde (Phase 5) */}
+          <h2 className="text-xl font-bold mb-4 flex items-center gap-2"><Sparkles className="w-5 h-5 world-accent" /> Le chemin du monde</h2>
+          <div className="mb-10">
+            <WorldMap
+              worldSlug={world.slug}
+              ready={ready}
+              adventures={(world.adventures ?? []).map((adv) => ({
+                slug: adv.slug,
+                title: adv.title,
+                xp_reward: adv.xp_reward,
+              }))}
+            />
+          </div>
+
+          <h2 className="text-xl font-bold mb-4 flex items-center gap-2"><Sparkles className="w-5 h-5 world-accent" /> Toutes les aventures</h2>
           <div className="space-y-3">
             {world.adventures?.map((adv, idx) => {
               const item = (

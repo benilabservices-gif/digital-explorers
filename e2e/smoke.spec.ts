@@ -107,6 +107,10 @@ test('login → enfant → aventure → complétion', async ({ page }) => {
   await page.goto(`/adventure/${ADVENTURE_SLUG}`);
   await expect(page.getByRole('heading', { name: ADVENTURE_TITLE })).toBeVisible();
 
+  // Ouverture cinématique (Phase 5) : l'intro plein écran intercepte les
+  // clics tant qu'elle n'est pas fermée — « Passer l'introduction » la démonte.
+  await page.getByRole('button', { name: /Passer/ }).click();
+
   // Leçons et quiz sont chargés par un second effet asynchrone : tant qu'il
   // n'est pas terminé, totalSteps vaut 0 (« 0/0 ») et le bouton « Suivant »
   // reste affiché sans jamais se désactiver — cliquer trop vite fait dépasser
