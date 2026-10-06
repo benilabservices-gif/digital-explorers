@@ -263,6 +263,30 @@ body {
   box-shadow: 0 8px 40px var(--world-glow, rgba(139, 92, 246, 0.12));
 }
 
+/* ─── Lecteur immersif (Phase 2) ─── */
+@keyframes scene-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.scene-in {
+  animation: scene-in 0.5s ease-out both;
+}
+
+@keyframes bubble-in {
+  from { opacity: 0; transform: translateX(-8px) scale(0.96); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+.bubble-in {
+  animation: bubble-in 0.4s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-in,
+  .bubble-in {
+    animation: none;
+  }
+}
+
 /* Badge rarity glow */
 .badge-common   { box-shadow: 0 0 8px rgba(148,163,184,0.2); }
 .badge-rare     { box-shadow: 0 0 12px rgba(59,130,246,0.3); }

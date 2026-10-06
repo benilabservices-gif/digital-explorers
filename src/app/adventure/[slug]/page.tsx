@@ -1,13 +1,20 @@
 'use client';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Shield, CheckCircle, XCircle, Star, Trophy, ArrowRight, Sparkles, BookOpen, Play, Target, Lightbulb, Zap, Crown, Rocket, FlaskConical, Hammer, Lock } from 'lucide-react';
+import { ArrowLeft, Shield, CheckCircle, Star, ArrowRight, Sparkles, BookOpen, Play, Target, Lightbulb, Rocket, FlaskConical, Hammer, Lock } from 'lucide-react';
 import Nav from '@/components/Nav';
 import { isWorldReady } from '@/data/content';
 import WorldThemeProvider from '@/components/world/WorldThemeProvider';
 import WorldBackdrop from '@/components/world/WorldBackdrop';
 import AICoach from '@/components/AICoach';
+import LessonScene from '@/components/adventure/LessonScene';
+import MissionCard from '@/components/adventure/MissionCard';
+import QuizStep from '@/components/adventure/QuizStep';
+import RewardOverlay, { type RewardResult } from '@/components/adventure/RewardOverlay';
+import StoryOpening from '@/components/adventure/StoryOpening';
+import { parseLesson } from '@/lib/lesson-parser';
+import { getWorldTheme } from '@/data/world-themes';
 import { createClient } from '@/lib/supabase/client';
 import { fetchChildrenWithProgress, findActiveChild, type ChildData } from '@/lib/children';
 import { getActiveChildId } from '@/lib/active-child';
@@ -35,17 +42,6 @@ interface AdventureData {
   world: { slug: string; name: string; icon: string; gradient: string };
 }
 
-interface CompleteResult {
-  alreadyCompleted: boolean;
-  xpAwarded: number;
-  quizScore: number;
-  quizMax: number;
-  newXp: number;
-  newLevel: number;
-  leveledUp: boolean;
-  newBadges: { slug: string; name: string; icon: string }[];
-}
-
 type PlanLimit = { reason: 'adventures_limit' | 'worlds_limit'; planCode: string };
 
 const SECTION_ICONS: Record<string, { icon: React.ReactNode; color: string; label: string }> = {
@@ -71,9 +67,15 @@ export default function AdventureSlugPage({ params }: { params: Promise<{ slug: 
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [quizDone, setQuizDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [result, setResult] = useState<CompleteResult | null>(null);
+  const [result, setResult] = useState<RewardResult | null>(null);
   const [planLimit, setPlanLimit] = useState<PlanLimit | null>(null);
   const [alreadyDone, setAlreadyDone] = useState(false);
+
+  // Blocs parsés de la section courante (Phase 2 — lecteur immersif).
+  const blocks = useMemo(() => {
+    const s = lessons[currentStep];
+    return s ? parseLesson(s.content) : [];
+  }, [lessons, currentStep]);
 
   useEffect(() => {
     let cancelled = false;
@@ -207,6 +209,7 @@ export default function AdventureSlugPage({ params }: { params: Promise<{ slug: 
     );
   }
 
+  const theme = getWorldTheme(adventure.world.slug);
   const hasQuiz = quiz.length > 0;
   const totalSteps = lessons.length + (hasQuiz ? 1 : 0);
   const quizStepIndex = lessons.length; // le quiz est la dernière étape
@@ -299,50 +302,18 @@ export default function AdventureSlugPage({ params }: { params: Promise<{ slug: 
           </div>
         </div>
 
-        {/* REWARD OVERLAY */}
+        {/* Ouverture narrative : le guide raconte l'histoire de l'aventure */}
+        {currentStep === 0 && adventure.story && (
+          <StoryOpening guide={theme.guide} story={adventure.story} />
+        )}
+
+        {/* REWARD OVERLAY (composant extrait — contrats e2e préservés) */}
         {result && (
-          <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-6">
-            <div className="bg-[#111827] border border-violet-500/30 rounded-3xl p-8 max-w-sm w-full text-center">
-              <div className="text-6xl mb-4">🎉</div>
-              {result.alreadyCompleted ? (
-                <p className="text-gray-300 mb-4">Tu avais déjà terminé cette aventure — aucun XP supplémentaire.</p>
-              ) : (
-                <>
-                  {result.leveledUp && (
-                    <div className="mb-4 flex items-center justify-center gap-2 text-yellow-400">
-                      <Crown className="w-6 h-6" /><span className="font-bold text-xl">Niveau {result.newLevel} atteint !</span>
-                    </div>
-                  )}
-                  <div className="mb-2 flex items-center justify-center gap-2 text-violet-300">
-                    <Zap className="w-5 h-5" />
-                    <span className="font-bold text-lg">+{result.xpAwarded} XP</span>
-                  </div>
-                  {hasQuiz && (
-                    <div className="mb-4 text-sm text-gray-400">
-                      Quiz : {result.quizScore}/{result.quizMax}
-                    </div>
-                  )}
-                  {result.newBadges.length > 0 && (
-                    <div className="mb-6">
-                      <div className="text-sm text-gray-400 mb-2">Nouveaux badges :</div>
-                      <div className="flex justify-center gap-3">
-                        {result.newBadges.map(b => (
-                          <div key={b.slug} className="flex flex-col items-center">
-                            <span className="text-3xl">{b.icon}</span>
-                            <span className="text-xs text-gray-400 mt-1">{b.name}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </>
-              )}
-              <div className="flex gap-3">
-                <Link href="/dashboard"><button className="flex-1 py-3 bg-emerald-500 hover:bg-emerald-400 rounded-xl font-bold transition-colors">Dashboard</button></Link>
-                <button onClick={() => { setResult(null); router.push('/dashboard'); }} className="flex-1 py-3 bg-violet-600 hover:bg-violet-500 rounded-xl font-bold transition-colors">Continuer</button>
-              </div>
-            </div>
-          </div>
+          <RewardOverlay
+            result={result}
+            hasQuiz={hasQuiz}
+            onContinue={() => { setResult(null); router.push('/dashboard'); }}
+          />
         )}
 
         {/* PLAN LIMIT MESSAGE */}
@@ -374,52 +345,33 @@ export default function AdventureSlugPage({ params }: { params: Promise<{ slug: 
           </div>
         )}
 
-        {/* Step content */}
+        {/* Step content : quiz extrait, sinon lecteur immersif (Phase 2) */}
         {child && (
           <div className="bg-[#111827] border border-white/5 rounded-xl p-6 mb-6 min-h-[200px]">
             {onQuizStep ? (
-              <div>
-                <div className="flex items-center gap-2 mb-4"><Sparkles className="w-5 h-5 world-accent" /><span className="font-bold world-accent">Quiz</span></div>
-                {quiz.map((q, qi) => (
-                  <div key={qi} className="mb-6">
-                    <p className="font-semibold mb-3">{qi + 1}. {q.question}</p>
-                    <div className="space-y-2">
-                      {q.options.map((opt, oi) => (
-                        <button key={oi} onClick={() => !quizDone && setAnswers(prev => ({ ...prev, [qi]: oi }))}
-                          className={`w-full text-left px-4 py-3 rounded-xl border transition-all ${
-                            answers[qi] === oi ? 'border-violet-500 bg-violet-500/20' :
-                            quizDone && oi === q.correct_index ? 'border-emerald-500 bg-emerald-500/20' :
-                            quizDone && answers[qi] === oi && oi !== q.correct_index ? 'border-red-500 bg-red-500/20' :
-                            'border-white/10 hover:border-white/30'
-                          }`}>
-                          {opt}
-                          {quizDone && oi === q.correct_index && <CheckCircle className="w-4 h-4 inline text-emerald-400 ml-2" />}
-                          {quizDone && answers[qi] === oi && oi !== q.correct_index && <XCircle className="w-4 h-4 inline text-red-400 ml-2" />}
-                        </button>
-                      ))}
-                    </div>
-                    {quizDone && q.explanation && (
-                      <p className="mt-2 text-sm text-gray-400">💡 {q.explanation}</p>
-                    )}
-                  </div>
-                ))}
-                {quizDone && result && (
-                  <div className="flex items-center gap-2 text-emerald-400"><Trophy className="w-5 h-5" /><span>Récompenses ajoutées à ton profil !</span></div>
-                )}
-                {!quizDone && (
-                  <button onClick={validateQuiz} disabled={!allAnswered()} className="px-6 py-3 bg-violet-600 hover:bg-violet-500 disabled:opacity-50 rounded-xl font-semibold transition-colors">
-                    Valider mes réponses
-                  </button>
-                )}
-              </div>
+              <QuizStep
+                quiz={quiz}
+                answers={answers}
+                onAnswer={(qi, oi) => setAnswers(prev => ({ ...prev, [qi]: oi }))}
+                quizDone={quizDone}
+                showRewards={quizDone && Boolean(result)}
+                canValidate={allAnswered()}
+                onValidate={validateQuiz}
+              />
             ) : sec ? (
               <>
                 <div className="flex items-center gap-2 mb-3">
                   {meta?.icon}
                   <span className="text-sm world-accent font-medium uppercase tracking-wider">{meta?.label ?? sec.section_type}</span>
                 </div>
-                <h2 className="font-bold text-lg mb-3">{sec.title}</h2>
-                <p className="text-gray-300 leading-relaxed whitespace-pre-line">{sec.content}</p>
+                <h2 className="font-bold text-lg mb-4">{sec.title}</h2>
+                {blocks.length === 0 ? (
+                  <div className="text-gray-400 text-sm">Contenu en cours de rédaction — la version enrichie arrive très bientôt !</div>
+                ) : sec.section_type === 'mission' ? (
+                  <MissionCard key={sec.id} blocks={blocks} />
+                ) : (
+                  <LessonScene key={sec.id} blocks={blocks} guide={theme.guide} />
+                )}
               </>
             ) : (
               <div className="text-gray-400 text-sm">Contenu en cours de rédaction — la version enrichie arrive très bientôt !</div>
