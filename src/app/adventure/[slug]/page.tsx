@@ -13,6 +13,7 @@ import InteractiveHost from '@/components/adventure/InteractiveHost';
 import MissionCard from '@/components/adventure/MissionCard';
 import QuizStep from '@/components/adventure/QuizStep';
 import RewardOverlay, { type RewardResult } from '@/components/adventure/RewardOverlay';
+import SfxToggle from '@/components/rewards/SfxToggle';
 import StoryOpening from '@/components/adventure/StoryOpening';
 import { parseLesson } from '@/lib/lesson-parser';
 import { getWorldTheme } from '@/data/world-themes';
@@ -270,6 +271,13 @@ export default function AdventureSlugPage({ params }: { params: Promise<{ slug: 
     }
   }
 
+  // Rejouer le quiz : reset local, l'XP reste unique (idempotence serveur).
+  function replayQuiz() {
+    setAnswers({});
+    setQuizDone(false);
+    setResult(null);
+  }
+
   const sec = lessons[currentStep];
   const meta = sec ? SECTION_ICONS[sec.section_type] : undefined;
 
@@ -284,7 +292,10 @@ export default function AdventureSlugPage({ params }: { params: Promise<{ slug: 
         <div className="mb-6">
           <div className="flex items-center justify-between text-sm text-gray-400 mb-2">
             <span>Progression</span>
-            <span>{Math.min(currentStep + 1, totalSteps)}/{totalSteps}</span>
+            <div className="flex items-center gap-3">
+              <SfxToggle />
+              <span>{Math.min(currentStep + 1, totalSteps)}/{totalSteps}</span>
+            </div>
           </div>
           <div className="h-2 bg-[#1e293b] rounded-full overflow-hidden">
             <div className="h-full world-progress-fill rounded-full transition-all" style={{ width: `${(Math.min(currentStep + 1, totalSteps) / Math.max(totalSteps, 1)) * 100}%` }} />
@@ -365,6 +376,7 @@ export default function AdventureSlugPage({ params }: { params: Promise<{ slug: 
                 showRewards={quizDone && Boolean(result)}
                 canValidate={allAnswered()}
                 onValidate={validateQuiz}
+                onReplay={replayQuiz}
               />
             ) : sec ? (
               <>

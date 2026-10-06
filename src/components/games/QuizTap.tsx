@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import type { QuizTapConfig } from '@/data/interactives';
 import { GameShell, WinBanner } from './GameShell';
+import { playSfx, vibrate } from '@/lib/sfx';
 
 const TIME_PER_STATEMENT = 12; // secondes par affirmation
 
@@ -31,7 +32,13 @@ export default function QuizTap({ config }: { config: QuizTapConfig }) {
   function answer(pick: boolean) {
     if (picked !== null || timedOut || !statement) return;
     setPicked(pick);
-    if (pick === statement.answer) setScore((s) => s + 1);
+    if (pick === statement.answer) {
+      setScore((s) => s + 1);
+      playSfx('correct');
+      vibrate(15);
+    } else {
+      playSfx('wrong');
+    }
   }
 
   function nextStatement() {

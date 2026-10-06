@@ -1,5 +1,8 @@
-import type { ReactNode } from 'react';
+'use client';
+
+import { useEffect, type ReactNode } from 'react';
 import { Gamepad2 } from 'lucide-react';
+import { celebrate } from '@/lib/celebrate';
 
 /** Cadre commun des mini-jeux : en-tête teinté par l'accent du monde. */
 export function GameShell({ title, goal, children }: { title: string; goal?: string; children: ReactNode }) {
@@ -20,6 +23,11 @@ export function GameShell({ title, goal, children }: { title: string; goal?: str
 
 /** Bannière de réussite. Aucun XP ici : l'XP ne vient que du quiz serveur. */
 export function WinBanner({ onReplay, note }: { onReplay: () => void; note?: string }) {
+  // Le moment de gloire : confettis + fanfare de mini-jeu + vibration mobile.
+  useEffect(() => {
+    celebrate('win');
+  }, []);
+
   return (
     <div className="rounded-2xl border border-emerald-500/40 bg-emerald-500/10 p-5 text-center">
       <p className="text-3xl mb-2" aria-hidden="true">🎉</p>
