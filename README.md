@@ -85,7 +85,12 @@ Ajouter un interactif = une entrée dans le registre (2-3 configs par monde prê
 
 ## Déploiement
 
-- Projet **Vercel** lié au dépôt (`.vercel/project.json`). Le staging de référence : [digital-explorers-sand.vercel.app](https://digital-explorers-sand.vercel.app).
-- Un push sur `main` déclenche le build et le déploiement Vercel.
+- Projet **Vercel** lié au dépôt (`.vercel/project.json`, CLI authentifiée). Le staging de référence : [digital-explorers-sand.vercel.app](https://digital-explorers-sand.vercel.app).
+- **Pas d'intégration Git** : le déploiement se lance depuis le poste local :
+
+```bash
+vercel deploy --prod
+```
+
 - **Après chaque déploiement** : `npm run flow:check` (cible le staging par défaut ; `APP_URL=https://… npm run flow:check` pour un autre environnement).
 - L'inscription publique est sensible au rate-limit du SMTP intégré Supabase (confirmation d'email activée) — `flow-check` bascule automatiquement en repli via l'API admin. Pour une app publique, configurer un SMTP custom (Resend, SendGrid…) ou désactiver la confirmation (Supabase → Authentication → Settings).
