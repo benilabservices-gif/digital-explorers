@@ -9,12 +9,14 @@ import WorldThemeProvider from '@/components/world/WorldThemeProvider';
 import WorldBackdrop from '@/components/world/WorldBackdrop';
 import AICoach from '@/components/AICoach';
 import LessonScene from '@/components/adventure/LessonScene';
+import InteractiveHost from '@/components/adventure/InteractiveHost';
 import MissionCard from '@/components/adventure/MissionCard';
 import QuizStep from '@/components/adventure/QuizStep';
 import RewardOverlay, { type RewardResult } from '@/components/adventure/RewardOverlay';
 import StoryOpening from '@/components/adventure/StoryOpening';
 import { parseLesson } from '@/lib/lesson-parser';
 import { getWorldTheme } from '@/data/world-themes';
+import { getInteractive } from '@/data/interactives';
 import { createClient } from '@/lib/supabase/client';
 import { fetchChildrenWithProgress, findActiveChild, type ChildData } from '@/lib/children';
 import { getActiveChildId } from '@/lib/active-child';
@@ -76,6 +78,12 @@ export default function AdventureSlugPage({ params }: { params: Promise<{ slug: 
     const s = lessons[currentStep];
     return s ? parseLesson(s.content) : [];
   }, [lessons, currentStep]);
+
+  // Interactif associé à la section courante (Phase 3 — mini-jeux & terrains de jeu).
+  const interactive = useMemo(() => {
+    if (!adventure) return null;
+    return getInteractive(adventure.slug, lessons[currentStep]?.section_type ?? '');
+  }, [adventure, lessons, currentStep]);
 
   useEffect(() => {
     let cancelled = false;
@@ -367,6 +375,8 @@ export default function AdventureSlugPage({ params }: { params: Promise<{ slug: 
                 <h2 className="font-bold text-lg mb-4">{sec.title}</h2>
                 {blocks.length === 0 ? (
                   <div className="text-gray-400 text-sm">Contenu en cours de rédaction — la version enrichie arrive très bientôt !</div>
+                ) : interactive ? (
+                  <InteractiveHost key={sec.id} config={interactive} blocks={blocks} guide={theme.guide} />
                 ) : sec.section_type === 'mission' ? (
                   <MissionCard key={sec.id} blocks={blocks} />
                 ) : (
