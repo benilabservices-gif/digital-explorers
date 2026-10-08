@@ -30,8 +30,7 @@ const DATA_HEX_ALLOWED = ['src/data/'];
 // déplacées, afin de ne pas exempter les nouveaux fichiers propres
 // (layout.tsx, loading.tsx, error.tsx, coquille serveur aventure/page.tsx).
 const LEGACY_HEX_ALLOWED = [
-  'src/app/(marketing)/page.tsx', // Phase 3
-  'src/app/(marketing)/pricing/', // Phase 3
+  // (marketing) home + pricing : migrées aux tokens en Phase 3.
   'src/app/(auth)/auth/', // Phase 5
   'src/app/(app)/dashboard/page.tsx', // Phase 4
   'src/app/(app)/worlds/page.tsx', // Phase 4
