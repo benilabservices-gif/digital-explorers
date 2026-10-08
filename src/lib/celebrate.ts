@@ -4,10 +4,11 @@
 
 import confetti from 'canvas-confetti';
 import { playSfx, vibrate } from './sfx';
+import { CELEBRATION_COLORS, LEVELUP_COLORS } from '@/data/celebration';
 
 export type CelebrationKind = 'win' | 'adventure' | 'levelup' | 'badge';
 
-const COLORS = ['#fbbf24', '#34d399', '#8b5cf6', '#ec4899', '#60a5fa'];
+const COLORS = CELEBRATION_COLORS;
 
 function prefersReducedMotion(): boolean {
   if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') return true;
@@ -48,7 +49,7 @@ function levelUpBurst(): void {
     startVelocity: 45,
     scalar: 1.1,
     origin: { y: 0.5 },
-    colors: ['#fbbf24', '#fde68a', '#f97316'],
+    colors: LEVELUP_COLORS,
     disableForReducedMotion: true,
   });
 }

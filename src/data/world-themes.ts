@@ -1,10 +1,15 @@
 import type { WorldSlug } from './content';
+import { GUIDES_BY_ID, type GuideId } from './characters';
 
 // ---------------------------------------------------------------------------
 // Identité visuelle par monde — injectée via WorldThemeProvider (variables
 // CSS) et WorldBackdrop (canvas animé). Chaque monde possède sa couleur
-// d'accent, ses halos de fond, son style de particules et son guide, issu de
-// la team présentée sur la home (Awa, Koffi, Sami, Nadia, Yann).
+// d'accent, ses halos de fond, son style de particules et son guide, dérivé
+// de la source unique des personnages (src/data/characters.ts).
+//
+// Recalibrage DA « Carnet de l'Explorateur » : l'or (#gold) est réservé aux
+// récompenses — le monde blockchain passe au orange Bitcoin ; les autres
+// accents pédagogiques sont conservés (posés sur la nuit d'obsidienne).
 // ---------------------------------------------------------------------------
 
 export type ParticleStyle = 'network' | 'neural' | 'coderain' | 'chain' | 'paint' | 'radar' | 'orbit';
@@ -12,7 +17,14 @@ export type ParticleStyle = 'network' | 'neural' | 'coderain' | 'chain' | 'paint
 export interface WorldGuide {
   emoji: string;
   name: string;
+  /** rôle du guide dans CE monde (l'identité cœur vit dans characters.ts) */
   trait: string;
+}
+
+/** Construit le guide d'un monde depuis la source unique des personnages. */
+function guideOf(id: GuideId, role: string): WorldGuide {
+  const g = GUIDES_BY_ID[id];
+  return { emoji: g.emoji, name: g.name, trait: role };
 }
 
 export interface WorldTheme {
@@ -41,7 +53,7 @@ export const WORLD_THEMES: Record<WorldSlug, WorldTheme> = {
     bgGlow:
       'radial-gradient(ellipse at 18% 0%, rgba(59,130,246,0.16), transparent 55%), radial-gradient(ellipse at 85% 100%, rgba(34,211,238,0.12), transparent 55%)',
     particles: 'network',
-    guide: { emoji: '👦🏿', name: 'Sami', trait: 'Surfeur du Web' },
+    guide: guideOf('sami', 'Surfeur du Web'),
   },
   'artificial-intelligence': {
     accent: '#a78bfa',
@@ -51,7 +63,7 @@ export const WORLD_THEMES: Record<WorldSlug, WorldTheme> = {
     bgGlow:
       'radial-gradient(ellipse at 18% 0%, rgba(139,92,246,0.18), transparent 55%), radial-gradient(ellipse at 85% 100%, rgba(96,165,250,0.12), transparent 55%)',
     particles: 'neural',
-    guide: { emoji: '👦🏽', name: 'Yann', trait: 'Scientifique' },
+    guide: guideOf('yann', 'Scientifique des données'),
   },
   coding: {
     accent: '#34d399',
@@ -61,17 +73,17 @@ export const WORLD_THEMES: Record<WorldSlug, WorldTheme> = {
     bgGlow:
       'radial-gradient(ellipse at 18% 0%, rgba(16,185,129,0.16), transparent 55%), radial-gradient(ellipse at 85% 100%, rgba(45,212,191,0.12), transparent 55%)',
     particles: 'coderain',
-    guide: { emoji: '👦🏾', name: 'Koffi', trait: 'Codeur en herbe' },
+    guide: guideOf('koffi', 'Codeur en herbe'),
   },
   blockchain: {
-    accent: '#fbbf24',
-    accentRgb: '251,191,36',
-    accentSoft: 'rgba(251,191,36,0.12)',
-    glow: 'rgba(251,191,36,0.35)',
+    accent: '#f7931a',
+    accentRgb: '247,147,26',
+    accentSoft: 'rgba(247,147,26,0.12)',
+    glow: 'rgba(247,147,26,0.35)',
     bgGlow:
-      'radial-gradient(ellipse at 18% 0%, rgba(245,158,11,0.16), transparent 55%), radial-gradient(ellipse at 85% 100%, rgba(249,115,22,0.12), transparent 55%)',
+      'radial-gradient(ellipse at 18% 0%, rgba(247,147,26,0.16), transparent 55%), radial-gradient(ellipse at 85% 100%, rgba(234,88,12,0.12), transparent 55%)',
     particles: 'chain',
-    guide: { emoji: '👩🏿', name: 'Nadia', trait: 'Exploratrice Web3' },
+    guide: guideOf('nadia', 'Exploratrice Web3'),
   },
   'digital-creator': {
     accent: '#f472b6',
@@ -81,7 +93,7 @@ export const WORLD_THEMES: Record<WorldSlug, WorldTheme> = {
     bgGlow:
       'radial-gradient(ellipse at 18% 0%, rgba(236,72,153,0.16), transparent 55%), radial-gradient(ellipse at 85% 100%, rgba(251,113,133,0.12), transparent 55%)',
     particles: 'paint',
-    guide: { emoji: '👩🏾', name: 'Awa', trait: 'Créative' },
+    guide: guideOf('awa', 'Directrice artistique'),
   },
   'cyber-hero': {
     accent: '#f87171',
@@ -91,7 +103,7 @@ export const WORLD_THEMES: Record<WorldSlug, WorldTheme> = {
     bgGlow:
       'radial-gradient(ellipse at 18% 0%, rgba(239,68,68,0.16), transparent 55%), radial-gradient(ellipse at 85% 100%, rgba(244,63,94,0.12), transparent 55%)',
     particles: 'radar',
-    guide: { emoji: '👦🏿', name: 'Sami', trait: 'Gardien du Net' },
+    guide: guideOf('sami', 'Gardien du Net'),
   },
   'innovation-entrepreneurship': {
     accent: '#22d3ee',
@@ -101,7 +113,7 @@ export const WORLD_THEMES: Record<WorldSlug, WorldTheme> = {
     bgGlow:
       'radial-gradient(ellipse at 18% 0%, rgba(6,182,212,0.16), transparent 55%), radial-gradient(ellipse at 85% 100%, rgba(59,130,246,0.12), transparent 55%)',
     particles: 'orbit',
-    guide: { emoji: '👩🏿', name: 'Nadia', trait: 'Entrepreneure' },
+    guide: guideOf('nadia', 'Entrepreneure'),
   },
 };
 

@@ -3,15 +3,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowRight, Star, Shield, Users, Rocket } from "lucide-react";
 import { WORLDS, isWorldReady } from "@/data/content";
+import { GUIDES as CHARACTERS } from "@/data/characters";
 import Nav from "@/components/Nav";
 
-const CHARACTERS = [
-  { emoji: "👩🏾", name: "Awa", trait: "Créative", color: "#ec4899", bg: "from-pink-500/20 to-rose-500/10" },
-  { emoji: "👦🏾", name: "Koffi", trait: "Logique", color: "#10b981", bg: "from-emerald-500/20 to-teal-500/10" },
-  { emoji: "👦🏿", name: "Sami", trait: "Gaming", color: "#3b82f6", bg: "from-blue-500/20 to-cyan-500/10" },
-  { emoji: "👩🏿", name: "Nadia", trait: "Entrepreneure", color: "#8b5cf6", bg: "from-violet-500/20 to-purple-500/10" },
-  { emoji: "👦🏽", name: "Yann", trait: "Scientifique", color: "#f59e0b", bg: "from-amber-500/20 to-orange-500/10" },
-];
 const FEATURES = [
   { icon: "🗺️", title: "7 Mondes • 84 Aventures", desc: "Web, IA, Coding, Blockchain, Design, Cybersécurité, Innovation — 12 aventures par monde", color: "from-blue-500 to-cyan-400" },
   { icon: "🎮", title: "Apprendre en jouant", desc: "Des aventures interactives avec histoires, mini-jeux, quiz et missions", color: "from-purple-500 to-pink-400" },

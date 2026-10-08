@@ -1,293 +1,167 @@
 @import "tailwindcss";
 
+/* ══════════════════════════════════════════════════════════════════════════
+   Design system — « Carnet de l'Explorateur » (afro-futurisme solaire)
+   --------------------------------------------------------------------------
+   Toute couleur passe par un token @theme ci-dessous (règle tokens-only,
+   vérifiée par `npm run design:check`).
+   • Fondations : nuit d'obsidienne (5 profondeurs + 3 surfaces utiles)
+   • Marque     : soleil levant — corail #sunrise → ambre #gleam (CTA, liens)
+   • Or         : #gold — RÉSERVÉ aux récompenses (badges, niveaux)
+   • Monde      : accents pédagogiques injectés en exécution par
+                  WorldThemeProvider (src/data/world-themes.ts)
+   ══════════════════════════════════════════════════════════════════════════ */
 @theme {
-  --color-bg-deep: #060810;
-  --color-bg: #0a0f1e;
-  --color-surface: #111827;
-  --color-surface-2: #1a2235;
-  --color-border: #1e2d45;
-  --color-border-light: #2a3f5f;
-  --color-text: #f0f4ff;
-  --color-text-muted: #8899b0;
-  --color-text-dim: #4a5a70;
-  --color-coral: #ff6b6b;
-  --color-coral-light: #ff8e8e;
-  --color-gold: #fbbf24;
-  --color-gold-light: #fcd34d;
-  --color-teal: #2dd4bf;
-  --color-teal-light: #5eead4;
-  --color-violet: #8b5cf6;
-  --color-violet-light: #a78bfa;
-  --color-pink: #ec4899;
-  --color-blue: #3b82f6;
-  --color-emerald: #10b981;
-  --color-orange: #f97316;
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
+  /* ── Nuit d'obsidienne — fonds & surfaces ─────────────────────── */
+  --color-night-950: #05070d; /* fond de page — obsidienne profonde        */
+  --color-night-900: #0a0f1c; /* fond alternatif de section               */
+  --color-night-850: #0e1626; /* surface niveau 1 — cartes                */
+  --color-night-800: #141e33; /* surface niveau 2 — panneaux, listes       */
+  --color-night-700: #1c2842; /* surface niveau 3 — survols, zones actives */
+  --color-night-600: #27365a; /* fond de saisie, rail de progression      */
+
+  /* ── Bordures lumineuses ──────────────────────────────────────── */
+  --color-line: #1e2c4a;      /* bordure standard                          */
+  --color-line-lit: #35507f;  /* bordure vivante — survol, focus           */
+
+  /* ── Encre (texte) ───────────────────────────────────────────── */
+  --color-ink: #eff4ff;       /* texte principal                          */
+  --color-ink-soft: #a9b5d2;  /* texte secondaire                         */
+  --color-ink-faint: #6f7d9e; /* texte discret                            */
+
+  /* ── Marque « Soleil levant » — corail → ambre ────────────────── */
+  --color-sunrise-300: #ffd7b8;
+  --color-sunrise-400: #ffb68c; /* accents doux, focus                     */
+  --color-sunrise-500: #ff8f5e; /* corail — accent principal               */
+  --color-sunrise-600: #f96c3f;
+  --color-sunrise-700: #dd5326;
+  --color-gleam-300: #ffe0a3;
+  --color-gleam-400: #ffc766;  /* ambre chaud — fin de dégradé de marque   */
+  --color-gleam-500: #f3a63b;
+
+  /* ── Or — réservé aux récompenses ─────────────────────────────── */
+  --color-gold-300: #fde68a;
+  --color-gold-400: #fbbf24;
+  --color-gold-500: #e8a104;
+
+  /* ── Sémantiques ──────────────────────────────────────────────── */
+  --color-success-300: #86efac;
+  --color-success-400: #4ade80;
+  --color-success-500: #22c55e;
+  --color-danger-300: #ffb0a8;
+  --color-danger-400: #ff7d70;
+  --color-danger-500: #ef5350;
+  --color-info-300: #a9ccff;
+  --color-info-400: #7cb8ff;
+  --color-info-500: #4d94ff;
+
+  /* ── Typographie ──────────────────────────────────────────────── */
+  /* Les familles sont posées par next/font (layout.tsx) via
+     --font-inter / --font-bricolage / --font-jetbrains. */
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  /* Échelle display (marketing) + corps éditorial — public jeune :
+     corps de texte ≥ 16px (text-base par défaut). */
+  --text-display-xl: 4.5rem;
+  --text-display-xl--line-height: 1.02;
+  --text-display-xl--letter-spacing: -0.02em;
+  --text-display-lg: 3.25rem;
+  --text-display-lg--line-height: 1.08;
+  --text-display-lg--letter-spacing: -0.015em;
+  --text-display-md: 2.25rem;
+  --text-display-md--line-height: 1.15;
+  --text-display-sm: 1.625rem;
+  --text-display-sm--line-height: 1.22;
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.7;
+
+  /* ── Rayons ────────────────────────────────────────────────────── */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
   --radius-full: 9999px;
+
+  /* ── Ombres ────────────────────────────────────────────────────── */
+  --shadow-card: 0 1px 2px rgb(3 7 18 / 0.4);
+  --shadow-lift: 0 12px 32px rgb(3 7 18 / 0.5);
+  --shadow-glow-sunrise: 0 0 32px rgb(255 143 94 / 0.22);
+  --shadow-glow-gold: 0 0 32px rgb(251 191 36 / 0.25);
+
+  /* ── Motion (durées & courbes) ─────────────────────────────────── */
+  --motion-fast: 150ms;
+  --motion-base: 250ms;
+  --motion-slow: 500ms;
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-* { border-color: var(--color-border); }
+/* ── Base ─────────────────────────────────────────────────────────── */
+* { border-color: var(--color-line); }
 
-/* All interactive elements show pointer cursor */
+/* Tous les éléments interactifs montrent le curseur main */
 button, a, [role="button"], [tabindex="0"], input[type="submit"], input[type="button"], label[for] {
   cursor: pointer;
 }
 
-/* Ensure links that look like buttons also show pointer */
-.link-btn, .card-clickable, .nav-link, .menu-item {
-  cursor: pointer;
-}
-
 body {
-  background: var(--color-bg-deep);
-  color: var(--color-text);
+  background: var(--color-night-950);
+  color: var(--color-ink);
   font-family: var(--font-sans);
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
-/* ─── Scrollbar ─────────────────────────────── */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--color-bg); }
-::-webkit-scrollbar-thumb { background: var(--color-border-light); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--color-violet); }
+/* Focus visible homogène (a11y) */
+:focus-visible {
+  outline: 2px solid var(--color-sunrise-400);
+  outline-offset: 2px;
+}
 
-/* ─── Animations ────────────────────────────── */
+/* ── Scrollbar ────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-night-900); }
+::-webkit-scrollbar-thumb { background: var(--color-line-lit); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-sunrise-500); }
+
+/* ════════════════════════════════════════════════════════════════════
+   Animations conservées — utilisées par les pages existantes
+   (hero, lecteur immersif, récompenses). Pas de nouvelle animation ici :
+   les nouveaux composants utilisent les tokens --motion-* / --ease-*.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* Décor flottant du hero marketing */
 @keyframes float {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
   50%      { transform: translateY(-14px) rotate(1deg); }
 }
-@keyframes floatReverse {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50%      { transform: translateY(12px) rotate(-1deg); }
-}
+.animate-float { animation: float 4s ease-in-out infinite; }
+
+/* Halo pulsant (utilisé en inline par le hero) */
 @keyframes pulse-glow {
   0%, 100% { opacity: 0.4; transform: scale(1); }
   50%      { opacity: 0.8; transform: scale(1.05); }
 }
-@keyframes slide-up {
-  from { opacity: 0; transform: translateY(30px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes fade-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-@keyframes shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-@keyframes bob {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-6px); }
-}
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50%      { background-position: 100% 50%; }
-}
+.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
 
-.animate-float       { animation: float 4s ease-in-out infinite; }
-.animate-float-r     { animation: floatReverse 5s ease-in-out infinite; }
-.animate-pulse-glow  { animation: pulse-glow 3s ease-in-out infinite; }
-.animate-slide-up    { animation: slide-up 0.6s ease-out forwards; }
-.animate-fade-in     { animation: fade-in 0.4s ease-out forwards; }
-.animate-shimmer     {
-  background-size: 200% auto;
-  animation: shimmer 3s linear infinite;
-}
-.animate-spin-slow   { animation: spin-slow 20s linear infinite; }
-.animate-bob         { animation: bob 2s ease-in-out infinite; }
-
-/* Stagger */
-.stagger > * { opacity: 0; animation: slide-up 0.5s ease-out forwards; }
-.stagger > *:nth-child(1) { animation-delay: 0.05s; }
-.stagger > *:nth-child(2) { animation-delay: 0.1s; }
-.stagger > *:nth-child(3) { animation-delay: 0.15s; }
-.stagger > *:nth-child(4) { animation-delay: 0.2s; }
-.stagger > *:nth-child(5) { animation-delay: 0.25s; }
-.stagger > *:nth-child(6) { animation-delay: 0.3s; }
-.stagger > *:nth-child(7) { animation-delay: 0.35s; }
-
-/* ─── Utility classes ──────────────────────── */
-.text-gradient {
-  background: linear-gradient(135deg, var(--color-coral), var(--color-violet), var(--color-pink));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.text-gradient-gold {
-  background: linear-gradient(135deg, var(--color-gold), var(--color-orange));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.glow-coral   { box-shadow: 0 0 30px rgba(255,107,107,0.25); }
-.glow-violet  { box-shadow: 0 0 30px rgba(139,92,246,0.25); }
-.glow-gold    { box-shadow: 0 0 30px rgba(251,191,36,0.25); }
-.glow-teal    { box-shadow: 0 0 30px rgba(45,212,191,0.25); }
-
-.card-glass {
-  background: rgba(17, 24, 39, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: var(--radius-lg);
-}
-
-.card-glass-hover:hover {
-  border-color: rgba(139, 92, 246, 0.3);
-  box-shadow: 0 8px 40px rgba(139, 92, 246, 0.12);
-  transform: translateY(-2px);
-}
-
-.btn-magic {
-  background: linear-gradient(135deg, #ff6b6b 0%, #8b5cf6 50%, #ec4899 100%);
-  background-size: 200% 200%;
-  animation: gradient-shift 4s ease infinite;
-  color: white;
-  font-weight: 600;
-  padding: 0.8rem 1.8rem;
-  border-radius: var(--radius-full);
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  box-shadow: 0 4px 20px rgba(139,92,246,0.3);
-}
-.btn-magic:hover {
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 8px 32px rgba(139,92,246,0.45);
-}
-
-.btn-warm {
-  background: linear-gradient(135deg, #fbbf24 0%, #f97316 100%);
-  color: #1a0a00;
-  font-weight: 700;
-  padding: 0.8rem 1.8rem;
-  border-radius: var(--radius-full);
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  box-shadow: 0 4px 20px rgba(251,191,36,0.25);
-}
-.btn-warm:hover {
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 8px 32px rgba(251,191,36,0.4);
-}
-
-.btn-outline-warm {
-  background: transparent;
-  color: var(--color-text);
-  font-weight: 500;
-  padding: 0.75rem 1.6rem;
-  border-radius: var(--radius-full);
-  border: 1.5px solid var(--color-border-light);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.btn-outline-warm:hover {
-  border-color: var(--color-violet);
-  background: rgba(139,92,246,0.1);
-  color: white;
-}
-
-/* Orb decoration */
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  pointer-events: none;
-}
-
-/* Progress bar */
-.progress-bar {
-  height: 6px;
-  border-radius: 3px;
-  background: var(--color-surface-2);
-  overflow: hidden;
-}
-.progress-bar-fill {
-  height: 100%;
-  border-radius: 3px;
-  background: linear-gradient(90deg, var(--color-violet), var(--color-pink));
-  transition: width 0.8s ease;
-}
-
-/* ─── Thème par monde (variables injectées par WorldThemeProvider) ───
-   Repli violet si aucune variable n'est fournie. */
-.world-accent {
-  color: var(--world-accent, var(--color-violet-light));
-}
-.world-bg-soft {
-  background-color: var(--world-accent-soft, rgba(139, 92, 246, 0.12));
-}
-.world-border {
-  border-color: var(--world-accent, var(--color-violet));
-}
-.world-glow {
-  box-shadow: 0 0 30px var(--world-glow, rgba(139, 92, 246, 0.35));
-}
-.world-bg-glow {
-  background-image: var(--world-bg-glow, none);
-}
-.world-progress-fill {
-  background: linear-gradient(90deg, var(--world-accent, var(--color-violet)), color-mix(in srgb, var(--world-accent, var(--color-violet)) 55%, white));
-}
-/* Carte teintée par le monde au survol (variables posées en style inline) */
-.world-card {
-  border: 1px solid var(--color-border);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-}
-.world-card:hover {
-  border-color: var(--world-accent, var(--color-violet));
-  box-shadow: 0 8px 40px var(--world-glow, rgba(139, 92, 246, 0.12));
-}
-
-/* ─── Lecteur immersif (Phase 2) ─── */
+/* Lecteur immersif — scène par scène */
 @keyframes scene-in {
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.scene-in {
-  animation: scene-in 0.5s ease-out both;
-}
+.scene-in { animation: scene-in 0.5s ease-out both; }
 
 @keyframes bubble-in {
   from { opacity: 0; transform: translateX(-8px) scale(0.96); }
   to { opacity: 1; transform: translateX(0) scale(1); }
 }
-.bubble-in {
-  animation: bubble-in 0.4s ease-out both;
-}
+.bubble-in { animation: bubble-in 0.4s ease-out both; }
 
-@media (prefers-reduced-motion: reduce) {
-  .scene-in,
-  .bubble-in {
-    animation: none;
-  }
-}
-
-/* ─── Game-feel & récompenses (Phase 4) ─── */
+/* Récompenses vivantes — level-up & badges */
 @keyframes levelup-drop {
   from { opacity: 0; transform: translateY(-24px) scale(0.92); }
   to { opacity: 1; transform: translateY(0) scale(1); }
@@ -301,28 +175,62 @@ body {
   70% { transform: scale(1.08) rotate(2deg); }
   100% { opacity: 1; transform: scale(1) rotate(0deg); }
 }
-.badge-pop {
-  animation: badge-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
+.badge-pop { animation: badge-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
 
 @keyframes explanation-in {
   from { opacity: 0; transform: translateY(-4px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.explanation-in {
-  animation: explanation-in 0.35s ease-out both;
-}
+.explanation-in { animation: explanation-in 0.35s ease-out both; }
 
 @media (prefers-reduced-motion: reduce) {
+  .scene-in,
+  .bubble-in,
   .levelup-banner,
   .badge-pop,
-  .explanation-in {
+  .explanation-in,
+  .animate-float,
+  .animate-pulse-glow {
     animation: none;
   }
 }
 
-/* Badge rarity glow */
-.badge-common   { box-shadow: 0 0 8px rgba(148,163,184,0.2); }
-.badge-rare     { box-shadow: 0 0 12px rgba(59,130,246,0.3); }
-.badge-epic     { box-shadow: 0 0 16px rgba(139,92,246,0.4); }
-.badge-legendary{ box-shadow: 0 0 20px rgba(251,191,36,0.5); animation: pulse-glow 2s infinite; }
+/* ════════════════════════════════════════════════════════════════════
+   Thème par monde — variables injectées par WorldThemeProvider.
+   Repli : accent marque (corail) si aucune variable fournie.
+   ════════════════════════════════════════════════════════════════════ */
+.world-accent {
+  color: var(--world-accent, var(--color-sunrise-400));
+}
+.world-bg-soft {
+  background-color: var(--world-accent-soft, color-mix(in srgb, var(--color-sunrise-500) 12%, transparent));
+}
+.world-border {
+  border-color: var(--world-accent, var(--color-sunrise-500));
+}
+.world-glow {
+  box-shadow: 0 0 30px var(--world-glow, var(--shadow-glow-sunrise));
+}
+.world-bg-glow {
+  background-image: var(--world-bg-glow, none);
+}
+.world-progress-fill {
+  background: linear-gradient(90deg, var(--world-accent, var(--color-sunrise-500)), color-mix(in srgb, var(--world-accent, var(--color-sunrise-500)) 55%, white));
+}
+/* Carte teintée par le monde au survol (variables posées en style inline) */
+.world-card {
+  border: 1px solid var(--color-line);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.world-card:hover {
+  border-color: var(--world-accent, var(--color-sunrise-500));
+  box-shadow: 0 8px 40px var(--world-glow, rgb(255 143 94 / 0.12));
+}
+
+/* ── Décor : orbes flous du hero ───────────────────────────────────── */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}

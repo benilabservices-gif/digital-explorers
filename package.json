@@ -16,7 +16,8 @@
     "smoke:content": "node scripts/smoke-content.mjs",
     "flow:check": "node scripts/flow-check.mjs",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "design:check": "node scripts/design-check.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
