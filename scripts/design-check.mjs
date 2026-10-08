@@ -26,19 +26,23 @@ const SRC = new URL('../src', import.meta.url).pathname;
 const DATA_HEX_ALLOWED = ['src/data/'];
 
 // Pas encore migrés (ratchet — retirez les entrées au fil des phases 2→6).
+// Phase 2 : chemins post-route-groups. Granularité FICHIER pour les pages
+// déplacées, afin de ne pas exempter les nouveaux fichiers propres
+// (layout.tsx, loading.tsx, error.tsx, coquille serveur aventure/page.tsx).
 const LEGACY_HEX_ALLOWED = [
-  'src/app/page.tsx', // Phase 3
-  'src/app/pricing/', // Phase 3
-  'src/app/auth/', // Phase 5
-  'src/app/dashboard/', // Phase 4
-  'src/app/worlds/', // Phase 4
-  'src/app/adventure/', // Phase 4
-  'src/app/challenges/', // Phase 4
-  'src/app/portfolio/', // Phase 4
-  'src/app/parent/', // Phase 5
-  'src/app/admin/', // Phase 5
+  'src/app/(marketing)/page.tsx', // Phase 3
+  'src/app/(marketing)/pricing/', // Phase 3
+  'src/app/(auth)/auth/', // Phase 5
+  'src/app/(app)/dashboard/page.tsx', // Phase 4
+  'src/app/(app)/worlds/page.tsx', // Phase 4
+  'src/app/(app)/worlds/[slug]/page.tsx', // Phase 4
+  'src/app/(app)/adventure/[slug]/AdventureClient.tsx', // Phase 4 (page.tsx serveur = tokens-only)
+  'src/app/(app)/challenges/page.tsx', // Phase 4
+  'src/app/(app)/portfolio/page.tsx', // Phase 4
+  'src/app/(parent)/parent/page.tsx', // Phase 5
+  'src/app/(parent)/admin/page.tsx', // Phase 5
   'src/components/AICoach.tsx',
-  'src/components/Nav.tsx', // remplacée par SiteNav (Phase 2+)
+  'src/components/Nav.tsx', // plus aucune page ne l'utilise (Phase 2) — suppression Phase 6
   'src/components/ScrollToTop.tsx',
   'src/components/adventure/',
   'src/components/games/',

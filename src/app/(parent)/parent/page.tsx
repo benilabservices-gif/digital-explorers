@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, BookOpen, Trophy, Shield, Users, CreditCard, BarChart3, Download, Plus, Trash2, Target, Zap, TrendingUp } from 'lucide-react';
-import Nav from '@/components/Nav';
 import { createClient } from '@/lib/supabase/client';
 import { fetchChildrenWithProgress, findActiveChild, type ChildData } from '@/lib/children';
 import { fetchBadges, fetchWorldsWithAdventures, type WorldWithAdventures } from '@/lib/content-queries';
@@ -17,7 +16,6 @@ export default function ParentPage() {
   const [worlds, setWorlds] = useState<WorldWithAdventures[]>([]);
   const [badges, setBadges] = useState<BadgeLike[]>([]);
   const [activeChildId, setActiveChildId] = useState<string | null>(null);
-  const [auth, setAuth] = useState(false);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
 
@@ -26,9 +24,8 @@ export default function ParentPage() {
     let cancelled = false;
 
     supabase.auth.getUser().then(async ({ data: { user } }) => {
-      if (!user) { router.push('/auth/login'); return; }
+      if (!user) { setLoading(false); return; }
       if (cancelled) return;
-      setAuth(true);
 
       const [kids, worldRows, badgeRows] = await Promise.all([
         fetchChildrenWithProgress(supabase),
@@ -49,7 +46,6 @@ export default function ParentPage() {
   }, [router]);
 
   if (loading) return <div className="min-h-screen bg-[#060810] flex items-center justify-center"><div className="w-12 h-12 border-4 border-violet-500 border-t-transparent rounded-full animate-spin" /></div>;
-  if (!auth) return null;
 
   const activeChild = findActiveChild(children, activeChildId);
   // MVP : seuls les mondes « prêts » (contenu importé) comptent dans le total.
@@ -99,7 +95,6 @@ export default function ParentPage() {
 
   return (
     <div className="min-h-screen bg-[#060810] text-white">
-      <Nav />
       <section className="pt-28 pb-8 px-6">
         <div className="max-w-6xl mx-auto">
           <Link href="/dashboard" className="inline-flex items-center gap-2 text-gray-400 hover:text-white text-sm mb-6 transition-colors"><ArrowLeft className="w-4 h-4" /> Retour au dashboard</Link>
@@ -296,11 +291,6 @@ export default function ParentPage() {
           )}
         </div>
       </section>
-      <footer className="border-t border-white/5 py-8 px-6">
-        <div className="max-w-7xl mx-auto text-center text-sm text-gray-500">
-          <p>© 2026 Digital Explorers — BENILAB. Tous droits réservés.</p>
-        </div>
-      </footer>
     </div>
   );
 }

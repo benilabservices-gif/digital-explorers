@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { ArrowLeft, Lock, Sparkles } from 'lucide-react';
 import { WORLDS, isWorldReady } from '@/data/content';
 import { getWorldTheme } from '@/data/world-themes';
-import Nav from '@/components/Nav';
 import WorldThemeProvider from '@/components/world/WorldThemeProvider';
 import WorldBackdrop from '@/components/world/WorldBackdrop';
 import WorldMap from '@/components/world/WorldMap';
@@ -27,7 +26,6 @@ export default async function WorldSlugPage({ params }: { params: Promise<{ slug
       {/* Halos de fond + particules du monde */}
       <div className="absolute inset-0 world-bg-glow" aria-hidden="true" />
       <WorldBackdrop slug={world.slug} density={36} />
-      <Nav />
 
       <div className="relative pt-28 pb-16 px-6">
         <div className="max-w-4xl mx-auto">

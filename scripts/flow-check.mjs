@@ -175,14 +175,19 @@ try {
   const { data: childAfter } = await browserLikeClient.from('children').select('xp,level').eq('id', child.id).single();
   check('XP persisté sur l’enfant en base', childAfter?.xp === adventure.xp_reward, `${childAfter?.xp} XP · Nv ${childAfter?.level}`);
 
-  // 9. Pages (squelettes 'use client' + spinner) & API publique
-  const pages = ['/', '/worlds', '/worlds/web-digital', `/adventure/${ADVENTURE_SLUG}`, '/auth/signup', '/auth/login', '/auth/onboarding', '/pricing'];
-  for (const path of pages) {
+  // 9. Pages & API publique
+  //    Phase 2 : /worlds, /worlds/[slug] et /adventure/[slug] sont devenus
+  //    privés (guard du layout (app)) — 307 sans session, comme /dashboard.
+  const publicPages = ['/', '/auth/signup', '/auth/login', '/auth/onboarding', '/pricing'];
+  for (const path of publicPages) {
     const res = await fetch(APP_URL + path);
     check(`GET ${path} → 200`, res.status === 200, `HTTP ${res.status}`);
   }
-  const dash = await fetch(`${APP_URL}/dashboard`, { redirect: 'manual' });
-  check('GET /dashboard sans session → 307 vers /auth/login', dash.status === 307, `HTTP ${dash.status} → ${dash.headers.get('location')}`);
+  const privatePages = ['/dashboard', '/worlds', '/worlds/web-digital', `/adventure/${ADVENTURE_SLUG}`];
+  for (const path of privatePages) {
+    const res = await fetch(APP_URL + path, { redirect: 'manual' });
+    check(`GET ${path} sans session → 307 vers /auth/login`, res.status === 307, `HTTP ${res.status} → ${res.headers.get('location')}`);
+  }
 
   const content = await fetch(`${APP_URL}/api/content`);
   check('GET /api/content → 200 (Supabase joint depuis Vercel)', content.status === 200, `${content.headers.get('content-length') ?? '?'} octets`);

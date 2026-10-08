@@ -2,7 +2,6 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Calendar, Trophy, Zap, Crown, CheckCircle, RefreshCw, Target, Flame } from 'lucide-react';
-import Nav from '@/components/Nav';
 import { createClient } from '@/lib/supabase/client';
 import { fetchChildrenWithProgress, findActiveChild, type ChildData } from '@/lib/children';
 import { fetchChallenges, type ChallengeInfo } from '@/lib/content-queries';
@@ -24,7 +23,6 @@ export default function ChallengesPage() {
   /** complétions de défis par enfant : child_id -> slugs de défis terminés */
   const [doneByChild, setDoneByChild] = useState<Record<string, string[]>>({});
   const [loading, setLoading] = useState(true);
-  const [auth, setAuth] = useState(false);
   const [submittingSlug, setSubmittingSlug] = useState<string | null>(null);
   const [result, setResult] = useState<CompletionResult | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -34,9 +32,8 @@ export default function ChallengesPage() {
     let cancelled = false;
 
     supabase.auth.getUser().then(async ({ data: { user } }) => {
-      if (!user) { setAuth(false); setLoading(false); return; }
+      if (!user) { setLoading(false); return; }
       if (cancelled) return;
-      setAuth(true);
 
       const kids = await fetchChildrenWithProgress(supabase);
       const challengeRows = await fetchChallenges(supabase);
@@ -67,19 +64,6 @@ export default function ChallengesPage() {
 
   if (loading) {
     return <div className="min-h-screen bg-[#060810] flex items-center justify-center"><div className="w-12 h-12 border-4 border-violet-500 border-t-transparent rounded-full animate-spin" /></div>;
-  }
-
-  if (!auth) {
-    return (
-      <div className="min-h-screen bg-[#060810] text-white flex items-center justify-center px-6">
-        <div className="text-center max-w-md">
-          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-amber-500/20 to-orange-500/20 border border-amber-500/30 flex items-center justify-center mx-auto mb-6"><Target className="w-10 h-10 text-amber-400" /></div>
-          <h1 className="font-display text-3xl font-bold mb-4">Accès réservé</h1>
-          <p className="text-gray-400 mb-8">Connecte-toi pour voir les défis et gagner de l&apos;XP.</p>
-          <Link href="/auth/login"><button className="px-8 py-3 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-full font-semibold hover:opacity-90">Se connecter</button></Link>
-        </div>
-      </div>
-    );
   }
 
   const child = findActiveChild(children, activeChildId);
@@ -176,7 +160,6 @@ export default function ChallengesPage() {
 
   return (
     <div className="min-h-screen bg-[#060810] text-white">
-      <Nav />
       <section className="pt-28 pb-8 px-6">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
@@ -264,11 +247,6 @@ export default function ChallengesPage() {
         </div>
       )}
 
-      <footer className="border-t border-white/5 py-8 px-6">
-        <div className="max-w-7xl mx-auto text-center text-sm text-gray-500">
-          <p>© 2026 Digital Explorers — BENILAB. Tous droits réservés.</p>
-        </div>
-      </footer>
     </div>
   );
 }

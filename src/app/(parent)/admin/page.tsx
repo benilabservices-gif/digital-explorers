@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Globe, BookOpen, Award, CreditCard, Save, Plus, Trash2, Shield, CheckCircle, AlertCircle, ChevronDown } from 'lucide-react';
-import Nav from '@/components/Nav';
 import { createClient } from '@/lib/supabase/client';
 
 // ---------------------------------------------------------------------------
@@ -49,7 +48,6 @@ function expiryIn30Days() {
 export default function AdminPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const [auth, setAuth] = useState(false);
   const [forbidden, setForbidden] = useState(false);
   const [tab, setTab] = useState<Tab>('content');
   const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
@@ -77,9 +75,8 @@ export default function AdminPage() {
     let cancelled = false;
 
     supabase.auth.getUser().then(async ({ data: { user } }) => {
-      if (!user) { setAuth(false); setLoading(false); return; }
+      if (!user) { setLoading(false); return; }
       if (cancelled) return;
-      setAuth(true);
 
       const { data: profile } = await supabase
         .from('profiles')
@@ -119,7 +116,7 @@ export default function AdminPage() {
     return <div className="min-h-screen bg-[#060810] flex items-center justify-center"><div className="w-12 h-12 border-4 border-violet-500 border-t-transparent rounded-full animate-spin" /></div>;
   }
 
-  if (!auth || forbidden) {
+  if (forbidden) {
     return (
       <div className="min-h-screen bg-[#060810] text-white flex items-center justify-center px-6">
         <div className="text-center max-w-md">
@@ -335,7 +332,6 @@ export default function AdminPage() {
 
   return (
     <div className="min-h-screen bg-[#060810] text-white">
-      <Nav />
       <section className="pt-28 pb-8 px-6">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
@@ -598,12 +594,6 @@ export default function AdminPage() {
           )}
         </div>
       </section>
-
-      <footer className="border-t border-white/5 py-8 px-6">
-        <div className="max-w-7xl mx-auto text-center text-sm text-gray-500">
-          <p>© 2026 Digital Explorers — BENILAB. Tous droits réservés.</p>
-        </div>
-      </footer>
     </div>
   );
 }

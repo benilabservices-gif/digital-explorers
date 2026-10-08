@@ -2,10 +2,9 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { TrendingUp, Award, FolderOpen, Zap, Crown, Rocket, LogOut, Plus, UserPlus, Gift, Sparkles, Target, Calendar, Trophy, GitBranch, ChevronRight } from 'lucide-react';
+import { TrendingUp, Award, FolderOpen, Zap, Crown, Rocket, Plus, UserPlus, Gift, Sparkles, Target, Calendar, Trophy, GitBranch, ChevronRight } from 'lucide-react';
 import { SKILL_TREE } from '@/data/challenges';
 import { isWorldReady } from '@/data/content';
-import Nav from '@/components/Nav';
 import AICoach from '@/components/AICoach';
 import { createClient } from '@/lib/supabase/client';
 import { fetchChildrenWithProgress, findActiveChild, type ChildData } from '@/lib/children';
@@ -31,16 +30,14 @@ export default function DashboardPage() {
   const [plan, setPlan] = useState<PlanInfo | null>(null);
   const [activeChildId, setActiveChildId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const [auth, setAuth] = useState(false);
 
   useEffect(() => {
     const supabase = createClient();
     let cancelled = false;
 
     supabase.auth.getUser().then(async ({ data: { user } }) => {
-      if (!user) { setAuth(false); setLoading(false); return; }
+      if (!user) { setLoading(false); return; }
       if (cancelled) return;
-      setAuth(true);
 
       const [kids, worldRows, badgeRows, bridgeRows, challengeRows, planInfo] = await Promise.all([
         fetchChildrenWithProgress(supabase),
@@ -70,19 +67,6 @@ export default function DashboardPage() {
     return <div className="min-h-screen bg-[#060810] flex items-center justify-center"><div className="w-12 h-12 border-4 border-violet-500 border-t-transparent rounded-full animate-spin" /></div>;
   }
 
-  if (!auth) {
-    return (
-      <div className="min-h-screen bg-[#060810] text-white flex items-center justify-center px-6">
-        <div className="text-center max-w-md">
-          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-500/20 to-purple-500/20 border border-violet-500/30 flex items-center justify-center mx-auto mb-6"><Award className="w-10 h-10 text-violet-400" /></div>
-          <h1 className="font-display text-3xl font-bold mb-4">Accès réservé</h1>
-          <p className="text-gray-400 mb-8">Connecte-toi pour accéder à ton espace parent.</p>
-          <Link href="/auth/signup"><button className="px-8 py-3 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-full font-semibold hover:opacity-90">Créer mon compte</button></Link>
-        </div>
-      </div>
-    );
-  }
-
   const child = findActiveChild(children, activeChildId);
   // MVP : seuls les mondes « prêts » (contenu importé) comptent dans le total.
   const totalAdventures = worlds.reduce((sum, w) => sum + (isWorldReady(w.slug) ? w.adventures.length : 0), 0);
@@ -93,20 +77,13 @@ export default function DashboardPage() {
   const daily = dailies.length > 0 ? dailies[dailyChallengeIndex(new Date(), dailies.length)] : null;
   const weekly = weeklies.length > 0 ? weeklies[weeklyChallengeIndex(new Date(), weeklies.length)] : null;
 
-  async function handleSignOut() {
-    const supabase = createClient();
-    await supabase.auth.signOut();
-    router.push('/');
-    router.refresh();
-  }
-
   function addChild() {
     router.push('/auth/signup');
   }
 
   function selectChild(id: string) {
     setActiveChildId(id);
-    persistActiveChildId(id); // pointeur localStorage (ID uniquement)
+    persistActiveChildId(id); // pointeur cookie (ID uniquement)
   }
 
   const totalDone = child?.completedAdventureSlugs.length ?? 0;
@@ -127,7 +104,6 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-[#060810] text-white">
-      <Nav />
       <section className="pt-28 pb-8 px-6">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
@@ -137,7 +113,6 @@ export default function DashboardPage() {
               <h1 className="font-display text-3xl md:text-4xl font-bold">Mes enfants</h1>
             </div>
             <div className="flex items-center gap-3">
-              <button onClick={handleSignOut} className="px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-2"><LogOut className="w-4 h-4" /> Déconnexion</button>
               <button onClick={addChild} className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-full font-semibold text-sm hover:opacity-90 transition-opacity">
                 <Plus className="w-4 h-4" /> Ajouter un enfant
               </button>
@@ -422,11 +397,6 @@ export default function DashboardPage() {
         </div>
       </section>
       <AICoach />
-      <footer className="border-t border-white/5 py-8 px-6">
-        <div className="max-w-7xl mx-auto text-center text-sm text-gray-500">
-          <p>© 2026 Digital Explorers — BENILAB. Tous droits réservés.</p>
-        </div>
-      </footer>
     </div>
   );
 }

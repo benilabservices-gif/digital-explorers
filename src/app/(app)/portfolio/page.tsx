@@ -1,9 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { ArrowLeft, Award, FolderOpen, Zap, Sparkles, Star, Crown, Download, Share2 } from 'lucide-react';
-import Nav from '@/components/Nav';
 import { createClient } from '@/lib/supabase/client';
 import { fetchChildrenWithProgress, findActiveChild, type ChildData } from '@/lib/children';
 import { fetchBadges, fetchWorldsWithAdventures, type WorldWithAdventures } from '@/lib/content-queries';
@@ -12,21 +10,18 @@ import { getActiveChildId } from '@/lib/active-child';
 import { getLevelTitle, type BadgeLike } from '@/lib/game';
 
 export default function PortfolioPage() {
-  const router = useRouter();
   const [child, setChild] = useState<ChildData | null>(null);
   const [worlds, setWorlds] = useState<WorldWithAdventures[]>([]);
   const [badges, setBadges] = useState<BadgeLike[]>([]);
   const [loading, setLoading] = useState(true);
-  const [auth, setAuth] = useState(false);
 
   useEffect(() => {
     const supabase = createClient();
     let cancelled = false;
 
     supabase.auth.getUser().then(async ({ data: { user } }) => {
-      if (!user) { router.push('/auth/login'); return; }
+      if (!user) { setLoading(false); return; }
       if (cancelled) return;
-      setAuth(true);
 
       const [kids, worldRows, badgeRows] = await Promise.all([
         fetchChildrenWithProgress(supabase),
@@ -42,10 +37,9 @@ export default function PortfolioPage() {
     });
 
     return () => { cancelled = true; };
-  }, [router]);
+  }, []);
 
   if (loading) return <div className="min-h-screen bg-[#060810] flex items-center justify-center"><div className="w-12 h-12 border-4 border-violet-500 border-t-transparent rounded-full animate-spin" /></div>;
-  if (!auth) return null;
   if (!child) {
     return (
       <div className="min-h-screen bg-[#060810] text-white flex items-center justify-center px-6">
@@ -65,7 +59,6 @@ export default function PortfolioPage() {
 
   return (
     <div className="min-h-screen bg-[#060810] text-white">
-      <Nav />
       <section className="pt-28 pb-8 px-6">
         <div className="max-w-4xl mx-auto">
           <Link href="/dashboard" className="inline-flex items-center gap-2 text-gray-400 hover:text-white text-sm mb-6"><ArrowLeft className="w-4 h-4" /> Retour au dashboard</Link>
@@ -176,11 +169,6 @@ export default function PortfolioPage() {
           )}
         </div>
       </section>
-      <footer className="border-t border-white/5 py-8 px-6">
-        <div className="max-w-7xl mx-auto text-center text-sm text-gray-500">
-          <p>© 2026 Digital Explorers — BENILAB. Tous droits réservés.</p>
-        </div>
-      </footer>
     </div>
   );
 }

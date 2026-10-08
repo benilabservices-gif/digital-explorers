@@ -44,16 +44,6 @@ export default function PricingPage() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
   return (
     <div className="min-h-screen bg-[#060810] text-white">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#060810]/70 backdrop-blur-2xl border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3"><div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#ff6b6b] to-[#8b5cf6] flex items-center justify-center text-sm font-bold">DE</div><span className="font-bold text-lg tracking-tight">Digital Explorers</span></Link>
-          <div className="flex items-center gap-3">
-            <Link href="/worlds"><button className="px-4 py-2 text-sm text-gray-300 hover:text-white transition-colors">Mondes</button></Link>
-            <Link href="/auth/login"><button className="px-4 py-2 text-sm border border-white/10 rounded-full text-gray-300 hover:bg-white/5 transition-all">Connexion</button></Link>
-            <Link href="/auth/signup"><button className="px-5 py-2 text-sm bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-full font-semibold hover:opacity-90 transition-opacity">Commencer</button></Link>
-          </div>
-        </div>
-      </nav>
       <section className="relative pt-32 pb-16 px-6 overflow-hidden">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-violet-600/10 rounded-full blur-[120px]" />
         <div className="relative max-w-4xl mx-auto text-center">
@@ -147,16 +137,6 @@ export default function PricingPage() {
           </div>
         </div>
       </section>
-      <footer className="border-t border-white/5 py-12 px-6">
-        <div className="max-w-7xl mx-auto text-center text-sm text-gray-500">
-          <p>© 2026 Digital Explorers — BENILAB. Tous droits réservés.</p>
-          <div className="flex justify-center gap-4 mt-3">
-            <span className="hover:text-white cursor-pointer">Conditions</span><span>·</span>
-            <span className="hover:text-white cursor-pointer">Confidentialité</span><span>·</span>
-            <span className="hover:text-white cursor-pointer">Contact</span>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

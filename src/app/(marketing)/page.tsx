@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { ArrowRight, Star, Shield, Users, Rocket } from "lucide-react";
 import { WORLDS, isWorldReady } from "@/data/content";
 import { GUIDES as CHARACTERS } from "@/data/characters";
-import Nav from "@/components/Nav";
 
 const FEATURES = [
   { icon: "🗺️", title: "7 Mondes • 84 Aventures", desc: "Web, IA, Coding, Blockchain, Design, Cybersécurité, Innovation — 12 aventures par monde", color: "from-blue-500 to-cyan-400" },
@@ -35,8 +34,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-[#060810] text-white overflow-x-hidden">
-      <Nav />
-
       {/* Hero */}
       <section className="relative pt-36 pb-20 px-6 min-h-screen flex items-center">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-violet-600/10 rounded-full blur-[120px] animate-pulse-glow" />
@@ -193,24 +190,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-white/5 py-16 px-6 bg-white/[0.02]">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-            <div>
-              <div className="flex items-center gap-3 mb-4"><div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#ff6b6b] to-[#8b5cf6] flex items-center justify-center text-sm font-bold">DE</div><span className="font-display font-bold text-lg">Digital Explorers</span></div>
-              <p className="text-sm text-gray-400 leading-relaxed">Découvre le monde numérique. Trouve ta voie. Imagine ton futur.</p>
-            </div>
-            <div><h4 className="font-semibold text-sm mb-4 text-gray-300">Mondes (12 aventures chacun)</h4><ul className="space-y-2 text-sm text-gray-500">{WORLDS.slice(0,4).map(w => <li key={w.id}><button onClick={goToAuth} className="hover:text-white transition-colors cursor-pointer">{w.icon} {w.name}</button></li>)}</ul></div>
-            <div><h4 className="font-semibold text-sm mb-4 text-gray-300">Espaces</h4><ul className="space-y-2 text-sm text-gray-500"><li><button onClick={goToAuth} className="hover:text-white transition-colors cursor-pointer">Dashboard Parent</button></li><li><Link href="/parent" className="hover:text-white transition-colors">Espace Parent</Link></li><li><button onClick={goToAuth} className="hover:text-white transition-colors cursor-pointer">Portfolio</button></li></ul></div>
-            <div><h4 className="font-semibold text-sm mb-4 text-gray-300">Liens</h4><ul className="space-y-2 text-sm text-gray-500"><li><span className="hover:text-white transition-colors cursor-pointer">À propos</span></li><li><span className="hover:text-white transition-colors cursor-pointer">Confidentialité</span></li><li><Link href="https://geekcoding4kids.online" target="_blank" className="hover:text-white transition-colors">GeekCoding4Kids</Link></li></ul></div>
-          </div>
-          <div className="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-600">
-            <p>© 2026 Digital Explorers — BENILAB. Fait avec ❤️ en Afrique.</p>
-            <div className="flex items-center gap-4"><Link href="https://github.com/benilabservices-gif" target="_blank" className="hover:text-white transition-colors">GitHub</Link><span>·</span><span>v3.0.0</span></div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
