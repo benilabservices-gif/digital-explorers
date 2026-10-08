@@ -2,11 +2,19 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Calendar, Trophy, Zap, Crown, CheckCircle, RefreshCw, Target, Flame } from 'lucide-react';
+import { Button, buttonVariants } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import { createClient } from '@/lib/supabase/client';
 import { fetchChildrenWithProgress, findActiveChild, type ChildData } from '@/lib/children';
 import { fetchChallenges, type ChallengeInfo } from '@/lib/content-queries';
 import { getActiveChildId, setActiveChildId as persistActiveChildId } from '@/lib/active-child';
 import { dailyChallengeIndex, weeklyChallengeIndex } from '@/lib/game';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Défis & quêtes — îlot client (mutation /api/challenges/complete, overlay de
+// résultat, sélecteur d'enfant). Habillage tokens-only : quotidien = ambre
+// gleam, hebdomadaire = or (récompense), erreurs = danger.
+// ─────────────────────────────────────────────────────────────────────────────
 
 interface CompletionResult {
   alreadyCompleted: boolean;
@@ -63,7 +71,7 @@ export default function ChallengesPage() {
   }, []);
 
   if (loading) {
-    return <div className="min-h-screen bg-[#060810] flex items-center justify-center"><div className="w-12 h-12 border-4 border-violet-500 border-t-transparent rounded-full animate-spin" /></div>;
+    return <div className="flex min-h-screen items-center justify-center bg-night-950"><div className="h-12 w-12 animate-spin rounded-full border-4 border-sunrise-500 border-t-transparent" /></div>;
   }
 
   const child = findActiveChild(children, activeChildId);
@@ -113,44 +121,44 @@ export default function ChallengesPage() {
     return (
       <div
         key={c.slug}
-        className={`rounded-2xl p-6 border ${
+        className={`rounded-2xl border p-6 ${
           featured === 'daily'
-            ? 'bg-gradient-to-r from-amber-500/10 to-orange-500/10 border-amber-500/20'
+            ? 'border-gleam-500/20 bg-linear-to-r from-gleam-500/10 to-gold-400/10'
             : featured === 'weekly'
-              ? 'bg-gradient-to-r from-yellow-500/10 to-amber-600/10 border-yellow-500/20'
-              : 'bg-[#111827] border-white/5'
+              ? 'border-gold-400/20 bg-linear-to-r from-gold-400/10 to-gold-300/10'
+              : 'border-line bg-night-850'
         }`}
       >
-        <div className="flex items-center gap-2 mb-3">
-          {isDaily ? <Calendar className="w-5 h-5 text-amber-400" /> : <Trophy className="w-5 h-5 text-yellow-400" />}
-          <span className={`text-sm font-semibold uppercase tracking-wider ${isDaily ? 'text-amber-300' : 'text-yellow-300'}`}>
+        <div className="mb-3 flex items-center gap-2">
+          {isDaily ? <Calendar className="h-5 w-5 text-gleam-400" /> : <Trophy className="h-5 w-5 text-gold-400" />}
+          <span className={`text-sm font-semibold uppercase tracking-wider ${isDaily ? 'text-gleam-300' : 'text-gold-300'}`}>
             {featured === 'daily' ? 'Défi du jour' : featured === 'weekly' ? 'Quête de la semaine' : isDaily ? 'Défi quotidien' : 'Quête hebdomadaire'}
           </span>
-          {featured && <span className="ml-auto text-xs text-gray-500 flex items-center gap-1"><Flame className="w-3.5 h-3.5 text-orange-400" /> En vedette</span>}
+          {featured && <span className="ml-auto flex items-center gap-1 text-xs text-ink-faint"><Flame className="h-3.5 w-3.5 text-gold-400" /> En vedette</span>}
         </div>
-        <h3 className="text-xl font-bold mb-2">{c.title}</h3>
-        <p className="text-gray-400 text-sm mb-4 whitespace-pre-line">{c.description}</p>
-        <div className="flex items-center gap-3 text-xs text-gray-500 mb-4">
-          <span className="flex items-center gap-1"><Zap className="w-3.5 h-3.5 text-violet-400" /> +{c.xpReward} XP</span>
+        <h3 className="mb-2 text-xl font-bold">{c.title}</h3>
+        <p className="mb-4 whitespace-pre-line text-sm text-ink-soft">{c.description}</p>
+        <div className="mb-4 flex items-center gap-3 text-xs text-ink-faint">
+          <span className="flex items-center gap-1"><Zap className="h-3.5 w-3.5 text-gold-300" /> +{c.xpReward} XP</span>
           {c.worldSlug && (
-            <Link href={`/worlds/${c.worldSlug}`} className="text-violet-400 hover:text-violet-300">Explorer le monde →</Link>
+            <Link href={`/worlds/${c.worldSlug}`} className="text-sunrise-400 hover:text-sunrise-300">Explorer le monde →</Link>
           )}
         </div>
         {!child ? (
-          <Link href="/auth/signup"><button className="px-5 py-2.5 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-full text-sm font-semibold hover:opacity-90">Créer un profil enfant</button></Link>
+          <Link href="/auth/signup" className={buttonVariants({ size: 'sm' })}>Créer un profil enfant</Link>
         ) : done ? (
-          <div className="flex items-center gap-2 text-emerald-300 font-semibold text-sm"><CheckCircle className="w-5 h-5" /> Terminé — +{c.xpReward} XP gagnés</div>
+          <div className="flex items-center gap-2 text-sm font-semibold text-success-300"><CheckCircle className="h-5 w-5" /> Terminé — +{c.xpReward} XP gagnés</div>
         ) : (
           <button
             onClick={() => markDone(c)}
             disabled={submitting}
-            className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-colors flex items-center gap-2 disabled:opacity-50 ${
+            className={`flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold transition-colors disabled:opacity-50 ${
               isDaily
-                ? 'bg-amber-500/20 border border-amber-500/30 text-amber-300 hover:bg-amber-500/30'
-                : 'bg-yellow-500/20 border border-yellow-500/30 text-yellow-300 hover:bg-yellow-500/30'
+                ? 'border-gleam-500/30 bg-gleam-500/10 text-gleam-300 hover:bg-gleam-500/20'
+                : 'border-gold-400/30 bg-gold-400/10 text-gold-300 hover:bg-gold-400/20'
             }`}
           >
-            {submitting ? <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" /> : <CheckCircle className="w-4 h-4" />}
+            {submitting ? <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" /> : <CheckCircle className="h-4 w-4" />}
             Marquer comme terminé (+{c.xpReward} XP)
           </button>
         )}
@@ -159,15 +167,15 @@ export default function ChallengesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#060810] text-white">
-      <section className="pt-28 pb-8 px-6">
-        <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-night-950 text-ink">
+      <section className="px-6 pb-8 pt-28">
+        <div className="mx-auto max-w-6xl">
           {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+          <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
-              <p className="text-sm text-gray-400 mb-1">Gagne de l&apos;XP chaque jour</p>
-              <h1 className="font-display text-3xl md:text-4xl font-bold">Défis & Quêtes</h1>
-              <p className="text-sm text-gray-500 mt-2 flex items-center gap-2"><RefreshCw className="w-4 h-4 text-amber-400" /> Rotation quotidienne et hebdomadaire — un nouveau défi chaque jour !</p>
+              <p className="mb-1 text-sm text-ink-faint">Gagne de l'XP chaque jour</p>
+              <h1 className="font-display text-3xl font-bold md:text-4xl">Défis & Quêtes</h1>
+              <p className="mt-2 flex items-center gap-2 text-sm text-ink-faint"><RefreshCw className="h-4 w-4 text-gleam-400" /> Rotation quotidienne et hebdomadaire — un nouveau défi chaque jour !</p>
             </div>
             {children.length > 1 && (
               <div className="flex gap-3 overflow-x-auto pb-2">
@@ -175,12 +183,12 @@ export default function ChallengesPage() {
                   <button
                     key={c.id}
                     onClick={() => selectChild(c.id)}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-2xl border transition-all min-w-[140px] ${c.id === activeChildId ? 'border-violet-500 bg-violet-500/10' : 'border-white/10 bg-[#111827] hover:border-white/20'}`}
+                    className={`flex min-w-[140px] items-center gap-3 rounded-2xl border px-4 py-3 transition-all ${c.id === activeChildId ? 'border-sunrise-500 bg-sunrise-500/10' : 'border-line bg-night-850 hover:border-line-lit'}`}
                   >
                     <span className="text-2xl">{c.avatar}</span>
                     <div className="text-left">
-                      <div className="font-bold text-sm">{c.name}</div>
-                      <div className="text-xs text-violet-400">{c.xp} XP</div>
+                      <div className="text-sm font-bold">{c.name}</div>
+                      <div className="text-xs text-gold-300">{c.xp} XP</div>
                     </div>
                   </button>
                 ))}
@@ -189,28 +197,28 @@ export default function ChallengesPage() {
           </div>
 
           {error && (
-            <div className="mb-6 rounded-xl border border-red-500/30 bg-red-500/10 px-5 py-3 text-sm text-red-300">{error}</div>
+            <div className="mb-6 rounded-xl border border-danger-500/30 bg-danger-500/10 px-5 py-3 text-sm text-danger-300">{error}</div>
           )}
 
           {/* Pas d'enfant */}
           {!child && (
-            <div className="bg-[#111827] border border-white/5 rounded-xl p-6 mb-8 text-center">
-              <p className="text-gray-300 mb-4">Crée d&apos;abord le profil de ton explorateur pour relever les défis.</p>
-              <Link href="/auth/signup"><button className="px-6 py-3 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-xl font-semibold hover:opacity-90">Créer un profil enfant</button></Link>
-            </div>
+            <Card className="mb-8 p-6 text-center">
+              <p className="mb-4 text-ink-soft">Crée d'abord le profil de ton explorateur pour relever les défis.</p>
+              <Link href="/auth/signup" className={buttonVariants()}>Créer un profil enfant</Link>
+            </Card>
           )}
 
           {/* Défis en vedette (rotation du jour / de la semaine) */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-            {daily ? challengeCard(daily, 'daily') : <div className="bg-[#111827] border border-white/5 rounded-2xl p-6 text-gray-400 text-sm">Aucun défi quotidien disponible.</div>}
-            {weekly ? challengeCard(weekly, 'weekly') : <div className="bg-[#111827] border border-white/5 rounded-2xl p-6 text-gray-400 text-sm">Aucune quête hebdomadaire disponible.</div>}
+          <div className="mb-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
+            {daily ? challengeCard(daily, 'daily') : <Card className="p-6 text-sm text-ink-soft">Aucun défi quotidien disponible.</Card>}
+            {weekly ? challengeCard(weekly, 'weekly') : <Card className="p-6 text-sm text-ink-soft">Aucune quête hebdomadaire disponible.</Card>}
           </div>
 
           {/* Tous les défis */}
           {challenges.length > 0 && (
             <div>
-              <h2 className="font-display text-xl font-bold mb-4 flex items-center gap-2"><Target className="w-5 h-5 text-violet-400" /> Tous les défis ({challenges.length})</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <h2 className="font-display mb-4 flex items-center gap-2 text-xl font-bold"><Target className="h-5 w-5 text-sunrise-400" /> Tous les défis ({challenges.length})</h2>
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {challenges.map((c) => challengeCard(c, null))}
               </div>
             </div>
@@ -220,30 +228,30 @@ export default function ChallengesPage() {
 
       {/* REWARD OVERLAY */}
       {result && (
-        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-6">
-          <div className="bg-[#111827] border border-violet-500/30 rounded-3xl p-8 max-w-sm w-full text-center">
-            <div className="text-6xl mb-4">🎉</div>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-night-950/80 p-6">
+          <Card variant="raised" className="w-full max-w-sm rounded-3xl p-8 text-center">
+            <div className="mb-4 text-6xl" aria-hidden="true">🎉</div>
             {result.alreadyCompleted ? (
-              <p className="text-gray-300 mb-4">Tu avais déjà relevé ce défi — aucun XP supplémentaire.</p>
+              <p className="mb-4 text-ink-soft">Tu avais déjà relevé ce défi — aucun XP supplémentaire.</p>
             ) : (
               <>
                 {result.leveledUp && (
-                  <div className="mb-4 flex items-center justify-center gap-2 text-yellow-400">
-                    <Crown className="w-6 h-6" /><span className="font-bold text-xl">Niveau {result.newLevel} atteint !</span>
+                  <div className="mb-4 flex items-center justify-center gap-2 text-gold-300">
+                    <Crown className="h-6 w-6" /><span className="text-xl font-bold">Niveau {result.newLevel} atteint !</span>
                   </div>
                 )}
-                <div className="mb-2 flex items-center justify-center gap-2 text-violet-300">
-                  <Zap className="w-5 h-5" />
-                  <span className="font-bold text-lg">+{result.xpAwarded} XP</span>
+                <div className="mb-2 flex items-center justify-center gap-2 text-gold-300">
+                  <Zap className="h-5 w-5" />
+                  <span className="text-lg font-bold">+{result.xpAwarded} XP</span>
                 </div>
-                <div className="mb-6 text-sm text-gray-400">Total : {result.newXp} XP — Niveau {result.newLevel}</div>
+                <div className="mb-6 text-sm text-ink-soft">Total : {result.newXp} XP — Niveau {result.newLevel}</div>
               </>
             )}
             <div className="flex gap-3">
-              <Link href="/dashboard"><button className="flex-1 py-3 bg-emerald-500 hover:bg-emerald-400 rounded-xl font-bold transition-colors">Dashboard</button></Link>
-              <button onClick={() => setResult(null)} className="flex-1 py-3 bg-violet-600 hover:bg-violet-500 rounded-xl font-bold transition-colors">Continuer</button>
+              <Link href="/dashboard" className={`${buttonVariants()} flex-1`}>Dashboard</Link>
+              <Button variant="secondary" onClick={() => setResult(null)} className="flex-1">Continuer</Button>
             </div>
-          </div>
+          </Card>
         </div>
       )}
 

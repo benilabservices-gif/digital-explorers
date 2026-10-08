@@ -19,6 +19,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowRight, BookOpen, Lightbulb, Play, Rocket, Sparkles, Target, FlaskConical, Hammer } from 'lucide-react';
 import AICoach from '@/components/AICoach';
+import { Button, buttonVariants } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import LessonScene from '@/components/adventure/LessonScene';
 import InteractiveHost from '@/components/adventure/InteractiveHost';
 import MissionCard from '@/components/adventure/MissionCard';
@@ -31,6 +33,7 @@ import { parseLesson } from '@/lib/lesson-parser';
 import { getWorldTheme } from '@/data/world-themes';
 import { getInteractive } from '@/data/interactives';
 import { createClient } from '@/lib/supabase/client';
+import { TESTIDS } from '@/lib/testids';
 import type { ChildData } from '@/lib/children';
 import type { AdventurePageData } from '@/lib/queries/adventures';
 
@@ -50,15 +53,18 @@ interface LessonSection {
 
 type PlanLimit = { reason: 'adventures_limit' | 'worlds_limit'; planCode: string };
 
-const SECTION_ICONS: Record<string, { icon: React.ReactNode; color: string; label: string }> = {
-  story: { icon: <BookOpen className="w-5 h-5 text-blue-400" />, color: 'text-blue-400', label: 'Histoire' },
-  discover: { icon: <Lightbulb className="w-5 h-5 text-yellow-400" />, color: 'text-yellow-400', label: 'Découvre' },
-  play: { icon: <Sparkles className="w-5 h-5 text-pink-400" />, color: 'text-pink-400', label: 'Joue' },
-  experiment: { icon: <FlaskConical className="w-5 h-5 text-teal-400" />, color: 'text-teal-400', label: 'Expérimente' },
-  build: { icon: <Hammer className="w-5 h-5 text-orange-400" />, color: 'text-orange-400', label: 'Construis' },
-  mission: { icon: <Target className="w-5 h-5 text-emerald-400" />, color: 'text-emerald-400', label: 'Mission' },
-  reflect: { icon: <Lightbulb className="w-5 h-5 text-purple-400" />, color: 'text-purple-400', label: 'Réflexion' },
-  project: { icon: <Play className="w-5 h-5 text-red-400" />, color: 'text-red-400', label: 'Projet' },
+// Icônes par type de section — palette sémantique tokens-only :
+// info (récit/réflexion), gleam (découverte/construction), sunrise (jeu),
+// success (expérience/mission), danger (projet — passage à l'action).
+const SECTION_ICONS: Record<string, { icon: React.ReactNode; label: string }> = {
+  story: { icon: <BookOpen className="h-5 w-5 text-info-400" />, label: 'Histoire' },
+  discover: { icon: <Lightbulb className="h-5 w-5 text-gleam-400" />, label: 'Découvre' },
+  play: { icon: <Sparkles className="h-5 w-5 text-sunrise-400" />, label: 'Joue' },
+  experiment: { icon: <FlaskConical className="h-5 w-5 text-success-400" />, label: 'Expérimente' },
+  build: { icon: <Hammer className="h-5 w-5 text-gleam-500" />, label: 'Construis' },
+  mission: { icon: <Target className="h-5 w-5 text-success-500" />, label: 'Mission' },
+  reflect: { icon: <Lightbulb className="h-5 w-5 text-info-300" />, label: 'Réflexion' },
+  project: { icon: <Play className="h-5 w-5 text-danger-400" />, label: 'Projet' },
 };
 
 export interface AdventureClientProps {
@@ -206,14 +212,14 @@ export default function AdventureClient({ adventure, child, alreadyDone }: Adven
     <>
       {/* Progress */}
       <div className="mb-6">
-        <div className="flex items-center justify-between text-sm text-gray-400 mb-2">
+        <div className="flex items-center justify-between text-sm text-ink-soft mb-2">
           <span>Progression</span>
           <div className="flex items-center gap-3">
             <SfxToggle />
-            <span>{Math.min(currentStep + 1, totalSteps)}/{totalSteps}</span>
+            <span data-testid={TESTIDS.adventure.progress}>{Math.min(currentStep + 1, totalSteps)}/{totalSteps}</span>
           </div>
         </div>
-        <div className="h-2 bg-[#1e293b] rounded-full overflow-hidden">
+        <div className="h-2 bg-night-600 rounded-full overflow-hidden">
           <div className="h-full world-progress-fill rounded-full transition-all" style={{ width: `${(Math.min(currentStep + 1, totalSteps) / Math.max(totalSteps, 1)) * 100}%` }} />
         </div>
       </div>
@@ -244,18 +250,18 @@ export default function AdventureClient({ adventure, child, alreadyDone }: Adven
 
       {/* PLAN LIMIT MESSAGE */}
       {planLimit && (
-        <div className="mb-6 rounded-2xl border border-amber-500/40 bg-amber-500/10 p-5">
+        <div className="mb-6 rounded-2xl border border-sunrise-500/40 bg-sunrise-500/10 p-5">
           <div className="flex items-start gap-3">
-            <Rocket className="w-5 h-5 text-amber-400 mt-0.5" />
+            <Rocket className="h-5 w-5 text-sunrise-400 mt-0.5" />
             <div className="flex-1">
-              <p className="font-semibold text-amber-300 mb-1">Limite du plan {planLimit.planCode === 'starter' ? 'Starter' : planLimit.planCode} atteinte</p>
-              <p className="text-sm text-gray-300 mb-3">
+              <p className="font-semibold text-sunrise-300 mb-1">Limite du plan {planLimit.planCode === 'starter' ? 'Starter' : planLimit.planCode} atteinte</p>
+              <p className="text-sm text-ink-soft mb-3">
                 {planLimit.reason === 'adventures_limit'
                   ? "Tu as déjà terminé les 3 aventures gratuites du plan Starter."
                   : "Le plan Starter donne accès à un seul monde."}
                 {' '}Passe à Explorateur pour continuer à explorer !
               </p>
-              <Link href="/pricing" className="inline-block px-5 py-2 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-full text-sm font-semibold hover:opacity-90">
+              <Link href="/pricing" className={buttonVariants({ size: 'sm' })}>
                 Voir les abonnements
               </Link>
             </div>
@@ -265,15 +271,15 @@ export default function AdventureClient({ adventure, child, alreadyDone }: Adven
 
       {/* Pas d'enfant : inviter à en créer un */}
       {!child && (
-        <div className="bg-[#111827] border border-white/5 rounded-xl p-6 mb-6 text-center">
-          <p className="text-gray-300 mb-4">Crée d'abord le profil de ton explorateur pour commencer l'aventure.</p>
-          <Link href="/onboarding"><button className="px-6 py-3 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-xl font-semibold hover:opacity-90">Créer un profil enfant</button></Link>
-        </div>
+        <Card className="mb-6 p-6 text-center">
+          <p className="text-ink-soft mb-4">Crée d'abord le profil de ton explorateur pour commencer l'aventure.</p>
+          <Link href="/onboarding" className={buttonVariants()}>Créer un profil enfant</Link>
+        </Card>
       )}
 
       {/* Step content : quiz extrait, sinon lecteur immersif (Phase 2) */}
       {child && (
-        <div className="bg-[#111827] border border-white/5 rounded-xl p-6 mb-6 min-h-[200px]">
+        <Card className="p-6 mb-6 min-h-[200px]">
           {onQuizStep ? (
             <QuizStep
               quiz={quiz}
@@ -293,7 +299,7 @@ export default function AdventureClient({ adventure, child, alreadyDone }: Adven
               </div>
               <h2 className="font-bold text-lg mb-4">{sec.title}</h2>
               {blocks.length === 0 ? (
-                <div className="text-gray-400 text-sm">Contenu en cours de rédaction — la version enrichie arrive très bientôt !</div>
+                <div className="text-ink-soft text-sm">Contenu en cours de rédaction — la version enrichie arrive très bientôt !</div>
               ) : interactive ? (
                 <InteractiveHost key={sec.id} config={interactive} blocks={blocks} guide={theme.guide} />
               ) : sec.section_type === 'mission' ? (
@@ -303,22 +309,21 @@ export default function AdventureClient({ adventure, child, alreadyDone }: Adven
               )}
             </>
           ) : (
-            <div className="text-gray-400 text-sm">Contenu en cours de rédaction — la version enrichie arrive très bientôt !</div>
+            <div className="text-ink-soft text-sm">Contenu en cours de rédaction — la version enrichie arrive très bientôt !</div>
           )}
-        </div>
+        </Card>
       )}
 
       {/* Navigation */}
       {child && !result && (
         <div className="flex justify-between">
-          <button onClick={() => setCurrentStep(Math.max(0, currentStep - 1))} disabled={currentStep === 0}
-            className="px-5 py-3 rounded-xl border border-white/10 text-gray-300 hover:bg-white/5 disabled:opacity-30 transition-all">
+          <Button variant="secondary" onClick={() => setCurrentStep(Math.max(0, currentStep - 1))} disabled={currentStep === 0}>
             ← Précédent
-          </button>
+          </Button>
           {onQuizStep ? null : (
-            <button onClick={() => setCurrentStep(currentStep + 1)} className="px-6 py-3 bg-violet-600 hover:bg-violet-500 rounded-xl font-semibold transition-colors flex items-center gap-2">
+            <Button onClick={() => setCurrentStep(currentStep + 1)} data-testid={TESTIDS.adventure.next}>
               {currentStep === lessons.length - 1 && hasQuiz ? 'Aller au quiz' : 'Suivant'} <ArrowRight className="w-4 h-4" />
-            </button>
+            </Button>
           )}
         </div>
       )}
@@ -328,14 +333,14 @@ export default function AdventureClient({ adventure, child, alreadyDone }: Adven
         <div className="mt-6">
           {onQuizStep ? (
             !quizDone && (
-              <button onClick={validateQuiz} disabled={!allAnswered() || submitting} className="w-full px-6 py-4 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-xl font-semibold hover:opacity-90 transition-opacity flex items-center justify-center gap-2 disabled:opacity-50">
-                {submitting ? 'Validation…' : alreadyDone ? 'Rejouer le quiz' : 'Terminer l\'aventure'} <ArrowRight className="w-5 h-5" />
-              </button>
+              <Button onClick={validateQuiz} disabled={!allAnswered() || submitting} size="lg" className="w-full">
+                {submitting ? 'Validation…' : alreadyDone ? 'Rejouer le quiz' : 'Terminer l\'aventure'} <ArrowRight className="h-5 w-5" />
+              </Button>
             )
           ) : (
-            <button onClick={handleComplete} disabled={submitting} className="w-full px-6 py-4 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-xl font-semibold hover:opacity-90 transition-opacity flex items-center justify-center gap-2 disabled:opacity-50">
-              {submitting ? 'Enregistrement…' : alreadyDone ? 'Revoir mes récompenses' : 'Terminer l\'aventure'} <ArrowRight className="w-5 h-5" />
-            </button>
+            <Button onClick={handleComplete} disabled={submitting} size="lg" className="w-full">
+              {submitting ? 'Enregistrement…' : alreadyDone ? 'Revoir mes récompenses' : 'Terminer l\'aventure'} <ArrowRight className="h-5 w-5" />
+            </Button>
           )}
         </div>
       )}

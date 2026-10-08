@@ -1,13 +1,28 @@
-'use client';
+import type { CSSProperties, ReactNode } from 'react';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import type { CSSProperties } from 'react';
-import { WORLDS, isWorldReady } from '@/data/content';
-import { getWorldTheme } from '@/data/world-themes';
-import { createClient } from '@/lib/supabase/client';
-import { fetchChildrenWithProgress, findActiveChild, type ChildData } from '@/lib/children';
-import { getActiveChildId } from '@/lib/active-child';
+import type { Metadata } from 'next';
 import { Lock, Sparkles } from 'lucide-react';
+import { WORLDS, READY_WORLDS, isWorldReady } from '@/data/content';
+import { getWorldTheme } from '@/data/world-themes';
+import { getActiveChild } from '@/lib/queries/children';
+import { Card } from '@/components/ui/card';
+import { Chip } from '@/components/ui/chip';
+import { SectionHeading } from '@/components/ui/section-heading';
+import { WorldEmblem } from '@/components/brand/world-emblem';
+import { cn } from '@/lib/utils';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Les mondes (app enfant) — page serveur. La progression vient de l'enfant
+// actif (cookie, fallback premier enfant) : plus de fetch ni de spinner côté
+// client, le layout (app) garantit déjà la session. Emblèmes SVG en contexte
+// premium ; gating des mondes en rédaction conservé (isWorldReady).
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const metadata: Metadata = {
+  title: 'Mondes',
+  description:
+    'Les 7 mondes du numérique : Web & Digital, IA, Coding, Blockchain, Création, Cybersécurité et Innovation.',
+};
 
 /** Variables CSS du monde posées sur chaque carte pour le survol teinté. */
 function worldCardStyle(slug: string): CSSProperties {
@@ -18,13 +33,13 @@ function worldCardStyle(slug: string): CSSProperties {
 const RING_RADIUS = 34;
 const RING_CIRCUMFERENCE = 2 * Math.PI * RING_RADIUS;
 
-/** Anneau de progression (Phase 5) : arc SVG à la couleur du monde,
- *  autour de l'icône. Progression de l'enfant actif (complétions en base). */
+/** Anneau de progression : arc SVG à la couleur du monde, autour de
+ *  l'emblème. Progression de l'enfant actif (complétions en base). */
 function ProgressRing({ progress, color }: { progress: number; color: string }) {
   const clamped = Math.max(0, Math.min(1, progress));
   return (
-    <svg viewBox="0 0 80 80" aria-hidden="true" className="absolute inset-0 w-full h-full -rotate-90">
-      <circle cx="40" cy="40" r={RING_RADIUS} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="5" />
+    <svg viewBox="0 0 80 80" aria-hidden="true" className="absolute inset-0 h-full w-full -rotate-90">
+      <circle cx="40" cy="40" r={RING_RADIUS} fill="none" stroke="var(--color-line)" strokeWidth="5" />
       {clamped > 0 && (
         <circle
           cx="40"
@@ -41,40 +56,93 @@ function ProgressRing({ progress, color }: { progress: number; color: string }) 
   );
 }
 
-export default function WorldsPage() {
-  const [loading, setLoading] = useState(true);
-  const [activeChild, setActiveChild] = useState<ChildData | null>(null);
+const PHASE_CHIP = {
+  explorer: { label: 'Explorer', variant: 'neutral' },
+  creator: { label: 'Créer', variant: 'success' },
+  builder: { label: 'Construire', variant: 'warm' },
+} as const;
 
-  useEffect(() => {
-    let cancelled = false;
-    const supabase = createClient();
-    (async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (cancelled) return;
-      if (user) {
-        try {
-          const children = await fetchChildrenWithProgress(supabase);
-          if (!cancelled) setActiveChild(findActiveChild(children, getActiveChildId()));
-        } catch {
-          // progression optionnelle : sans enfant chargé, la constellation reste neutre
-        }
-      }
-      if (!cancelled) setLoading(false);
-    })();
-    return () => { cancelled = true; };
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-[#060810] flex items-center justify-center">
-        <div className="w-12 h-12 border-4 border-violet-500 border-t-transparent rounded-full animate-spin" />
+/** Tuile d'un monde : emblème + anneau de progression + infos. */
+function WorldTile({
+  slug,
+  name,
+  description,
+  phase,
+  ready,
+  progressText,
+  progress,
+  locked,
+}: {
+  slug: (typeof WORLDS)[number]['slug'];
+  name: string;
+  description: string;
+  phase: keyof typeof PHASE_CHIP;
+  ready: boolean;
+  progressText: string;
+  progress: number;
+  locked: boolean;
+}) {
+  const accent = getWorldTheme(slug).accent;
+  const inner: ReactNode = (
+    <>
+      <div className="relative mb-4 flex h-20 w-20 items-center justify-center">
+        {ready && <ProgressRing progress={progress} color={accent} />}
+        <span
+          className={cn(
+            'flex h-16 w-16 items-center justify-center rounded-xl border border-line bg-night-900 transition-transform duration-250 ease-out-soft',
+            ready && 'group-hover:scale-110',
+            locked && 'opacity-50',
+          )}
+          style={ready ? { color: accent } : undefined}
+        >
+          <WorldEmblem slug={slug} size={36} />
+        </span>
       </div>
+      <h2 className="mb-2 font-display text-lg font-bold text-ink">{name}</h2>
+      <p className="mb-4 line-clamp-2 text-sm text-ink-soft">{description}</p>
+      <div className="flex items-center justify-between text-xs">
+        <span className="text-ink-faint">{progressText}</span>
+        <Chip size="sm" variant={PHASE_CHIP[phase].variant}>
+          {PHASE_CHIP[phase].label}
+        </Chip>
+      </div>
+    </>
+  );
+
+  if (!ready) {
+    return (
+      <Card
+        aria-disabled
+        style={worldCardStyle(slug)}
+        className={cn(
+          'world-card relative cursor-not-allowed select-none p-6 opacity-50 grayscale',
+          'border-line bg-night-850',
+        )}
+      >
+        <Chip variant="outline" size="sm" className="absolute right-4 top-4 z-10">
+          <Lock className="h-3 w-3" /> Bientôt
+        </Chip>
+        {inner}
+      </Card>
     );
   }
+  return (
+    <Link
+      href={`/worlds/${slug}`}
+      style={worldCardStyle(slug)}
+      className="world-card group relative block rounded-xl border border-line bg-night-850 p-6 transition-all duration-250 ease-out-soft hover:-translate-y-1"
+    >
+      {inner}
+    </Link>
+  );
+}
+
+export default async function WorldsPage() {
+  const activeChild = await getActiveChild();
 
   return (
-    <div className="min-h-screen bg-[#060810] text-white">
-      <section className="relative overflow-hidden pt-32 pb-16 px-6">
+    <div className="min-h-screen bg-night-950 text-ink">
+      <section className="relative overflow-hidden px-6 pb-16 pt-32">
         {/* Ciel étoilé décoratif — la « constellation » des mondes */}
         <div
           aria-hidden="true"
@@ -88,63 +156,52 @@ export default function WorldsPage() {
             backgroundSize: '240px 190px',
           }}
         />
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-300 text-sm mb-4"><Sparkles className="w-4 h-4" /> 7 univers interactifs</div>
-            <h1 className="font-display text-4xl md:text-5xl font-bold mb-3">Les 7 Mondes</h1>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">Explore le numérique à travers des univers fascinants conçus pour les jeunes africains. Coach IA inclus.</p>
-            {activeChild && (
-              <div className="mt-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm text-gray-300">
+        <div className="relative mx-auto max-w-6xl">
+          <SectionHeading
+            align="center"
+            eyebrow={`${WORLDS.length} univers interactifs`}
+            title={`Les ${WORLDS.length} Mondes`}
+            description="Explore le numérique à travers des univers fascinants conçus pour les jeunes africains. Coach IA inclus."
+          />
+          {activeChild && (
+            <div className="-mt-4 mb-2 flex justify-center">
+              <Chip variant="outline">
                 <span aria-hidden="true">{activeChild.avatar}</span>
                 Progression de {activeChild.name}
-              </div>
-            )}
-          </div>
+              </Chip>
+            </div>
+          )}
         </div>
       </section>
-      <section className="py-8 px-6 pb-24">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {WORLDS.map(world => {
+      <section className="px-6 pb-24 pt-8">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {WORLDS.map((world) => {
               const ready = isWorldReady(world.slug);
               const total = world.adventures?.length ?? 0;
               const done = activeChild?.completionsPerWorld?.[world.slug] ?? 0;
               const progress = total > 0 ? Math.min(1, done / total) : 0;
-              const inner = (
-                <>
-                  <div className="relative w-20 h-20 mb-4 flex items-center justify-center">
-                    {ready && <ProgressRing progress={progress} color={getWorldTheme(world.slug).accent} />}
-                    <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${world.gradient} flex items-center justify-center text-3xl ${ready ? 'group-hover:scale-110 transition-transform' : ''}`}>{world.icon}</div>
-                  </div>
-                  <h2 className="text-lg font-bold mb-2">{world.name}</h2>
-                  <p className="text-sm text-gray-400 mb-4 line-clamp-2">{world.description}</p>
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-gray-500">
-                      {ready && activeChild ? `${done}/${total} aventures` : `${total} aventures`}
-                    </span>
-                    <span className={`px-3 py-1 rounded-full ${world.phase==='explorer'?'bg-blue-500/10 text-blue-400':world.phase==='creator'?'bg-emerald-500/10 text-emerald-400':'bg-orange-500/10 text-orange-400'}`}>
-                      {world.phase==='explorer'?'Explorer':world.phase==='creator'?'Créer':'Construire'}
-                    </span>
-                  </div>
-                </>
-              );
-              if (!ready) {
-                return (
-                  <div key={world.id} aria-disabled style={worldCardStyle(world.slug)} className="world-card relative p-6 rounded-2xl bg-[#111827] opacity-50 grayscale cursor-not-allowed select-none">
-                    <div className="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 border border-white/10 text-xs text-gray-300">
-                      <Lock className="w-3 h-3" /> Bientôt disponible
-                    </div>
-                    {inner}
-                  </div>
-                );
-              }
               return (
-                <Link key={world.id} href={`/worlds/${world.slug}`} style={worldCardStyle(world.slug)} className="world-card group relative p-6 rounded-2xl bg-[#111827] hover:-translate-y-1">
-                  {inner}
-                </Link>
+                <WorldTile
+                  key={world.id}
+                  slug={world.slug}
+                  name={world.name}
+                  description={world.description}
+                  phase={world.phase}
+                  ready={ready}
+                  progress={progress}
+                  progressText={
+                    ready && activeChild ? `${done}/${total} aventures` : `${total} aventures`
+                  }
+                  locked={!ready}
+                />
               );
             })}
           </div>
+          <p className="mt-10 flex items-center justify-center gap-2 text-sm text-ink-faint">
+            <Sparkles aria-hidden className="h-4 w-4 text-sunrise-400" />
+            {READY_WORLDS.length} mondes prêts · {WORLDS.length - READY_WORLDS.length} mondes en préparation — la constellation s'agrandit.
+          </p>
         </div>
       </section>
     </div>

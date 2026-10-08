@@ -31,13 +31,8 @@ const DATA_HEX_ALLOWED = ['src/data/'];
 // (layout.tsx, loading.tsx, error.tsx, coquille serveur aventure/page.tsx).
 const LEGACY_HEX_ALLOWED = [
   // (marketing) home + pricing : migrées aux tokens en Phase 3.
+  // (app) dashboard/worlds/adventure/challenges/portfolio : migrées en Phase 4.
   'src/app/(auth)/auth/', // Phase 5
-  'src/app/(app)/dashboard/page.tsx', // Phase 4
-  'src/app/(app)/worlds/page.tsx', // Phase 4
-  'src/app/(app)/worlds/[slug]/page.tsx', // Phase 4
-  'src/app/(app)/adventure/[slug]/AdventureClient.tsx', // Phase 4 (page.tsx serveur = tokens-only)
-  'src/app/(app)/challenges/page.tsx', // Phase 4
-  'src/app/(app)/portfolio/page.tsx', // Phase 4
   'src/app/(parent)/parent/page.tsx', // Phase 5
   'src/app/(parent)/admin/page.tsx', // Phase 5
   'src/components/AICoach.tsx',
