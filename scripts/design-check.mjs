@@ -32,9 +32,7 @@ const DATA_HEX_ALLOWED = ['src/data/'];
 const LEGACY_HEX_ALLOWED = [
   // (marketing) home + pricing : migrées aux tokens en Phase 3.
   // (app) dashboard/worlds/adventure/challenges/portfolio : migrées en Phase 4.
-  'src/app/(auth)/auth/', // Phase 5
-  'src/app/(parent)/parent/page.tsx', // Phase 5
-  'src/app/(parent)/admin/page.tsx', // Phase 5
+  // (auth) login/signup/onboarding + (parent) parent/admin : migrées en Phase 5.
   'src/components/AICoach.tsx',
   'src/components/Nav.tsx', // plus aucune page ne l'utilise (Phase 2) — suppression Phase 6
   'src/components/ScrollToTop.tsx',

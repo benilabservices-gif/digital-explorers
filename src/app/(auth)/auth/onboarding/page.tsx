@@ -3,6 +3,13 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
+import { Button, buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Onboarding parent — îlot client : redirige vers /auth/signup si non
+// connecté, vers /dashboard si un enfant existe déjà. Habillage tokens-only.
+// ─────────────────────────────────────────────────────────────────────────────
 
 export default function OnboardingPage() {
   const router = useRouter();
@@ -26,27 +33,25 @@ export default function OnboardingPage() {
   }, [router]);
 
   if (loading) return (
-    <div className="min-h-screen bg-[#060810] flex items-center justify-center">
-      <div className="w-12 h-12 border-4 border-violet-500 border-t-transparent rounded-full animate-spin" />
+    <div className="flex min-h-screen items-center justify-center bg-night-950">
+      <div className="h-12 w-12 animate-spin rounded-full border-4 border-sunrise-500 border-t-transparent" />
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-[#060810] flex items-center justify-center px-4 py-12">
+    <div className="flex min-h-screen items-center justify-center bg-night-950 px-4 py-12 text-ink">
       <div className="w-full max-w-md text-center">
         <div className="mb-8">
-          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-violet-500/20 to-purple-500/20 border border-violet-500/30 flex items-center justify-center mx-auto mb-4 text-3xl">👋</div>
-          <h1 className="font-display text-2xl font-bold mb-2">Bienvenue{userName ? `, ${userName}` : ''} !</h1>
-          <p className="text-gray-400">Ajoute ton premier enfant pour commencer l&apos;aventure.</p>
+          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-sunrise-500/30 bg-linear-to-br from-sunrise-500/20 to-gleam-400/20 text-3xl" aria-hidden="true">👋</div>
+          <h1 className="font-display mb-2 text-2xl font-bold">Bienvenue{userName ? `, ${userName}` : ''} !</h1>
+          <p className="text-ink-soft">Ajoute ton premier enfant pour commencer l'aventure.</p>
         </div>
-        <Link href="/auth/signup" className="block">
-          <button className="w-full bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] text-white font-semibold py-3 rounded-xl hover:opacity-90 transition-opacity mb-4">
-            Ajouter un enfant
-          </button>
+        <Link href="/auth/signup" className={cn(buttonVariants(), 'mb-4 h-12 w-full')}>
+          Ajouter un enfant
         </Link>
-        <button onClick={() => router.push('/dashboard')} className="w-full border border-white/10 text-gray-300 font-semibold py-3 rounded-xl hover:bg-white/5 transition-all">
+        <Button variant="secondary" onClick={() => router.push('/dashboard')} className="h-12 w-full">
           Passer — aller au dashboard
-        </button>
+        </Button>
       </div>
     </div>
   );

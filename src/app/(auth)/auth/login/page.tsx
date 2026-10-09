@@ -4,6 +4,16 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Eye, EyeOff } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { TESTIDS } from '@/lib/testids';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Connexion parent — îlot client. Habillage tokens-only « Carnet de
+// l'Explorateur » : obsidienne + surfaces nuit, CTA soleil levant, erreurs
+// danger. Contrats e2e verbatim (smoke.spec.ts) : placeholders
+// « ton@email.com » / « •••••••• », bouton « Se connecter » → /dashboard.
+// ─────────────────────────────────────────────────────────────────────────────
 
 function traduireErreurAuth(message: string): string {
   const m = message.toLowerCase();
@@ -12,6 +22,10 @@ function traduireErreurAuth(message: string): string {
   if (m.includes('rate limit') || m.includes('too many')) return 'Trop de tentatives. Réessaie dans quelques minutes.';
   return 'Connexion impossible. Réessaie.';
 }
+
+const inputCls =
+  'w-full rounded-xl border border-line bg-night-600 px-4 py-3 text-ink placeholder:text-ink-faint transition-colors focus:border-line-lit';
+const labelCls = 'mb-1 block text-sm font-medium text-ink-soft';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -42,33 +56,63 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#060810] flex items-center justify-center px-4 py-12">
+    <div className="flex min-h-screen items-center justify-center bg-night-950 px-4 py-12 text-ink">
       <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] bg-clip-text text-transparent">Digital Explorers</Link>
-          <p className="text-gray-400 mt-2">Connecte-toi pour suivre ta famille</p>
+        <div className="mb-8 text-center">
+          <Link href="/" className="bg-linear-to-r from-sunrise-500 to-gleam-400 bg-clip-text text-2xl font-bold text-transparent">Digital Explorers</Link>
+          <p className="mt-2 text-ink-soft">Connecte-toi pour suivre ta famille</p>
         </div>
-        <div className="bg-[#111827] border border-white/5 rounded-2xl p-8">
+        <Card className="rounded-2xl p-8">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Email</label>
-              <input type="email" value={email} onChange={e => setEmail(e.target.value)} className="w-full px-4 py-3 rounded-xl bg-[#0f172a] border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500" placeholder="ton@email.com" required />
+              <label htmlFor="login-email" className={labelCls}>Email</label>
+              <input
+                id="login-email"
+                type="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                className={inputCls}
+                placeholder="ton@email.com"
+                data-testid={TESTIDS.auth.loginEmail}
+                required
+              />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Mot de passe</label>
+              <label htmlFor="login-password" className={labelCls}>Mot de passe</label>
               <div className="relative">
-                <input type={showPassword ? 'text' : 'password'} value={password} onChange={e => setPassword(e.target.value)} className="w-full px-4 py-3 rounded-xl bg-[#0f172a] border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500 pr-12" placeholder="••••••••" required minLength={6} />
-                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white">{showPassword ? <Eye className="w-5 h-5" /> : <EyeOff className="w-5 h-5" />}</button>
+                <input
+                  id="login-password"
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  className={`${inputCls} pr-12`}
+                  placeholder="••••••••"
+                  data-testid={TESTIDS.auth.loginPassword}
+                  required
+                  minLength={6}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  aria-label={showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-faint transition-colors hover:text-ink"
+                >
+                  {showPassword ? <Eye className="h-5 w-5" /> : <EyeOff className="h-5 w-5" />}
+                </button>
               </div>
             </div>
-            {error && <p className="text-red-400 text-sm bg-red-400/10 border border-red-400/20 rounded-lg p-3">{error}</p>}
-            <button type="submit" disabled={loading} className="w-full bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] text-white font-semibold py-3 rounded-xl hover:opacity-90 transition-opacity disabled:opacity-50">
+            {error && <p className="rounded-lg border border-danger-500/30 bg-danger-500/10 p-3 text-sm text-danger-300">{error}</p>}
+            <Button type="submit" disabled={loading} data-testid={TESTIDS.auth.loginSubmit} className="h-12 w-full">
               {loading ? 'Connexion...' : 'Se connecter'}
-            </button>
+            </Button>
           </form>
-          <div className="mt-6 text-center text-sm text-gray-400">Pas encore de compte ? <Link href="/auth/signup" className="text-violet-400 hover:underline">Créer mon compte parent</Link></div>
-          <div className="mt-4 text-center"><Link href="/" className="text-sm text-gray-500 hover:text-gray-300">← Retour à l&apos;accueil</Link></div>
-        </div>
+          <div className="mt-6 text-center text-sm text-ink-soft">
+            Pas encore de compte ? <Link href="/auth/signup" className="font-medium text-sunrise-400 hover:text-sunrise-300">Créer mon compte parent</Link>
+          </div>
+          <div className="mt-4 text-center">
+            <Link href="/" className="text-sm text-ink-faint transition-colors hover:text-ink-soft">← Retour à l'accueil</Link>
+          </div>
+        </Card>
       </div>
     </div>
   );

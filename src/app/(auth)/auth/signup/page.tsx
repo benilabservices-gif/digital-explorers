@@ -5,8 +5,26 @@ import { useRouter } from 'next/navigation';
 import { Heart, Mail, Lock, User, Plus, ChevronLeft, ArrowRight } from 'lucide-react';
 import { GRADES, CHILD_INTERESTS, CHILD_AVATARS } from '@/data/content';
 import { createClient } from '@/lib/supabase/client';
+import { Button, buttonVariants } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { TESTIDS } from '@/lib/testids';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Inscription en 4 étapes (parent → confirm → child → done) — îlot client.
+// Habillage tokens-only. Contrats e2e verbatim (smoke.spec.ts, atteinte via
+// dashboard « Ajouter un enfant ») : « Ajoute ton premier enfant »,
+// placeholder « Ex: Awa, Koffi... », input[type=number], select,
+// bouton « Ajouter » (exact), « Tout est prêt ! », bouton /Aller au dashboard/.
+// NB : le CTA « Aller au dashboard » garde un <button> imbriqué dans le <Link>
+// car la spec exige le RÔLE « button » (un <a> stylé aurait le rôle « link »).
+// ─────────────────────────────────────────────────────────────────────────────
 
 type Step = 'parent' | 'confirm' | 'child' | 'done';
+
+const inputCls =
+  'w-full rounded-xl border border-line bg-night-600 px-4 py-3 text-ink placeholder:text-ink-faint transition-colors focus:border-line-lit';
+const labelCls = 'mb-1 block text-sm font-medium text-ink-soft';
+const errorCls = 'rounded-lg border border-danger-500/30 bg-danger-500/10 p-3 text-sm text-danger-300';
 
 export default function SignupPage() {
   const router = useRouter();
@@ -127,21 +145,21 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#060810] flex items-center justify-center px-4 py-12">
+    <div className="flex min-h-screen items-center justify-center bg-night-950 px-4 py-12 text-ink">
       <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] bg-clip-text text-transparent">Digital Explorers</Link>
-          <p className="text-gray-400 mt-2">
+        <div className="mb-8 text-center">
+          <Link href="/" className="bg-linear-to-r from-sunrise-500 to-gleam-400 bg-clip-text text-2xl font-bold text-transparent">Digital Explorers</Link>
+          <p className="mt-2 text-ink-soft">
             {step === 'parent' && 'Crée ton compte parent'}
             {step === 'confirm' && 'Vérifie ta boîte mail'}
             {step === 'child' && "Ajoute ton premier enfant"}
             {step === 'done' && 'Tout est prêt !'}
           </p>
         </div>
-        <div className="bg-[#111827] border border-white/5 rounded-2xl p-8">
-          <div className="flex items-center gap-2 mb-6">
+        <Card className="rounded-2xl p-8">
+          <div className="mb-6 flex items-center gap-2">
             {(['parent','child','done'] as Step[]).map((s) => (
-              <div key={s} className={`flex-1 h-1.5 rounded-full ${s===step?'bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6]':'bg-white/10'}`} />
+              <div key={s} className={`h-1.5 flex-1 rounded-full ${s===step?'bg-linear-to-r from-sunrise-500 to-gleam-400':'bg-night-600'}`} />
             ))}
           </div>
 
@@ -149,106 +167,109 @@ export default function SignupPage() {
             <>
               <form onSubmit={handleParentSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-1">Nom du parent *</label>
-                  <div className="relative"><User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" /><input type="text" value={parentForm.name} onChange={e=>updateParent('name',e.target.value)} className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#0f172a] border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500" placeholder="Ton nom" required /></div>
+                  <label htmlFor="signup-name" className={labelCls}>Nom du parent *</label>
+                  <div className="relative"><User className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-ink-faint" aria-hidden="true" /><input id="signup-name" type="text" value={parentForm.name} onChange={e=>updateParent('name',e.target.value)} className={`${inputCls} pl-10`} placeholder="Ton nom" required /></div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-1">Email *</label>
-                  <div className="relative"><Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" /><input type="email" value={parentForm.email} onChange={e=>updateParent('email',e.target.value)} className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#0f172a] border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500" placeholder="ton@email.com" required /></div>
+                  <label htmlFor="signup-email" className={labelCls}>Email *</label>
+                  <div className="relative"><Mail className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-ink-faint" aria-hidden="true" /><input id="signup-email" type="email" value={parentForm.email} onChange={e=>updateParent('email',e.target.value)} className={`${inputCls} pl-10`} placeholder="ton@email.com" required /></div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-1">Téléphone</label>
-                  <input type="tel" value={parentForm.phone} onChange={e=>updateParent('phone',e.target.value)} className="w-full px-4 py-3 rounded-xl bg-[#0f172a] border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500" placeholder="+225 07 00 00 00 00" />
+                  <label htmlFor="signup-phone" className={labelCls}>Téléphone</label>
+                  <input id="signup-phone" type="tel" value={parentForm.phone} onChange={e=>updateParent('phone',e.target.value)} className={inputCls} placeholder="+225 07 00 00 00 00" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-1">Mot de passe *</label>
-                  <div className="relative"><Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" /><input type="password" value={parentForm.password} onChange={e=>updateParent('password',e.target.value)} className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#0f172a] border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500" placeholder="6 caractères minimum" minLength={6} required /></div>
+                  <label htmlFor="signup-password" className={labelCls}>Mot de passe *</label>
+                  <div className="relative"><Lock className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-ink-faint" aria-hidden="true" /><input id="signup-password" type="password" value={parentForm.password} onChange={e=>updateParent('password',e.target.value)} className={`${inputCls} pl-10`} placeholder="6 caractères minimum" minLength={6} required /></div>
                 </div>
-                {error && <p className="text-red-400 text-sm bg-red-400/10 border border-red-400/20 rounded-lg p-3">{error}</p>}
-                <button type="submit" disabled={loading} className="w-full bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] text-white font-semibold py-3 rounded-xl hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center justify-center gap-2">
-                  {loading ? 'Création...' : <><Heart className="w-5 h-5" /> Continuer</>}
-                </button>
+                {error && <p className={errorCls}>{error}</p>}
+                <Button type="submit" disabled={loading} className="h-12 w-full">
+                  {loading ? 'Création...' : <><Heart className="h-5 w-5" /> Continuer</>}
+                </Button>
               </form>
-              <div className="mt-6 text-center text-sm text-gray-400">Déjà un compte ? <Link href="/auth/login" className="text-violet-400 hover:underline">Se connecter</Link></div>
+              <div className="mt-6 text-center text-sm text-ink-soft">Déjà un compte ? <Link href="/auth/login" className="font-medium text-sunrise-400 hover:text-sunrise-300">Se connecter</Link></div>
             </>
           )}
 
           {step === 'confirm' && (
-            <div className="text-center py-8">
-              <div className="text-5xl mb-4">📧</div>
-              <h2 className="font-display text-xl font-bold mb-2">Compte créé !</h2>
-              <p className="text-gray-400 mb-6">Nous t&apos;avons envoyé un email de confirmation à <span className="text-white">{parentForm.email}</span>. Clique sur le lien qu&apos;il contient pour activer ton compte, puis connecte-toi.</p>
-              <Link href="/auth/login">
-                <button className="px-8 py-3 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-full font-semibold hover:opacity-90 transition-opacity">
-                  Aller à la connexion
-                </button>
+            <div className="py-8 text-center">
+              <div className="mb-4 text-5xl" aria-hidden="true">📧</div>
+              <h2 className="font-display mb-2 text-xl font-bold">Compte créé !</h2>
+              <p className="mb-6 text-ink-soft">Nous t'avons envoyé un email de confirmation à <span className="text-ink">{parentForm.email}</span>. Clique sur le lien qu'il contient pour activer ton compte, puis connecte-toi.</p>
+              <Link href="/auth/login" className={buttonVariants()}>
+                Aller à la connexion
               </Link>
             </div>
           )}
 
           {step === 'child' && (
             <>
-              <div className="text-center mb-6">
-                <div className="text-4xl mb-2">{childForm.avatar}</div>
-                <p className="text-sm text-gray-400">Crée le profil de ton enfant</p>
+              <div className="mb-6 text-center">
+                <div className="mb-2 text-4xl" aria-hidden="true">{childForm.avatar}</div>
+                <p className="text-sm text-ink-soft">Crée le profil de ton enfant</p>
               </div>
               <form onSubmit={handleChildSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-1">Prénom de l&apos;enfant *</label>
-                  <input type="text" value={childForm.name} onChange={e=>updateChild('name',e.target.value)} className="w-full px-4 py-3 rounded-xl bg-[#0f172a] border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500" placeholder="Ex: Awa, Koffi..." required />
+                  <label htmlFor="child-name" className={labelCls}>Prénom de l'enfant *</label>
+                  <input id="child-name" type="text" value={childForm.name} onChange={e=>updateChild('name',e.target.value)} className={inputCls} placeholder="Ex: Awa, Koffi..." data-testid={TESTIDS.auth.childName} required />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-1">Âge *</label>
-                    <input type="number" min={11} max={18} value={childForm.age} onChange={e=>updateChild('age',e.target.value)} className="w-full px-4 py-3 rounded-xl bg-[#0f172a] border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-violet-500" placeholder="14" required />
+                    <label htmlFor="child-age" className={labelCls}>Âge *</label>
+                    <input id="child-age" type="number" min={11} max={18} value={childForm.age} onChange={e=>updateChild('age',e.target.value)} className={inputCls} placeholder="14" data-testid={TESTIDS.auth.childAge} required />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-1">Classe *</label>
-                    <select value={childForm.gradeLevel} onChange={e=>updateChild('gradeLevel',e.target.value)} className="w-full px-4 py-3 rounded-xl bg-[#0f172a] border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-violet-500 appearance-none">
-                      <option value="" className="bg-[#0f172a]">Sélectionne...</option>
-                      {GRADES.map(g => <option key={g} value={g} className="bg-[#0f172a]">{g}</option>)}
+                    <label htmlFor="child-grade" className={labelCls}>Classe *</label>
+                    <select id="child-grade" value={childForm.gradeLevel} onChange={e=>updateChild('gradeLevel',e.target.value)} className={inputCls} data-testid={TESTIDS.auth.childGrade}>
+                      <option value="" className="bg-night-850">Sélectionne...</option>
+                      {GRADES.map(g => <option key={g} value={g} className="bg-night-850">{g}</option>)}
                     </select>
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Avatar</label>
+                  <label className="mb-2 block text-sm font-medium text-ink-soft">Avatar</label>
                   <div className="flex flex-wrap gap-2">
                     {CHILD_AVATARS.map((av,i) => (
-                      <button key={i} type="button" onClick={()=>updateChild('avatar',av)} className={`text-2xl w-10 h-10 rounded-xl flex items-center justify-center transition-all ${childForm.avatar===av?'border-2 border-violet-400 bg-violet-500/20':'border border-white/10 hover:border-white/30'}`}>{av}</button>
+                      <button key={i} type="button" onClick={()=>updateChild('avatar',av)} className={`flex h-10 w-10 items-center justify-center rounded-xl text-2xl transition-all ${childForm.avatar===av?'border-2 border-sunrise-500 bg-sunrise-500/10':'border border-line hover:border-line-lit'}`}>{av}</button>
                     ))}
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Centres d&apos;intérêt</label>
+                  <label className="mb-2 block text-sm font-medium text-ink-soft">Centres d'intérêt</label>
                   <div className="flex flex-wrap gap-2">
                     {CHILD_INTERESTS.map(item => (
-                      <button key={item} type="button" onClick={()=>toggleInterest(item)} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${childForm.interests.includes(item)?'bg-gradient-to-r from-violet-500 to-purple-500 text-white':'bg-[#0f172a] text-gray-300 border border-white/10 hover:border-violet-500/50'}`}>{item}</button>
+                      <button key={item} type="button" onClick={()=>toggleInterest(item)} className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-all ${childForm.interests.includes(item)?'border-sunrise-500 bg-sunrise-500/10 text-sunrise-300':'border-line bg-night-600 text-ink-soft hover:border-line-lit'}`}>{item}</button>
                     ))}
                   </div>
                 </div>
-                {error && <p className="text-red-400 text-sm bg-red-400/10 border border-red-400/20 rounded-lg p-3">{error}</p>}
+                {error && <p className={errorCls}>{error}</p>}
                 <div className="flex gap-3">
-                  <button type="button" onClick={()=>router.push('/dashboard')} className="flex-1 py-3 rounded-xl border border-white/10 text-gray-300 hover:bg-white/5 transition-all flex items-center justify-center gap-2"><ChevronLeft className="w-4 h-4" /> Plus tard</button>
-                  <button type="submit" disabled={loading} className="flex-1 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] text-white font-semibold py-3 rounded-xl hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center justify-center gap-2"><Plus className="w-4 h-4" /> {loading ? 'Ajout...' : 'Ajouter'}</button>
+                  <Button type="button" variant="secondary" onClick={()=>router.push('/dashboard')} className="h-12 flex-1">
+                    <ChevronLeft className="h-4 w-4" /> Plus tard
+                  </Button>
+                  <Button type="submit" disabled={loading} data-testid={TESTIDS.auth.childSubmit} className="h-12 flex-1">
+                    <Plus className="h-4 w-4" /> {loading ? 'Ajout...' : 'Ajouter'}
+                  </Button>
                 </div>
               </form>
-              <div className="mt-4 text-center text-xs text-gray-500">Tu peux ajouter d&apos;autres enfants depuis le dashboard</div>
+              <div className="mt-4 text-center text-xs text-ink-faint">Tu peux ajouter d'autres enfants depuis le dashboard</div>
             </>
           )}
 
           {step === 'done' && (
-            <div className="text-center py-8">
-              <div className="text-6xl mb-4">🎉</div>
-              <h2 className="font-display text-2xl font-bold mb-2">Bienvenue !</h2>
-              <p className="text-gray-400 mb-6">Ton compte parent est prêt. Accède au dashboard pour gérer tes enfants.</p>
+            <div className="py-8 text-center">
+              <div className="mb-4 text-6xl" aria-hidden="true">🎉</div>
+              <h2 className="font-display mb-2 text-2xl font-bold">Bienvenue !</h2>
+              <p className="mb-6 text-ink-soft">Ton compte parent est prêt. Accède au dashboard pour gérer tes enfants.</p>
+              {/* Rôle « button » exigé par la spec e2e — voir bannière du fichier. */}
               <Link href="/dashboard">
-                <button className="px-8 py-3 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-full font-semibold hover:opacity-90 transition-opacity">
-                  Aller au dashboard <ArrowRight className="w-5 h-5 inline" />
+                <button className={buttonVariants()}>
+                  Aller au dashboard <ArrowRight className="h-5 w-5 inline" />
                 </button>
               </Link>
             </div>
           )}
-        </div>
+        </Card>
       </div>
     </div>
   );

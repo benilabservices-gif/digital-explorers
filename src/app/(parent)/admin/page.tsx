@@ -3,6 +3,17 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Globe, BookOpen, Award, CreditCard, Save, Plus, Trash2, Shield, CheckCircle, AlertCircle, ChevronDown } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Chip } from '@/components/ui/chip';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Back-office admin — îlot client : mondes & aventures, leçons & quiz, badges,
+// abonnements. Garde-fou rôle conservé : profiles.role !== 'admin' → écran
+// « Accès administrateur requis » + redirection /dashboard. Habillage
+// tokens-only (brand = onglets/actions, success = enregistrement, danger =
+// suppression, info = Explorer, gleam = Pro).
+// ─────────────────────────────────────────────────────────────────────────────
 
 // ---------------------------------------------------------------------------
 // Types locaux (lignes admin, format DB)
@@ -34,8 +45,8 @@ interface SubRow {
 
 type Tab = 'content' | 'lessons' | 'badges' | 'subs';
 
-const inputCls = 'bg-[#0f172a] border border-white/10 rounded-lg px-3 py-2 text-sm w-full focus:border-violet-500 outline-none transition-colors';
-const labelCls = 'text-xs text-gray-400 mb-1 block';
+const inputCls = 'w-full rounded-lg border border-line bg-night-600 px-3 py-2 text-sm text-ink placeholder:text-ink-faint transition-colors focus:border-line-lit';
+const labelCls = 'mb-1 block text-xs text-ink-soft';
 
 function nowIso() {
   return new Date().toISOString();
@@ -113,16 +124,16 @@ export default function AdminPage() {
   }, [router]);
 
   if (loading) {
-    return <div className="min-h-screen bg-[#060810] flex items-center justify-center"><div className="w-12 h-12 border-4 border-violet-500 border-t-transparent rounded-full animate-spin" /></div>;
+    return <div className="flex min-h-screen items-center justify-center bg-night-950"><div className="h-12 w-12 animate-spin rounded-full border-4 border-sunrise-500 border-t-transparent" /></div>;
   }
 
   if (forbidden) {
     return (
-      <div className="min-h-screen bg-[#060810] text-white flex items-center justify-center px-6">
-        <div className="text-center max-w-md">
-          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-red-500/20 to-orange-500/20 border border-red-500/30 flex items-center justify-center mx-auto mb-6"><Shield className="w-10 h-10 text-red-400" /></div>
-          <h1 className="font-display text-3xl font-bold mb-4">Accès administrateur requis</h1>
-          <p className="text-gray-400 mb-8">Cette zone est réservée aux administrateurs.</p>
+      <div className="flex min-h-screen items-center justify-center bg-night-950 px-6 text-ink">
+        <div className="max-w-md text-center">
+          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-danger-500/30 bg-linear-to-br from-danger-500/20 to-gleam-500/20"><Shield className="h-10 w-10 text-danger-400" aria-hidden="true" /></div>
+          <h1 className="font-display mb-4 text-3xl font-bold">Accès administrateur requis</h1>
+          <p className="mb-8 text-ink-soft">Cette zone est réservée aux administrateurs.</p>
         </div>
       </div>
     );
@@ -331,24 +342,24 @@ export default function AdminPage() {
     .sort((x, y) => x.label.localeCompare(y.label));
 
   return (
-    <div className="min-h-screen bg-[#060810] text-white">
-      <section className="pt-28 pb-8 px-6">
-        <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-night-950 text-ink">
+      <section className="px-6 pb-8 pt-28">
+        <div className="mx-auto max-w-6xl">
           {/* Header */}
           <div className="mb-6">
-            <p className="text-sm text-gray-400 mb-1 flex items-center gap-2"><Shield className="w-4 h-4 text-violet-400" /> Zone administrateur</p>
-            <h1 className="font-display text-3xl md:text-4xl font-bold">Back-office</h1>
+            <p className="mb-1 flex items-center gap-2 text-sm text-ink-soft"><Shield className="h-4 w-4 text-sunrise-400" aria-hidden="true" /> Zone administrateur</p>
+            <h1 className="font-display text-3xl font-bold md:text-4xl">Back-office</h1>
           </div>
 
           {/* Message toast */}
           {msg && (
-            <div className={`mb-6 flex items-center gap-2 rounded-xl border px-5 py-3 text-sm ${msg.ok ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-300' : 'border-red-500/30 bg-red-500/10 text-red-300'}`}>
-              {msg.ok ? <CheckCircle className="w-4 h-4" /> : <AlertCircle className="w-4 h-4" />} {msg.text}
+            <div className={`mb-6 flex items-center gap-2 rounded-xl border px-5 py-3 text-sm ${msg.ok ? 'border-success-500/30 bg-success-500/10 text-success-300' : 'border-danger-500/30 bg-danger-500/10 text-danger-300'}`}>
+              {msg.ok ? <CheckCircle className="h-4 w-4" aria-hidden="true" /> : <AlertCircle className="h-4 w-4" aria-hidden="true" />} {msg.text}
             </div>
           )}
 
           {/* Tabs */}
-          <div className="flex gap-2 mb-8 overflow-x-auto pb-2">
+          <div className="mb-8 flex gap-2 overflow-x-auto pb-2">
             {([
               ['content', 'Mondes & Aventures', Globe],
               ['lessons', 'Leçons & Quiz', BookOpen],
@@ -358,9 +369,9 @@ export default function AdminPage() {
               <button
                 key={key}
                 onClick={() => setTab(key)}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all border ${tab === key ? 'bg-violet-500/20 border-violet-500/40 text-violet-200' : 'bg-[#111827] border-white/5 text-gray-400 hover:text-white'}`}
+                className={`flex items-center gap-2 whitespace-nowrap rounded-xl border px-4 py-2.5 text-sm font-semibold transition-all ${tab === key ? 'border-sunrise-500/40 bg-sunrise-500/10 text-sunrise-300' : 'border-line bg-night-850 text-ink-soft hover:text-ink'}`}
               >
-                <Icon className="w-4 h-4" /> {label}
+                <Icon className="h-4 w-4" aria-hidden="true" /> {label}
               </button>
             ))}
           </div>
@@ -370,21 +381,19 @@ export default function AdminPage() {
             <div className="space-y-4">
               <NewWorldForm onCreate={createWorld} busy={busy} />
               {worlds.map((w) => (
-                <details key={w.id} className="bg-[#111827] border border-white/5 rounded-2xl overflow-hidden">
-                  <summary className="flex items-center gap-3 px-5 py-4 cursor-pointer hover:bg-white/5 transition-colors list-none">
-                    <ChevronDown className="w-4 h-4 text-gray-500" />
-                    <span className="text-2xl">{w.icon}</span>
+                <details key={w.id} className="overflow-hidden rounded-2xl border border-line bg-night-850">
+                  <summary className="flex cursor-pointer list-none items-center gap-3 px-5 py-4 transition-colors hover:bg-night-800">
+                    <ChevronDown className="h-4 w-4 text-ink-faint" aria-hidden="true" />
+                    <span className="text-2xl" aria-hidden="true">{w.icon}</span>
                     <span className="font-bold">{w.name}</span>
-                    <span className="text-xs text-gray-500">{w.slug}</span>
-                    <span className="ml-auto text-xs text-gray-500">{adventures.filter((a) => a.world_id === w.id).length} aventures</span>
-                    <span className={`text-xs px-2 py-0.5 rounded-full ${w.is_active ? 'bg-emerald-500/20 text-emerald-300' : 'bg-gray-500/20 text-gray-400'}`}>
-                      {w.is_active ? 'Actif' : 'Inactif'}
-                    </span>
+                    <span className="text-xs text-ink-faint">{w.slug}</span>
+                    <span className="ml-auto text-xs text-ink-faint">{adventures.filter((a) => a.world_id === w.id).length} aventures</span>
+                    {w.is_active ? <Chip variant="success" size="sm">Actif</Chip> : <Chip size="sm">Inactif</Chip>}
                   </summary>
-                  <div className="px-5 pb-5 space-y-4">
+                  <div className="space-y-4 px-5 pb-5">
                     {/* Édition monde */}
-                    <div className="bg-[#0f172a] rounded-xl p-4 border border-white/5">
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
+                    <div className="rounded-xl border border-line bg-night-900 p-4">
+                      <div className="mb-3 grid grid-cols-1 gap-3 md:grid-cols-3">
                         <div><label className={labelCls}>Nom</label><input className={inputCls} value={w.name} onChange={(e) => setWorlds((prev) => patch(prev, w.id, { name: e.target.value }))} /></div>
                         <div><label className={labelCls}>Icône (emoji)</label><input className={inputCls} value={w.icon} onChange={(e) => setWorlds((prev) => patch(prev, w.id, { icon: e.target.value }))} /></div>
                         <div>
@@ -396,8 +405,8 @@ export default function AdminPage() {
                         <div className="md:col-span-2"><label className={labelCls}>Gradient (classes Tailwind)</label><input className={inputCls} value={w.gradient} onChange={(e) => setWorlds((prev) => patch(prev, w.id, { gradient: e.target.value }))} /></div>
                         <div><label className={labelCls}>Ordre</label><input type="number" className={inputCls} value={w.sort_order} onChange={(e) => setWorlds((prev) => patch(prev, w.id, { sort_order: Number(e.target.value) }))} /></div>
                         <div className="md:col-span-3"><label className={labelCls}>Description</label><textarea rows={2} className={inputCls} value={w.description} onChange={(e) => setWorlds((prev) => patch(prev, w.id, { description: e.target.value }))} /></div>
-                        <label className="flex items-center gap-2 text-sm text-gray-300">
-                          <input type="checkbox" checked={w.is_active} onChange={(e) => setWorlds((prev) => patch(prev, w.id, { is_active: e.target.checked }))} className="accent-violet-500" />
+                        <label className="flex items-center gap-2 text-sm text-ink-soft">
+                          <input type="checkbox" checked={w.is_active} onChange={(e) => setWorlds((prev) => patch(prev, w.id, { is_active: e.target.checked }))} className="accent-sunrise-500" />
                           Monde actif
                         </label>
                       </div>
@@ -406,23 +415,23 @@ export default function AdminPage() {
 
                     {/* Aventures du monde */}
                     {adventures.filter((a) => a.world_id === w.id).map((a) => (
-                      <details key={a.id} className="bg-[#0f172a] rounded-xl border border-white/5">
-                        <summary className="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-white/5 transition-colors list-none text-sm">
-                          <ChevronDown className="w-3.5 h-3.5 text-gray-500" />
+                      <details key={a.id} className="rounded-xl border border-line bg-night-900">
+                        <summary className="flex cursor-pointer list-none items-center gap-3 px-4 py-3 text-sm transition-colors hover:bg-night-800">
+                          <ChevronDown className="h-3.5 w-3.5 text-ink-faint" aria-hidden="true" />
                           <span className="font-semibold">{a.title}</span>
-                          <span className="text-xs text-gray-500">{a.slug}</span>
-                          <span className="ml-auto text-xs text-violet-400">+{a.xp_reward} XP</span>
-                          <span className={`text-xs ${a.is_published ? 'text-emerald-400' : 'text-gray-500'}`}>{a.is_published ? 'Publié' : 'Brouillon'}</span>
+                          <span className="text-xs text-ink-faint">{a.slug}</span>
+                          <span className="ml-auto text-xs text-gold-300">+{a.xp_reward} XP</span>
+                          <span className={`text-xs ${a.is_published ? 'text-success-400' : 'text-ink-faint'}`}>{a.is_published ? 'Publié' : 'Brouillon'}</span>
                         </summary>
-                        <div className="px-4 pb-4 space-y-3">
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <div className="space-y-3 px-4 pb-4">
+                          <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
                             <div><label className={labelCls}>Titre</label><input className={inputCls} value={a.title} onChange={(e) => setAdventures((prev) => patch(prev, a.id, { title: e.target.value }))} /></div>
                             <div><label className={labelCls}>XP</label><input type="number" className={inputCls} value={a.xp_reward} onChange={(e) => setAdventures((prev) => patch(prev, a.id, { xp_reward: Number(e.target.value) }))} /></div>
                             <div><label className={labelCls}>Ordre</label><input type="number" className={inputCls} value={a.sort_order} onChange={(e) => setAdventures((prev) => patch(prev, a.id, { sort_order: Number(e.target.value) }))} /></div>
                             <div className="md:col-span-3"><label className={labelCls}>Description</label><textarea rows={2} className={inputCls} value={a.description} onChange={(e) => setAdventures((prev) => patch(prev, a.id, { description: e.target.value }))} /></div>
                             <div className="md:col-span-3"><label className={labelCls}>Histoire (intro)</label><textarea rows={4} className={inputCls} value={a.story} onChange={(e) => setAdventures((prev) => patch(prev, a.id, { story: e.target.value }))} /></div>
-                            <label className="flex items-center gap-2 text-sm text-gray-300">
-                              <input type="checkbox" checked={a.is_published} onChange={(e) => setAdventures((prev) => patch(prev, a.id, { is_published: e.target.checked }))} className="accent-violet-500" />
+                            <label className="flex items-center gap-2 text-sm text-ink-soft">
+                              <input type="checkbox" checked={a.is_published} onChange={(e) => setAdventures((prev) => patch(prev, a.id, { is_published: e.target.checked }))} className="accent-sunrise-500" />
                               Publiée
                             </label>
                           </div>
@@ -453,44 +462,44 @@ export default function AdminPage() {
                 </select>
               </div>
 
-              {loadingContent && <p className="text-gray-400 text-sm">Chargement du contenu…</p>}
+              {loadingContent && <p className="text-sm text-ink-soft">Chargement du contenu…</p>}
 
               {selectedAdvId && !loadingContent && (
                 <div className="space-y-6">
                   {/* Leçons */}
                   <div>
-                    <h2 className="font-display text-lg font-bold mb-3 flex items-center gap-2"><BookOpen className="w-5 h-5 text-violet-400" /> Leçons ({lessons.length})</h2>
+                    <h2 className="font-display mb-3 flex items-center gap-2 text-lg font-bold"><BookOpen className="h-5 w-5 text-sunrise-400" aria-hidden="true" /> Leçons ({lessons.length})</h2>
                     <div className="space-y-3">
                       {lessons.map((l, i) => (
-                        <div key={l.id} className="bg-[#111827] border border-white/5 rounded-xl p-4">
-                          <div className="flex items-center gap-2 mb-3">
-                            <span className="text-xs font-bold text-violet-400 bg-violet-500/10 px-2 py-1 rounded-full">{i + 1}. {l.section_type}</span>
+                        <div key={l.id} className="rounded-xl border border-line bg-night-850 p-4">
+                          <div className="mb-3 flex items-center gap-2">
+                            <Chip variant="warm" size="sm">{i + 1}. {l.section_type}</Chip>
                           </div>
                           <div className="mb-3"><label className={labelCls}>Titre</label><input className={inputCls} value={l.title} onChange={(e) => setLessons((prev) => patch(prev, l.id, { title: e.target.value }))} /></div>
                           <div className="mb-3"><label className={labelCls}>Contenu</label><textarea rows={6} className={inputCls} value={l.content} onChange={(e) => setLessons((prev) => patch(prev, l.id, { content: e.target.value }))} /></div>
                           <SaveButton onClick={() => saveLesson(l)} busy={busy} />
                         </div>
                       ))}
-                      {lessons.length === 0 && <p className="text-gray-500 text-sm">Aucune leçon pour cette aventure.</p>}
+                      {lessons.length === 0 && <p className="text-sm text-ink-faint">Aucune leçon pour cette aventure.</p>}
                     </div>
                   </div>
 
                   {/* Quiz */}
                   <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <h2 className="font-display text-lg font-bold flex items-center gap-2"><Award className="w-5 h-5 text-yellow-400" /> Quiz ({quiz.length})</h2>
-                      <button onClick={addQuizQuestion} disabled={busy} className="flex items-center gap-2 px-3 py-1.5 bg-violet-500/20 border border-violet-500/30 rounded-lg text-sm text-violet-300 hover:bg-violet-500/30 disabled:opacity-50">
-                        <Plus className="w-4 h-4" /> Question
-                      </button>
+                    <div className="mb-3 flex items-center justify-between">
+                      <h2 className="font-display flex items-center gap-2 text-lg font-bold"><Award className="h-5 w-5 text-gold-400" aria-hidden="true" /> Quiz ({quiz.length})</h2>
+                      <Button variant="secondary" size="sm" onClick={addQuizQuestion} disabled={busy}>
+                        <Plus className="h-4 w-4" /> Question
+                      </Button>
                     </div>
                     <div className="space-y-3">
                       {quiz.map((q, qi) => (
-                        <div key={q.id} className="bg-[#111827] border border-white/5 rounded-xl p-4">
+                        <div key={q.id} className="rounded-xl border border-line bg-night-850 p-4">
                           <div className="mb-3"><label className={labelCls}>Question {qi + 1}</label><textarea rows={2} className={inputCls} value={q.question} onChange={(e) => setQuiz((prev) => patch(prev, q.id, { question: e.target.value }))} /></div>
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+                          <div className="mb-3 grid grid-cols-1 gap-2 md:grid-cols-2">
                             {q.options.map((opt, oi) => (
                               <div key={oi} className="flex items-center gap-2">
-                                <input type="radio" name={`correct-${q.id}`} checked={q.correct_index === oi} onChange={() => setQuiz((prev) => patch(prev, q.id, { correct_index: oi }))} className="accent-emerald-500" title="Bonne réponse" />
+                                <input type="radio" name={`correct-${q.id}`} checked={q.correct_index === oi} onChange={() => setQuiz((prev) => patch(prev, q.id, { correct_index: oi }))} className="accent-success-500" title="Bonne réponse" />
                                 <input className={inputCls} value={opt} onChange={(e) => setQuiz((prev) => patch(prev, q.id, { options: q.options.map((o, j) => (j === oi ? e.target.value : o)) }))} />
                               </div>
                             ))}
@@ -498,13 +507,13 @@ export default function AdminPage() {
                           <div className="mb-3"><label className={labelCls}>Explication</label><textarea rows={2} className={inputCls} value={q.explanation ?? ''} onChange={(e) => setQuiz((prev) => patch(prev, q.id, { explanation: e.target.value }))} /></div>
                           <div className="flex items-center gap-3">
                             <SaveButton onClick={() => saveQuizQuestion(q)} busy={busy} />
-                            <button onClick={() => deleteQuizQuestion(q)} disabled={busy} className="flex items-center gap-2 px-3 py-1.5 bg-red-500/10 border border-red-500/30 rounded-lg text-sm text-red-300 hover:bg-red-500/20 disabled:opacity-50">
-                              <Trash2 className="w-4 h-4" /> Supprimer
+                            <button onClick={() => deleteQuizQuestion(q)} disabled={busy} className="flex items-center gap-2 rounded-lg border border-danger-500/30 bg-danger-500/10 px-3 py-1.5 text-sm text-danger-300 transition-colors hover:bg-danger-500/20 disabled:opacity-50">
+                              <Trash2 className="h-4 w-4" aria-hidden="true" /> Supprimer
                             </button>
                           </div>
                         </div>
                       ))}
-                      {quiz.length === 0 && <p className="text-gray-500 text-sm">Aucune question pour cette aventure.</p>}
+                      {quiz.length === 0 && <p className="text-sm text-ink-faint">Aucune question pour cette aventure.</p>}
                     </div>
                   </div>
                 </div>
@@ -517,8 +526,8 @@ export default function AdminPage() {
             <div className="space-y-4">
               <NewBadgeForm onCreate={createBadge} busy={busy} />
               {badges.map((b) => (
-                <div key={b.id} className="bg-[#111827] border border-white/5 rounded-xl p-4">
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
+                <div key={b.id} className="rounded-xl border border-line bg-night-850 p-4">
+                  <div className="mb-3 grid grid-cols-1 gap-3 md:grid-cols-4">
                     <div><label className={labelCls}>Nom</label><input className={inputCls} value={b.name} onChange={(e) => setBadges((prev) => patch(prev, b.id, { name: e.target.value }))} /></div>
                     <div><label className={labelCls}>Icône</label><input className={inputCls} value={b.icon} onChange={(e) => setBadges((prev) => patch(prev, b.id, { icon: e.target.value }))} /></div>
                     <div>
@@ -537,7 +546,7 @@ export default function AdminPage() {
                     <div><label className={labelCls}>XP requis</label><input type="number" className={inputCls} value={b.xp_required} onChange={(e) => setBadges((prev) => patch(prev, b.id, { xp_required: Number(e.target.value) }))} /></div>
                     <div><label className={labelCls}>Complétions monde requis</label><input type="number" className={inputCls} value={b.required_completions} onChange={(e) => setBadges((prev) => patch(prev, b.id, { required_completions: Number(e.target.value) }))} /></div>
                     <div><label className={labelCls}>Ordre</label><input type="number" className={inputCls} value={b.sort_order} onChange={(e) => setBadges((prev) => patch(prev, b.id, { sort_order: Number(e.target.value) }))} /></div>
-                    <div className="flex items-end"><span className="text-xs text-gray-500">slug : {b.slug}</span></div>
+                    <div className="flex items-end"><span className="text-xs text-ink-faint">slug : {b.slug}</span></div>
                     <div className="md:col-span-4"><label className={labelCls}>Description</label><textarea rows={2} className={inputCls} value={b.description} onChange={(e) => setBadges((prev) => patch(prev, b.id, { description: e.target.value }))} /></div>
                   </div>
                   <SaveButton onClick={() => saveBadge(b)} busy={busy} />
@@ -548,49 +557,49 @@ export default function AdminPage() {
 
           {/* ==================== TAB: Abonnements ==================== */}
           {tab === 'subs' && (
-            <div className="bg-[#111827] border border-white/5 rounded-2xl overflow-x-auto">
+            <Card className="rounded-2xl overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="text-left text-gray-400 border-b border-white/5">
+                  <tr className="border-b border-line text-left text-ink-soft">
                     <th className="px-4 py-3 font-medium">Parent</th>
                     <th className="px-4 py-3 font-medium">Plan actuel</th>
                     <th className="px-4 py-3 font-medium">Statut</th>
                     <th className="px-4 py-3 font-medium">Expire le</th>
-                    <th className="px-4 py-3 font-medium text-right">Actions</th>
+                    <th className="px-4 py-3 text-right font-medium">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {profiles.filter((p) => p.role === 'parent').map((p) => {
                     const s = latestSubFor(p.id);
                     return (
-                      <tr key={p.id} className="border-b border-white/5 hover:bg-white/5">
+                      <tr key={p.id} className="border-b border-line transition-colors hover:bg-night-800">
                         <td className="px-4 py-3">
                           <div className="font-semibold">{p.full_name || '(sans nom)'}</div>
-                          <div className="text-xs text-gray-500">{p.phone ?? ''}</div>
+                          <div className="text-xs text-ink-faint">{p.phone ?? ''}</div>
                         </td>
-                        <td className="px-4 py-3"><span className="capitalize text-violet-300">{s?.plan_code ?? 'starter'}</span></td>
+                        <td className="px-4 py-3"><span className="capitalize text-sunrise-300">{s?.plan_code ?? 'starter'}</span></td>
                         <td className="px-4 py-3">
-                          <span className={`px-2 py-0.5 rounded-full text-xs ${s?.status === 'active' ? 'bg-emerald-500/20 text-emerald-300' : s?.status === 'trial' ? 'bg-blue-500/20 text-blue-300' : 'bg-gray-500/20 text-gray-400'}`}>
+                          <span className={`rounded-full px-2 py-0.5 text-xs ${s?.status === 'active' ? 'bg-success-500/20 text-success-300' : s?.status === 'trial' ? 'bg-info-500/20 text-info-300' : 'bg-night-700 text-ink-soft'}`}>
                             {s?.status ?? '—'}
                           </span>
                         </td>
-                        <td className="px-4 py-3 text-gray-400">{s?.expires_at ? new Date(s.expires_at).toLocaleDateString('fr-FR') : '—'}</td>
+                        <td className="px-4 py-3 text-ink-soft">{s?.expires_at ? new Date(s.expires_at).toLocaleDateString('fr-FR') : '—'}</td>
                         <td className="px-4 py-3">
-                          <div className="flex gap-2 justify-end flex-wrap">
-                            <button onClick={() => activateSub(p.id, 'explorer')} disabled={busy} className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-500/20 border border-blue-500/30 text-blue-300 hover:bg-blue-500/30 disabled:opacity-50">Activer Explorer</button>
-                            <button onClick={() => activateSub(p.id, 'pro')} disabled={busy} className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-500/20 border border-amber-500/30 text-amber-300 hover:bg-amber-500/30 disabled:opacity-50">Activer Pro</button>
-                            <button onClick={() => expireSub(p.id)} disabled={busy} className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-red-500/10 border border-red-500/30 text-red-300 hover:bg-red-500/20 disabled:opacity-50">Expirer</button>
+                          <div className="flex flex-wrap justify-end gap-2">
+                            <button onClick={() => activateSub(p.id, 'explorer')} disabled={busy} className="rounded-lg border border-info-500/30 bg-info-500/10 px-3 py-1.5 text-xs font-semibold text-info-300 transition-colors hover:bg-info-500/20 disabled:opacity-50">Activer Explorer</button>
+                            <button onClick={() => activateSub(p.id, 'pro')} disabled={busy} className="rounded-lg border border-gleam-500/30 bg-gleam-500/10 px-3 py-1.5 text-xs font-semibold text-gleam-300 transition-colors hover:bg-gleam-500/20 disabled:opacity-50">Activer Pro</button>
+                            <button onClick={() => expireSub(p.id)} disabled={busy} className="rounded-lg border border-danger-500/30 bg-danger-500/10 px-3 py-1.5 text-xs font-semibold text-danger-300 transition-colors hover:bg-danger-500/20 disabled:opacity-50">Expirer</button>
                           </div>
                         </td>
                       </tr>
                     );
                   })}
                   {profiles.filter((p) => p.role === 'parent').length === 0 && (
-                    <tr><td colSpan={5} className="px-4 py-8 text-center text-gray-500">Aucun parent inscrit.</td></tr>
+                    <tr><td colSpan={5} className="px-4 py-8 text-center text-ink-faint">Aucun parent inscrit.</td></tr>
                   )}
                 </tbody>
               </table>
-            </div>
+            </Card>
           )}
         </div>
       </section>
@@ -603,8 +612,8 @@ export default function AdminPage() {
 // ---------------------------------------------------------------------------
 function SaveButton({ onClick, busy }: { onClick: () => void; busy: boolean }) {
   return (
-    <button onClick={onClick} disabled={busy} className="flex items-center gap-2 px-4 py-2 bg-emerald-500/20 border border-emerald-500/30 rounded-lg text-sm font-semibold text-emerald-300 hover:bg-emerald-500/30 disabled:opacity-50 transition-colors">
-      <Save className="w-4 h-4" /> Enregistrer
+    <button onClick={onClick} disabled={busy} className="flex items-center gap-2 rounded-lg border border-success-500/30 bg-success-500/10 px-4 py-2 text-sm font-semibold text-success-300 transition-colors hover:bg-success-500/20 disabled:opacity-50">
+      <Save className="h-4 w-4" aria-hidden="true" /> Enregistrer
     </button>
   );
 }
@@ -625,12 +634,12 @@ function NewWorldForm({ onCreate, busy }: { onCreate: (f: { slug: string; name: 
   }
 
   return (
-    <div className="bg-[#111827] border border-dashed border-white/10 rounded-2xl p-4">
-      <button onClick={() => setOpen(!open)} className="flex items-center gap-2 text-sm font-semibold text-violet-300 hover:text-violet-200">
-        <Plus className="w-4 h-4" /> Nouveau monde
+    <div className="rounded-2xl border border-dashed border-line-lit bg-night-850 p-4">
+      <button onClick={() => setOpen(!open)} className="flex items-center gap-2 text-sm font-semibold text-sunrise-300 transition-colors hover:text-sunrise-200">
+        <Plus className="h-4 w-4" aria-hidden="true" /> Nouveau monde
       </button>
       {open && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
+        <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-3">
           <div><label className={labelCls}>Slug (unique)</label><input className={inputCls} value={slug} onChange={(e) => setSlug(e.target.value)} placeholder="ex : robotique" /></div>
           <div><label className={labelCls}>Nom</label><input className={inputCls} value={name} onChange={(e) => setName(e.target.value)} /></div>
           <div><label className={labelCls}>Icône</label><input className={inputCls} value={icon} onChange={(e) => setIcon(e.target.value)} /></div>
@@ -642,7 +651,7 @@ function NewWorldForm({ onCreate, busy }: { onCreate: (f: { slug: string; name: 
             </select>
           </div>
           <div className="md:col-span-3"><label className={labelCls}>Description</label><textarea rows={2} className={inputCls} value={description} onChange={(e) => setDescription(e.target.value)} /></div>
-          <div><button onClick={submit} disabled={busy || !slug || !name} className="px-4 py-2 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-lg text-sm font-semibold hover:opacity-90 disabled:opacity-50">Créer le monde</button></div>
+          <div><Button size="sm" onClick={submit} disabled={busy || !slug || !name}>Créer le monde</Button></div>
         </div>
       )}
     </div>
@@ -663,17 +672,17 @@ function NewAdventureForm({ worldId, onCreate, busy }: { worldId: string; onCrea
   }
 
   return (
-    <div className="bg-[#0f172a] border border-dashed border-white/10 rounded-xl p-3">
-      <button onClick={() => setOpen(!open)} className="flex items-center gap-2 text-sm font-semibold text-violet-300 hover:text-violet-200">
-        <Plus className="w-4 h-4" /> Nouvelle aventure
+    <div className="rounded-xl border border-dashed border-line-lit bg-night-900 p-3">
+      <button onClick={() => setOpen(!open)} className="flex items-center gap-2 text-sm font-semibold text-sunrise-300 transition-colors hover:text-sunrise-200">
+        <Plus className="h-4 w-4" aria-hidden="true" /> Nouvelle aventure
       </button>
       {open && (
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mt-3">
+        <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-4">
           <div><label className={labelCls}>Slug (unique)</label><input className={inputCls} value={slug} onChange={(e) => setSlug(e.target.value)} /></div>
           <div><label className={labelCls}>Titre</label><input className={inputCls} value={title} onChange={(e) => setTitle(e.target.value)} /></div>
           <div><label className={labelCls}>XP</label><input type="number" className={inputCls} value={xp} onChange={(e) => setXp(Number(e.target.value))} /></div>
           <div className="md:col-span-4"><label className={labelCls}>Description</label><textarea rows={2} className={inputCls} value={description} onChange={(e) => setDescription(e.target.value)} /></div>
-          <div><button onClick={submit} disabled={busy || !slug || !title} className="px-4 py-2 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-lg text-sm font-semibold hover:opacity-90 disabled:opacity-50">Créer l&apos;aventure</button></div>
+          <div><Button size="sm" onClick={submit} disabled={busy || !slug || !title}>Créer l'aventure</Button></div>
         </div>
       )}
     </div>
@@ -697,12 +706,12 @@ function NewBadgeForm({ onCreate, busy }: { onCreate: (f: { slug: string; name: 
   }
 
   return (
-    <div className="bg-[#111827] border border-dashed border-white/10 rounded-2xl p-4">
-      <button onClick={() => setOpen(!open)} className="flex items-center gap-2 text-sm font-semibold text-violet-300 hover:text-violet-200">
-        <Plus className="w-4 h-4" /> Nouveau badge
+    <div className="rounded-2xl border border-dashed border-line-lit bg-night-850 p-4">
+      <button onClick={() => setOpen(!open)} className="flex items-center gap-2 text-sm font-semibold text-sunrise-300 transition-colors hover:text-sunrise-200">
+        <Plus className="h-4 w-4" aria-hidden="true" /> Nouveau badge
       </button>
       {open && (
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mt-4">
+        <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-4">
           <div><label className={labelCls}>Slug (unique)</label><input className={inputCls} value={slug} onChange={(e) => setSlug(e.target.value)} /></div>
           <div><label className={labelCls}>Nom</label><input className={inputCls} value={name} onChange={(e) => setName(e.target.value)} /></div>
           <div><label className={labelCls}>Icône</label><input className={inputCls} value={icon} onChange={(e) => setIcon(e.target.value)} /></div>
@@ -715,7 +724,7 @@ function NewBadgeForm({ onCreate, busy }: { onCreate: (f: { slug: string; name: 
           <div><label className={labelCls}>XP requis</label><input type="number" className={inputCls} value={xp} onChange={(e) => setXp(Number(e.target.value))} /></div>
           <div><label className={labelCls}>Complétions monde requis</label><input type="number" className={inputCls} value={completions} onChange={(e) => setCompletions(Number(e.target.value))} /></div>
           <div className="md:col-span-2"><label className={labelCls}>Description</label><input className={inputCls} value={description} onChange={(e) => setDescription(e.target.value)} /></div>
-          <div><button onClick={submit} disabled={busy || !slug || !name} className="px-4 py-2 bg-gradient-to-r from-[#ff6b6b] to-[#8b5cf6] rounded-lg text-sm font-semibold hover:opacity-90 disabled:opacity-50">Créer le badge</button></div>
+          <div><Button size="sm" onClick={submit} disabled={busy || !slug || !name}>Créer le badge</Button></div>
         </div>
       )}
     </div>
