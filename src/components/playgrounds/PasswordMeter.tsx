@@ -39,7 +39,7 @@ export default function PasswordMeter({ config }: { config: PasswordMeterConfig 
   return (
     <GameShell title={config.title} goal={config.goal}>
       <div>
-        <label htmlFor="password-input" className="block text-sm font-semibold text-white mb-2">
+        <label htmlFor="password-input" className="block text-sm font-semibold text-ink mb-2">
           Ton mot de passe de trésor
         </label>
         <input
@@ -51,9 +51,9 @@ export default function PasswordMeter({ config }: { config: PasswordMeterConfig 
           value={secret}
           onChange={(event) => setSecret(event.target.value)}
           placeholder="Essaie quelque chose d’imparable…"
-          className="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-gray-100 focus:outline-none focus:border-white/30"
+          className="w-full rounded-xl border border-line bg-night-900/60 px-4 py-3 text-sm text-ink focus:outline-none focus:border-line-lit"
         />
-        <p className="mt-2 text-xs text-gray-500 flex items-center gap-1.5">
+        <p className="mt-2 text-xs text-ink-faint flex items-center gap-1.5">
           <Eye className="w-3.5 h-3.5" aria-hidden="true" />
           Champ d’entraînement : rien n’est envoyé nulle part, teste sans crainte.
         </p>
@@ -62,17 +62,17 @@ export default function PasswordMeter({ config }: { config: PasswordMeterConfig 
       {/* Jauge */}
       <div>
         <div className="flex items-center justify-between text-sm mb-1.5">
-          <span className="text-gray-400">Force du mot de passe</span>
-          <span className={passed === 5 ? 'text-emerald-300 font-semibold' : 'text-gray-300'}>
+          <span className="text-ink-soft">Force du mot de passe</span>
+          <span aria-live="polite" className={passed === 5 ? 'text-success-300 font-semibold' : 'text-ink-soft'}>
             {strengthLabel}
           </span>
         </div>
-        <div className="h-2 rounded-full bg-white/10 overflow-hidden flex gap-0.5">
+        <div className="h-2 rounded-full bg-night-600 overflow-hidden flex gap-0.5">
           {checks.map((check) => (
             <div
               key={check.label}
               className={`h-full flex-1 rounded-full transition-colors ${
-                check.passed ? (passed === 5 ? 'bg-emerald-400' : 'world-progress-fill') : 'bg-transparent'
+                check.passed ? (passed === 5 ? 'bg-success-400' : 'world-progress-fill') : 'bg-transparent'
               }`}
             />
           ))}
@@ -86,14 +86,14 @@ export default function PasswordMeter({ config }: { config: PasswordMeterConfig 
             <span
               className={`w-5 h-5 rounded-full border flex items-center justify-center text-xs shrink-0 ${
                 check.passed
-                  ? 'border-emerald-500/50 bg-emerald-500/15 text-emerald-300'
-                  : 'border-white/15 text-gray-500'
+                  ? 'border-success-500/50 bg-success-500/15 text-success-300'
+                  : 'border-line text-ink-faint'
               }`}
               aria-hidden="true"
             >
               {check.passed ? '✓' : '•'}
             </span>
-            <span className={check.passed ? 'text-gray-200' : 'text-gray-400'}>{check.label}</span>
+            <span className={check.passed ? 'text-ink' : 'text-ink-soft'}>{check.label}</span>
           </li>
         ))}
       </ul>
@@ -103,9 +103,9 @@ export default function PasswordMeter({ config }: { config: PasswordMeterConfig 
         <p className="text-xs font-bold uppercase tracking-wider world-accent mb-2">Les règles d’or</p>
         <ul className="space-y-1.5">
           {config.practices.map((practice) => (
-            <li key={practice.label} className="text-sm text-gray-300 leading-relaxed">
-              <span className="font-semibold text-gray-200">{practice.label}</span>
-              <span className="block text-gray-400">{practice.detail}</span>
+            <li key={practice.label} className="text-sm text-ink-soft leading-relaxed">
+              <span className="font-semibold text-ink">{practice.label}</span>
+              <span className="block text-ink-soft">{practice.detail}</span>
             </li>
           ))}
         </ul>

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { PageTransition } from '@/components/motion/page-transition';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Onboarding parent — îlot client : redirige vers /auth/signup si non
@@ -39,6 +40,7 @@ export default function OnboardingPage() {
   );
 
   return (
+    <PageTransition>
     <div className="flex min-h-screen items-center justify-center bg-night-950 px-4 py-12 text-ink">
       <div className="w-full max-w-md text-center">
         <div className="mb-8">
@@ -54,5 +56,6 @@ export default function OnboardingPage() {
         </Button>
       </div>
     </div>
+    </PageTransition>
   );
 }

@@ -14,6 +14,7 @@ import { Motif } from "@/components/brand/motif";
 import { WORLDS, BADGES, GRADES, isWorldReady } from "@/data/content";
 import { WORLD_THEMES } from "@/data/world-themes";
 import { GUIDES } from "@/data/characters";
+import { PageTransition } from "@/components/motion/page-transition";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Home (marketing) — « Carnet de l'Explorateur ».
@@ -83,6 +84,7 @@ const gradientText =
 
 export default function HomePage() {
   return (
+    <PageTransition>
     <PageShell variant="marketing" className="overflow-x-hidden text-ink">
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section className="relative flex min-h-[92vh] items-center overflow-hidden px-6 pb-24 pt-36">
@@ -455,5 +457,6 @@ export default function HomePage() {
       </section>
 
     </PageShell>
+    </PageTransition>
   );
 }

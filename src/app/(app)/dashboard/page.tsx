@@ -24,6 +24,7 @@ import {
 } from '@/lib/content-queries';
 import { getActiveChildId, setActiveChildId as persistActiveChildId } from '@/lib/active-child';
 import { TESTIDS } from '@/lib/testids';
+import { PageTransition } from '@/components/motion/page-transition';
 import { dailyChallengeIndex, getLevelTitle, weeklyChallengeIndex, type BadgeLike } from '@/lib/game';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -118,6 +119,7 @@ export default function DashboardPage() {
   })();
 
   return (
+    <PageTransition>
     <div className="min-h-screen bg-night-950 text-ink">
       <section className="px-6 pb-8 pt-28">
         <div className="mx-auto max-w-6xl">
@@ -405,5 +407,6 @@ export default function DashboardPage() {
       </section>
       <AICoach />
     </div>
+    </PageTransition>
   );
 }

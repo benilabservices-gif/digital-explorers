@@ -9,6 +9,7 @@ import { Chip } from '@/components/ui/chip';
 import WorldThemeProvider from '@/components/world/WorldThemeProvider';
 import WorldBackdrop from '@/components/world/WorldBackdrop';
 import WorldMap from '@/components/world/WorldMap';
+import { PageTransition } from '@/components/motion/page-transition';
 
 export function generateStaticParams() {
   return WORLDS.map((w) => ({ slug: w.slug }));
@@ -42,6 +43,7 @@ export default async function WorldSlugPage({ params }: { params: Promise<{ slug
   const theme = getWorldTheme(world.slug);
 
   return (
+    <PageTransition>
     <WorldThemeProvider slug={world.slug} className="relative min-h-screen overflow-hidden">
       {/* Halos de fond + particules du monde */}
       <div className="absolute inset-0 world-bg-glow" aria-hidden="true" />
@@ -183,5 +185,6 @@ export default async function WorldSlugPage({ params }: { params: Promise<{ slug
         </div>
       </div>
     </WorldThemeProvider>
+    </PageTransition>
   );
 }

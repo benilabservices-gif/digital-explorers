@@ -7,6 +7,7 @@ import { createClient } from '@/lib/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { TESTIDS } from '@/lib/testids';
+import { PageTransition } from '@/components/motion/page-transition';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Connexion parent — îlot client. Habillage tokens-only « Carnet de
@@ -56,6 +57,7 @@ export default function LoginPage() {
   }
 
   return (
+    <PageTransition>
     <div className="flex min-h-screen items-center justify-center bg-night-950 px-4 py-12 text-ink">
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
@@ -115,5 +117,6 @@ export default function LoginPage() {
         </Card>
       </div>
     </div>
+    </PageTransition>
   );
 }

@@ -62,10 +62,10 @@ export default function Reorder({ config }: { config: ReorderConfig }) {
                   key={itemIndex}
                   className={`flex items-center gap-2 rounded-xl border px-3 py-2.5 transition-all ${
                     isRight
-                      ? 'border-emerald-500/50 bg-emerald-500/10'
+                      ? 'border-success-500/50 bg-success-500/10'
                       : isWrong
-                        ? 'border-red-500/50 bg-red-500/10'
-                        : 'border-white/10'
+                        ? 'border-danger-500/50 bg-danger-500/10'
+                        : 'border-line'
                   }`}
                 >
                   <span className="flex flex-col gap-1 shrink-0">
@@ -74,25 +74,25 @@ export default function Reorder({ config }: { config: ReorderConfig }) {
                       onClick={() => move(position, -1)}
                       disabled={position === 0}
                       aria-label="Monter cette étape"
-                      className="p-1 rounded-md border border-white/10 text-gray-400 hover:text-white hover:border-white/30 disabled:opacity-20 transition-all"
+                      className="p-1 rounded-md border border-line text-ink-soft hover:text-ink hover:border-line-lit disabled:opacity-20 transition-all"
                     >
-                      <ArrowUp className="w-4 h-4" />
+                      <ArrowUp className="w-4 h-4" aria-hidden="true" />
                     </button>
                     <button
                       type="button"
                       onClick={() => move(position, 1)}
                       disabled={position === order.length - 1}
                       aria-label="Descendre cette étape"
-                      className="p-1 rounded-md border border-white/10 text-gray-400 hover:text-white hover:border-white/30 disabled:opacity-20 transition-all"
+                      className="p-1 rounded-md border border-line text-ink-soft hover:text-ink hover:border-line-lit disabled:opacity-20 transition-all"
                     >
-                      <ArrowDown className="w-4 h-4" />
+                      <ArrowDown className="w-4 h-4" aria-hidden="true" />
                     </button>
                   </span>
-                  <span className="w-6 h-6 shrink-0 rounded-full border border-white/15 text-gray-400 text-xs font-bold flex items-center justify-center">
+                  <span className="w-6 h-6 shrink-0 rounded-full border border-line text-ink-soft text-xs font-bold flex items-center justify-center">
                     {position + 1}
                   </span>
-                  <span className="text-sm text-gray-200 leading-relaxed flex-1">{config.items[itemIndex]}</span>
-                  {isRight && <span className="text-emerald-400 font-bold shrink-0">✓</span>}
+                  <span className="text-sm text-ink leading-relaxed flex-1">{config.items[itemIndex]}</span>
+                  {isRight && <span className="text-success-400 font-bold shrink-0">✓</span>}
                 </li>
               );
             })}
@@ -106,7 +106,7 @@ export default function Reorder({ config }: { config: ReorderConfig }) {
               <ArrowUpDown className="w-4 h-4" aria-hidden="true" /> Vérifier l’ordre
             </button>
             {checked && !won && (
-              <p className="text-sm text-red-300">Presque : en rouge, les étapes encore mal placées.</p>
+              <p aria-live="polite" className="text-sm text-danger-300">Presque : en rouge, les étapes encore mal placées.</p>
             )}
           </div>
         </>

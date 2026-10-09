@@ -43,7 +43,7 @@ export default function PromptLab({ config }: { config: PromptLabConfig }) {
   return (
     <GameShell title={config.title} goal={config.goal}>
       <div>
-        <label htmlFor="prompt-input" className="block text-sm font-semibold text-white mb-2">
+        <label htmlFor="prompt-input" className="block text-sm font-semibold text-ink mb-2">
           Ton prompt
         </label>
         <textarea
@@ -51,7 +51,7 @@ export default function PromptLab({ config }: { config: PromptLabConfig }) {
           value={prompt}
           onChange={(event) => setPrompt(event.target.value)}
           rows={5}
-          className="w-full rounded-xl border border-white/10 bg-black/40 p-3 text-sm text-gray-100 leading-relaxed focus:outline-none focus:border-white/30"
+          className="w-full rounded-xl border border-line bg-night-900/60 p-3 text-sm text-ink leading-relaxed focus:outline-none focus:border-line-lit"
         />
         <button
           type="button"
@@ -72,17 +72,17 @@ export default function PromptLab({ config }: { config: PromptLabConfig }) {
       </div>
 
       {error && (
-        <p className="rounded-xl border border-red-500/50 bg-red-500/10 p-4 text-sm text-red-300">{error}</p>
+        <p role="alert" className="rounded-xl border border-danger-500/50 bg-danger-500/10 p-4 text-sm text-danger-300">{error}</p>
       )}
 
       {answer && (
         <div className="rounded-2xl border world-border world-bg-soft p-5">
           <p className="text-xs font-bold uppercase tracking-wider world-accent mb-2">Réponse de l’IA</p>
-          <p className="text-sm text-gray-200 leading-relaxed whitespace-pre-wrap">{answer}</p>
+          <p className="text-sm text-ink leading-relaxed whitespace-pre-wrap">{answer}</p>
         </div>
       )}
 
-      <p className="text-sm text-gray-400 leading-relaxed">
+      <p className="text-sm text-ink-soft leading-relaxed">
         Astuce : reformule, ajoute des détails (« en 3 phrases », « pour un enfant de 10 ans »),
         et compare les réponses. C’est ça, le prompt engineering !
       </p>

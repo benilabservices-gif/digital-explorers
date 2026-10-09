@@ -1,7 +1,9 @@
 'use client';
 
 import { Sparkles, CheckCircle, XCircle, Trophy, RotateCcw } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { playSfx, vibrate } from '@/lib/sfx';
+import { TESTIDS } from '@/lib/testids';
 
 export interface QuizQuestionData {
   question: string;
@@ -19,27 +21,30 @@ interface QuizStepProps {
   showRewards: boolean;
   canValidate: boolean;
   onValidate: () => void;
-  /** Phase 4 : reset local pour rejouer (l'XP reste unique côté serveur) */
+  /** reset local pour rejouer (l'XP reste unique côté serveur) */
   onReplay?: () => void;
 }
 
-/** Étape quiz v2 — feedback immédiat par question : la bonne réponse devient
+/** Étape quiz — feedback immédiat par question : la bonne réponse devient
  *  verte et l'explication glisse dès qu'on répond, avant même la validation.
  *  Rejouable après complétion sans double XP (idempotence serveur).
- *  Contrats à préserver pour le smoke e2e :
- *  - un seul élément au texte exact « Quiz » (l'en-tête),
- *  - exactement une div.space-y-2 par question (locateur e2e),
- *  - bouton « Valider mes réponses ». */
+ *  Contrats e2e (testids) : `adventure.quiz` (en-tête), un groupe
+ *  `adventure.quizOption` par question, `adventure.validate`
+ *  (« Valider mes réponses »), « Rejouer le quiz » (role button).
+ *  a11y : explication annoncée via aria-live, icônes décoratives masquées. */
 export default function QuizStep({ quiz, answers, onAnswer, quizDone, showRewards, canValidate, onValidate, onReplay }: QuizStepProps) {
   return (
     <div>
-      <div className="flex items-center gap-2 mb-4"><Sparkles className="w-5 h-5 world-accent" /><span className="font-bold world-accent">Quiz</span></div>
+      <div className="flex items-center gap-2 mb-4">
+        <Sparkles className="w-5 h-5 world-accent" aria-hidden="true" />
+        <span className="font-bold world-accent" data-testid={TESTIDS.adventure.quiz}>Quiz</span>
+      </div>
       {quiz.map((q, qi) => {
         const answered = answers[qi] !== undefined;
         return (
           <div key={qi} className="mb-6">
             <p className="font-semibold mb-3">{qi + 1}. {q.question}</p>
-            <div className="space-y-2">
+            <div className="space-y-2" data-testid={TESTIDS.adventure.quizOption}>
               {q.options.map((opt, oi) => {
                 const showCorrect = answered && oi === q.correct_index;
                 const showWrong = answered && answers[qi] === oi && oi !== q.correct_index;
@@ -52,36 +57,38 @@ export default function QuizStep({ quiz, answers, onAnswer, quizDone, showReward
                   }}
                   className={`w-full text-left px-4 py-3 rounded-xl border transition-all ${
                     showCorrect
-                      ? 'border-emerald-500 bg-emerald-500/20'
+                      ? 'border-success-500 bg-success-500/20'
                       : showWrong
-                        ? 'border-red-500 bg-red-500/20'
-                        : 'border-white/10 hover:border-white/30'
+                        ? 'border-danger-500 bg-danger-500/20'
+                        : 'border-line hover:border-line-lit'
                   }`}>
                     {opt}
-                    {showCorrect && <CheckCircle className="w-4 h-4 inline text-emerald-400 ml-2" />}
-                    {showWrong && <XCircle className="w-4 h-4 inline text-red-400 ml-2" />}
+                    {showCorrect && <CheckCircle className="w-4 h-4 inline text-success-400 ml-2" aria-hidden="true" />}
+                    {showWrong && <XCircle className="w-4 h-4 inline text-danger-400 ml-2" aria-hidden="true" />}
                   </button>
                 );
               })}
             </div>
             {answered && q.explanation && (
-              <p className="explanation-in mt-2 text-sm text-gray-400">💡 {q.explanation}</p>
+              <p aria-live="polite" className="explanation-in mt-2 text-sm text-ink-soft">💡 {q.explanation}</p>
             )}
           </div>
         );
       })}
       {showRewards && (
-        <div className="flex items-center gap-2 text-emerald-400"><Trophy className="w-5 h-5" /><span>Récompenses ajoutées à ton profil !</span></div>
+        <div role="status" className="flex items-center gap-2 text-success-400">
+          <Trophy className="w-5 h-5" aria-hidden="true" /><span>Récompenses ajoutées à ton profil !</span>
+        </div>
       )}
       {!quizDone ? (
-        <button onClick={onValidate} disabled={!canValidate} className="px-6 py-3 bg-violet-600 hover:bg-violet-500 disabled:opacity-50 rounded-xl font-semibold transition-colors">
+        <Button onClick={onValidate} disabled={!canValidate} data-testid={TESTIDS.adventure.validate}>
           Valider mes réponses
-        </button>
+        </Button>
       ) : (
         onReplay && (
-          <button onClick={onReplay} className="mt-2 px-6 py-3 rounded-xl border border-white/15 text-gray-300 hover:border-white/35 font-semibold transition-colors flex items-center gap-2">
+          <Button variant="secondary" onClick={onReplay} className="mt-2">
             <RotateCcw className="w-4 h-4" aria-hidden="true" /> Rejouer le quiz
-          </button>
+          </Button>
         )
       )}
     </div>

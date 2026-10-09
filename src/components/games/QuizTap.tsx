@@ -78,11 +78,11 @@ export default function QuizTap({ config }: { config: QuizTapConfig }) {
   return (
     <GameShell title={config.title} goal="Vrai ou faux ? Réponds avant la fin du chrono !">
       {/* Progression + chrono */}
-      <div className="flex items-center justify-between text-sm text-gray-400 mb-1">
+      <div className="flex items-center justify-between text-sm text-ink-soft mb-1">
         <span>Affirmation {index + 1}/{config.statements.length}</span>
         <span className="tabular-nums">{revealed ? '—' : `${timeLeft}s`}</span>
       </div>
-      <div className="h-1.5 rounded-full bg-white/10 overflow-hidden mb-5">
+      <div className="h-1.5 rounded-full bg-night-600 overflow-hidden mb-5">
         <div
           className="h-full world-progress-fill rounded-full transition-all duration-1000 ease-linear"
           style={{ width: `${(timeLeft / TIME_PER_STATEMENT) * 100}%` }}
@@ -90,8 +90,8 @@ export default function QuizTap({ config }: { config: QuizTapConfig }) {
       </div>
 
       {/* Affirmation */}
-      <div className="rounded-2xl border border-white/10 bg-black/20 p-5 mb-5">
-        <p className="text-gray-100 leading-relaxed font-medium">{statement.text}</p>
+      <div className="rounded-2xl border border-line bg-night-900/60 p-5 mb-5">
+        <p className="text-ink leading-relaxed font-medium">{statement.text}</p>
       </div>
 
       {/* Réponses */}
@@ -100,14 +100,14 @@ export default function QuizTap({ config }: { config: QuizTapConfig }) {
           <button
             type="button"
             onClick={() => answer(true)}
-            className="py-4 rounded-2xl border border-emerald-500/40 bg-emerald-500/10 text-emerald-300 font-bold text-lg transition-all hover:bg-emerald-500/20 active:scale-95"
+            className="py-4 rounded-2xl border border-success-500/40 bg-success-500/10 text-success-300 font-bold text-lg transition-all hover:bg-success-500/20 active:scale-95"
           >
             VRAI
           </button>
           <button
             type="button"
             onClick={() => answer(false)}
-            className="py-4 rounded-2xl border border-red-500/40 bg-red-500/10 text-red-300 font-bold text-lg transition-all hover:bg-red-500/20 active:scale-95"
+            className="py-4 rounded-2xl border border-danger-500/40 bg-danger-500/10 text-danger-300 font-bold text-lg transition-all hover:bg-danger-500/20 active:scale-95"
           >
             FAUX
           </button>
@@ -115,17 +115,18 @@ export default function QuizTap({ config }: { config: QuizTapConfig }) {
       ) : (
         <div className="space-y-4">
           <div
+            aria-live="polite"
             className={`rounded-2xl border p-4 ${
               isCorrect
-                ? 'border-emerald-500/50 bg-emerald-500/10'
-                : 'border-red-500/50 bg-red-500/10'
+                ? 'border-success-500/50 bg-success-500/10'
+                : 'border-danger-500/50 bg-danger-500/10'
             }`}
           >
-            <p className={`font-bold mb-1 ${isCorrect ? 'text-emerald-300' : 'text-red-300'}`}>
+            <p className={`font-bold mb-1 ${isCorrect ? 'text-success-300' : 'text-danger-300'}`}>
               {isCorrect ? '✓ Juste !' : timedOut ? '⏰ Trop tard !' : '✗ Raté…'}
               {!isCorrect && ` La bonne réponse : ${statement.answer ? 'VRAI' : 'FAUX'}.`}
             </p>
-            <p className="text-sm text-gray-300 leading-relaxed">{statement.why}</p>
+            <p className="text-sm text-ink-soft leading-relaxed">{statement.why}</p>
           </div>
           <button
             type="button"

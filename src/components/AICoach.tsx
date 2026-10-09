@@ -21,6 +21,10 @@ Style: chaleureux, motivant, en français simple. Utilise des emojis occasionnel
 Contexte éducatif: Web, IA, Coding, Blockchain, Design, Cybersécurité, Innovation.
 Si la question ne concerne pas le numérique ou l'éducation, redirige poliment vers les sujets de la plateforme.`;
 
+/** Coach IA flottant — habillage tokens « Carnet de l'Explorateur » : CTA
+ *  soleil levant, surfaces nuit, or pour l'XP. a11y : bouton d'ouverture
+ *  labellisé avec aria-expanded/aria-controls, conversation en role=log
+ *  (aria-live polite), tous les contrôles ont un nom accessible. */
 export default function AICoach({ worldName, adventureTitle }: AICoachProps) {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -131,56 +135,64 @@ export default function AICoach({ worldName, adventureTitle }: AICoachProps) {
       {/* Floating button */}
       <button
         onClick={toggleOpen}
-        className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-violet-600 to-purple-600 shadow-lg shadow-violet-500/30 flex items-center justify-center transition-all hover:scale-110`}
-        title="Ouvrir le Coach IA"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-r from-sunrise-500 to-gleam-400 shadow-glow-sunrise flex items-center justify-center transition-all duration-250 ease-out-soft hover:scale-110 active:scale-95"
+        aria-label="Ouvrir le Coach IA"
+        aria-expanded={open}
+        aria-controls="coach-panel"
       >
-        <MessageCircle className="w-6 h-6 text-white" />
+        <MessageCircle className="w-6 h-6 text-night-950" aria-hidden="true" />
       </button>
 
       {/* Chat panel */}
       {open && (
-        <div className="fixed bottom-24 right-6 z-50 w-[calc(100%-3rem)] max-w-sm bg-[#111827] border border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden" style={{ maxHeight: 'min(500px, 80vh)' }}>
+        <div
+          id="coach-panel"
+          className="fixed bottom-24 right-6 z-50 w-[calc(100%-3rem)] max-w-sm bg-night-850 border border-line rounded-2xl shadow-lift flex flex-col overflow-hidden"
+          style={{ maxHeight: 'min(500px, 80vh)' }}
+        >
           {/* Header */}
-          <div className="px-4 py-3 bg-gradient-to-r from-violet-600/20 to-purple-600/20 border-b border-white/5 flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-violet-500 to-purple-500 flex items-center justify-center">
-              <Bot className="w-5 h-5 text-white" />
+          <div className="px-4 py-3 bg-night-800 border-b border-line flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-sunrise-500 to-gleam-400 flex items-center justify-center shrink-0">
+              <Bot className="w-5 h-5 text-night-950" aria-hidden="true" />
             </div>
             <div className="flex-1">
-              <div className="font-semibold text-sm">Coach IA</div>
-              <div className="text-xs text-gray-400 flex items-center gap-1">
-                <span className={`w-2 h-2 rounded-full ${status === 'ok' ? 'bg-emerald-400' : 'bg-amber-400'}`} />
+              <div className="font-semibold text-sm text-ink">Coach IA</div>
+              <div className="text-xs text-ink-soft flex items-center gap-1">
+                <span className={`w-2 h-2 rounded-full ${status === 'ok' ? 'bg-success-400' : 'bg-gleam-400'}`} aria-hidden="true" />
                 {status === 'ok' ? 'Prêt' : 'Indisponible'}
               </div>
             </div>
-            <button onClick={() => setOpen(false)} className="text-gray-400 hover:text-white transition-colors"><X className="w-4 h-4" /></button>
+            <button onClick={() => setOpen(false)} className="text-ink-soft hover:text-ink transition-colors" aria-label="Fermer le Coach IA">
+              <X className="w-4 h-4" aria-hidden="true" />
+            </button>
           </div>
 
           {messages.length === 0 && status === 'ok' && (
-            <div className="flex-1 p-6 text-center text-gray-400 text-sm">Chargement...</div>
+            <div className="flex-1 p-6 text-center text-ink-soft text-sm">Chargement...</div>
           )}
 
           {status === 'error' && messages.length === 0 && (
             <div className="flex-1 p-6 text-center">
-              <AlertCircle className="w-10 h-10 text-amber-400 mx-auto mb-3" />
-              <p className="text-sm text-gray-300 mb-2">Coach IA indisponible</p>
-              <p className="text-xs text-gray-500">Demande à un admin d&apos;ajouter la clé API.</p>
+              <AlertCircle className="w-10 h-10 text-gleam-400 mx-auto mb-3" aria-hidden="true" />
+              <p className="text-sm text-ink-soft mb-2">Coach IA indisponible</p>
+              <p className="text-xs text-ink-faint">Demande à un admin d'ajouter la clé API.</p>
             </div>
           )}
 
           {messages.length > 0 && (
-            <div className="flex-1 overflow-y-auto p-3 space-y-3">
+            <div className="flex-1 overflow-y-auto p-3 space-y-3" role="log" aria-label="Conversation avec le Coach IA" aria-live="polite">
               {messages.map(m => (
                 <div key={m.id} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div className={`max-w-[85%] px-3 py-2 rounded-2xl text-sm whitespace-pre-line ${m.role === 'user'
-                    ? 'bg-violet-600 text-white rounded-br-sm'
-                    : 'bg-white/5 text-gray-200 rounded-bl-sm'}`}>
+                    ? 'bg-sunrise-600 text-night-950 rounded-br-sm'
+                    : 'bg-night-800 text-ink rounded-bl-sm'}`}>
                     {m.content}
                   </div>
                 </div>
               ))}
               {loading && (
                 <div className="flex justify-start">
-                  <div className="bg-white/5 rounded-2xl px-3 py-2 text-sm text-gray-400">Coach réfléchit…</div>
+                  <div className="bg-night-800 rounded-2xl px-3 py-2 text-sm text-ink-soft">Coach réfléchit…</div>
                 </div>
               )}
               <div ref={messagesEndRef} />
@@ -188,9 +200,9 @@ export default function AICoach({ worldName, adventureTitle }: AICoachProps) {
           )}
 
           {messages.length > 0 && messages.length < 3 && (
-            <div className="px-4 py-2 border-t border-white/5 flex gap-2 overflow-x-auto">
+            <div className="px-4 py-2 border-t border-line flex gap-2 overflow-x-auto">
               {quickActions.map((qa, i) => (
-                <button key={i} onClick={() => sendMessage(qa.query)} className="flex-shrink-0 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-gray-300 hover:bg-white/10 hover:text-white transition-colors">
+                <button key={i} onClick={() => sendMessage(qa.query)} className="flex-shrink-0 px-3 py-1.5 rounded-full bg-night-800 border border-line text-xs text-ink-soft hover:bg-night-700 hover:text-ink hover:border-line-lit transition-colors">
                   {qa.icon} {qa.label}
                 </button>
               ))}
@@ -198,17 +210,23 @@ export default function AICoach({ worldName, adventureTitle }: AICoachProps) {
           )}
 
           {messages.length > 0 && (
-            <form onSubmit={handleSubmit} className="p-3 border-t border-white/5 flex gap-2">
+            <form onSubmit={handleSubmit} className="p-3 border-t border-line flex gap-2">
               <input
                 type="text"
                 value={input}
                 onChange={e => setInput(e.target.value)}
                 placeholder="Pose ta question..."
-                className="flex-1 bg-[#0f172a] border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-violet-500/50"
+                aria-label="Ta question au Coach IA"
+                className="flex-1 bg-night-800 border border-line rounded-xl px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus:outline-none focus:border-line-lit transition-colors"
                 disabled={loading}
               />
-              <button type="submit" disabled={loading || !input.trim()} className="px-3 py-2 bg-gradient-to-r from-violet-600 to-purple-600 rounded-xl hover:opacity-90 disabled:opacity-50 transition-opacity">
-                <Send className="w-4 h-4 text-white" />
+              <button
+                type="submit"
+                disabled={loading || !input.trim()}
+                className="px-3 py-2 bg-gradient-to-r from-sunrise-500 to-gleam-400 rounded-xl hover:opacity-90 disabled:opacity-50 disabled:pointer-events-none transition-opacity"
+                aria-label="Envoyer"
+              >
+                <Send className="w-4 h-4 text-night-950" aria-hidden="true" />
               </button>
             </form>
           )}

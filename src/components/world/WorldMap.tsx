@@ -91,7 +91,7 @@ export default function WorldMap({
           <path
             d={trail}
             fill="none"
-            stroke="rgba(255,255,255,0.18)"
+            stroke="rgba(239,244,255,0.18)"
             strokeWidth="3"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -113,12 +113,12 @@ export default function WorldMap({
               <span
                 className={`relative w-14 h-14 rounded-full border flex items-center justify-center text-lg font-bold transition-all ${
                   state === 'done'
-                    ? 'border-emerald-500/60 bg-emerald-500/15 text-emerald-300'
+                    ? 'border-success-500/60 bg-success-500/15 text-success-300'
                     : state === 'current'
                       ? 'world-border world-bg-soft world-accent world-glow scale-110'
                       : state === 'locked'
-                        ? 'border-white/10 bg-black/30 text-gray-600'
-                        : 'border-white/20 bg-black/30 text-gray-300'
+                        ? 'border-line bg-night-900/60 text-ink-faint'
+                        : 'border-line-lit bg-night-900/60 text-ink-soft'
                 }`}
               >
                 {state === 'done' ? (
@@ -138,11 +138,11 @@ export default function WorldMap({
                   />
                 )}
               </span>
-              <span className="mt-2 w-28 text-center text-xs leading-snug text-gray-300 line-clamp-2">
+              <span className="mt-2 w-28 text-center text-xs leading-snug text-ink-soft line-clamp-2">
                 {adv.title}
               </span>
               {state !== 'locked' && (
-                <span className="text-[10px] text-gray-500">+{adv.xp_reward} XP</span>
+                <span className="text-[10px] text-ink-faint">+{adv.xp_reward} XP</span>
               )}
             </div>
           );
@@ -159,10 +159,10 @@ export default function WorldMap({
       </div>
 
       {/* Légende */}
-      <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-gray-400">
-        <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-emerald-400" aria-hidden="true" /> Terminée</span>
+      <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-ink-soft">
+        <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-success-400" aria-hidden="true" /> Terminée</span>
         <span className="flex items-center gap-1.5"><Star className="w-3.5 h-3.5 world-accent" aria-hidden="true" /> Prochaine étape</span>
-        <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full border border-white/25 inline-block" aria-hidden="true" /> À explorer</span>
+        <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full border border-line-lit inline-block" aria-hidden="true" /> À explorer</span>
         {completed && completed.size > 0 && (
           <span className="ml-auto font-semibold">{completed.size}/{adventures.length} aventures terminées</span>
         )}

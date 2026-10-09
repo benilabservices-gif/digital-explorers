@@ -8,6 +8,7 @@ import { createClient } from '@/lib/supabase/client';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { TESTIDS } from '@/lib/testids';
+import { PageTransition } from '@/components/motion/page-transition';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Inscription en 4 étapes (parent → confirm → child → done) — îlot client.
@@ -145,6 +146,7 @@ export default function SignupPage() {
   };
 
   return (
+    <PageTransition>
     <div className="flex min-h-screen items-center justify-center bg-night-950 px-4 py-12 text-ink">
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
@@ -272,5 +274,6 @@ export default function SignupPage() {
         </Card>
       </div>
     </div>
+    </PageTransition>
   );
 }

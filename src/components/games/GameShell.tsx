@@ -13,8 +13,8 @@ export function GameShell({ title, goal, children }: { title: string; goal?: str
           <Gamepad2 className="w-5 h-5 world-accent" aria-hidden="true" />
           <span className="text-xs font-bold uppercase tracking-wider world-accent">Mini-jeu</span>
         </div>
-        <h3 className="font-bold text-lg text-white">{title}</h3>
-        {goal && <p className="text-sm text-gray-300 mt-1 leading-relaxed">{goal}</p>}
+        <h3 className="font-bold text-lg text-ink">{title}</h3>
+        {goal && <p className="text-sm text-ink-soft mt-1 leading-relaxed">{goal}</p>}
       </div>
       {children}
     </div>
@@ -29,14 +29,14 @@ export function WinBanner({ onReplay, note }: { onReplay: () => void; note?: str
   }, []);
 
   return (
-    <div className="rounded-2xl border border-emerald-500/40 bg-emerald-500/10 p-5 text-center">
+    <div role="status" className="rounded-2xl border border-success-500/40 bg-success-500/10 p-5 text-center">
       <p className="text-3xl mb-2" aria-hidden="true">🎉</p>
-      <p className="font-bold text-emerald-300 mb-1">Bravo, tu as réussi !</p>
-      {note && <p className="text-sm text-gray-300 mb-3">{note}</p>}
+      <p className="font-bold text-success-300 mb-1">Bravo, tu as réussi !</p>
+      {note && <p className="text-sm text-ink-soft mb-3">{note}</p>}
       <button
         type="button"
         onClick={onReplay}
-        className="mt-1 px-5 py-2 rounded-full border border-emerald-500/50 bg-emerald-500/10 text-emerald-300 font-semibold text-sm transition-all hover:bg-emerald-500/20"
+        className="mt-1 px-5 py-2 rounded-full border border-success-500/50 bg-success-500/10 text-success-300 font-semibold text-sm transition-all hover:bg-success-500/20"
       >
         Rejouer
       </button>

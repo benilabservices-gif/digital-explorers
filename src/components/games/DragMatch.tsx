@@ -71,10 +71,10 @@ export default function DragMatch({ config }: { config: DragMatchConfig }) {
                   disabled={isMatched}
                   className={`w-full text-left px-4 py-3 rounded-xl border text-sm leading-relaxed transition-all ${
                     isMatched
-                      ? 'border-emerald-500/50 bg-emerald-500/10 text-emerald-200'
+                      ? 'border-success-500/50 bg-success-500/10 text-success-300'
                       : isSelected
-                        ? 'world-border world-bg-soft text-white'
-                        : 'border-white/10 text-gray-200 hover:border-white/30'
+                        ? 'world-border world-bg-soft text-ink'
+                        : 'border-line text-ink hover:border-line-lit'
                   }`}
                 >
                   {pair.left}
@@ -95,10 +95,10 @@ export default function DragMatch({ config }: { config: DragMatchConfig }) {
                   disabled={isMatched}
                   className={`w-full text-left px-4 py-3 rounded-xl border text-sm leading-relaxed transition-all ${
                     isMatched
-                      ? 'border-emerald-500/50 bg-emerald-500/10 text-emerald-200'
+                      ? 'border-success-500/50 bg-success-500/10 text-success-300'
                       : isWrong
-                        ? 'border-red-500/60 bg-red-500/10 text-red-200'
-                        : 'border-white/10 text-gray-200 hover:border-white/30'
+                        ? 'border-danger-500/60 bg-danger-500/10 text-danger-300'
+                        : 'border-line text-ink hover:border-line-lit'
                   }`}
                 >
                   {pair.right}
@@ -109,7 +109,7 @@ export default function DragMatch({ config }: { config: DragMatchConfig }) {
         </div>
       )}
       {!won && selectedLeft && (
-        <p className="text-sm text-gray-400">Maintenant, choisis à droite l’exemple qui va avec.</p>
+        <p aria-live="polite" className="text-sm text-ink-soft">Maintenant, choisis à droite l’exemple qui va avec.</p>
       )}
     </GameShell>
   );

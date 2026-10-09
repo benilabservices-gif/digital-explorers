@@ -12,6 +12,7 @@ import { weeklyStats, type BadgeLike } from '@/lib/game';
 import { buttonVariants } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Chip } from '@/components/ui/chip';
+import { PageTransition } from '@/components/motion/page-transition';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Espace Parent — îlot client : vue d'ensemble des enfants, rapport hebdo
@@ -105,6 +106,7 @@ export default function ParentPage() {
     : { count: 0, xp: 0, badges: 0 };
 
   return (
+    <PageTransition>
     <div className="min-h-screen bg-night-950 text-ink">
       <section className="px-6 pb-8 pt-28">
         <div className="mx-auto max-w-6xl">
@@ -303,5 +305,6 @@ export default function ParentPage() {
         </div>
       </section>
     </div>
+    </PageTransition>
   );
 }

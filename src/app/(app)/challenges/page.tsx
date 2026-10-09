@@ -1,9 +1,10 @@
 'use client';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Calendar, Trophy, Zap, Crown, CheckCircle, RefreshCw, Target, Flame } from 'lucide-react';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { PageTransition } from '@/components/motion/page-transition';
 import { createClient } from '@/lib/supabase/client';
 import { fetchChildrenWithProgress, findActiveChild, type ChildData } from '@/lib/children';
 import { fetchChallenges, type ChallengeInfo } from '@/lib/content-queries';
@@ -34,6 +35,7 @@ export default function ChallengesPage() {
   const [submittingSlug, setSubmittingSlug] = useState<string | null>(null);
   const [result, setResult] = useState<CompletionResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const overlayRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const supabase = createClient();
@@ -69,6 +71,17 @@ export default function ChallengesPage() {
 
     return () => { cancelled = true; };
   }, []);
+
+  // Overlay de résultat : focus piégé au montage + Escape pour fermer (a11y).
+  useEffect(() => {
+    if (!result) return;
+    overlayRef.current?.focus();
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') setResult(null);
+    }
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [result]);
 
   if (loading) {
     return <div className="flex min-h-screen items-center justify-center bg-night-950"><div className="h-12 w-12 animate-spin rounded-full border-4 border-sunrise-500 border-t-transparent" /></div>;
@@ -167,6 +180,7 @@ export default function ChallengesPage() {
   }
 
   return (
+    <PageTransition>
     <div className="min-h-screen bg-night-950 text-ink">
       <section className="px-6 pb-8 pt-28">
         <div className="mx-auto max-w-6xl">
@@ -226,9 +240,16 @@ export default function ChallengesPage() {
         </div>
       </section>
 
-      {/* REWARD OVERLAY */}
+      {/* REWARD OVERLAY — dialog modal : focus initial + Escape pour fermer */}
       {result && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-night-950/80 p-6">
+        <div
+          ref={overlayRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Défi terminé"
+          tabIndex={-1}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-night-950/80 p-6 focus:outline-none"
+        >
           <Card variant="raised" className="w-full max-w-sm rounded-3xl p-8 text-center">
             <div className="mb-4 text-6xl" aria-hidden="true">🎉</div>
             {result.alreadyCompleted ? (
@@ -256,5 +277,6 @@ export default function ChallengesPage() {
       )}
 
     </div>
+    </PageTransition>
   );
 }

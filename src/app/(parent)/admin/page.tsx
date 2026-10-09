@@ -6,6 +6,7 @@ import { createClient } from '@/lib/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Chip } from '@/components/ui/chip';
+import { PageTransition } from '@/components/motion/page-transition';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Back-office admin — îlot client : mondes & aventures, leçons & quiz, badges,
@@ -342,6 +343,7 @@ export default function AdminPage() {
     .sort((x, y) => x.label.localeCompare(y.label));
 
   return (
+    <PageTransition>
     <div className="min-h-screen bg-night-950 text-ink">
       <section className="px-6 pb-8 pt-28">
         <div className="mx-auto max-w-6xl">
@@ -604,6 +606,7 @@ export default function AdminPage() {
         </div>
       </section>
     </div>
+    </PageTransition>
   );
 }
 

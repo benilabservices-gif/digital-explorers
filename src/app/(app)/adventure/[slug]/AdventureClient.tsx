@@ -9,9 +9,10 @@
 // Les données d'aventure et d'enfant actif viennent du serveur (props) — plus
 // de gates/chargement côté client.
 //
-// Contrats e2e préservés : « 1/N », boutons Suivant|Aller au quiz, QuizStep
-// (div.space-y-2), « Valider mes réponses », overlay RewardOverlay
-// (div.fixed.inset-0, +XP, bouton « Dashboard »), StoryIntro « Passer ».
+// Contrats e2e — testids centralisés (src/lib/testids.ts) : adventure.progress
+// (« 1/N »), adventure.next (Suivant|Aller au quiz), QuizStep (adventure.quiz /
+// quizOption / validate), RewardOverlay (adventure.rewardsOverlay, +XP, lien
+// « Dashboard » adventure.overlayDashboard), StoryIntro (adventure.skipIntro).
 // ─────────────────────────────────────────────────────────────────────────────
 
 import Link from 'next/link';

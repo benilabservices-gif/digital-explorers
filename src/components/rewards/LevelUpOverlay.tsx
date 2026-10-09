@@ -5,8 +5,9 @@ import { Crown } from 'lucide-react';
 import { celebrate } from '@/lib/celebrate';
 
 /** Moment « passage de niveau » : bannière dorée qui tombe du haut de
- *  l'écran puis s'efface d'elle-même. Volontairement PAS en fixed.inset-0
- *  (le smoke e2e compte exactement un div.fixed.inset-0 : l'overlay). */
+ *  l'écran puis s'efface d'elle-même. Volontairement PAS en fixed.inset-0 :
+ *  un simple bandeau role=status qui ne recouvre pas l'overlay de
+ *  récompenses (testid `adventure.rewardsOverlay`). */
 export default function LevelUpOverlay({ level }: { level: number }) {
   const [visible, setVisible] = useState(true);
 
@@ -28,11 +29,11 @@ export default function LevelUpOverlay({ level }: { level: number }) {
 
   return (
     <div className="fixed top-0 inset-x-0 z-[60] flex justify-center pointer-events-none px-6 pt-8" role="status">
-      <div className="levelup-banner rounded-2xl border border-yellow-400/50 bg-yellow-400/15 backdrop-blur px-6 py-4 flex items-center gap-3 shadow-2xl">
-        <Crown className="w-8 h-8 text-yellow-300 shrink-0" aria-hidden="true" />
+      <div className="levelup-banner rounded-2xl border border-gold-400/50 bg-gold-400/15 backdrop-blur px-6 py-4 flex items-center gap-3 shadow-glow-gold">
+        <Crown className="w-8 h-8 text-gold-300 shrink-0" aria-hidden="true" />
         <div>
-          <p className="font-bold text-yellow-200 text-lg leading-tight">Niveau {level} atteint !</p>
-          <p className="text-xs text-yellow-100/70">Tu deviens de plus en plus fort·e, exploratrice ou explorateur.</p>
+          <p className="font-bold text-gold-300 text-lg leading-tight">Niveau {level} atteint !</p>
+          <p className="text-xs text-gold-300/70">Tu deviens de plus en plus fort·e, exploratrice ou explorateur.</p>
         </div>
       </div>
     </div>

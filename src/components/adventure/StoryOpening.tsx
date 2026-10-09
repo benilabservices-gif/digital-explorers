@@ -10,16 +10,16 @@ export default function StoryOpening({ guide, story }: { guide: WorldGuide; stor
       <div className="flex items-center gap-3 mb-3">
         <span
           aria-hidden="true"
-          className="w-10 h-10 shrink-0 rounded-full border world-border bg-black/20 flex items-center justify-center text-xl"
+          className="w-10 h-10 shrink-0 rounded-full border world-border bg-night-900/60 flex items-center justify-center text-xl"
         >
           {guide.emoji}
         </span>
         <div>
           <p className="text-xs font-bold uppercase tracking-wider world-accent">Ouverture</p>
-          <p className="text-sm font-semibold text-white">{guide.name} te raconte l'histoire…</p>
+          <p className="text-sm font-semibold text-ink">{guide.name} te raconte l'histoire…</p>
         </div>
       </div>
-      <p className="italic text-gray-300 leading-relaxed">{story}</p>
+      <p className="italic text-ink-soft leading-relaxed">{story}</p>
     </section>
   );
 }

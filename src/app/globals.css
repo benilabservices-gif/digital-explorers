@@ -193,6 +193,44 @@ body {
   .animate-pulse-glow {
     animation: none;
   }
+
+  /* View Transitions : swaps instantanés si l'utilisateur réduit le mouvement */
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   Transitions de vue — React <ViewTransition> (View Transitions API).
+   Chaque page enveloppe son contenu dans <PageTransition> ; le swap
+   entre deux pages est un fondu court piloté par les tokens --motion-*.
+   ════════════════════════════════════════════════════════════════════ */
+::view-transition {
+  pointer-events: none;
+}
+::view-transition-group(page) {
+  animation-duration: var(--motion-base);
+}
+::view-transition-old(.page-swap) {
+  animation: var(--motion-fast) var(--ease-out-soft) both vt-fade-out;
+}
+::view-transition-new(.page-swap),
+::view-transition-new(.page-enter) {
+  animation: var(--motion-base) var(--ease-out-soft) both vt-fade-in;
+}
+
+@keyframes vt-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+  }
 }
 
 /* ════════════════════════════════════════════════════════════════════

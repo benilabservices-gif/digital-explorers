@@ -17,6 +17,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { WORLDS } from "@/data/content";
 import { WORLD_THEMES } from "@/data/world-themes";
 import { GUIDES } from "@/data/characters";
+import { PageTransition } from "@/components/motion/page-transition";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // /design — vitrine interne du design system (noindex). Validation visuelle des
@@ -49,6 +50,7 @@ function Demo({ title, children }: { title: string; children: React.ReactNode })
 
 export default function DesignPage() {
   return (
+    <PageTransition>
     <div className="min-h-screen bg-night-950 text-ink">
       <div className="mx-auto max-w-6xl px-6 py-16">
         {/* Intro */}
@@ -374,5 +376,6 @@ export default function DesignPage() {
         </footer>
       </div>
     </div>
+    </PageTransition>
   );
 }

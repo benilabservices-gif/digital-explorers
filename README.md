@@ -11,7 +11,7 @@ Plateforme éducative gamifiée qui fait découvrir le numérique aux jeunes d'A
 - **Next.js 16** (App Router, React 19, build Turbopack) + **Tailwind CSS 4**
 - **Supabase** : Postgres, Auth, RLS (`parent_id = auth.uid()`), types générés (`npm run db:types`)
 - **Coach IA** : NVIDIA NIM (GLM-5.3), route `/api/chat`
-- Animations : CSS/Tailwind + canvas natif ; `canvas-confetti` est la seule dépendance dédiée
+- Animations : CSS/Tailwind + canvas natif ; transitions de page via **View Transitions API** (React 19 `<ViewTransition>`) ; `canvas-confetti` est la seule dépendance dédiée
 
 ## Démarrage
 
@@ -42,6 +42,7 @@ Guides de configuration détaillés : `docs/`.
 | `npm run import:content` | Import du contenu pédagogique en base |
 | `npm run validate:content` / `smoke:content` | Validation du contenu (fichiers / en base) |
 | `npm run flow:check` | Flux de bout en bout contre l'app **déployée** (voir Déploiement) |
+| `npm run design:check` | Règle tokens-only : aucun hex brut dans `src/**/*.{ts,tsx}`, classes purgées interdites |
 
 ## Tests & non-régression
 
@@ -53,14 +54,23 @@ Trois niveaux complémentaires :
 
 ### Contrats e2e — à ne pas casser
 
-Le smoke repose sur des sélecteurs stricts. Toute modification de la page aventure doit respecter :
+Le smoke cible des **testids stables** centralisés dans `src/lib/testids.ts` (importés par la spec), plus quelques libellés métier. Ne jamais renommer un testid ni modifier un libellé listé ici sans mettre à jour la spec dans le même commit :
 
-- Un seul bouton `/^(Suivant|Aller au quiz)$/` ;
-- Le texte exact `Quiz` n'apparaît que dans `QuizStep` ;
-- `div.space-y-2` uniquement pour les groupes d'options du quiz (jamais ailleurs sur la page aventure) ;
-- `div.fixed.inset-0` unique = `RewardOverlay` — `LevelUpOverlay` et `StoryIntro` utilisent volontairement d'autres classes ;
-- Pas de duplication de « +N XP » / « Quiz : x/y » hors de l'overlay de fin ;
-- Le smoke clique « Passer l'introduction » pour fermer l'intro cinématique avant les leçons.
+- **Login** : `auth.loginEmail` / `auth.loginPassword` / `auth.loginSubmit` ; libellé « Tableau de bord parental » ;
+- **Ajout d'enfant** : `child.add` (« Ajouter un enfant »), `auth.childName` / `auth.childAge` / `auth.childGrade` / `auth.childSubmit` ; libellés « Ajoute ton premier enfant », « Tout est prêt ! », bouton « Aller au dashboard » (rôle button exigé) ;
+- **Dashboard** : `dashboard.greeting` (« Bonjour … »), `dashboard.xp` (« N XP »), `dashboard.progress` (« x/60 aventures ») ;
+- **Aventure** : `adventure.skipIntro` (« Passer ») referme l'intro cinématique ; `adventure.progress` (« 1/7 ») ; un seul bouton `adventure.next` (`/^(Suivant|Aller au quiz)$/`) ; `adventure.quiz` (en-tête quiz), un `adventure.quizOption` par question (ses boutons = les options), `adventure.validate` (« Valider mes réponses ») ;
+- **Overlay de fin** : `adventure.rewardsOverlay` unique (🎉, « +N XP », « Quiz : x/y » scoppés dedans), lien `adventure.overlayDashboard` → retour dashboard.
+
+## Design system — « Carnet de l'Explorateur »
+
+Direction artistique **afro-futurisme solaire** : nuit d'obsidienne, encre lumineuse, marque « soleil levant » (corail `sunrise` → ambre `gleam`), or `gold` réservé aux récompenses, accents pédagogiques injectés par monde.
+
+- **Tokens** (`src/app/globals.css`, bloc `@theme`) : fonds `night-600…950`, bordures `line`/`line-lit`, textes `ink`/`ink-soft`/`ink-faint`, marque `sunrise`/`gleam`, `gold`, sémantiques `success`/`danger`/`info`, ombres `card`/`lift`/`glow-sunrise`/`glow-gold`, motion `--motion-fast/base/slow` + `--ease-out-soft`/`--ease-spring`. Règle **tokens-only** : aucune couleur hex brute dans `src/**/*.{ts,tsx}` — appliquée par `npm run design:check` (seules les données de thème `src/data/` sont exemptées).
+- **Primitives** : `src/components/ui/` (`Button`/`buttonVariants` — primary/secondary/ghost/gold, `Card`, `Badge`, `Chip`, `EmptyState`, `PageShell`, `SectionHeading`, `Skeleton`, `StatTile`) et marque `src/components/brand/` (`Avatar`, `Motif`, `WorldEmblem`). Les surfaces passent par ces primitives plutôt que par des styles ad hoc ; pour un lien-bouton : `<Link className={buttonVariants(...)}>`.
+- **Motion** : chaque page enveloppe son contenu dans `<PageTransition>` (`src/components/motion/page-transition.tsx`) — React 19 `<ViewTransition>` + fondus courts branchés sur les tokens `--motion-*` ; `prefers-reduced-motion` coupe tout (swap instantané).
+- **Accents par monde** : `WorldThemeProvider` pose les variables `--world-*` (accent, halo, teinte) — aucune couleur de monde en dur dans les composants.
+- **Galerie** : la page `/design` présente la DA (fondations, primitives, mondes) — utile pour vérifier un rendu avant/après refonte.
 
 ## L'expérience de jeu (refonte « design & immersion »)
 

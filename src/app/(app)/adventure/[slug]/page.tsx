@@ -4,8 +4,8 @@
 // Rend serveur : métadonnées (generateMetadata, fetch partagé via cache),
 // thème du monde, filigrane, breadcrumb et en-tête d'aventure (h1). Le cœur
 // interactif (leçons, quiz, complétion, récompenses) vit dans AdventureClient.
-// Token-only : les couleurs vives (dégradé du monde, legacy) restent côté DB
-// ou dans l'îlot client (LEGACY_HEX_ALLOWED, migration Phase 4).
+// Token-only : le dégradé du monde reste un contrat DB ; tout le reste de la
+// page utilise les tokens « Carnet de l'Explorateur » (ratchet final vide).
 // ─────────────────────────────────────────────────────────────────────────────
 
 import type { Metadata } from 'next';
@@ -19,6 +19,7 @@ import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { getAdventureBySlug } from '@/lib/queries/adventures';
 import { getActiveChild } from '@/lib/queries/children';
+import { PageTransition } from '@/components/motion/page-transition';
 import AdventureClient from './AdventureClient';
 
 type AdventureParams = { params: Promise<{ slug: string }> };
@@ -44,6 +45,7 @@ export default async function AdventureSlugPage({ params }: AdventureParams) {
   const alreadyDone = child?.completedAdventureSlugs.includes(adventure.slug) ?? false;
 
   return (
+    <PageTransition>
     <WorldThemeProvider
       slug={adventure.world.slug}
       className="relative min-h-screen bg-night-950 text-ink pb-32 overflow-hidden"
@@ -61,16 +63,16 @@ export default async function AdventureSlugPage({ params }: AdventureParams) {
           <ArrowLeft className="w-4 h-4" /> {adventure.world.icon} {adventure.world.name}
         </Link>
 
-        {/* Adventure header */}
+        {/* Adventure header — dégradé du monde (contrat DB), habillage tokens */}
         <div className={`rounded-2xl p-6 mb-6 bg-gradient-to-r ${adventure.world.gradient} relative overflow-hidden`}>
-          <div className="absolute inset-0 bg-black/20" />
+          <div className="absolute inset-0 bg-night-950/30" />
           <div className="relative">
             <div className="text-4xl mb-2">{adventure.world.icon}</div>
             <h1 className="text-2xl font-bold mb-1">{adventure.title}</h1>
-            <p className="text-white/80 text-sm">{adventure.description}</p>
-            <div className="mt-3 flex items-center gap-3 text-sm text-white/60">
-              <span className="flex items-center gap-1"><Star className="w-4 h-4 text-yellow-400" /> +{adventure.xpReward} XP</span>
-              {alreadyDone && <span className="flex items-center gap-1 text-emerald-300"><CheckCircle className="w-4 h-4" /> Terminée</span>}
+            <p className="text-ink text-sm">{adventure.description}</p>
+            <div className="mt-3 flex items-center gap-3 text-sm text-ink-soft">
+              <span className="flex items-center gap-1"><Star className="w-4 h-4 text-gold-400" /> +{adventure.xpReward} XP</span>
+              {alreadyDone && <span className="flex items-center gap-1 text-success-300"><CheckCircle className="w-4 h-4" /> Terminée</span>}
             </div>
           </div>
         </div>
@@ -98,5 +100,6 @@ export default async function AdventureSlugPage({ params }: AdventureParams) {
         )}
       </div>
     </WorldThemeProvider>
+    </PageTransition>
   );
 }

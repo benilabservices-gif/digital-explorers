@@ -27,7 +27,7 @@ export default function SfxToggle() {
       aria-pressed={muted}
       aria-label={muted ? 'Réactiver le son' : 'Couper le son'}
       title={muted ? 'Réactiver le son' : 'Couper le son'}
-      className="p-1.5 rounded-full border border-white/10 text-gray-400 hover:text-white hover:border-white/30 transition-colors"
+      className="p-1.5 rounded-full border border-line text-ink-soft hover:text-ink hover:border-line-lit transition-colors"
     >
       {muted ? <VolumeX className="w-4 h-4" aria-hidden="true" /> : <Volume2 className="w-4 h-4" aria-hidden="true" />}
     </button>

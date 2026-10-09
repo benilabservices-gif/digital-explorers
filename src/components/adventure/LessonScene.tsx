@@ -9,7 +9,7 @@ import KeyPointCard from './KeyPointCard';
 function renderBlock(block: LessonBlock, guide: WorldGuide) {
   switch (block.kind) {
     case 'paragraph':
-      return <p className="text-gray-300 leading-relaxed">{block.text}</p>;
+      return <p className="text-ink-soft leading-relaxed">{block.text}</p>;
     case 'list':
       return <KeyPointCard icon="📌" title="À retenir" items={block.items} ordered={block.ordered} />;
     case 'dialogue':
@@ -68,7 +68,7 @@ export default function LessonScene({ blocks, guide }: { blocks: LessonBlock[]; 
           <button
             type="button"
             onClick={() => setRevealed(blocks.length)}
-            className="text-sm text-gray-400 hover:text-white underline underline-offset-4 transition-colors"
+            className="text-sm text-ink-soft hover:text-ink underline underline-offset-4 transition-colors"
           >
             Tout afficher
           </button>

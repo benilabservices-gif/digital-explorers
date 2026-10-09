@@ -22,7 +22,7 @@ export default function ScrollToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className="fixed bottom-24 right-6 z-40 w-12 h-12 rounded-full bg-violet-600 hover:bg-violet-500 text-white shadow-lg shadow-violet-500/30 flex items-center justify-center transition-all hover:scale-110"
+      className="fixed bottom-24 right-6 z-40 w-12 h-12 rounded-full bg-night-800 border border-line text-ink hover:border-line-lit shadow-lift flex items-center justify-center transition-all duration-250 ease-out-soft hover:scale-110 active:scale-95"
       aria-label="Retour en haut"
     >
       <ChevronUp className="w-6 h-6" />

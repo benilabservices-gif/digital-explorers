@@ -12,6 +12,7 @@ import { fetchBadges, fetchWorldsWithAdventures, type WorldWithAdventures } from
 import { isWorldReady } from '@/data/content';
 import { getActiveChildId } from '@/lib/active-child';
 import { getLevelTitle, type BadgeLike } from '@/lib/game';
+import { PageTransition } from '@/components/motion/page-transition';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Portfolio — « Digital Passport » de l'enfant actif : niveau, compétences par
@@ -67,6 +68,7 @@ export default function PortfolioPage() {
   const lockedBadges = badges.filter(b => !child.badgeSlugs.includes(b.slug));
 
   return (
+    <PageTransition>
     <div className="min-h-screen bg-night-950 text-ink">
       <section className="px-6 pb-8 pt-28">
         <div className="mx-auto max-w-4xl">
@@ -182,5 +184,6 @@ export default function PortfolioPage() {
         </div>
       </section>
     </div>
+    </PageTransition>
   );
 }

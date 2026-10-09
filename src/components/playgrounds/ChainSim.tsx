@@ -80,8 +80,8 @@ export default function ChainSim({ config }: { config: ChainSimConfig }) {
           aria-pressed={tamperMode}
           className={`px-5 py-2 rounded-full border font-semibold text-sm transition-all flex items-center gap-2 ${
             tamperMode
-              ? 'border-red-500/50 bg-red-500/10 text-red-300'
-              : 'border-white/15 text-gray-300 hover:border-white/35'
+              ? 'border-danger-500/50 bg-danger-500/10 text-danger-300'
+              : 'border-line text-ink-soft hover:border-line-lit'
           }`}
         >
           <Pencil className="w-4 h-4" aria-hidden="true" /> {tamperMode ? 'Quitter le mode triche' : 'Tenter de tricher'}
@@ -89,21 +89,21 @@ export default function ChainSim({ config }: { config: ChainSimConfig }) {
         <button
           type="button"
           onClick={reset}
-          className="px-5 py-2 rounded-full border border-white/15 text-gray-300 font-semibold text-sm transition-all hover:border-white/35 flex items-center gap-2"
+          className="px-5 py-2 rounded-full border border-line text-ink-soft font-semibold text-sm transition-all hover:border-line-lit flex items-center gap-2"
         >
           <RotateCcw className="w-4 h-4" aria-hidden="true" /> Recommencer
         </button>
       </div>
 
       {tamperMode && (
-        <p className="text-sm text-amber-300 leading-relaxed">
+        <p aria-live="polite" className="text-sm text-gleam-400 leading-relaxed">
           Mode triche activé : modifie le contenu d’un ancien bloc et regarde ce qui se passe…
         </p>
       )}
       {brokenFrom !== null && (
-        <div className="rounded-xl border border-red-500/50 bg-red-500/10 p-4 flex items-start gap-3">
-          <AlertTriangle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" aria-hidden="true" />
-          <p className="text-sm text-red-300 leading-relaxed">
+        <div role="alert" className="rounded-xl border border-danger-500/50 bg-danger-500/10 p-4 flex items-start gap-3">
+          <AlertTriangle className="w-5 h-5 text-danger-400 shrink-0 mt-0.5" aria-hidden="true" />
+          <p className="text-sm text-danger-300 leading-relaxed">
             La chaîne est cassée à partir du bloc {brokenFrom} : son lien vers le bloc précédent
             ne correspond plus. Tout le réseau rejetterait cette version !
           </p>
@@ -117,13 +117,13 @@ export default function ChainSim({ config }: { config: ChainSimConfig }) {
             <div
               key={index}
               className={`rounded-xl border p-4 ${
-                isBroken ? 'border-red-500/50 bg-red-500/5' : 'border-white/10 bg-black/20'
+                isBroken ? 'border-danger-500/50 bg-danger-500/5' : 'border-line bg-night-900/60'
               }`}
             >
               <div className="flex items-center justify-between gap-2 mb-2">
-                <p className="font-bold text-white text-sm">Bloc n°{index}</p>
+                <p className="font-bold text-ink text-sm">Bloc n°{index}</p>
                 {isBroken && (
-                  <span className="text-xs font-semibold text-red-300 flex items-center gap-1">
+                  <span className="text-xs font-semibold text-danger-300 flex items-center gap-1">
                     <AlertTriangle className="w-3.5 h-3.5" aria-hidden="true" /> empreinte cassée
                   </span>
                 )}
@@ -133,18 +133,18 @@ export default function ChainSim({ config }: { config: ChainSimConfig }) {
                   value={block.data}
                   onChange={(event) => editData(index, event.target.value)}
                   rows={2}
-                  className="w-full rounded-lg border border-white/15 bg-black/40 p-2 text-sm text-gray-200 leading-relaxed focus:outline-none focus:border-white/30"
+                  className="w-full rounded-lg border border-line bg-night-900/60 p-2 text-sm text-ink leading-relaxed focus:outline-none focus:border-line-lit"
                 />
               ) : (
-                <p className="text-sm text-gray-300 leading-relaxed">{block.data}</p>
+                <p className="text-sm text-ink-soft leading-relaxed">{block.data}</p>
               )}
-              <div className="mt-2 flex flex-col gap-1 text-xs font-mono text-gray-400">
+              <div className="mt-2 flex flex-col gap-1 text-xs font-mono text-ink-soft">
                 <p className="flex items-center gap-1.5">
                   <Link2 className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-                  précédent : <span className={isBroken ? 'text-red-300' : 'text-gray-300'}>{block.prevHash}</span>
+                  précédent : <span className={isBroken ? 'text-danger-300' : 'text-ink-soft'}>{block.prevHash}</span>
                 </p>
                 <p>
-                  empreinte : <span className={isBroken ? 'text-red-300' : 'text-emerald-300'}>{blockHash(block)}</span>
+                  empreinte : <span className={isBroken ? 'text-danger-300' : 'text-success-300'}>{blockHash(block)}</span>
                 </p>
               </div>
             </div>
@@ -152,7 +152,7 @@ export default function ChainSim({ config }: { config: ChainSimConfig }) {
         })}
       </div>
 
-      <p className="text-sm text-gray-400 leading-relaxed">
+      <p className="text-sm text-ink-soft leading-relaxed">
         Chaque empreinte dépend du bloc précédent : impossible de réécrire l’histoire sans
         casser toute la chaîne.
       </p>

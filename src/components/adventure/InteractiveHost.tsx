@@ -57,7 +57,7 @@ export default function InteractiveHost({
             type="button"
             onClick={() => setShowLesson((visible) => !visible)}
             aria-expanded={showLesson}
-            className="text-sm text-gray-400 hover:text-white underline underline-offset-4 transition-colors flex items-center gap-1.5"
+            className="text-sm text-ink-soft hover:text-ink underline underline-offset-4 transition-colors flex items-center gap-1.5"
           >
             <BookOpen className="w-4 h-4" aria-hidden="true" />
             {showLesson ? 'Masquer la leçon' : 'Lire la leçon'}

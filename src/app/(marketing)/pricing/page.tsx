@@ -16,6 +16,7 @@ import { Chip } from "@/components/ui/chip";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { PageShell } from "@/components/ui/page-shell";
 import { Motif } from "@/components/brand/motif";
+import { PageTransition } from "@/components/motion/page-transition";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Tarifs (marketing) — page 100 % serveur. La FAQ utilise <details>/<summary>
@@ -152,6 +153,7 @@ const gradientText =
 
 export default function PricingPage() {
   return (
+    <PageTransition>
     <PageShell variant="marketing" className="overflow-x-hidden text-ink">
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden px-6 pb-16 pt-32">
@@ -399,5 +401,6 @@ export default function PricingPage() {
         </div>
       </section>
     </PageShell>
+    </PageTransition>
   );
 }

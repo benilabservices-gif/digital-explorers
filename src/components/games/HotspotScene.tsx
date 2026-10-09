@@ -47,7 +47,7 @@ export default function HotspotScene({ config }: { config: HotspotConfig }) {
         <WinBanner onReplay={replay} note={`${riskyIndices.length} risques repérés sans te tromper.`} />
       ) : (
         <>
-          <div className="flex items-center justify-between text-sm text-gray-400">
+          <div className="flex items-center justify-between text-sm text-ink-soft">
             <span>Risques trouvés : {found.size}/{riskyIndices.length}</span>
             <Search className="w-4 h-4" aria-hidden="true" />
           </div>
@@ -62,27 +62,29 @@ export default function HotspotScene({ config }: { config: HotspotConfig }) {
                   onClick={() => pick(index)}
                   className={`p-4 rounded-xl border text-center transition-all ${
                     isFound
-                      ? 'border-emerald-500/50 bg-emerald-500/10'
+                      ? 'border-success-500/50 bg-success-500/10'
                       : isWrong
-                        ? 'border-red-500/60 bg-red-500/10'
-                        : 'border-white/10 hover:border-white/30 hover:-translate-y-0.5'
+                        ? 'border-danger-500/60 bg-danger-500/10'
+                        : 'border-line hover:border-line-lit hover:-translate-y-0.5'
                   }`}
                 >
                   <span className="text-3xl block mb-2" aria-hidden="true">{item.emoji}</span>
-                  <span className="text-sm text-gray-200 leading-snug">{item.label}</span>
+                  <span className="text-sm text-ink leading-snug">{item.label}</span>
                 </button>
               );
             })}
           </div>
-          {lastWhy && (
-            <div className="rounded-2xl border border-emerald-500/40 bg-emerald-500/10 p-4">
-              <p className="font-bold text-emerald-300 mb-1 text-sm">⚠ {lastWhy.label}</p>
-              <p className="text-sm text-gray-300 leading-relaxed">{lastWhy.why}</p>
-            </div>
-          )}
-          {wrongPick !== null && (
-            <p className="text-sm text-red-300">Celle-ci est inoffensive… mais reste vigilant·e !</p>
-          )}
+          <div aria-live="polite">
+            {lastWhy && (
+              <div className="rounded-2xl border border-success-500/40 bg-success-500/10 p-4">
+                <p className="font-bold text-success-300 mb-1 text-sm">⚠ {lastWhy.label}</p>
+                <p className="text-sm text-ink-soft leading-relaxed">{lastWhy.why}</p>
+              </div>
+            )}
+            {wrongPick !== null && (
+              <p className="text-sm text-danger-300">Celle-ci est inoffensive… mais reste vigilant·e !</p>
+            )}
+          </div>
         </>
       )}
     </GameShell>

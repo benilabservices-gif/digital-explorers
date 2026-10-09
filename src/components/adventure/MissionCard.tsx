@@ -46,7 +46,7 @@ export default function MissionCard({ blocks }: { blocks: LessonBlock[] }) {
           <span className="text-xs font-bold uppercase tracking-wider world-accent">Mission</span>
         </div>
         {briefing.map((block, i) => (
-          <p key={i} className="text-gray-200 leading-relaxed">{textOf(block)}</p>
+          <p key={i} className="text-ink leading-relaxed">{textOf(block)}</p>
         ))}
       </div>
 
@@ -62,18 +62,18 @@ export default function MissionCard({ blocks }: { blocks: LessonBlock[] }) {
                 onClick={() => toggle(i)}
                 aria-pressed={checked}
                 className={`w-full text-left flex items-start gap-3 rounded-xl border px-4 py-3 transition-all ${
-                  checked ? 'world-border world-bg-soft' : 'border-white/10 hover:border-white/25'
+                  checked ? 'world-border world-bg-soft' : 'border-line hover:border-line-lit'
                 }`}
               >
                 <span
                   aria-hidden="true"
                   className={`mt-0.5 w-5 h-5 shrink-0 rounded-full border flex items-center justify-center text-[11px] font-bold ${
-                    checked ? 'world-border world-bg-soft world-accent' : 'border-white/20 text-gray-400'
+                    checked ? 'world-border world-bg-soft world-accent' : 'border-line text-ink-soft'
                   }`}
                 >
                   {checked ? '✓' : i + 1}
                 </span>
-                <span className={`text-sm leading-relaxed ${checked ? 'line-through text-gray-500' : 'text-gray-200'}`}>
+                <span className={`text-sm leading-relaxed ${checked ? 'line-through text-ink-faint' : 'text-ink'}`}>
                   {step}
                 </span>
               </button>
@@ -96,15 +96,15 @@ export default function MissionCard({ blocks }: { blocks: LessonBlock[] }) {
           return <KeyPointCard key={`support-${i}`} icon="📖" title="Définition" term={block.term} text={block.text} />;
         }
         return (
-          <p key={`support-${i}`} className="text-gray-300 italic leading-relaxed">{textOf(block)}</p>
+          <p key={`support-${i}`} className="text-ink-soft italic leading-relaxed">{textOf(block)}</p>
         );
       })}
 
       {/* Conclusion narrative */}
       {closing.length > 0 && (
-        <div className="rounded-xl border-l-4 world-border bg-white/5 px-4 py-3">
+        <div className="rounded-xl border-l-4 world-border bg-night-800 px-4 py-3">
           {closing.map((block, i) => (
-            <p key={i} className="italic text-gray-300 leading-relaxed">{textOf(block)}</p>
+            <p key={i} className="italic text-ink-soft leading-relaxed">{textOf(block)}</p>
           ))}
         </div>
       )}

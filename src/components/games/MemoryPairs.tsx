@@ -75,7 +75,7 @@ export default function MemoryPairs({ config }: { config: MemoryPairsConfig }) {
         <WinBanner onReplay={replay} note={`Toutes les paires trouvées en ${moves} coups !`} />
       ) : (
         <>
-          <p className="text-sm text-gray-400">Coups joués : {moves}</p>
+          <p className="text-sm text-ink-soft">Coups joués : {moves}</p>
           <div className="grid grid-cols-2 gap-3">
             {cards.map((card, index) => {
               const isFaceUp = flipped.includes(index) || matched.has(index);
@@ -88,10 +88,10 @@ export default function MemoryPairs({ config }: { config: MemoryPairsConfig }) {
                   aria-label={isFaceUp ? card.text : 'Carte retournée'}
                   className={`min-h-16 px-3 py-4 rounded-xl border text-sm leading-relaxed text-left transition-all ${
                     isMatched
-                      ? 'border-emerald-500/50 bg-emerald-500/10 text-emerald-200'
+                      ? 'border-success-500/50 bg-success-500/10 text-success-300'
                       : isFaceUp
-                        ? 'world-border world-bg-soft text-white'
-                        : 'border-white/10 bg-black/20 text-center text-2xl text-gray-500 hover:border-white/30'
+                        ? 'world-border world-bg-soft text-ink'
+                        : 'border-line bg-night-900/60 text-center text-2xl text-ink-faint hover:border-line-lit'
                   }`}
                 >
                   {isFaceUp ? card.text : '?'}
@@ -100,7 +100,7 @@ export default function MemoryPairs({ config }: { config: MemoryPairsConfig }) {
             })}
           </div>
           {flipped.length === 1 && (
-            <p className="text-sm text-gray-400">Retourne une deuxième carte pour trouver la paire.</p>
+            <p aria-live="polite" className="text-sm text-ink-soft">Retourne une deuxième carte pour trouver la paire.</p>
           )}
         </>
       )}

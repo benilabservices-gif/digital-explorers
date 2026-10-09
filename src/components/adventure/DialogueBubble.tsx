@@ -14,7 +14,7 @@ export default function DialogueBubble({ guide, children }: { guide: WorldGuide;
       </span>
       <div className="bubble-in flex-1 min-w-0 rounded-2xl rounded-tl-md border world-border world-bg-soft px-4 py-3">
         <p className="text-xs font-semibold world-accent mb-1">{guide.name} · {guide.trait}</p>
-        <p className="text-gray-200 leading-relaxed">{children}</p>
+        <p className="text-ink leading-relaxed">{children}</p>
       </div>
     </div>
   );

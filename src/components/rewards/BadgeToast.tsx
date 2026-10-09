@@ -22,11 +22,11 @@ export default function BadgeToast({ badge, index, total }: { badge: BadgeLike; 
 
   return (
     <div
-      className="badge-pop rounded-xl border border-amber-400/40 bg-amber-400/10 px-4 py-3 flex flex-col items-center w-24"
+      className="badge-pop rounded-xl border border-gold-400/40 bg-gold-400/10 px-4 py-3 flex flex-col items-center w-24"
       style={{ animationDelay: `${index * 0.22}s` }}
     >
       <span className="text-3xl" aria-hidden="true">{badge.icon}</span>
-      <span className="text-xs text-amber-200/90 mt-1 text-center leading-tight">{badge.name}</span>
+      <span className="text-xs text-gold-300/90 mt-1 text-center leading-tight">{badge.name}</span>
     </div>
   );
 }

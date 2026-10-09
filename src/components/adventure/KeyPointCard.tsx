@@ -17,12 +17,12 @@ interface KeyPointCardProps {
 function DefinitionBody({ term, text }: { term: string; text: string }) {
   const idx = text.indexOf(term);
   if (idx === -1) {
-    return <p className="text-gray-200 leading-relaxed"><strong className="text-white font-semibold">{term}</strong> — {text}</p>;
+    return <p className="text-ink leading-relaxed"><strong className="text-ink font-semibold">{term}</strong> — {text}</p>;
   }
   return (
-    <p className="text-gray-200 leading-relaxed">
+    <p className="text-ink leading-relaxed">
       {text.slice(0, idx)}
-      <strong className="text-white font-semibold">{term}</strong>
+      <strong className="text-ink font-semibold">{term}</strong>
       {text.slice(idx + term.length)}
     </p>
   );
@@ -39,18 +39,18 @@ export default function KeyPointCard({ icon, title, items, ordered, term, text }
       </div>
       {items && items.length > 0 ? (
         ordered ? (
-          <ol className="list-decimal pl-5 space-y-1.5 text-gray-200 leading-relaxed">
+          <ol className="list-decimal pl-5 space-y-1.5 text-ink leading-relaxed">
             {items.map((item, i) => <li key={i}>{item}</li>)}
           </ol>
         ) : (
-          <ul className="list-disc pl-5 space-y-1.5 text-gray-200 leading-relaxed">
+          <ul className="list-disc pl-5 space-y-1.5 text-ink leading-relaxed">
             {items.map((item, i) => <li key={i}>{item}</li>)}
           </ul>
         )
       ) : term && text ? (
         <DefinitionBody term={term} text={text} />
       ) : (
-        <p className="text-gray-200 leading-relaxed">{text}</p>
+        <p className="text-ink leading-relaxed">{text}</p>
       )}
     </div>
   );

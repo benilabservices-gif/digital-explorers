@@ -44,11 +44,11 @@ export default function ColorMixer({ config }: { config: ColorMixerConfig }) {
   return (
     <GameShell title={config.title} goal={config.goal}>
       {/* Aperçu */}
-      <div className="rounded-2xl border border-white/10 overflow-hidden">
+      <div className="rounded-2xl border border-line overflow-hidden">
         <div className="h-32 transition-colors duration-150" style={{ backgroundColor: hex }} />
-        <div className="bg-black/30 px-4 py-3 flex items-center justify-between">
-          <span className="font-mono text-lg text-white">{hex}</span>
-          <span className="text-xs text-gray-400 font-mono">rgb({red}, {green}, {blue})</span>
+        <div className="bg-night-900/60 px-4 py-3 flex items-center justify-between">
+          <span className="font-mono text-lg text-ink">{hex}</span>
+          <span className="text-xs text-ink-soft font-mono">rgb({red}, {green}, {blue})</span>
         </div>
       </div>
 
@@ -57,12 +57,12 @@ export default function ColorMixer({ config }: { config: ColorMixerConfig }) {
         {(
           [
             ['Rouge', red, setRed, 'accent-red-400'],
-            ['Vert', green, setGreen, 'accent-emerald-400'],
+            ['Vert', green, setGreen, 'accent-success-400'],
             ['Bleu', blue, setBlue, 'accent-blue-400'],
           ] as const
         ).map(([label, value, setter, accent]) => (
           <div key={label} className="flex items-center gap-3">
-            <label htmlFor={`slider-${label}`} className="text-sm text-gray-300 w-14 shrink-0">
+            <label htmlFor={`slider-${label}`} className="text-sm text-ink-soft w-14 shrink-0">
               {label}
             </label>
             <input
@@ -74,12 +74,12 @@ export default function ColorMixer({ config }: { config: ColorMixerConfig }) {
               onChange={(event) => setter(Number(event.target.value))}
               className={`flex-1 ${accent}`}
             />
-            <span className="text-xs text-gray-400 font-mono w-8 text-right">{value}</span>
+            <span className="text-xs text-ink-soft font-mono w-8 text-right">{value}</span>
           </div>
         ))}
       </div>
 
-      {message && <p className="text-sm text-gray-300 leading-relaxed">{message}</p>}
+      {message && <p aria-live="polite" className="text-sm text-ink-soft leading-relaxed">{message}</p>}
 
       {/* Palette */}
       <div>
@@ -94,10 +94,10 @@ export default function ColorMixer({ config }: { config: ColorMixerConfig }) {
               aria-label={`Charger la couleur ${swatch.label}`}
             >
               <span
-                className="block w-12 h-12 rounded-xl border border-white/15 transition-transform group-hover:scale-110"
+                className="block w-12 h-12 rounded-xl border border-line transition-transform group-hover:scale-110"
                 style={{ backgroundColor: swatch.hex }}
               />
-              <span className="block text-xs text-gray-400 mt-1">{swatch.label}</span>
+              <span className="block text-xs text-ink-soft mt-1">{swatch.label}</span>
             </button>
           ))}
         </div>
@@ -119,14 +119,14 @@ export default function ColorMixer({ config }: { config: ColorMixerConfig }) {
               <div
                 key={challenge.label}
                 className={`flex items-center gap-3 rounded-xl border p-3 ${
-                  isSolved ? 'border-emerald-500/50 bg-emerald-500/10' : 'border-white/10'
+                  isSolved ? 'border-success-500/50 bg-success-500/10' : 'border-line'
                 }`}
               >
                 <span
-                  className="w-8 h-8 rounded-lg border border-white/15 shrink-0"
+                  className="w-8 h-8 rounded-lg border border-line shrink-0"
                   style={{ backgroundColor: challenge.hex }}
                 />
-                <span className={`text-sm flex-1 ${isSolved ? 'text-emerald-300' : 'text-gray-300'}`}>
+                <span className={`text-sm flex-1 ${isSolved ? 'text-success-300' : 'text-ink-soft'}`}>
                   {challenge.label}
                 </span>
                 <span className="text-sm">{isSolved ? '✓' : ''}</span>

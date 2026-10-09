@@ -55,7 +55,7 @@ export default function FillBlank({ config }: { config: FillBlankConfig }) {
       ) : (
         <>
           {/* Texte à trous */}
-          <p className="rounded-2xl border border-white/10 bg-black/20 p-5 text-gray-100 leading-loose">
+          <p className="rounded-2xl border border-line bg-night-900/60 p-5 text-ink leading-loose">
             {segments.map((segment, i) => {
               if (typeof segment === 'string') {
                 return <span key={i}>{segment}</span>;
@@ -66,7 +66,7 @@ export default function FillBlank({ config }: { config: FillBlankConfig }) {
                 return (
                   <span
                     key={i}
-                    className="inline-block min-w-16 mx-1 px-3 py-0.5 rounded-lg border border-dashed border-white/25 text-gray-500 text-sm text-center align-middle"
+                    className="inline-block min-w-16 mx-1 px-3 py-0.5 rounded-lg border border-dashed border-line text-ink-faint text-sm text-center align-middle"
                   >
                     {segment.hole}
                   </span>
@@ -79,9 +79,9 @@ export default function FillBlank({ config }: { config: FillBlankConfig }) {
                   key={i}
                   className={`inline-block mx-1 px-3 py-0.5 rounded-lg text-sm font-semibold align-middle ${
                     isCorrect
-                      ? 'bg-emerald-500/15 text-emerald-300'
+                      ? 'bg-success-500/15 text-success-300'
                       : isWrong
-                        ? 'bg-red-500/15 text-red-300 line-through'
+                        ? 'bg-danger-500/15 text-danger-300 line-through'
                         : 'world-bg-soft world-border border world-accent'
                   }`}
                 >
@@ -96,8 +96,8 @@ export default function FillBlank({ config }: { config: FillBlankConfig }) {
             {holeNumbers.map((holeNumber) => {
               const blank = config.blanks[holeNumber - 1];
               return (
-                <div key={holeNumber} className="rounded-xl border border-white/10 p-3">
-                  <p className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
+                <div key={holeNumber} className="rounded-xl border border-line p-3">
+                  <p className="text-xs font-bold uppercase tracking-wider text-ink-soft mb-2">
                     Trou {holeNumber}
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -111,7 +111,7 @@ export default function FillBlank({ config }: { config: FillBlankConfig }) {
                           className={`px-4 py-1.5 rounded-full border text-sm transition-all ${
                             isChosen
                               ? 'world-border world-bg-soft world-accent font-semibold'
-                              : 'border-white/15 text-gray-300 hover:border-white/35'
+                              : 'border-line text-ink-soft hover:border-line-lit'
                           }`}
                         >
                           {option}
@@ -134,7 +134,7 @@ export default function FillBlank({ config }: { config: FillBlankConfig }) {
               <CheckCircle2 className="w-4 h-4" aria-hidden="true" /> Vérifier
             </button>
             {checked && !allCorrect && (
-              <p className="text-sm text-red-300">Les mots barrés ne vont pas : réessaie !</p>
+              <p aria-live="polite" className="text-sm text-danger-300">Les mots barrés ne vont pas : réessaie !</p>
             )}
           </div>
         </>

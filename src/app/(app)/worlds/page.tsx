@@ -9,6 +9,7 @@ import { Card } from '@/components/ui/card';
 import { Chip } from '@/components/ui/chip';
 import { SectionHeading } from '@/components/ui/section-heading';
 import { WorldEmblem } from '@/components/brand/world-emblem';
+import { PageTransition } from '@/components/motion/page-transition';
 import { cn } from '@/lib/utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -141,6 +142,7 @@ export default async function WorldsPage() {
   const activeChild = await getActiveChild();
 
   return (
+    <PageTransition>
     <div className="min-h-screen bg-night-950 text-ink">
       <section className="relative overflow-hidden px-6 pb-16 pt-32">
         {/* Ciel étoilé décoratif — la « constellation » des mondes */}
@@ -205,5 +207,6 @@ export default async function WorldsPage() {
         </div>
       </section>
     </div>
+    </PageTransition>
   );
 }

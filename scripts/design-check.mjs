@@ -10,11 +10,10 @@
 //    de thème (accents pédagogiques par monde).
 // 2. AUCUNE réintroduction des classes CSS purgées (btn-magic, card-glass…).
 //
-// Mécanisme de cliquet : LEGACY_HEX_ALLOWED liste les fichiers/dossiers pas
-// encore migrés vers la nouvelle DA — ils conservent provisoirement leurs hex
-// bruts. À CHAQUE phase de migration, on retire des entrées de cette liste ;
-// un fichier qui sort de la liste doit être passé aux tokens. Objectif :
-// liste vide à la Phase 6 (nettoyage final).
+// Mécanisme de cliquet : LEGACY_HEX_ALLOWED listait les fichiers/dossiers pas
+// encore migrés vers la nouvelle DA. Ratchet fermé en Phase 6 : la liste est
+// VIDE, tout hex brut dans src/**/*.{ts,tsx} (hors données de thème) fait
+// désormais échouer le check. Ne rajoutez JAMAIS d'entrée ici.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { readdirSync, readFileSync, statSync } from 'node:fs';
@@ -25,23 +24,8 @@ const SRC = new URL('../src', import.meta.url).pathname;
 // Fichiers/dossiers autorisés à contenir des hex (fichiers de DONNÉES de thème).
 const DATA_HEX_ALLOWED = ['src/data/'];
 
-// Pas encore migrés (ratchet — retirez les entrées au fil des phases 2→6).
-// Phase 2 : chemins post-route-groups. Granularité FICHIER pour les pages
-// déplacées, afin de ne pas exempter les nouveaux fichiers propres
-// (layout.tsx, loading.tsx, error.tsx, coquille serveur aventure/page.tsx).
-const LEGACY_HEX_ALLOWED = [
-  // (marketing) home + pricing : migrées aux tokens en Phase 3.
-  // (app) dashboard/worlds/adventure/challenges/portfolio : migrées en Phase 4.
-  // (auth) login/signup/onboarding + (parent) parent/admin : migrées en Phase 5.
-  'src/components/AICoach.tsx',
-  'src/components/Nav.tsx', // plus aucune page ne l'utilise (Phase 2) — suppression Phase 6
-  'src/components/ScrollToTop.tsx',
-  'src/components/adventure/',
-  'src/components/games/',
-  'src/components/playgrounds/',
-  'src/components/rewards/',
-  'src/components/world/',
-];
+// Ratchet fermé (Phase 6) : tous les composants sont passés aux tokens.
+const LEGACY_HEX_ALLOWED = [];
 
 // Classes supprimées de globals.css — toute réintroduction est une erreur
 // (elles ne produiraient AUCUN style, silencieusement).
